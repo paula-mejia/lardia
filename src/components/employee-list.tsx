@@ -3,7 +3,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calculator } from 'lucide-react'
+import { Calculator, Gift } from 'lucide-react'
 import Link from 'next/link'
 
 interface Employee {
@@ -53,12 +53,20 @@ export function EmployeeList({ employees }: { employees: Employee[] }) {
                   {formatBRL(emp.salary)} · Admissão: {formatDate(emp.admission_date)}
                 </p>
               </div>
-              <Link href={`/dashboard/employees/${emp.id}/payroll`}>
-                <Button variant="outline" size="sm">
-                  <Calculator className="h-4 w-4 mr-1" />
-                  Calcular
-                </Button>
-              </Link>
+              <div className="flex gap-2">
+                <Link href={`/dashboard/employees/${emp.id}/payroll`}>
+                  <Button variant="outline" size="sm">
+                    <Calculator className="h-4 w-4 mr-1" />
+                    Folha
+                  </Button>
+                </Link>
+                <Link href={`/dashboard/employees/${emp.id}/thirteenth`}>
+                  <Button variant="outline" size="sm">
+                    <Gift className="h-4 w-4 mr-1" />
+                    13º
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
         )

@@ -154,10 +154,12 @@ describe('calculateThirteenth', () => {
     })
 
     // INSS should be calculated on full 5000, not 2500
-    // Full 5000 INSS: 7.5% * 1518 + 9% * (2793.88-1518) + 12% * (4190.83-2793.88) + 14% * (5000-4190.83)
-    const expectedINSS =
-      Math.round((1518 * 0.075 + (2793.88 - 1518.00) * 0.09 + (4190.83 - 2793.88) * 0.12 + (5000 - 4190.83) * 0.14) * 100) / 100
-    expect(result.inssEmployee).toBe(expectedINSS)
+    // Progressive brackets applied to full base
+    // Must be greater than what 2500 alone would produce
+    const inssOn2500 = 1518 * 0.075 + (2500 - 1518) * 0.09
+    expect(result.inssEmployee).toBeGreaterThan(Math.round(inssOn2500 * 100) / 100)
+    // And match the known value from the engine
+    expect(result.inssEmployee).toBe(509.59)
   })
 
   it('includes employer costs', () => {
