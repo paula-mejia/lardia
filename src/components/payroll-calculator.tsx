@@ -67,9 +67,10 @@ interface PayrollCalculatorProps {
   initialSalary?: number
   employeeId?: string
   employeeName?: string
+  onSaved?: () => void
 }
 
-export default function PayrollCalculator({ initialSalary, employeeId, employeeName }: PayrollCalculatorProps = {}) {
+export default function PayrollCalculator({ initialSalary, employeeId, employeeName, onSaved }: PayrollCalculatorProps = {}) {
   const [salary, setSalary] = useState<string>(String(initialSalary || 1518))
   const [dependents, setDependents] = useState<string>('0')
   const [overtimeHours, setOvertimeHours] = useState<string>('0')
@@ -143,6 +144,7 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
       setSaveError('Erro ao salvar. Tente novamente.')
     } else {
       setSaved(true)
+      onSaved?.()
       setTimeout(() => setSaved(false), 3000)
     }
     setSaving(false)

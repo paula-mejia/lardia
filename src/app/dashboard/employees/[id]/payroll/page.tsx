@@ -1,9 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
-import PayrollCalculator from '@/components/payroll-calculator'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import PayrollPageClient from './payroll-page-client'
 
 export default async function EmployeePayrollPage({
   params,
@@ -43,7 +43,7 @@ export default async function EmployeePayrollPage({
           </div>
         </div>
 
-        <PayrollCalculator
+        <PayrollPageClient
           initialSalary={employee.salary}
           employeeId={employee.id}
           employeeName={employee.full_name}
