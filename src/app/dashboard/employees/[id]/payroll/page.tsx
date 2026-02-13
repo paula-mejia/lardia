@@ -1,0 +1,51 @@
+import { createClient } from '@/lib/supabase/server'
+import { redirect, notFound } from 'next/navigation'
+import PayrollCalculator from '@/components/payroll-calculator'
+import { Button } from '@/components/ui/button'
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
+
+export default async function EmployeePayrollPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) redirect('/login')
+
+  // Verify employee belongs to this user
+  const { data: employee } = await supabase
+    .from('employees')
+    .select(`
+      id, full_name, salary, role, admission_date,
+      employer_id,
+      employers!inner(user_id)
+    `)
+    .eq('id', id)
+    .single()
+
+  if (!employee) notFound()
+
+  return (
+    <main className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex items-center gap-3 mb-6">
+          <Link href="/dashboard">
+            <Button variant="ghost" size="icon">
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+          </Link>
+          <div>
+            <h1 className="text-xl font-bold">{employee.full_name}</h1>
+            <p className="text-sm text-muted-foreground">{employee.role}</p>
+          </div>
+        </div>
+
+        <PayrollCalculator initialSalary={employee.salary} />
+      </div>
+    </main>
+  )
+}

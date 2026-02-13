@@ -62,8 +62,8 @@ function ResultRow({
   )
 }
 
-export default function PayrollCalculator() {
-  const [salary, setSalary] = useState<string>('1518')
+export default function PayrollCalculator({ initialSalary }: { initialSalary?: number } = {}) {
+  const [salary, setSalary] = useState<string>(String(initialSalary || 1518))
   const [dependents, setDependents] = useState<string>('0')
   const [overtimeHours, setOvertimeHours] = useState<string>('0')
   const [absenceDays, setAbsenceDays] = useState<string>('0')
