@@ -1,14 +1,11 @@
 -- Lardia: Initial database schema
 -- Employers, employees, payroll history
 
--- Enable UUID generation
-create extension if not exists "uuid-ossp";
-
 -- ============================================
 -- EMPLOYERS (empregadores domésticos)
 -- ============================================
 create table public.employers (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   user_id uuid references auth.users(id) on delete cascade not null,
   
   -- Personal data
@@ -38,7 +35,7 @@ create table public.employers (
 -- EMPLOYEES (empregadas domésticas)
 -- ============================================
 create table public.employees (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   employer_id uuid references public.employers(id) on delete cascade not null,
   
   -- Personal data
@@ -84,7 +81,7 @@ create table public.employees (
 -- SALARY HISTORY (histórico de salários)
 -- ============================================
 create table public.salary_history (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   employee_id uuid references public.employees(id) on delete cascade not null,
   salary numeric(10,2) not null,
   effective_date date not null,
@@ -96,7 +93,7 @@ create table public.salary_history (
 -- PAYROLL CALCULATIONS (cálculos de folha)
 -- ============================================
 create table public.payroll_calculations (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   employee_id uuid references public.employees(id) on delete cascade not null,
   
   -- Period
