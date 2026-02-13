@@ -9,7 +9,8 @@ import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { calculatePayroll, type PayrollBreakdown } from '@/lib/calc'
-import { HelpCircle, ChevronDown, ChevronUp } from 'lucide-react'
+import { createClient } from '@/lib/supabase/client'
+import { HelpCircle, ChevronDown, ChevronUp, Save, Check } from 'lucide-react'
 
 function formatBRL(value: number): string {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
@@ -62,7 +63,13 @@ function ResultRow({
   )
 }
 
-export default function PayrollCalculator({ initialSalary }: { initialSalary?: number } = {}) {
+interface PayrollCalculatorProps {
+  initialSalary?: number
+  employeeId?: string
+  employeeName?: string
+}
+
+export default function PayrollCalculator({ initialSalary, employeeId, employeeName }: PayrollCalculatorProps = {}) {
   const [salary, setSalary] = useState<string>(String(initialSalary || 1518))
   const [dependents, setDependents] = useState<string>('0')
   const [overtimeHours, setOvertimeHours] = useState<string>('0')
@@ -70,6 +77,14 @@ export default function PayrollCalculator({ initialSalary }: { initialSalary?: n
   const [dsrDays, setDsrDays] = useState<string>('0')
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [showINSSDetails, setShowINSSDetails] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const [saved, setSaved] = useState(false)
+  const [saveError, setSaveError] = useState<string | null>(null)
+
+  // Month/year for saving
+  const now = new Date()
+  const [refMonth, setRefMonth] = useState<string>(String(now.getMonth() + 1))
+  const [refYear, setRefYear] = useState<string>(String(now.getFullYear()))
 
   const result: PayrollBreakdown | null = useMemo(() => {
     const grossSalary = parseFloat(salary) || 0
@@ -84,6 +99,60 @@ export default function PayrollCalculator({ initialSalary }: { initialSalary?: n
     })
   }, [salary, dependents, overtimeHours, absenceDays, dsrDays])
 
+  async function handleSave() {
+    if (!result || !employeeId) return
+    setSaving(true)
+    setSaveError(null)
+    setSaved(false)
+
+    const supabase = createClient()
+
+    const { error } = await supabase
+      .from('payroll_calculations')
+      .upsert({
+        employee_id: employeeId,
+        reference_month: parseInt(refMonth),
+        reference_year: parseInt(refYear),
+        calculation_type: 'monthly',
+        gross_salary: result.grossSalary,
+        overtime_hours: parseFloat(overtimeHours) || 0,
+        absence_days: parseFloat(absenceDays) || 0,
+        dsr_absence_days: parseFloat(dsrDays) || 0,
+        dependents: parseInt(dependents) || 0,
+        overtime_pay: result.overtimePay,
+        total_earnings: result.totalEarnings,
+        inss_employee: result.inssEmployee,
+        irrf: result.irrfEmployee,
+        absence_deduction: result.absenceDeduction,
+        dsr_deduction: result.dsrDeduction,
+        other_deductions: result.otherDeductions,
+        total_deductions: result.totalDeductions,
+        net_salary: result.netSalary,
+        inss_employer: result.inssEmployer,
+        gilrat: result.gilrat,
+        fgts_monthly: result.fgtsMonthly,
+        fgts_anticipation: result.fgtsAnticipation,
+        dae_total: result.daeTotal,
+        tax_table_year: 2026,
+        status: 'confirmed',
+      }, {
+        onConflict: 'employee_id,reference_month,reference_year,calculation_type',
+      })
+
+    if (error) {
+      setSaveError('Erro ao salvar. Tente novamente.')
+    } else {
+      setSaved(true)
+      setTimeout(() => setSaved(false), 3000)
+    }
+    setSaving(false)
+  }
+
+  const months = [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+  ]
+
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
       {/* Input Card */}
@@ -91,10 +160,39 @@ export default function PayrollCalculator({ initialSalary }: { initialSalary?: n
         <CardHeader>
           <CardTitle className="text-xl">Calculadora de Folha</CardTitle>
           <CardDescription>
-            Calcule a folha de pagamento da sua empregada doméstica
+            {employeeName
+              ? `Calcule a folha de pagamento de ${employeeName}`
+              : 'Calcule a folha de pagamento da sua empregada doméstica'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          {employeeId && (
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Mês de referência</Label>
+                <select
+                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
+                  value={refMonth}
+                  onChange={(e) => setRefMonth(e.target.value)}
+                >
+                  {months.map((m, i) => (
+                    <option key={i} value={i + 1}>{m}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label>Ano</Label>
+                <Input
+                  type="number"
+                  value={refYear}
+                  onChange={(e) => setRefYear(e.target.value)}
+                  min="2024"
+                  max="2030"
+                />
+              </div>
+            </div>
+          )}
+
           <div className="space-y-2">
             <Label htmlFor="salary">Salário bruto (R$)</Label>
             <Input
@@ -359,6 +457,26 @@ export default function PayrollCalculator({ initialSalary }: { initialSalary?: n
                   Salário líquido ({formatBRL(result.netSalary)}) + DAE ({formatBRL(result.daeTotal)})
                 </p>
               </div>
+
+              {/* Save button */}
+              {employeeId && (
+                <div className="pt-4">
+                  {saveError && <p className="text-sm text-red-500 mb-2">{saveError}</p>}
+                  <Button
+                    onClick={handleSave}
+                    disabled={saving || saved}
+                    className="w-full"
+                  >
+                    {saved ? (
+                      <><Check className="h-4 w-4 mr-2" /> Salvo com sucesso</>
+                    ) : saving ? (
+                      'Salvando...'
+                    ) : (
+                      <><Save className="h-4 w-4 mr-2" /> Salvar folha de {months[parseInt(refMonth) - 1]} {refYear}</>
+                    )}
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </>

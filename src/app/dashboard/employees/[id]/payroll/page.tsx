@@ -16,7 +16,6 @@ export default async function EmployeePayrollPage({
 
   if (!user) redirect('/login')
 
-  // Verify employee belongs to this user
   const { data: employee } = await supabase
     .from('employees')
     .select(`
@@ -44,7 +43,11 @@ export default async function EmployeePayrollPage({
           </div>
         </div>
 
-        <PayrollCalculator initialSalary={employee.salary} />
+        <PayrollCalculator
+          initialSalary={employee.salary}
+          employeeId={employee.id}
+          employeeName={employee.full_name}
+        />
       </div>
     </main>
   )
