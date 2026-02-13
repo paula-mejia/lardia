@@ -41,10 +41,14 @@ export interface ThirteenthBreakdown {
   secondInstallmentNet: number
   secondInstallmentDeadline: string
 
+  // FGTS per installment (8% on each)
+  fgtsFirstInstallment: number
+  fgtsSecondInstallment: number
+
   // Employer costs on full 13th
   inssEmployer: number
   gilrat: number
-  fgtsMonthly: number
+  fgtsMonthly: number // total FGTS (first + second)
   fgtsAnticipation: number
 
   // Totals
@@ -108,10 +112,14 @@ export function calculateThirteenth(input: ThirteenthInput): ThirteenthBreakdown
   // 2nd installment net
   const secondInstallmentNet = round(secondInstallmentGross - inss.total - irrf.tax)
 
+  // FGTS on each installment (8% on each)
+  const fgtsFirstInstallment = round(firstInstallment * (table.fgts.monthly / 100))
+  const fgtsSecondInstallment = round(secondInstallmentGross * (table.fgts.monthly / 100))
+
   // Employer costs (on full 13th base)
   const inssEmployer = round(totalBase * (table.inss.employer.cpPatronal / 100))
   const gilrat = round(totalBase * (table.inss.employer.gilrat / 100))
-  const fgtsMonthly = round(totalBase * (table.fgts.monthly / 100))
+  const fgtsMonthly = round(fgtsFirstInstallment + fgtsSecondInstallment)
   const fgtsAnticipation = round(totalBase * (table.fgts.anticipation / 100))
 
   return {
@@ -131,6 +139,9 @@ export function calculateThirteenth(input: ThirteenthInput): ThirteenthBreakdown
     irrfBase: irrf.base,
     secondInstallmentNet,
     secondInstallmentDeadline: '20 de dezembro',
+
+    fgtsFirstInstallment,
+    fgtsSecondInstallment,
 
     inssEmployer,
     gilrat,

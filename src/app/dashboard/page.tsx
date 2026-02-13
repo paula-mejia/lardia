@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { LogoutButton } from '@/components/logout-button'
 import { EmployeeList } from '@/components/employee-list'
 import { Button } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
+import { Plus, Calendar } from 'lucide-react'
 import Link from 'next/link'
 
 export default async function DashboardPage() {
@@ -51,6 +51,16 @@ export default async function DashboardPage() {
             <p className="text-sm text-muted-foreground">{user.email}</p>
           </div>
           <LogoutButton />
+        </div>
+
+        {/* Navigation */}
+        <div className="mb-6">
+          <Link href="/dashboard/calendar">
+            <Button variant="outline" size="sm">
+              <Calendar className="h-4 w-4 mr-1" />
+              Calendario
+            </Button>
+          </Link>
         </div>
 
         {/* Employees section */}
