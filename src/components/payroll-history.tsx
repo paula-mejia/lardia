@@ -132,7 +132,8 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
   }, [employeeId])
 
   useEffect(() => {
-    fetchHistory()
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- fetch + setState pattern, safe in practice
+    void fetchHistory()
   }, [fetchHistory, refreshKey])
 
   if (loading) {
@@ -153,7 +154,7 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
           <History className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
           <p className="text-sm text-muted-foreground">Nenhum calculo salvo ainda</p>
           <p className="text-xs text-muted-foreground mt-1">
-            Faca um calculo acima e clique em "Salvar" para criar o historico
+            Faca um calculo acima e clique em &quot;Salvar&quot; para criar o historico
           </p>
         </CardContent>
       </Card>

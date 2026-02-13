@@ -38,10 +38,7 @@ export interface TaxTable {
     brackets: IRRFBracket[]
     dependentDeduction: number // per dependent
   }
-  dae: {
-    // DAE = INSS employee + INSS employer (cpPatronal) + GILRAT + FGTS + FGTS anticipation
-    // Total employer cost above salary
-  }
+  dae: Record<string, never>
 }
 
 /**
