@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { SettingsForm } from './settings-form'
+import { SubscriptionCard } from './subscription-card'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -16,7 +17,7 @@ export default async function SettingsPage() {
   // Get employer profile
   const { data: employer } = await supabase
     .from('employers')
-    .select('id, email')
+    .select('id, email, subscription_status, stripe_customer_id')
     .eq('user_id', user.id)
     .single()
 
@@ -44,6 +45,11 @@ export default async function SettingsPage() {
           </Link>
           <h1 className="text-2xl font-bold tracking-tight">Configuracoes</h1>
         </div>
+
+        <SubscriptionCard
+          subscriptionStatus={employer.subscription_status || 'none'}
+          hasCustomer={!!employer.stripe_customer_id}
+        />
 
         <SettingsForm
           employerId={employer.id}
