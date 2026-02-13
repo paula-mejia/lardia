@@ -3,7 +3,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calculator, Gift } from 'lucide-react'
+import { Calculator, Gift, Palmtree } from 'lucide-react'
 import Link from 'next/link'
 
 interface Employee {
@@ -64,6 +64,12 @@ export function EmployeeList({ employees }: { employees: Employee[] }) {
                   <Button variant="outline" size="sm">
                     <Gift className="h-4 w-4 mr-1" />
                     13º
+                  </Button>
+                </Link>
+                <Link href={`/dashboard/employees/${emp.id}/vacation`}>
+                  <Button variant="outline" size="sm">
+                    <Palmtree className="h-4 w-4 mr-1" />
+                    Ferias
                   </Button>
                 </Link>
               </div>
