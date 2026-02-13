@@ -69,13 +69,13 @@ export function EmployeeList({ employees }: { employees: Employee[] }) {
                 <Link href={`/dashboard/employees/${emp.id}/vacation`}>
                   <Button variant="outline" size="sm">
                     <Palmtree className="h-4 w-4 mr-1" />
-                    Ferias
+                    Férias
                   </Button>
                 </Link>
                 <Link href={`/dashboard/employees/${emp.id}/termination`}>
                   <Button variant="outline" size="sm">
                     <UserMinus className="h-4 w-4 mr-1" />
-                    Rescisao
+                    Rescisão
                   </Button>
                 </Link>
               </div>
