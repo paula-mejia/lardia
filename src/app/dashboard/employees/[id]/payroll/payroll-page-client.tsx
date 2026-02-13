@@ -8,9 +8,11 @@ interface PayrollPageClientProps {
   initialSalary: number
   employeeId: string
   employeeName: string
+  employeeCpf: string
+  employerName: string
 }
 
-export default function PayrollPageClient({ initialSalary, employeeId, employeeName }: PayrollPageClientProps) {
+export default function PayrollPageClient({ initialSalary, employeeId, employeeName, employeeCpf, employerName }: PayrollPageClientProps) {
   const [refreshKey, setRefreshKey] = useState(0)
 
   const handleSaved = useCallback(() => {
@@ -23,10 +25,15 @@ export default function PayrollPageClient({ initialSalary, employeeId, employeeN
         initialSalary={initialSalary}
         employeeId={employeeId}
         employeeName={employeeName}
+        employeeCpf={employeeCpf}
+        employerName={employerName}
         onSaved={handleSaved}
       />
       <PayrollHistory
         employeeId={employeeId}
+        employeeName={employeeName}
+        employeeCpf={employeeCpf}
+        employerName={employerName}
         refreshKey={refreshKey}
       />
     </div>

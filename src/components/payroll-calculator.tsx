@@ -10,7 +10,8 @@ import { Badge } from '@/components/ui/badge'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { calculatePayroll, type PayrollBreakdown } from '@/lib/calc'
 import { createClient } from '@/lib/supabase/client'
-import { HelpCircle, ChevronDown, ChevronUp, Save, Check } from 'lucide-react'
+import { HelpCircle, ChevronDown, ChevronUp, Save, Check, FileDown } from 'lucide-react'
+import { generatePayslipPDF } from '@/lib/pdf/payslip'
 
 function formatBRL(value: number): string {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
@@ -67,10 +68,12 @@ interface PayrollCalculatorProps {
   initialSalary?: number
   employeeId?: string
   employeeName?: string
+  employeeCpf?: string
+  employerName?: string
   onSaved?: () => void
 }
 
-export default function PayrollCalculator({ initialSalary, employeeId, employeeName, onSaved }: PayrollCalculatorProps = {}) {
+export default function PayrollCalculator({ initialSalary, employeeId, employeeName, employeeCpf, employerName, onSaved }: PayrollCalculatorProps = {}) {
   const [salary, setSalary] = useState<string>(String(initialSalary || 1518))
   const [dependents, setDependents] = useState<string>('0')
   const [overtimeHours, setOvertimeHours] = useState<string>('0')
@@ -462,7 +465,7 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
 
               {/* Save button */}
               {employeeId && (
-                <div className="pt-4">
+                <div className="pt-4 space-y-2">
                   {saveError && <p className="text-sm text-red-500 mb-2">{saveError}</p>}
                   <Button
                     onClick={handleSave}
@@ -477,6 +480,24 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
                       <><Save className="h-4 w-4 mr-2" /> Salvar folha de {months[parseInt(refMonth) - 1]} {refYear}</>
                     )}
                   </Button>
+                  {employeeName && employeeCpf && employerName && (
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        generatePayslipPDF({
+                          employerName,
+                          employeeName,
+                          employeeCpf,
+                          referenceMonth: parseInt(refMonth),
+                          referenceYear: parseInt(refYear),
+                          breakdown: result!,
+                        })
+                      }}
+                    >
+                      <FileDown className="h-4 w-4 mr-2" /> Gerar Contracheque
+                    </Button>
+                  )}
                 </div>
               )}
             </CardContent>

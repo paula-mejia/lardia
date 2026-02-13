@@ -19,14 +19,16 @@ export default async function EmployeePayrollPage({
   const { data: employee } = await supabase
     .from('employees')
     .select(`
-      id, full_name, salary, role, admission_date,
+      id, full_name, cpf, salary, role, admission_date,
       employer_id,
-      employers!inner(user_id)
+      employers!inner(user_id, full_name)
     `)
     .eq('id', id)
     .single()
 
   if (!employee) notFound()
+
+  const employer = employee.employers as unknown as { user_id: string; full_name: string }
 
   return (
     <main className="min-h-screen bg-background">
@@ -47,6 +49,8 @@ export default async function EmployeePayrollPage({
           initialSalary={employee.salary}
           employeeId={employee.id}
           employeeName={employee.full_name}
+          employeeCpf={employee.cpf}
+          employerName={employer.full_name}
         />
       </div>
     </main>

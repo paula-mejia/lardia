@@ -6,7 +6,9 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { createClient } from '@/lib/supabase/client'
-import { History, ChevronDown, ChevronUp, Loader2 } from 'lucide-react'
+import { History, ChevronDown, ChevronUp, Loader2, FileDown } from 'lucide-react'
+import { generatePayslipPDF } from '@/lib/pdf/payslip'
+import { calculatePayroll } from '@/lib/calc'
 
 function formatBRL(value: number): string {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
@@ -103,10 +105,13 @@ function CalculationDetail({ record }: { record: PayrollRecord }) {
 
 interface PayrollHistoryProps {
   employeeId: string
+  employeeName: string
+  employeeCpf: string
+  employerName: string
   refreshKey?: number
 }
 
-export default function PayrollHistory({ employeeId, refreshKey }: PayrollHistoryProps) {
+export default function PayrollHistory({ employeeId, employeeName, employeeCpf, employerName, refreshKey }: PayrollHistoryProps) {
   const [records, setRecords] = useState<PayrollRecord[]>([])
   const [loading, setLoading] = useState(true)
   const [expandedId, setExpandedId] = useState<string | null>(null)
@@ -192,7 +197,38 @@ export default function PayrollHistory({ employeeId, refreshKey }: PayrollHistor
                   {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </div>
               </Button>
-              {isExpanded && <CalculationDetail record={record} />}
+              {isExpanded && (
+                <>
+                  <CalculationDetail record={record} />
+                  <div className="pt-3">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        const breakdown = calculatePayroll({
+                          grossSalary: record.gross_salary,
+                          dependents: record.dependents,
+                          overtimeHours: record.overtime_hours,
+                          absenceDays: record.absence_days,
+                          dsrAbsenceDays: record.dsr_absence_days,
+                        })
+                        generatePayslipPDF({
+                          employerName,
+                          employeeName,
+                          employeeCpf,
+                          referenceMonth: record.reference_month,
+                          referenceYear: record.reference_year,
+                          breakdown,
+                        })
+                      }}
+                    >
+                      <FileDown className="h-4 w-4 mr-2" /> Baixar PDF
+                    </Button>
+                  </div>
+                </>
+              )}
             </div>
           )
         })}

@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { LogoutButton } from '@/components/logout-button'
 import { EmployeeList } from '@/components/employee-list'
 import { Button } from '@/components/ui/button'
-import { Plus, Calendar } from 'lucide-react'
+import { Plus, Calendar, Settings } from 'lucide-react'
 import Link from 'next/link'
 
 export default async function DashboardPage() {
@@ -55,12 +55,20 @@ export default async function DashboardPage() {
 
         {/* Navigation */}
         <div className="mb-6">
-          <Link href="/dashboard/calendar">
-            <Button variant="outline" size="sm">
-              <Calendar className="h-4 w-4 mr-1" />
-              Calendario
-            </Button>
-          </Link>
+          <div className="flex gap-2">
+            <Link href="/dashboard/calendar">
+              <Button variant="outline" size="sm">
+                <Calendar className="h-4 w-4 mr-1" />
+                Calendario
+              </Button>
+            </Link>
+            <Link href="/dashboard/settings">
+              <Button variant="outline" size="sm">
+                <Settings className="h-4 w-4 mr-1" />
+                Configuracoes
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Employees section */}
