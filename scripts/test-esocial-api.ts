@@ -142,6 +142,7 @@ async function main() {
   console.log(`Non-domestic (classTrib=22): Status ${response2.statusCode}`)
 
   // Save raw responses
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const fs = require('fs')
   fs.mkdirSync('/home/ubuntu/.openclaw/workspace/esocial-project', { recursive: true })
   fs.writeFileSync(

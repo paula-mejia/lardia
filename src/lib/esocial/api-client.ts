@@ -4,7 +4,7 @@
  */
 
 import * as https from 'https'
-import * as tls from 'tls'
+import * as crypto from 'crypto'
 import { parseStringPromise } from 'xml2js'
 import { CertificateBundle, signXml } from './certificate'
 import { v4 as uuidv4 } from 'uuid'
@@ -196,7 +196,7 @@ export class EsocialApiClient {
         agent: new https.Agent({
           cert: this.cert.certPem,
           key: this.cert.keyPem,
-          secureOptions: tls.constants?.SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION,
+          secureOptions: crypto.constants?.SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION,
         }),
       }
 

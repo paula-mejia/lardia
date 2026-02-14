@@ -13,10 +13,11 @@
 import * as path from 'path'
 import * as fs from 'fs'
 
-// Playwright types (dynamic import to avoid build issues when not installed)
-type Browser = import('playwright').Browser
-type BrowserContext = import('playwright').BrowserContext
-type Page = import('playwright').Page
+// Playwright types (optional peer dependency, stubbed when not installed)
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type Browser = any
+type BrowserContext = any
+type Page = any
 
 export interface RpaConfig {
   /** Path to the .p12 certificate file */
@@ -121,7 +122,8 @@ export class EsocialRpaClient {
    * Chromium supports --client-certificate flags or NSS database.
    */
   async launch(): Promise<void> {
-    const { chromium } = await import('playwright')
+    const pw = 'playwright'
+    const { chromium } = await import(/* webpackIgnore: true */ pw)
 
     this.log('info', 'Launching browser...')
 

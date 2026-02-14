@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,6 +11,14 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupForm />
+    </Suspense>
+  )
+}
+
+function SignupForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -18,19 +26,19 @@ export default function SignupPage() {
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
   const searchParams = useSearchParams()
-  const [refCode, setRefCode] = useState<string | null>(null)
+  const ref = searchParams.get('ref')
+  const [refCode, setRefCode] = useState<string | null>(ref)
 
   useEffect(() => {
-    const ref = searchParams.get('ref')
     if (ref) {
-      setRefCode(ref)
       // Store in localStorage so we can track after email confirmation
       localStorage.setItem('lardia_ref', ref)
     } else {
       const stored = localStorage.getItem('lardia_ref')
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (stored) setRefCode(stored)
     }
-  }, [searchParams])
+  }, [ref])
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault()

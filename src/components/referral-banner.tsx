@@ -1,12 +1,20 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Gift } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export function ReferralBanner() {
+  return (
+    <Suspense>
+      <ReferralBannerInner />
+    </Suspense>
+  )
+}
+
+function ReferralBannerInner() {
   const searchParams = useSearchParams()
   const ref = searchParams.get('ref')
 

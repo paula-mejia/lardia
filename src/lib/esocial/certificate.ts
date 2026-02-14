@@ -131,11 +131,12 @@ export function signXml(xml: string, certBundle: CertificateBundle, referenceUri
     .replace('-----END CERTIFICATE-----', '')
     .replace(/\s/g, '')
 
-  sig.keyInfoProvider = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ;(sig as any).keyInfoProvider = {
     getKeyInfo() {
       return `<X509Data><X509Certificate>${certBase64}</X509Certificate></X509Data>`
     },
-  } as any
+  }
 
   sig.computeSignature(xml, {
     location: { reference: `//*[@Id='${referenceUri}']`, action: 'append' },

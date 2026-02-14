@@ -61,6 +61,7 @@ export default function ReferralPage() {
     setLoading(false)
   }, [])
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load() }, [load])
 
   async function copyToClipboard(text: string, type: 'code' | 'link') {
