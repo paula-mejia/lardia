@@ -17,9 +17,14 @@ export default async function DashboardPage() {
   // Get employer profile
   const { data: employer } = await supabase
     .from('employers')
-    .select('id')
+    .select('id, onboarding_completed')
     .eq('user_id', user.id)
     .single()
+
+  // Redirect to onboarding if not completed
+  if (!employer?.onboarding_completed) {
+    redirect('/dashboard/onboarding')
+  }
 
   // Get employees if employer exists
   let employees: Array<{

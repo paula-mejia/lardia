@@ -28,7 +28,7 @@ export default async function SettingsPage() {
   // Get notification preferences (or defaults)
   const { data: prefs } = await supabase
     .from('notification_preferences')
-    .select('email_reminders, days_before')
+    .select('email_reminders, days_before, whatsapp_reminders, whatsapp_number')
     .eq('employer_id', employer.id)
     .single()
 
@@ -56,6 +56,8 @@ export default async function SettingsPage() {
           email={email}
           emailReminders={prefs?.email_reminders ?? true}
           daysBefore={prefs?.days_before ?? 3}
+          whatsappReminders={prefs?.whatsapp_reminders ?? false}
+          whatsappNumber={prefs?.whatsapp_number ?? ''}
         />
       </div>
     </main>

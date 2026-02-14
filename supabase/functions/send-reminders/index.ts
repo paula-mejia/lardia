@@ -1,4 +1,4 @@
-// Edge Function: Send eSocial deadline reminder emails
+// Edge Function: Send eSocial deadline reminder emails and WhatsApp messages
 // Call via HTTP POST. Designed to be triggered by a cron job.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -141,6 +141,85 @@ function buildEmailHtml(employerName: string, deadlines: Array<{ type: DeadlineT
     </div>`;
 }
 
+// Build WhatsApp message for a deadline
+function buildWhatsAppMessage(deadline: { type: DeadlineType; date: Date; daysUntil: number }): string {
+  if (deadline.type === "dae" || deadline.type === "fgts") {
+    const dueDay = deadline.date.getDate();
+    if (deadline.daysUntil === 0) {
+      return `Hoje e o ultimo dia para pagar o DAE! Valor: R$XXX. Nao esqueca!`;
+    }
+    return `Lembrete: o DAE do mes vence em ${deadline.daysUntil} dias (dia ${dueDay}). Valor estimado: R$XXX. Acesse Lardia para gerar o comprovante.`;
+  }
+
+  if (deadline.type === "esocial_closing") {
+    return `Hora de fechar a folha de pagamento do mes. Acesse Lardia.`;
+  }
+
+  // Generic message for other deadlines
+  const info = DEADLINES[deadline.type];
+  const urgency = deadline.daysUntil === 0 ? "HOJE" : `em ${deadline.daysUntil} dias`;
+  return `Lembrete Lardia: ${info.label} vence ${urgency} (${formatDate(deadline.date)}). ${info.description}`;
+}
+
+// Send WhatsApp via Twilio API
+async function sendWhatsApp(to: string, body: string): Promise<boolean> {
+  const accountSid = Deno.env.get("TWILIO_ACCOUNT_SID");
+  const authToken = Deno.env.get("TWILIO_AUTH_TOKEN");
+  const fromNumber = Deno.env.get("TWILIO_WHATSAPP_FROM") || "whatsapp:+14155238886";
+
+  if (!accountSid || !authToken) {
+    console.log(`[WHATSAPP DRY RUN] To: ${to} | Message: ${body}`);
+    return true;
+  }
+
+  const toFormatted = `whatsapp:${to}`;
+  const url = `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`;
+
+  const params = new URLSearchParams({
+    From: fromNumber,
+    To: toFormatted,
+    Body: body,
+  });
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${btoa(`${accountSid}:${authToken}`)}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: params.toString(),
+    });
+
+    if (res.ok) {
+      return true;
+    } else {
+      console.error("Twilio WhatsApp error:", await res.text());
+      return false;
+    }
+  } catch (err) {
+    console.error("WhatsApp send error:", err);
+    return false;
+  }
+}
+
+// Check rate limit: max 3 WhatsApp messages per user per day
+async function checkWhatsAppRateLimit(
+  supabase: ReturnType<typeof createClient>,
+  employerId: string,
+  todayStr: string
+): Promise<boolean> {
+  const { count } = await supabase
+    .from("notification_log")
+    .select("id", { count: "exact", head: true })
+    .eq("employer_id", employerId)
+    .gte("sent_at", `${todayStr}T00:00:00Z`)
+    .lte("sent_at", `${todayStr}T23:59:59Z`)
+    .like("deadline_type", "%_whatsapp");
+
+  return (count ?? 0) < 3;
+}
+
 Deno.serve(async (req) => {
   try {
     // Only allow POST
@@ -165,7 +244,7 @@ Deno.serve(async (req) => {
         email,
         user_id,
         employees!inner (id, status),
-        notification_preferences (email_reminders, days_before)
+        notification_preferences (email_reminders, days_before, whatsapp_reminders, whatsapp_number)
       `)
       .eq("employees.status", "active");
 
@@ -174,29 +253,28 @@ Deno.serve(async (req) => {
       return new Response(JSON.stringify({ error: empError.message }), { status: 500 });
     }
 
-    let sentCount = 0;
+    let emailSentCount = 0;
+    let whatsappSentCount = 0;
     let skippedCount = 0;
 
     for (const employer of employers || []) {
-      // Get preferences (default: enabled, 3 days before)
+      // Get preferences (default: email enabled, WhatsApp disabled, 3 days before)
       const prefs = employer.notification_preferences?.[0];
       const emailEnabled = prefs?.email_reminders ?? true;
+      const whatsappEnabled = prefs?.whatsapp_reminders ?? false;
+      const whatsappNumber = prefs?.whatsapp_number;
       const daysBefore = prefs?.days_before ?? 3;
 
-      if (!emailEnabled) {
+      if (!emailEnabled && !whatsappEnabled) {
         skippedCount++;
         continue;
       }
 
       // Get the employer's email (from profile or auth user)
       let email = employer.email;
-      if (!email) {
+      if (!email && emailEnabled) {
         const { data: userData } = await supabase.auth.admin.getUserById(employer.user_id);
         email = userData?.user?.email;
-      }
-      if (!email) {
-        skippedCount++;
-        continue;
       }
 
       // Check deadlines for current and next month
@@ -226,76 +304,111 @@ Deno.serve(async (req) => {
 
       if (upcomingDeadlines.length === 0) continue;
 
-      // Check which ones were already sent
-      const deadlinesToSend: typeof upcomingDeadlines = [];
-      for (const d of upcomingDeadlines) {
-        const dateStr = d.date.toISOString().slice(0, 10);
-        const { data: existing } = await supabase
-          .from("notification_log")
-          .select("id")
-          .eq("employer_id", employer.id)
-          .eq("deadline_type", d.type)
-          .eq("deadline_date", dateStr)
-          .maybeSingle();
+      // === EMAIL NOTIFICATIONS ===
+      if (emailEnabled && email) {
+        const emailDeadlinesToSend: typeof upcomingDeadlines = [];
+        for (const d of upcomingDeadlines) {
+          const dateStr = d.date.toISOString().slice(0, 10);
+          const { data: existing } = await supabase
+            .from("notification_log")
+            .select("id")
+            .eq("employer_id", employer.id)
+            .eq("deadline_type", d.type)
+            .eq("deadline_date", dateStr)
+            .maybeSingle();
 
-        if (!existing) {
-          deadlinesToSend.push(d);
+          if (!existing) {
+            emailDeadlinesToSend.push(d);
+          }
+        }
+
+        if (emailDeadlinesToSend.length > 0) {
+          const resendKey = Deno.env.get("RESEND_API_KEY");
+          const emailHtml = buildEmailHtml(employer.full_name, emailDeadlinesToSend);
+          const subject = emailDeadlinesToSend.some((d) => d.daysUntil === 0)
+            ? "Prazo eSocial HOJE - Acao necessaria"
+            : `Lembrete: Prazos eSocial em ${emailDeadlinesToSend[0].daysUntil} dias`;
+
+          let emailSent = false;
+
+          if (resendKey) {
+            const res = await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${resendKey}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                from: "Lardia <noreply@lardia.app>",
+                to: [email],
+                subject,
+                html: emailHtml,
+              }),
+            });
+
+            if (res.ok) {
+              emailSent = true;
+            } else {
+              console.error("Resend error:", await res.text());
+            }
+          } else {
+            console.log(`[EMAIL DRY RUN] Would send to ${email}: ${subject}`);
+            emailSent = true;
+          }
+
+          if (emailSent) {
+            for (const d of emailDeadlinesToSend) {
+              await supabase.from("notification_log").insert({
+                employer_id: employer.id,
+                deadline_type: d.type,
+                deadline_date: d.date.toISOString().slice(0, 10),
+              });
+            }
+            emailSentCount++;
+          }
         }
       }
 
-      if (deadlinesToSend.length === 0) continue;
-
-      // Send email via Supabase Auth (admin API sends transactional email)
-      // Since Supabase doesn't have a built-in transactional email API for custom emails,
-      // we use the Resend integration or a simple fetch to an email provider.
-      // For now, we'll use Supabase's edge function to call Resend if RESEND_API_KEY is set,
-      // otherwise log the email for manual sending.
-
-      const resendKey = Deno.env.get("RESEND_API_KEY");
-      const emailHtml = buildEmailHtml(employer.full_name, deadlinesToSend);
-      const subject = deadlinesToSend.some((d) => d.daysUntil === 0)
-        ? "Prazo eSocial HOJE - Acao necessaria"
-        : `Lembrete: Prazos eSocial em ${deadlinesToSend[0].daysUntil} dias`;
-
-      let emailSent = false;
-
-      if (resendKey) {
-        const res = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${resendKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            from: "Lardia <noreply@lardia.app>",
-            to: [email],
-            subject,
-            html: emailHtml,
-          }),
-        });
-
-        if (res.ok) {
-          emailSent = true;
-        } else {
-          console.error("Resend error:", await res.text());
+      // === WHATSAPP NOTIFICATIONS ===
+      if (whatsappEnabled && whatsappNumber) {
+        // Check rate limit
+        const withinLimit = await checkWhatsAppRateLimit(supabase, employer.id, todayStr);
+        if (!withinLimit) {
+          console.log(`[WHATSAPP] Rate limit reached for employer ${employer.id}`);
+          continue;
         }
-      } else {
-        // No email provider configured - log for debugging
-        console.log(`[DRY RUN] Would send email to ${email}: ${subject}`);
-        console.log(`Deadlines: ${deadlinesToSend.map((d) => d.type).join(", ")}`);
-        emailSent = true; // Mark as sent to log it anyway (dry run mode)
-      }
 
-      if (emailSent) {
-        // Log sent notifications
-        for (const d of deadlinesToSend) {
-          await supabase.from("notification_log").insert({
-            employer_id: employer.id,
-            deadline_type: d.type,
-            deadline_date: d.date.toISOString().slice(0, 10),
-          });
+        for (const d of upcomingDeadlines) {
+          // Re-check rate limit per message
+          const stillWithinLimit = await checkWhatsAppRateLimit(supabase, employer.id, todayStr);
+          if (!stillWithinLimit) break;
+
+          const waLogType = `${d.type}_whatsapp`;
+          const dateStr = d.date.toISOString().slice(0, 10);
+
+          // Check if already sent
+          const { data: existing } = await supabase
+            .from("notification_log")
+            .select("id")
+            .eq("employer_id", employer.id)
+            .eq("deadline_type", waLogType)
+            .eq("deadline_date", dateStr)
+            .maybeSingle();
+
+          if (existing) continue;
+
+          const message = buildWhatsAppMessage(d);
+          const sent = await sendWhatsApp(whatsappNumber, message);
+
+          if (sent) {
+            await supabase.from("notification_log").insert({
+              employer_id: employer.id,
+              deadline_type: waLogType,
+              deadline_date: dateStr,
+            });
+            whatsappSentCount++;
+          }
         }
-        sentCount++;
       }
     }
 
@@ -303,7 +416,8 @@ Deno.serve(async (req) => {
       JSON.stringify({
         success: true,
         date: todayStr,
-        sent: sentCount,
+        emailSent: emailSentCount,
+        whatsappSent: whatsappSentCount,
         skipped: skippedCount,
       }),
       { headers: { "Content-Type": "application/json" } }
