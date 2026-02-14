@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Loader2, CheckCircle2, XCircle, ArrowLeft, FileText } from 'lucide-react'
+import { Loader2, CheckCircle2, XCircle, ArrowLeft, FileText, Wifi, WifiOff } from 'lucide-react'
 import Link from 'next/link'
 
 interface EmployeeResult {
@@ -68,6 +68,33 @@ export default function EsocialProcessPage() {
   const [error, setError] = useState<string | null>(null)
   const [employees, setEmployees] = useState<Array<{ id: string; full_name: string; salary: number }>>([])
   const [loading, setLoading] = useState(true)
+  const [proxyConnected, setProxyConnected] = useState(false)
+  const [proxyTesting, setProxyTesting] = useState(false)
+  const [proxyStatus, setProxyStatus] = useState<string | null>(null)
+
+  async function testProxy() {
+    setProxyTesting(true)
+    setProxyStatus(null)
+    try {
+      const res = await fetch('/api/esocial/proxy?action=test')
+      const data = await res.json()
+      setProxyConnected(data.connected === true)
+      setProxyStatus(
+        data.connected
+          ? 'Conectado ao eSocial via servidor Sao Paulo'
+          : data.error || 'Falha na conexao com o proxy'
+      )
+    } catch {
+      setProxyConnected(false)
+      setProxyStatus('Erro ao testar conexao')
+    } finally {
+      setProxyTesting(false)
+    }
+  }
+
+  useEffect(() => {
+    testProxy()
+  }, [])
 
   useEffect(() => {
     async function loadEmployees() {
@@ -144,10 +171,49 @@ export default function EsocialProcessPage() {
           <h1 className="text-2xl font-bold">Processamento eSocial</h1>
           <p className="text-muted-foreground">Processar folha de pagamento e gerar DAE</p>
         </div>
-        <Badge variant="secondary" className="ml-auto bg-amber-100 text-amber-800 border-amber-300">
-          Simulado
-        </Badge>
+        {!proxyConnected && (
+          <Badge variant="secondary" className="ml-auto bg-amber-100 text-amber-800 border-amber-300">
+            Simulado
+          </Badge>
+        )}
       </div>
+
+      {/* Proxy connection status */}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {proxyConnected ? (
+                <Wifi className="h-5 w-5 text-green-600" />
+              ) : (
+                <WifiOff className="h-5 w-5 text-muted-foreground" />
+              )}
+              <div>
+                <p className="text-sm font-medium">
+                  {proxyStatus || 'Verificando conexao...'}
+                </p>
+                {!proxyConnected && proxyStatus && (
+                  <p className="text-xs text-muted-foreground">
+                    Modo simulado ativo como fallback
+                  </p>
+                )}
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={testProxy}
+              disabled={proxyTesting}
+            >
+              {proxyTesting ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                'Testar Conexao'
+              )}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Month/Year selector */}
       <Card>
@@ -275,9 +341,11 @@ export default function EsocialProcessPage() {
                 <FileText className="h-5 w-5" />
                 DAE - {MONTHS[month - 1]} {year}
               </CardTitle>
-              <Badge variant="secondary" className="bg-amber-100 text-amber-800 border-amber-300">
-                Simulado
-              </Badge>
+              {!proxyConnected && (
+                <Badge variant="secondary" className="bg-amber-100 text-amber-800 border-amber-300">
+                  Simulado
+                </Badge>
+              )}
             </div>
           </CardHeader>
           <CardContent className="space-y-4">

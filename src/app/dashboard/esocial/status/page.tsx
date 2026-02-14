@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, CheckCircle, Circle, Clock, FileText } from 'lucide-react'
+import { ArrowLeft, CheckCircle, Circle, Clock, FileText, Wifi, WifiOff } from 'lucide-react'
 import Link from 'next/link'
 
 // Get the deadline for DAE payment (7th of next month, or next business day)
@@ -39,6 +39,27 @@ export default async function ESocialStatusPage() {
 
   if (!employer?.esocial_connected) {
     redirect('/dashboard/esocial')
+  }
+
+  // Check proxy status
+  let proxyConnected = false
+  let proxyCheckedAt: string | null = null
+  const proxyUrl = process.env.ESOCIAL_PROXY_URL
+  const proxyKey = process.env.ESOCIAL_PROXY_API_KEY
+  if (proxyUrl && proxyKey) {
+    try {
+      const res = await fetch(`${proxyUrl}/api/esocial/test`, {
+        headers: { 'x-api-key': proxyKey },
+        signal: AbortSignal.timeout(8000),
+        cache: 'no-store',
+      })
+      proxyConnected = res.ok
+      if (res.ok) {
+        proxyCheckedAt = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+      }
+    } catch {
+      proxyConnected = false
+    }
   }
 
   const now = new Date()
@@ -124,6 +145,36 @@ export default async function ESocialStatusPage() {
                   : daysLeft === 1
                     ? '1 dia restante'
                     : `${daysLeft} dias restantes`}
+              </Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Proxy status */}
+        <Card className="mb-6">
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                {proxyConnected ? (
+                  <Wifi className="h-5 w-5 text-green-600" />
+                ) : (
+                  <WifiOff className="h-5 w-5 text-red-500" />
+                )}
+                <div>
+                  <p className="text-sm font-medium">
+                    {proxyConnected
+                      ? 'Conectado ao eSocial via servidor Sao Paulo'
+                      : 'Desconectado do servidor eSocial'}
+                  </p>
+                  {proxyCheckedAt && (
+                    <p className="text-xs text-muted-foreground">
+                      Ultima verificacao: {proxyCheckedAt}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <Badge variant={proxyConnected ? 'default' : 'destructive'}>
+                {proxyConnected ? 'Conectado' : 'Desconectado'}
               </Badge>
             </div>
           </CardContent>

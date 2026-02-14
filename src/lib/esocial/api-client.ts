@@ -439,6 +439,100 @@ export function buildS1000Xml(params: {
 }
 
 /**
+ * Proxy-based eSocial API client.
+ * Routes requests through the Sao Paulo proxy server instead of making
+ * direct SOAP calls (which fail from Vercel's serverless environment).
+ */
+export class EsocialProxyClient {
+  private proxyUrl: string
+  private apiKey: string
+
+  constructor(proxyUrl: string, apiKey: string) {
+    this.proxyUrl = proxyUrl
+    this.apiKey = apiKey
+  }
+
+  private async request(method: string, path: string, body?: unknown): Promise<{ ok: boolean; status: number; data: unknown }> {
+    const res = await fetch(`${this.proxyUrl}${path}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': this.apiKey,
+      },
+      ...(body ? { body: JSON.stringify(body) } : {}),
+      signal: AbortSignal.timeout(30000),
+    })
+    const data = await res.json()
+    return { ok: res.ok, status: res.status, data }
+  }
+
+  /** Test connectivity to the eSocial proxy */
+  async testConnection(): Promise<{ connected: boolean; message?: string }> {
+    try {
+      const { ok, data } = await this.request('GET', '/api/esocial/test')
+      return { connected: ok, ...(data as object) }
+    } catch {
+      return { connected: false, message: 'Proxy unreachable' }
+    }
+  }
+
+  /** Test eCAC connectivity */
+  async testEcac(): Promise<{ connected: boolean; message?: string }> {
+    try {
+      const { ok, data } = await this.request('GET', '/api/ecac/test')
+      return { connected: ok, ...(data as object) }
+    } catch {
+      return { connected: false, message: 'Proxy unreachable' }
+    }
+  }
+
+  /** Send events through the proxy */
+  async sendEvents(payload: unknown): Promise<EsocialApiResponse> {
+    try {
+      const { data } = await this.request('POST', '/api/esocial/send', payload)
+      return data as EsocialApiResponse
+    } catch (error) {
+      return {
+        success: false,
+        statusCode: -1,
+        statusDescription: `Proxy error: ${(error as Error).message}`,
+        occurrences: [],
+        rawXml: '',
+        httpStatus: 0,
+      }
+    }
+  }
+
+  /** Query event results through the proxy */
+  async queryEvents(payload: unknown): Promise<EsocialApiResponse> {
+    try {
+      const { data } = await this.request('POST', '/api/esocial/query', payload)
+      return data as EsocialApiResponse
+    } catch (error) {
+      return {
+        success: false,
+        statusCode: -1,
+        statusDescription: `Proxy error: ${(error as Error).message}`,
+        occurrences: [],
+        rawXml: '',
+        httpStatus: 0,
+      }
+    }
+  }
+}
+
+/**
+ * Create an EsocialProxyClient from environment variables.
+ * Returns null if proxy is not configured.
+ */
+export function createProxyClient(): EsocialProxyClient | null {
+  const url = process.env.ESOCIAL_PROXY_URL
+  const key = process.env.ESOCIAL_PROXY_API_KEY
+  if (!url || !key) return null
+  return new EsocialProxyClient(url, key)
+}
+
+/**
  * Known eSocial error codes relevant to domestic employers.
  */
 export const ESOCIAL_ERROR_CODES: Record<number, string> = {

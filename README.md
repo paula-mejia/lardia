@@ -19,6 +19,13 @@ cp .env.example .env.local
 npm run dev
 ```
 
+## Environment Variables (Vercel)
+
+In addition to `.env.example` vars, set these in Vercel:
+
+- `ESOCIAL_PROXY_URL` - URL of the eSocial proxy server (Sao Paulo)
+- `ESOCIAL_PROXY_API_KEY` - API key for proxy authentication
+
 ## Testing
 
 ```bash
