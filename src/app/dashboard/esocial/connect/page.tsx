@@ -276,7 +276,7 @@ export default function ConnectESocialPage() {
                     <p className="text-xs text-muted-foreground">
                       No campo de CNPJ do procurador, insira:{' '}
                       <span className="font-mono font-medium">
-                        [CNPJ A DEFINIR]
+                        46.728.966/0001-40
                       </span>
                     </p>
                     <div className="bg-muted rounded-lg h-32 flex items-center justify-center text-xs text-muted-foreground">
