@@ -21,6 +21,16 @@ export default function TermosPage() {
           </p>
 
           <section className="space-y-3">
+            <h2 className="text-xl font-semibold">Identificacao da Empresa</h2>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              A plataforma Lardia e operada por{' '}
+              <strong>COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA</strong>,
+              inscrita no CNPJ sob o nº{' '}
+              <strong>46.728.966/0001-40</strong>.
+            </p>
+          </section>
+
+          <section className="space-y-3">
             <h2 className="text-xl font-semibold">1. Descricao do Servico</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               A Lardia e uma plataforma digital que oferece ferramentas de

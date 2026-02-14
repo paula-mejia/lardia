@@ -274,7 +274,8 @@ export default function ConnectESocialPage() {
                       Insira o CNPJ da Lardia
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      No campo de CNPJ do procurador, insira:{' '}
+                      No campo de CNPJ do procurador, insira o CNPJ da{' '}
+                      <strong>COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA</strong>:{' '}
                       <span className="font-mono font-medium">
                         46.728.966/0001-40
                       </span>

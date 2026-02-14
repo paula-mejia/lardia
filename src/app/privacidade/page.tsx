@@ -22,6 +22,16 @@ export default function PrivacidadePage() {
             Ultima atualizacao: 14 de fevereiro de 2026
           </p>
 
+          <section className="space-y-3">
+            <h2 className="text-xl font-semibold">Identificacao da Empresa</h2>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              A plataforma Lardia e operada por{' '}
+              <strong>COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA</strong>,
+              inscrita no CNPJ sob o nº{' '}
+              <strong>46.728.966/0001-40</strong>.
+            </p>
+          </section>
+
           <p className="text-sm leading-relaxed text-muted-foreground">
             Esta Politica de Privacidade descreve como a Lardia coleta, usa,
             armazena e protege seus dados pessoais, em conformidade com a Lei
