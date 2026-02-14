@@ -1,3 +1,4 @@
+import { PublicNav } from '@/components/public-nav'
 import { getAllPosts } from '@/lib/blog'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
