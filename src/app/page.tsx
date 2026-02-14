@@ -25,7 +25,10 @@ export default function Home() {
           <Link href="/" className="text-xl font-bold tracking-tight">
             Lardia
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <Link href="/blog" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              Blog
+            </Link>
             <Link href="/login">
               <Button variant="ghost" size="sm">Entrar</Button>
             </Link>
@@ -287,6 +290,7 @@ export default function Home() {
                 <li><Link href="#calculadora" className="hover:text-foreground transition-colors">Calculadora</Link></li>
                 <li><Link href="#" className="hover:text-foreground transition-colors">Funcionalidades</Link></li>
                 <li><Link href="#" className="hover:text-foreground transition-colors">Precos</Link></li>
+                <li><Link href="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
               </ul>
             </div>
             <div>
