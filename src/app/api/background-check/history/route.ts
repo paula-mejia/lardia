@@ -1,6 +1,10 @@
+import { NextRequest } from 'next/server'
 import { getAuthenticatedEmployer, success } from '@/lib/api/response'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'bg-check-history', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
   const { error, supabase, employer } = await getAuthenticatedEmployer()
   if (error) {
     // Return empty list for unauthenticated (graceful degradation)

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaqAccordion } from "./faq-accordion";
+import NewsletterSignup from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
   title: "Perguntas Frequentes | Lardia - eSocial Doméstico",
@@ -282,6 +283,9 @@ export default function FaqPage() {
           </div>
         ))}
       </section>
+
+      {/* Newsletter */}
+      <NewsletterSignup source="faq" />
 
       {/* CTA */}
       <section className="border-t bg-emerald-50 dark:bg-emerald-950/20">

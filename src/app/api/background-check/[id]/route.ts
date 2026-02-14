@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const rateLimited = applyRateLimit(_request, 'bg-check-detail', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
+
   const { id } = await params
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

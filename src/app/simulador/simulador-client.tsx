@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import NewsletterSignup from '@/components/newsletter-signup'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -470,6 +471,9 @@ export default function SimuladorClient() {
               </Card>
             </div>
           </section>
+
+          {/* Newsletter */}
+          <NewsletterSignup source="simulator" />
 
           {/* CTA */}
           <section className="py-12 md:py-16 bg-emerald-600 dark:bg-emerald-800">

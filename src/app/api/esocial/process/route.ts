@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { processMonthlyPayroll } from '@/lib/esocial/monthly-processor'
+import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
+import { auditLog } from '@/lib/audit'
 
 export async function POST(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'esocial-process', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
   try {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
@@ -81,6 +85,8 @@ export async function POST(request: NextRequest) {
         employees: result.dae.employees,
       })
     }
+
+    await auditLog(employer.id, 'esocial_event_submitted', { month, year, eventCount: result.events.length }, getClientIp(request))
 
     return NextResponse.json(result)
   } catch (error) {

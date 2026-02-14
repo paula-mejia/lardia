@@ -1,8 +1,11 @@
 import { createClient } from '@/lib/supabase/server'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 
 // Called when a referee subscribes: reward the referrer with 1 free month
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'referral-reward', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
   try {
     const { refereeEmployerId } = await request.json()
     if (!refereeEmployerId) {

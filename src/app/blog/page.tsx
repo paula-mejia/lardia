@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight, Clock, BookOpen } from 'lucide-react'
 import Link from 'next/link'
+import NewsletterSignup from '@/components/newsletter-signup'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -94,6 +95,9 @@ export default function BlogIndex() {
           ))}
         </div>
       </section>
+
+      {/* Newsletter */}
+      <NewsletterSignup source="blog" />
 
       {/* CTA */}
       <section className="border-t bg-emerald-50 dark:bg-emerald-950/20">

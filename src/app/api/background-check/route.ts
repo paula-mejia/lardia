@@ -2,8 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { runBackgroundCheck } from '@/lib/background-check/service'
 import { validateCpfChecksum } from '@/lib/background-check/cpf-validation'
+import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
+import { auditLog } from '@/lib/audit'
 
 export async function POST(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'background-check', RATE_LIMITS.backgroundCheck)
+  if (rateLimited) return rateLimited
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -77,6 +81,8 @@ export async function POST(request: NextRequest) {
     if (updateError) {
       console.error('Update error:', updateError)
     }
+
+    await auditLog(employer.id, 'background_check_requested', { checkId: check.id, candidateName }, getClientIp(request))
 
     return NextResponse.json({ id: check.id, status: 'completed' })
   } catch (err) {

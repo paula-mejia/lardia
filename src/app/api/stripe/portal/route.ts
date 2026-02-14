@@ -1,8 +1,11 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getStripe } from '@/lib/stripe/config'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 
-export async function POST() {
+export async function POST(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'stripe-portal', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
   const stripe = getStripe()
   if (!stripe) {
     return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })

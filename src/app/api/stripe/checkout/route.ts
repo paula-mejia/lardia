@@ -1,8 +1,12 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getStripe } from '@/lib/stripe/config'
+import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
+import { auditLog } from '@/lib/audit'
 
-export async function POST() {
+export async function POST(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'stripe-checkout', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
   const stripe = getStripe()
   if (!stripe) {
     return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })
@@ -61,6 +65,8 @@ export async function POST() {
     cancel_url: `${baseUrl}/dashboard/settings`,
     line_items: lineItems,
   } as Record<string, unknown>)
+
+  await auditLog(employer.id, 'subscription_created', { sessionId: session.id }, getClientIp(request))
 
   return NextResponse.json({ url: session.url })
 }

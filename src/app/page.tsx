@@ -22,6 +22,7 @@ import {
 import Link from 'next/link'
 import PayrollCalculator from '@/components/payroll-calculator'
 import { ReferralBanner, ReferralSection } from '@/components/referral-banner'
+import NewsletterSignup from '@/components/newsletter-signup'
 
 export default function Home() {
   return (
@@ -508,6 +509,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter */}
+      <NewsletterSignup source="landing" />
 
       {/* Referral */}
       <ReferralSection />
