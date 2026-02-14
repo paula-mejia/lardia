@@ -303,8 +303,8 @@ export default function Home() {
             <div>
               <p className="font-medium text-sm mb-3">Legal</p>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="#" className="hover:text-foreground transition-colors">Termos de uso</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition-colors">Privacidade</Link></li>
+                <li><Link href="/termos" className="hover:text-foreground transition-colors">Termos de uso</Link></li>
+                <li><Link href="/privacidade" className="hover:text-foreground transition-colors">Privacidade</Link></li>
               </ul>
             </div>
           </div>
