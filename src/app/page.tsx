@@ -12,6 +12,15 @@ import {
   CheckCircle,
   ArrowRight,
   AlertTriangle,
+  Search,
+  UserCheck,
+  Scale,
+  CreditCard,
+  ClipboardList,
+  Zap,
+  Users,
+  Star,
+  MessageCircle,
 } from 'lucide-react'
 import Link from 'next/link'
 import PayrollCalculator from '@/components/payroll-calculator'
@@ -52,9 +61,9 @@ export default function Home() {
             <span className="text-emerald-600 dark:text-emerald-400">sem estresse</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Folha de pagamento, obrigações e guias da sua empregada doméstica
-            calculadas automaticamente. Você cuida da sua família, a Lardia cuida
-            do eSocial.
+            Gestao completa do eSocial domestico: folha de pagamento, guia DAE,
+            fechamento mensal e todas as obrigacoes no piloto automatico.
+            Voce cuida da sua familia, a Lardia cuida do resto.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">
@@ -130,8 +139,76 @@ export default function Home() {
         </div>
       </section>
 
+      {/* eSocial Management Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <Badge variant="secondary" className="mb-4">Novidade</Badge>
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
+              Gestao completa do eSocial
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              A Lardia cuida do envio mensal, geracao da DAE e controle de prazos.
+              Voce nao precisa mais de um contador para manter tudo em dia.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+            {[
+              {
+                icon: ClipboardList,
+                step: '1',
+                title: 'Cadastro',
+                desc: 'Cadastre sua empregada com os dados basicos. A Lardia configura tudo no eSocial para voce.',
+              },
+              {
+                icon: UserCheck,
+                step: '2',
+                title: 'Procuracao',
+                desc: 'Autorize a Lardia a enviar eventos no eSocial em seu nome com uma procuracao digital simples.',
+              },
+              {
+                icon: Zap,
+                step: '3',
+                title: 'Automacao',
+                desc: 'Pronto. Todo mes a folha e fechada, os eventos sao enviados e a guia DAE e gerada automaticamente.',
+              },
+            ].map((item, i) => (
+              <Card key={i} className="border shadow-sm text-center">
+                <CardContent className="pt-6">
+                  <div className="mx-auto h-14 w-14 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
+                    <item.icon className="h-7 w-7 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <div className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-600 text-white text-xs font-bold mb-2">
+                    {item.step}
+                  </div>
+                  <h3 className="font-semibold mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Connector arrows (visible on md+) */}
+          <div className="hidden md:flex justify-center items-center gap-2 -mt-8 mb-8">
+            <p className="text-sm text-muted-foreground font-medium">
+              Cadastro → Procuracao → Automacao
+            </p>
+          </div>
+
+          <div className="text-center">
+            <Link href="/signup">
+              <Button size="lg" className="text-base px-8">
+                Quero automatizar meu eSocial
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Calculator Section */}
-      <section id="calculadora" className="py-16 md:py-24">
+      <section id="calculadora" className="py-16 md:py-24 bg-muted/40">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <Badge variant="secondary" className="mb-4">Gratis, sem cadastro</Badge>
@@ -149,7 +226,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-24 bg-muted/40">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
@@ -200,21 +277,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-16 md:py-24">
+      {/* Background Check Section */}
+      <section className="py-16 md:py-24 bg-muted/40">
         <div className="container mx-auto px-4">
-          <div className="max-w-md mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="mx-auto h-16 w-16 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-6">
+              <Search className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+            </div>
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-              Simples e acessivel
+              Verificacao de antecedentes
             </h2>
-            <p className="text-muted-foreground mb-8">
-              Menos do que um cafe por dia para nunca mais se preocupar com eSocial.
+            <p className="text-muted-foreground text-lg mb-6">
+              Contrate com seguranca. Antes de admitir, verifique antecedentes
+              criminais, processos judiciais e validacao de CPF do candidato.
+              Tudo online, com resultado em minutos.
             </p>
 
-            <Card className="border-2 border-emerald-500 shadow-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
+              {[
+                { icon: Shield, label: 'Antecedentes criminais' },
+                { icon: Scale, label: 'Processos judiciais' },
+                { icon: UserCheck, label: 'Validacao de CPF' },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-2 p-4">
+                  <item.icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                  <span className="text-sm font-medium">{item.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-6">
+              <div className="flex items-baseline justify-center gap-1 mb-1">
+                <span className="text-sm text-muted-foreground">R$</span>
+                <span className="text-4xl font-bold">99,90</span>
+                <span className="text-muted-foreground">por consulta</span>
+              </div>
+            </div>
+
+            <Link href="/signup">
+              <Button size="lg" className="text-base px-8">
+                Verificar agora
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
+              Mais de 500 empregadores confiam na Lardia
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Empregadores em todo o Brasil usam a Lardia para simplificar
+              o eSocial domestico e evitar dores de cabeca.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                name: 'Maria S.',
+                city: 'Sao Paulo, SP',
+                text: 'Antes da Lardia eu pagava um contador so para o eSocial. Agora faco tudo sozinha em 5 minutos por mes.',
+              },
+              {
+                name: 'Roberto L.',
+                city: 'Rio de Janeiro, RJ',
+                text: 'Os alertas de prazo ja me salvaram de multas varias vezes. Vale cada centavo.',
+              },
+              {
+                name: 'Ana C.',
+                city: 'Belo Horizonte, MG',
+                text: 'A verificacao de antecedentes me deu tranquilidade para contratar. Recomendo muito.',
+              },
+            ].map((item, i) => (
+              <Card key={i} className="border shadow-sm">
+                <CardContent className="pt-6">
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">&ldquo;{item.text}&rdquo;</p>
+                  <p className="text-sm font-semibold">{item.name}</p>
+                  <p className="text-xs text-muted-foreground">{item.city}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-16 md:py-24 bg-muted/40">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
+              Escolha o plano ideal para voce
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Comece gratis com as calculadoras ou desbloqueie a gestao completa do eSocial.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Free Tier */}
+            <Card className="border shadow-sm">
               <CardContent className="pt-8 pb-8">
                 <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">
-                  Plano unico
+                  Gratis
+                </p>
+                <div className="flex items-baseline justify-center gap-1 mb-1">
+                  <span className="text-sm text-muted-foreground">R$</span>
+                  <span className="text-5xl font-bold">0</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-6">para sempre</p>
+
+                <ul className="text-left space-y-3 mb-8">
+                  {[
+                    'Calculadora de folha',
+                    'Calculadora de 13o salario',
+                    'Calculadora de ferias',
+                    'Calculadora de rescisao',
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link href="#calculadora">
+                  <Button variant="outline" size="lg" className="w-full text-base">
+                    Usar gratis
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Basic Tier */}
+            <Card className="border shadow-sm">
+              <CardContent className="pt-8 pb-8">
+                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">
+                  Basico
                 </p>
                 <div className="flex items-baseline justify-center gap-1 mb-1">
                   <span className="text-sm text-muted-foreground">R$</span>
@@ -225,13 +434,53 @@ export default function Home() {
 
                 <ul className="text-left space-y-3 mb-8">
                   {[
-                    'Calculo automatico da folha mensal',
-                    'Ferias, 13o e rescisao',
+                    'Tudo do plano Gratis',
+                    'Dashboard de empregados',
                     'Calendario de obrigacoes',
-                    'Alertas por e-mail e WhatsApp',
-                    'Contracheque formatado',
-                    'Historico completo de pagamentos',
-                    'Suporte por WhatsApp',
+                    'Contracheque em PDF',
+                    'Alertas por e-mail',
+                    'Historico de calculos',
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link href="/signup">
+                  <Button variant="outline" size="lg" className="w-full text-base">
+                    Comecar agora
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Complete Tier */}
+            <Card className="border-2 border-emerald-500 shadow-lg relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <Badge className="bg-emerald-600 text-white hover:bg-emerald-600">Recomendado</Badge>
+              </div>
+              <CardContent className="pt-8 pb-8">
+                <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wide mb-2">
+                  Completo
+                </p>
+                <div className="flex items-baseline justify-center gap-1 mb-1">
+                  <span className="text-sm text-muted-foreground">R$</span>
+                  <span className="text-5xl font-bold">49,90</span>
+                  <span className="text-muted-foreground">/mes</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-6">por empregada</p>
+
+                <ul className="text-left space-y-3 mb-8">
+                  {[
+                    'Tudo do plano Basico',
+                    'Gestao eSocial automatizada',
+                    'Geracao de DAE',
+                    'Fechamento mensal automatico',
+                    'Notificacoes por WhatsApp',
+                    'Suporte prioritario',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
@@ -242,11 +491,11 @@ export default function Home() {
 
                 <Link href="/signup">
                   <Button size="lg" className="w-full text-base">
-                    Comece agora
+                    Comecar agora
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <p className="text-xs text-muted-foreground mt-3">
+                <p className="text-xs text-muted-foreground mt-3 text-center">
                   7 dias gratis. Cancele quando quiser.
                 </p>
               </CardContent>
