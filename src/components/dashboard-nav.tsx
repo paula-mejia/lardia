@@ -29,17 +29,17 @@ const navGroups: NavGroup[] = [
     label: 'Calculadoras',
     items: [
       { label: 'Folha', href: '/dashboard', icon: <Calculator className="h-4 w-4" /> },
-      { label: '13o Salario', href: '/dashboard#thirteenth', icon: <Gift className="h-4 w-4" /> },
-      { label: 'Ferias', href: '/dashboard#vacation', icon: <Palmtree className="h-4 w-4" /> },
-      { label: 'Rescisao', href: '/dashboard#termination', icon: <UserMinus className="h-4 w-4" /> },
+      { label: '13o Salário', href: '/dashboard#thirteenth', icon: <Gift className="h-4 w-4" /> },
+      { label: 'Férias', href: '/dashboard#vacation', icon: <Palmtree className="h-4 w-4" /> },
+      { label: 'Rescisão', href: '/dashboard#termination', icon: <UserMinus className="h-4 w-4" /> },
     ],
   },
   {
-    label: 'Gestao',
+    label: 'Gestão',
     items: [
       { label: 'Empregados', href: '/dashboard', icon: <Users className="h-4 w-4" /> },
       { label: 'Contratos', href: '/dashboard/contracts', icon: <FileText className="h-4 w-4" /> },
-      { label: 'Verificacao', href: '/dashboard/background-check', icon: <Shield className="h-4 w-4" /> },
+      { label: 'Verificação', href: '/dashboard/background-check', icon: <Shield className="h-4 w-4" /> },
     ],
   },
   {

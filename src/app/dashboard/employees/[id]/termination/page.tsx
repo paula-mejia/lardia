@@ -40,7 +40,7 @@ export default async function EmployeeTerminationPage({
         </Link>
         <div>
           <h1 className="text-xl font-bold">{employee.full_name}</h1>
-          <p className="text-sm text-muted-foreground">Rescisao</p>
+          <p className="text-sm text-muted-foreground">Rescisão</p>
         </div>
       </div>
 

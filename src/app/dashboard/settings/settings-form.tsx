@@ -78,13 +78,13 @@ export function SettingsForm({
 
     // Validate phone if WhatsApp is enabled
     if (whatsappReminders && !isValidPhone) {
-      setError('Numero de WhatsApp invalido. Use o formato brasileiro completo.')
+      setError('Numero de WhatsApp inválido. Use o formato brasileiro completo.')
       setSaving(false)
       return
     }
 
     if (whatsappReminders && !lgpdConsent) {
-      setError('Voce precisa aceitar o consentimento para receber mensagens no WhatsApp.')
+      setError('Você precisa aceitar o consentimento para receber mensagens no WhatsApp.')
       setSaving(false)
       return
     }
@@ -165,7 +165,7 @@ export function SettingsForm({
 
           {emailReminders && (
             <div className="pl-8 space-y-2">
-              <Label htmlFor="days-before">Lembrar com antecedencia de</Label>
+              <Label htmlFor="days-before">Lembrar com antecedência de</Label>
               <Select
                 value={String(daysBefore)}
                 onValueChange={(v) => setDaysBefore(Number(v))}
@@ -181,7 +181,7 @@ export function SettingsForm({
                 </SelectContent>
               </Select>
               <p className="text-xs text-muted-foreground">
-                Voce tambem recebera um lembrete no dia do vencimento.
+                Você também receberá um lembrete no dia do vencimento.
               </p>
             </div>
           )}
@@ -230,7 +230,7 @@ export function SettingsForm({
                 />
                 {rawDigits.length > 2 && !isValidPhone && (
                   <p className="text-xs text-red-500">
-                    Numero incompleto. Use DDD + numero (ex: 11 99999-9999)
+                    Numero incompleto. Use DDD + número (ex: 11 99999-9999)
                   </p>
                 )}
               </div>
@@ -244,7 +244,7 @@ export function SettingsForm({
                 />
                 <Label htmlFor="lgpd-consent" className="text-sm leading-snug cursor-pointer">
                   Autorizo o envio de mensagens de lembrete via WhatsApp.
-                  Voce pode desativar a qualquer momento. Seus dados serao
+                  Você pode desativar a qualquer momento. Seus dados serão
                   tratados conforme a LGPD (Lei 13.709/2018).
                 </Label>
               </div>
@@ -271,7 +271,7 @@ export function SettingsForm({
             Salvo!
           </>
         ) : (
-          'Salvar alteracoes'
+          'Salvar alterações'
         )}
       </Button>
     </div>

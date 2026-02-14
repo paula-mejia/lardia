@@ -55,7 +55,7 @@ export default async function DashboardPage() {
       {employees.length === 0 ? (
         <div className="border rounded-lg p-8 text-center">
           <p className="text-muted-foreground mb-4">
-            Voce ainda nao cadastrou nenhuma empregada.
+            Você ainda não cadastrou nenhuma empregada.
           </p>
           <Link href="/dashboard/employees/new">
             <Button>

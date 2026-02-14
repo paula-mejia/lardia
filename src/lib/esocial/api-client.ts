@@ -547,5 +547,5 @@ export const ESOCIAL_ERROR_CODES: Record<number, string> = {
   502: 'Lote processado com erros em um ou mais eventos',
   601: 'Assinatura digital invalida',
   609: 'Codigo de ID invalido',
-  1310: 'Empregador domestico nao pode transmitir eventos por este canal',
+  1310: 'Empregador doméstico não pode transmitir eventos por este canal',
 }

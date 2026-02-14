@@ -168,7 +168,7 @@ export default async function ESocialStatusPage() {
                   </p>
                   {proxyCheckedAt && (
                     <p className="text-xs text-muted-foreground">
-                      Ultima verificacao: {proxyCheckedAt}
+                      Ultima verificação: {proxyCheckedAt}
                     </p>
                   )}
                 </div>
@@ -183,7 +183,7 @@ export default async function ESocialStatusPage() {
         {/* Obligations checklist */}
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle className="text-lg">Obrigacoes do mes</CardTitle>
+            <CardTitle className="text-lg">Obrigacoes do mês</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-3">
@@ -210,7 +210,7 @@ export default async function ESocialStatusPage() {
         {/* History */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Historico de acoes</CardTitle>
+            <CardTitle className="text-lg">Historico de ações</CardTitle>
           </CardHeader>
           <CardContent>
             {history.length === 0 ? (

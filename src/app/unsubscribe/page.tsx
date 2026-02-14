@@ -18,7 +18,7 @@ export default function UnsubscribePage() {
     setErrorMessage('')
 
     if (!isValidEmail(email)) {
-      setErrorMessage('Por favor, insira um email valido.')
+      setErrorMessage('Por favor, insira um email válido.')
       setStatus('error')
       return
     }
@@ -61,7 +61,7 @@ export default function UnsubscribePage() {
               <CheckCircle className="h-12 w-12 text-emerald-500 mx-auto mb-4" />
               <h1 className="text-xl font-bold mb-2">Inscricao cancelada</h1>
               <p className="text-sm text-muted-foreground">
-                Voce nao recebera mais emails da Lardia.
+                Você não receberá mais emails da Lardia.
               </p>
             </CardContent>
           </Card>

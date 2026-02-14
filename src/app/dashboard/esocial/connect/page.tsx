@@ -110,24 +110,24 @@ export default function ConnectESocialPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="h-5 w-5" />
-                O que e a procuracao eletronica?
+                O que é a procuração eletrônica?
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm leading-relaxed">
-                Para que a Lardia gerencie seu eSocial, voce precisa nos
-                autorizar via procuracao eletronica no eCAC (Centro Virtual de
+                Para que a Lardia gerencie seu eSocial, você precisa nos
+                autorizar via procuração eletrônica no eCAC (Centro Virtual de
                 Atendimento da Receita Federal).
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                A procuracao eletronica e um documento digital que autoriza a
-                Lardia a enviar e consultar informacoes no eSocial em seu nome.
-                Isso e necessario para que possamos automatizar o envio da folha
-                de pagamento, gerar as guias DAE e manter suas obrigacoes em
+                A procuração eletrônica é um documento digital que autoriza a
+                Lardia a enviar e consultar informações no eSocial em seu nome.
+                Isso é necessário para que possamos automatizar o envio da folha
+                de pagamento, gerar as guias DAE e manter suas obrigações em
                 dia.
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Voce pode revogar essa procuracao a qualquer momento diretamente
+                Você pode revogar essa procuração a qualquer momento diretamente
                 no site da Receita Federal.
               </p>
               <Button onClick={() => setStep(2)} className="w-full">
@@ -146,7 +146,7 @@ export default function ConnectESocialPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Antes de comecar, verifique se voce tem tudo pronto:
+                Antes de começar, verifique se você tem tudo pronto:
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
@@ -156,7 +156,7 @@ export default function ConnectESocialPage() {
                       Conta gov.br nivel prata ou ouro
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Necessario para acessar o eCAC. Se voce ainda nao tem,{' '}
+                      Necessário para acessar o eCAC. Se você ainda não tem,{' '}
                       <a
                         href="https://sso.acesso.gov.br/signup"
                         target="_blank"
@@ -174,7 +174,7 @@ export default function ConnectESocialPage() {
                   <div>
                     <p className="text-sm font-medium">CPF do empregador</p>
                     <p className="text-xs text-muted-foreground">
-                      O CPF que esta cadastrado como empregador domestico no
+                      O CPF que está cadastrado como empregador doméstico no
                       eSocial.
                     </p>
                   </div>
@@ -205,8 +205,8 @@ export default function ConnectESocialPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Siga as instrucoes abaixo para cadastrar a procuracao
-                eletronica:
+                Siga as instruções abaixo para cadastrar a procuração
+                eletrônica:
               </p>
 
               <ol className="space-y-4">
@@ -248,11 +248,11 @@ export default function ConnectESocialPage() {
                   </Badge>
                   <div className="space-y-1">
                     <p className="text-sm font-medium">
-                      Navegue ate Procuracao Eletronica
+                      Navegue até Procuração Eletrônica
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      No menu, clique em &quot;Procuracao Eletronica&quot; e
-                      depois em &quot;Cadastrar Procuracao&quot;.
+                      No menu, clique em &quot;Procuração Eletrônica&quot; e
+                      depois em &quot;Cadastrar Procuração&quot;.
                     </p>
                     <div className="bg-muted rounded-lg h-32 flex items-center justify-center text-xs text-muted-foreground">
                       [Imagem: Menu do eCAC]
@@ -279,7 +279,7 @@ export default function ConnectESocialPage() {
                       </span>
                     </p>
                     <div className="bg-muted rounded-lg h-32 flex items-center justify-center text-xs text-muted-foreground">
-                      [Imagem: Formulario de procuracao]
+                      [Imagem: Formulario de procuração]
                     </div>
                   </div>
                 </li>
@@ -292,16 +292,16 @@ export default function ConnectESocialPage() {
                     4
                   </Badge>
                   <div className="space-y-1">
-                    <p className="text-sm font-medium">Selecione o servico</p>
+                    <p className="text-sm font-medium">Selecione o serviço</p>
                     <p className="text-xs text-muted-foreground">
                       Marque a opcao{' '}
                       <span className="font-medium">
-                        &quot;eSocial - Empregador Domestico&quot;
+                        &quot;eSocial - Empregador Doméstico&quot;
                       </span>{' '}
-                      na lista de servicos disponiveis.
+                      na lista de serviços disponiveis.
                     </p>
                     <div className="bg-muted rounded-lg h-32 flex items-center justify-center text-xs text-muted-foreground">
-                      [Imagem: Selecao de servicos]
+                      [Imagem: Selecao de serviços]
                     </div>
                   </div>
                 </li>
@@ -316,7 +316,7 @@ export default function ConnectESocialPage() {
                   <div className="space-y-1">
                     <p className="text-sm font-medium">Confirme e salve</p>
                     <p className="text-xs text-muted-foreground">
-                      Revise os dados e confirme a procuracao. Pronto!
+                      Revise os dados e confirme a procuração. Pronto!
                     </p>
                   </div>
                 </li>
@@ -331,7 +331,7 @@ export default function ConnectESocialPage() {
                   Voltar
                 </Button>
                 <Button onClick={() => setStep(4)} className="flex-1">
-                  Ja cadastrei a procuracao
+                  Já cadastrei a procuração
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </div>
@@ -344,7 +344,7 @@ export default function ConnectESocialPage() {
           <Card>
             <CardHeader>
               <CardTitle>
-                {verified ? 'eSocial conectado com sucesso!' : 'Verificar conexao'}
+                {verified ? 'eSocial conectado com sucesso!' : 'Verificar conexão'}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -352,7 +352,7 @@ export default function ConnectESocialPage() {
                 <div className="text-center space-y-4">
                   <CheckCircle className="h-16 w-16 text-emerald-600 mx-auto" />
                   <p className="text-sm text-muted-foreground">
-                    Sua procuracao eletronica foi verificada. A Lardia agora pode
+                    Sua procuração eletrônica foi verificada. A Lardia agora pode
                     gerenciar seu eSocial.
                   </p>
                   <Link href="/dashboard/esocial">
@@ -362,7 +362,7 @@ export default function ConnectESocialPage() {
               ) : (
                 <>
                   <p className="text-sm text-muted-foreground">
-                    Informe o CPF do empregador para verificarmos se a procuracao
+                    Informe o CPF do empregador para verificarmos se a procuração
                     foi cadastrada corretamente.
                   </p>
                   <div>
@@ -402,7 +402,7 @@ export default function ConnectESocialPage() {
                           Verificando...
                         </>
                       ) : (
-                        'Verificar conexao'
+                        'Verificar conexão'
                       )}
                     </Button>
                   </div>

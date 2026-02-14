@@ -161,7 +161,7 @@ function StepFirstEmployee() {
       <Users className="mx-auto h-12 w-12 text-primary" />
       <h3 className="text-lg font-semibold">Cadastre sua primeira empregada</h3>
       <p className="text-muted-foreground text-sm">
-        Para comecar a usar a Lardia, voce precisa cadastrar pelo menos uma empregada domestica.
+        Para começar a usar a Lardia, você precisa cadastrar pelo menos uma empregada doméstica.
         Pode fazer isso agora ou depois no painel principal.
       </p>
       <Button asChild className="mt-2">
@@ -171,7 +171,7 @@ function StepFirstEmployee() {
         </a>
       </Button>
       <p className="text-xs text-muted-foreground">
-        Voce pode pular esta etapa e cadastrar depois.
+        Você pode pular esta etapa e cadastrar depois.
       </p>
     </div>
   )
@@ -218,10 +218,10 @@ function StepNotifications({
 function StepTour() {
   const features = [
     { icon: '📊', title: 'Folha de pagamento', desc: 'Calcule salarios com todos os descontos automaticamente.' },
-    { icon: '🏖️', title: 'Ferias', desc: 'Controle periodos de ferias e calcule valores com precisao.' },
-    { icon: '🎄', title: '13o salario', desc: 'Calculo automatico das parcelas do decimo terceiro.' },
+    { icon: '🏖️', title: 'Férias', desc: 'Controle períodos de férias e calcule valores com precisão.' },
+    { icon: '🎄', title: '13o salário', desc: 'Cálculo automático das parcelas do décimo terceiro.' },
     { icon: '📅', title: 'Calendario', desc: 'Acompanhe prazos e datas importantes do eSocial.' },
-    { icon: '📄', title: 'Rescisao', desc: 'Simulacao completa de rescisao contratual.' },
+    { icon: '📄', title: 'Rescisão', desc: 'Simulação completa de rescisão contratual.' },
   ]
 
   return (

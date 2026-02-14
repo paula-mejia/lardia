@@ -31,7 +31,7 @@ function validateDate(date: string): boolean {
 // Validate required fields
 function requireField(value: unknown, field: string): void {
   if (value === undefined || value === null || value === '') {
-    throw new EventValidationError(field, `Campo obrigatorio: ${field}`)
+    throw new EventValidationError(field, `Campo obrigatório: ${field}`)
   }
 }
 
@@ -54,7 +54,7 @@ export function buildS2200(
     throw new EventValidationError('cpfTrabalhador', 'CPF invalido')
   }
   if (!validateDate(data.dtAdmissao)) {
-    throw new EventValidationError('dtAdmissao', 'Data de admissao invalida')
+    throw new EventValidationError('dtAdmissao', 'Data de admissão inválida')
   }
 
   return {
@@ -310,7 +310,7 @@ export function generateEventXML(event: EsocialEvent): string {
 <eSocial xmlns="http://www.esocial.gov.br/schema/evt/${eventTag}/v1_2_0">
   <evtInfo>
     <ideEvento>
-      <tpAmb>2</tpAmb><!-- 2 = producao restrita (simulacao) -->
+      <tpAmb>2</tpAmb><!-- 2 = produção restrita (simulação) -->
       <procEmi>1</procEmi>
       <verProc>lardia-1.0.0</verProc>
     </ideEvento>

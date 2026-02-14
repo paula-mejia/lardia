@@ -152,7 +152,7 @@ export function validateCertificate(info: CertificateInfo): { valid: boolean; er
   const errors: string[] = []
 
   if (!info.isValid) {
-    errors.push('Certificado expirado ou ainda nao valido')
+    errors.push('Certificado expirado ou ainda não válido')
   }
 
   if (info.daysUntilExpiry < 30) {
@@ -160,7 +160,7 @@ export function validateCertificate(info: CertificateInfo): { valid: boolean; er
   }
 
   if (!info.cnpj) {
-    errors.push('CNPJ nao encontrado no certificado')
+    errors.push('CNPJ não encontrado no certificado')
   }
 
   return {

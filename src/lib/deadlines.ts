@@ -31,56 +31,56 @@ export const DEADLINE_DEFINITIONS: Record<DeadlineType, DeadlineDefinition> = {
     type: 'dae',
     label: 'Pagamento DAE',
     description:
-      'Documento de Arrecadacao do eSocial. Recolhimento unificado de tributos e FGTS do empregado domestico. Vencimento no dia 7 de cada mes (ou proximo dia util).',
+      'Documento de Arrecadação do eSocial. Recolhimento unificado de tributos e FGTS do empregado doméstico. Vencimento no dia 7 de cada mês (ou próximo dia útil).',
     color: 'bg-blue-500',
   },
   fgts: {
     type: 'fgts',
     label: 'FGTS Digital',
     description:
-      'Recolhimento do FGTS pelo sistema FGTS Digital. Mesmo prazo do DAE: dia 7 de cada mes (ou proximo dia util).',
+      'Recolhimento do FGTS pelo sistema FGTS Digital. Mesmo prazo do DAE: dia 7 de cada mês (ou próximo dia útil).',
     color: 'bg-indigo-500',
   },
   esocial_closing: {
     type: 'esocial_closing',
     label: 'Fechamento eSocial',
     description:
-      'Prazo para envio dos eventos periodicos (folha de pagamento) no eSocial. Dia 15 de cada mes.',
+      'Prazo para envio dos eventos periodicos (folha de pagamento) no eSocial. Dia 15 de cada mês.',
     color: 'bg-purple-500',
   },
   vacation_notice: {
     type: 'vacation_notice',
-    label: 'Aviso de Ferias',
+    label: 'Aviso de Férias',
     description:
-      'O empregador deve comunicar as ferias ao empregado com no minimo 30 dias de antecedencia.',
+      'O empregador deve comunicar as férias ao empregado com no mínimo 30 dias de antecedência.',
     color: 'bg-teal-500',
   },
   thirteenth_1st: {
     type: 'thirteenth_1st',
-    label: '13o Salario (1a parcela)',
+    label: '13o Salário (1a parcela)',
     description:
-      'Primeira parcela do decimo terceiro salario. Deve ser paga ate 30 de novembro.',
+      'Primeira parcela do décimo terceiro salário. Deve ser paga até 30 de novembro.',
     color: 'bg-orange-500',
   },
   thirteenth_2nd: {
     type: 'thirteenth_2nd',
-    label: '13o Salario (2a parcela)',
+    label: '13o Salário (2a parcela)',
     description:
-      'Segunda parcela do decimo terceiro salario. Deve ser paga ate 20 de dezembro.',
+      'Segunda parcela do décimo terceiro salário. Deve ser paga até 20 de dezembro.',
     color: 'bg-red-500',
   },
   income_report: {
     type: 'income_report',
     label: 'Informe de Rendimentos',
     description:
-      'Entrega do informe de rendimentos ao empregado para declaracao do IR. Prazo ate 28 de fevereiro.',
+      'Entrega do informe de rendimentos ao empregado para declaracao do IR. Prazo até 28 de fevereiro.',
     color: 'bg-emerald-500',
   },
   dirf: {
     type: 'dirf',
     label: 'DIRF',
     description:
-      'Declaracao do Imposto de Renda Retido na Fonte. Prazo ate 28 de fevereiro.',
+      'Declaracao do Imposto de Renda Retido na Fonte. Prazo até 28 de fevereiro.',
     color: 'bg-green-500',
   },
 }

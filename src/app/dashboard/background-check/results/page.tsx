@@ -87,14 +87,14 @@ function BackgroundCheckResultsContent() {
 
   useEffect(() => {
     if (!id) {
-      setError('ID da consulta nao informado')
+      setError('ID da consulta não informado')
       setLoading(false)
       return
     }
 
     fetch(`/api/background-check/${id}`)
       .then(async (res) => {
-        if (!res.ok) throw new Error('Consulta nao encontrada')
+        if (!res.ok) throw new Error('Consulta não encontrada')
         return res.json()
       })
       .then((data) => setCheck(data))
@@ -121,7 +121,7 @@ function BackgroundCheckResultsContent() {
       <div>
         <div className="container mx-auto px-4 py-6 max-w-lg text-center">
           <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
-          <p className="text-lg font-medium">{error || 'Consulta nao encontrada'}</p>
+          <p className="text-lg font-medium">{error || 'Consulta não encontrada'}</p>
           <Link href="/dashboard/background-check">
             <Button className="mt-4">Voltar</Button>
           </Link>
@@ -144,7 +144,7 @@ function BackgroundCheckResultsContent() {
           </Link>
           <div className="flex items-center gap-2">
             <Shield className="h-6 w-6 text-primary" />
-            <h1 className="text-xl font-bold">Relatorio de Verificacao</h1>
+            <h1 className="text-xl font-bold">Relatorio de Verificação</h1>
           </div>
         </div>
 
@@ -167,7 +167,7 @@ function BackgroundCheckResultsContent() {
           <Card>
             <CardContent className="py-8 text-center">
               <AlertCircle className="h-8 w-8 text-amber-500 mx-auto mb-2" />
-              <p>Resultados nao disponiveis</p>
+              <p>Resultados não disponiveis</p>
             </CardContent>
           </Card>
         ) : (
@@ -273,12 +273,12 @@ function BackgroundCheckResultsContent() {
         {/* Disclaimer */}
         <div className="bg-muted/50 rounded-lg p-4 text-xs text-muted-foreground space-y-2">
           <p>
-            Este relatorio e informativo. A decisao de contratacao e de responsabilidade
+            Este relatorio e informativo. A decisao de contratação é de responsabilidade
             do empregador.
           </p>
           <p>
-            A existencia de registros nao pode ser o unico motivo para recusar uma
-            contratacao. O uso discriminatorio destas informacoes pode gerar
+            A existencia de registros não pode ser o único motivo para recusar uma
+            contratação. O uso discriminatorio destas informações pode gerar
             responsabilidade legal.
           </p>
           <p>

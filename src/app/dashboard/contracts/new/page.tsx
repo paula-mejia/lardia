@@ -16,7 +16,7 @@ import type { ContractData } from '@/lib/pdf/employment-contract'
 import { trackContractGenerated, trackPdfDownloaded } from '@/lib/analytics'
 
 const JOB_FUNCTIONS = [
-  'Empregado(a) domestico(a)',
+  'Empregado(a) doméstico(a)',
   'Cozinheiro(a)',
   'Baba',
   'Motorista particular',
@@ -250,7 +250,7 @@ export default function NewContractPage() {
                 <Input value={form.employeeCpf} onChange={e => updateForm('employeeCpf', e.target.value)} />
               </div>
               <div>
-                <Label>CTPS (numero)</Label>
+                <Label>CTPS (número)</Label>
                 <Input value={form.employeeCtps} onChange={e => updateForm('employeeCtps', e.target.value)} />
               </div>
               <div>
@@ -267,10 +267,10 @@ export default function NewContractPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <Label>Funcao</Label>
+                <Label>Função</Label>
                 <Select value={form.jobFunction} onValueChange={v => updateForm('jobFunction', v)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Selecione a funcao" />
+                    <SelectValue placeholder="Selecione a função" />
                   </SelectTrigger>
                   <SelectContent>
                     {JOB_FUNCTIONS.map(fn => (
@@ -284,7 +284,7 @@ export default function NewContractPage() {
                 <Input value={form.workLocation} onChange={e => updateForm('workLocation', e.target.value)} />
               </div>
               <div>
-                <Label>Data de inicio</Label>
+                <Label>Data de início</Label>
                 <Input type="date" value={form.startDate} onChange={e => updateForm('startDate', e.target.value)} />
               </div>
               <div>
@@ -301,7 +301,7 @@ export default function NewContractPage() {
               </div>
               {form.contractType === 'determinado' && (
                 <div>
-                  <Label>Data de termino</Label>
+                  <Label>Data de término</Label>
                   <Input type="date" value={form.endDate} onChange={e => updateForm('endDate', e.target.value)} />
                 </div>
               )}
@@ -335,7 +335,7 @@ export default function NewContractPage() {
                 </div>
               </div>
               <div>
-                <Label>Intervalo para refeicao</Label>
+                <Label>Intervalo para refeição</Label>
                 <Input value={form.breakTime} onChange={e => updateForm('breakTime', e.target.value)} placeholder="Ex: 1 hora" />
               </div>
             </CardContent>
@@ -348,7 +348,7 @@ export default function NewContractPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <Label>Salario mensal (R$)</Label>
+                <Label>Salário mensal (R$)</Label>
                 <Input type="number" step="0.01" value={form.salary} onChange={e => updateForm('salary', Number(e.target.value))} />
               </div>
               <div>
@@ -373,7 +373,7 @@ export default function NewContractPage() {
                 <Label htmlFor="valeTransporte">Vale-transporte</Label>
               </div>
               <div>
-                <Label>Outros beneficios</Label>
+                <Label>Outros benefícios</Label>
                 <Input value={form.otherBenefits} onChange={e => updateForm('otherBenefits', e.target.value)} placeholder="Ex: Vale-alimentacao, plano de saude" />
               </div>
             </CardContent>
@@ -391,7 +391,7 @@ export default function NewContractPage() {
                   checked={form.trialPeriod}
                   onCheckedChange={v => updateForm('trialPeriod', !!v)}
                 />
-                <Label htmlFor="trialPeriod">Incluir periodo de experiencia</Label>
+                <Label htmlFor="trialPeriod">Incluir período de experiencia</Label>
               </div>
               {form.trialPeriod && (
                 <div>

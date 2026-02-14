@@ -61,7 +61,7 @@ export default function ThirteenthPageClient({
       .from('payroll_calculations')
       .upsert({
         employee_id: employeeId,
-        reference_month: 13, // convention: month 13 = decimo terceiro
+        reference_month: 13, // convention: month 13 = décimo terceiro
         reference_year: year,
         calculation_type: 'thirteenth',
         gross_salary: result.totalBase,

@@ -17,7 +17,7 @@ export default function TermosPage() {
 
         <div className="prose prose-sm max-w-none space-y-6">
           <p className="text-sm text-muted-foreground">
-            Ultima atualizacao: 14 de fevereiro de 2026
+            Ultima atualização: 14 de fevereiro de 2026
           </p>
 
           <section className="space-y-3">
@@ -31,84 +31,84 @@ export default function TermosPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold">1. Descricao do Servico</h2>
+            <h2 className="text-xl font-semibold">1. Descricao do Serviço</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               A Lardia e uma plataforma digital que oferece ferramentas de
-              calculo de folha de pagamento e gestao de obrigacoes do eSocial
-              para empregadores domesticos no Brasil. Nossos servicos incluem:
+              cálculo de folha de pagamento e gestão de obrigações do eSocial
+              para empregadores domésticos no Brasil. Nossos serviços incluem:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
-              <li>Calculadora de folha de pagamento (salario, ferias, 13o, rescisao)</li>
+              <li>Calculadora de folha de pagamento (salário, férias, 13o, rescisão)</li>
               <li>Geracao automatizada de guias DAE</li>
-              <li>Integracao com o eSocial via procuracao eletronica</li>
-              <li>Calendario de obrigacoes e lembretes</li>
-              <li>Verificacao de antecedentes (via parceiros)</li>
+              <li>Integração com o eSocial via procuração eletrônica</li>
+              <li>Calendario de obrigações e lembretes</li>
+              <li>Verificação de antecedentes (via parceiros)</li>
             </ul>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">2. Responsabilidades do Usuario</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Ao utilizar a Lardia, voce se compromete a:
+              Ao utilizar a Lardia, você se compromete a:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
-              <li>Fornecer informacoes verdadeiras e atualizadas sobre empregados e salarios</li>
+              <li>Fornecer informações verdadeiras e atualizadas sobre empregados e salarios</li>
               <li>Manter suas credenciais de acesso em sigilo</li>
-              <li>Revisar os calculos e documentos gerados antes de submete-los</li>
-              <li>Cumprir todas as obrigacoes legais como empregador domestico</li>
-              <li>Manter a procuracao eletronica ativa enquanto utilizar o servico de gestao eSocial</li>
+              <li>Revisar os cálculos e documentos gerados antes de submete-los</li>
+              <li>Cumprir todas as obrigações legais como empregador doméstico</li>
+              <li>Manter a procuração eletrônica ativa enquanto utilizar o serviço de gestão eSocial</li>
             </ul>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">3. Responsabilidades e Limitacoes da Lardia</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              A Lardia se compromete a fornecer calculos precisos baseados na
-              legislacao trabalhista vigente. No entanto:
+              A Lardia se compromete a fornecer cálculos precisos baseados na
+              legislação trabalhista vigente. No entanto:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
-                A Lardia nao substitui assessoria juridica ou contabil
+                A Lardia não substitui assessoria juridica ou contabil
                 profissional
               </li>
               <li>
-                Nao nos responsabilizamos por informacoes incorretas fornecidas
-                pelo usuario
+                Não nos responsabilizamos por informações incorretas fornecidas
+                pelo usuário
               </li>
               <li>
-                Atualizacoes na legislacao serao incorporadas o mais rapido
-                possivel, mas pode haver um periodo de ajuste
+                Atualizacoes na legislação serão incorporadas o mais rapido
+                possível, mas pode haver um período de ajuste
               </li>
               <li>
-                A disponibilidade do servico depende de sistemas de terceiros
+                A disponibilidade do serviço depende de sistemas de terceiros
                 (eSocial, gov.br, Receita Federal)
               </li>
             </ul>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold">4. Procuracao Eletronica</h2>
+            <h2 className="text-xl font-semibold">4. Procuração Eletrônica</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Para utilizar a funcionalidade de gestao do eSocial, o usuario deve
-              cadastrar uma procuracao eletronica no eCAC autorizando a Lardia.
-              O usuario entende que:
+              Para utilizar a funcionalidade de gestão do eSocial, o usuário deve
+              cadastrar uma procuração eletrônica no eCAC autorizando a Lardia.
+              O usuário entende que:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
-                A procuracao autoriza a Lardia a enviar e consultar informacoes
+                A procuração autoriza a Lardia a enviar e consultar informações
                 no eSocial em nome do empregador
               </li>
               <li>
-                A procuracao pode ser revogada a qualquer momento pelo usuario
+                A procuração pode ser revogada a qualquer momento pelo usuário
                 diretamente no eCAC
               </li>
               <li>
-                A Lardia utilizara a procuracao exclusivamente para os servicos
+                A Lardia utilizará a procuração exclusivamente para os serviços
                 contratados
               </li>
               <li>
-                A revogacao da procuracao implica na impossibilidade de prestar
-                os servicos de gestao eSocial
+                A revogação da procuração implica na impossibilidade de prestar
+                os serviços de gestão eSocial
               </li>
             </ul>
           </section>
@@ -116,7 +116,7 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">5. Tratamento de Dados</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Os dados pessoais coletados sao tratados conforme nossa{' '}
+              Os dados pessoais coletados são tratados conforme nossa{' '}
               <Link href="/privacidade" className="text-emerald-600 underline">
                 Politica de Privacidade
               </Link>
@@ -128,14 +128,14 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">6. Pagamento</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Os pagamentos sao processados pela Stripe, Inc. Ao contratar um
-              plano pago, voce concorda com:
+              Os pagamentos são processados pela Stripe, Inc. Ao contratar um
+              plano pago, você concorda com:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>Cobranca recorrente mensal conforme o plano escolhido</li>
-              <li>O periodo de teste gratuito de 7 dias, quando aplicavel</li>
+              <li>O período de teste gratuito de 7 dias, quando aplicavel</li>
               <li>
-                Os dados de pagamento sao armazenados e processados
+                Os dados de pagamento são armazenados e processados
                 exclusivamente pela Stripe
               </li>
             </ul>
@@ -144,15 +144,15 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">7. Cancelamento</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Voce pode cancelar sua assinatura a qualquer momento. Ao cancelar:
+              Você pode cancelar sua assinatura a qualquer momento. Ao cancelar:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
-              <li>O acesso continua ate o final do periodo ja pago</li>
-              <li>Nao ha reembolso proporcional do periodo restante</li>
-              <li>Seus dados serao mantidos por 90 dias apos o cancelamento</li>
+              <li>O acesso continua até o final do período já pago</li>
+              <li>Não ha reembolso proporcional do período restante</li>
+              <li>Seus dados serão mantidos por 90 dias após o cancelamento</li>
               <li>
-                A procuracao eletronica deve ser revogada manualmente pelo
-                usuario no eCAC
+                A procuração eletrônica deve ser revogada manualmente pelo
+                usuário no eCAC
               </li>
             </ul>
           </section>
@@ -160,13 +160,13 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">8. Limitacao de Responsabilidade</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              A Lardia nao sera responsavel por danos indiretos, incidentais,
+              A Lardia não será responsável por danos indiretos, incidentais,
               especiais ou consequenciais decorrentes do uso ou impossibilidade
-              de uso do servico. Nossa responsabilidade total esta limitada ao
-              valor pago pelo usuario nos ultimos 12 meses.
+              de uso do serviço. Nossa responsabilidade total esta limitada ao
+              valor pago pelo usuário nos ultimos 12 meses.
             </p>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Em caso de erros em calculos que resultem em prejuizo ao usuario,
+              Em caso de erros em cálculos que resultem em prejuizo ao usuário,
               a Lardia se compromete a corrigir o erro e auxiliar na
               regularizacao junto aos orgaos competentes.
             </p>
@@ -176,8 +176,8 @@ export default function TermosPage() {
             <h2 className="text-xl font-semibold">9. Alteracoes nos Termos</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               A Lardia pode alterar estes termos a qualquer momento. Usuarios
-              serao notificados por email sobre alteracoes significativas. O uso
-              continuado do servico apos a notificacao constitui aceitacao dos
+              serão notificados por email sobre alterações significativas. O uso
+              continuado do serviço após a notificação constitui aceitação dos
               novos termos.
             </p>
           </section>
@@ -185,7 +185,7 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">10. Foro e Legislacao Aplicavel</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Estes termos sao regidos pelas leis da Republica Federativa do
+              Estes termos são regidos pelas leis da Republica Federativa do
               Brasil. Fica eleito o foro da comarca de Sao Paulo/SP para dirimir
               quaisquer controversias.
             </p>

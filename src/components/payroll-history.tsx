@@ -64,25 +64,25 @@ function CalculationDetail({ record }: { record: PayrollRecord }) {
   return (
     <div className="space-y-3 pt-3">
       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Vencimentos</p>
-      <DetailRow label="Salario bruto" value={record.gross_salary} variant="earning" />
+      <DetailRow label="Salário bruto" value={record.gross_salary} variant="earning" />
       {record.overtime_pay > 0 && <DetailRow label="Horas extras" value={record.overtime_pay} variant="earning" />}
 
       <Separator />
       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Descontos</p>
-      <DetailRow label="INSS (contribuicao)" value={record.inss_employee} variant="deduction" />
+      <DetailRow label="INSS (contribuição)" value={record.inss_employee} variant="deduction" />
       {record.irrf > 0 && <DetailRow label="IRRF" value={record.irrf} variant="deduction" />}
       {record.absence_deduction > 0 && <DetailRow label="Faltas" value={record.absence_deduction} variant="deduction" />}
       {record.dsr_deduction > 0 && <DetailRow label="DSR descontado" value={record.dsr_deduction} variant="deduction" />}
 
       <Separator />
-      <DetailRow label="Salario liquido" value={record.net_salary} variant="highlight" />
+      <DetailRow label="Salário líquido" value={record.net_salary} variant="highlight" />
 
       <Separator />
       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Guia DAE (empregador)</p>
       <DetailRow label="INSS patronal (8%)" value={record.inss_employer} />
       <DetailRow label="GILRAT (0,8%)" value={record.gilrat} />
       <DetailRow label="FGTS (8%)" value={record.fgts_monthly} />
-      <DetailRow label="FGTS antecipacao (3,2%)" value={record.fgts_anticipation} />
+      <DetailRow label="FGTS antecipação (3,2%)" value={record.fgts_anticipation} />
       <Separator />
       <DetailRow label="Total DAE" value={record.dae_total} variant="highlight" />
 
@@ -142,7 +142,7 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
       <Card className="w-full max-w-2xl mx-auto">
         <CardContent className="flex items-center justify-center py-8">
           <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-          <span className="ml-2 text-sm text-muted-foreground">Carregando historico...</span>
+          <span className="ml-2 text-sm text-muted-foreground">Carregando histórico...</span>
         </CardContent>
       </Card>
     )
@@ -153,9 +153,9 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
       <Card className="w-full max-w-2xl mx-auto">
         <CardContent className="text-center py-8">
           <History className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
-          <p className="text-sm text-muted-foreground">Nenhum calculo salvo ainda</p>
+          <p className="text-sm text-muted-foreground">Nenhum cálculo salvo ainda</p>
           <p className="text-xs text-muted-foreground mt-1">
-            Faca um calculo acima e clique em &quot;Salvar&quot; para criar o historico
+            Faca um cálculo acima e clique em &quot;Salvar&quot; para criar o histórico
           </p>
         </CardContent>
       </Card>
@@ -167,7 +167,7 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
       <CardHeader className="pb-3">
         <CardTitle className="text-lg flex items-center gap-2">
           <History className="h-5 w-5" />
-          Historico de calculos
+          Historico de cálculos
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-2">
@@ -194,7 +194,7 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
                 <div className="flex items-center gap-3">
                   <div className="text-right">
                     <p className="text-sm font-semibold tabular-nums">{formatBRL(record.net_salary)}</p>
-                    <p className="text-xs text-muted-foreground">liquido</p>
+                    <p className="text-xs text-muted-foreground">líquido</p>
                   </div>
                   {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </div>

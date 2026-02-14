@@ -131,21 +131,21 @@ export default function TerminationPageClient({
       {/* Input */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl">Rescisao</CardTitle>
+          <CardTitle className="text-xl">Rescisão</CardTitle>
           <CardDescription>
-            Calcule o TRCT (Termo de Rescisao) de {employeeName}
+            Calcule o TRCT (Termo de Rescisão) de {employeeName}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label>Tipo de rescisao</Label>
+            <Label>Tipo de rescisão</Label>
             <Select value={terminationType} onValueChange={(v) => setTerminationType(v as TerminationType)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="sem_justa_causa">Dispensa sem justa causa</SelectItem>
-                <SelectItem value="pedido_demissao">Pedido de demissao</SelectItem>
+                <SelectItem value="pedido_demissao">Pedido de demissão</SelectItem>
                 <SelectItem value="justa_causa">Dispensa por justa causa</SelectItem>
               </SelectContent>
             </Select>
@@ -153,7 +153,7 @@ export default function TerminationPageClient({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="salaryTerm">Ultimo salario (R$)</Label>
+              <Label htmlFor="salaryTerm">Último salário (R$)</Label>
               <Input
                 id="salaryTerm"
                 type="number"
@@ -177,7 +177,7 @@ export default function TerminationPageClient({
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>
-                Data de admissao
+                Data de admissão
               </Label>
               <div className="flex h-9 items-center rounded-md border bg-muted/50 px-3">
                 <span className="text-sm">
@@ -217,9 +217,9 @@ export default function TerminationPageClient({
             </div>
             <div className="space-y-2">
               <Label htmlFor="accruedVac">
-                Ferias vencidas (periodos)
+                Férias vencidas (períodos)
                 <InfoTip>
-                  Periodos aquisitivos completos sem ferias gozadas (0, 1 ou 2).
+                  Periodos aquisitivos completos sem férias gozadas (0, 1 ou 2).
                 </InfoTip>
               </Label>
               <Input
@@ -241,7 +241,7 @@ export default function TerminationPageClient({
                 onCheckedChange={(checked) => setWorkedNoticePeriod(!!checked)}
               />
               <Label htmlFor="workedNotice" className="text-sm">
-                Aviso previo trabalhado (nao indenizado)
+                Aviso prévio trabalhado (não indenizado)
               </Label>
             </div>
           )}
@@ -254,7 +254,7 @@ export default function TerminationPageClient({
                 onCheckedChange={(checked) => setEmployeeGaveNotice(!!checked)}
               />
               <Label htmlFor="gaveNotice" className="text-sm">
-                Empregada cumpriu aviso previo de 30 dias
+                Empregada cumpriu aviso prévio de 30 dias
               </Label>
             </div>
           )}
@@ -263,7 +263,7 @@ export default function TerminationPageClient({
 
       {result && (
         <>
-          {/* Verbas rescisorias */}
+          {/* Verbas rescisórias */}
           <Card>
             <CardHeader className="pb-3">
               <div className="flex justify-between items-center">
@@ -277,15 +277,15 @@ export default function TerminationPageClient({
               </p>
 
               <ResultRow
-                label={`Saldo de salario (${result.saldoSalarioDays} dias)`}
+                label={`Saldo de salário (${result.saldoSalarioDays} dias)`}
                 value={result.saldoSalario}
                 variant="earning"
-                tip="Dias trabalhados no mes do desligamento"
+                tip="Dias trabalhados no mês do desligamento"
               />
 
               {result.avisoPrevio > 0 && (
                 <ResultRow
-                  label={`Aviso previo indenizado (${result.avisoPrevioDays} dias)`}
+                  label={`Aviso prévio indenizado (${result.avisoPrevioDays} dias)`}
                   value={result.avisoPrevio}
                   variant="earning"
                   tip={`30 dias + 3 dias por ano trabalhado. ${result.yearsWorked} ano(s) = ${result.avisoPrevioDays} dias`}
@@ -303,12 +303,12 @@ export default function TerminationPageClient({
               {result.vacationProportional > 0 && (
                 <>
                   <ResultRow
-                    label={`Ferias proporcionais (${result.vacationProportionalMonths}/12 avos)`}
+                    label={`Férias proporcionais (${result.vacationProportionalMonths}/12 avos)`}
                     value={result.vacationProportional}
                     variant="earning"
                   />
                   <ResultRow
-                    label="1/3 constitucional (ferias proporcionais)"
+                    label="1/3 constitucional (férias proporcionais)"
                     value={result.vacationProportionalOneThird}
                     variant="earning"
                   />
@@ -318,12 +318,12 @@ export default function TerminationPageClient({
               {result.accruedVacation > 0 && (
                 <>
                   <ResultRow
-                    label={`Ferias vencidas (${result.accruedVacationPeriods} periodo${result.accruedVacationPeriods > 1 ? 's' : ''})`}
+                    label={`Férias vencidas (${result.accruedVacationPeriods} período${result.accruedVacationPeriods > 1 ? 's' : ''})`}
                     value={result.accruedVacation}
                     variant="earning"
                   />
                   <ResultRow
-                    label="1/3 constitucional (ferias vencidas)"
+                    label="1/3 constitucional (férias vencidas)"
                     value={result.accruedVacationOneThird}
                     variant="earning"
                   />
@@ -345,7 +345,7 @@ export default function TerminationPageClient({
                 label="INSS"
                 value={result.inssEmployee}
                 variant="deduction"
-                tip={`Base de calculo: ${formatBRL(result.inssBase)}`}
+                tip={`Base de cálculo: ${formatBRL(result.inssBase)}`}
               />
 
               {result.irrfEmployee > 0 && (
@@ -353,16 +353,16 @@ export default function TerminationPageClient({
                   label="IRRF"
                   value={result.irrfEmployee}
                   variant="deduction"
-                  tip={`Base de calculo: ${formatBRL(result.irrfBase)}`}
+                  tip={`Base de cálculo: ${formatBRL(result.irrfBase)}`}
                 />
               )}
 
               {result.avisoPrevioDeduction > 0 && (
                 <ResultRow
-                  label="Desconto aviso previo (nao cumprido)"
+                  label="Desconto aviso prévio (não cumprido)"
                   value={result.avisoPrevioDeduction}
                   variant="deduction"
-                  tip="Empregada nao cumpriu os 30 dias de aviso previo"
+                  tip="Empregada não cumpriu os 30 dias de aviso prévio"
                 />
               )}
 
@@ -378,9 +378,9 @@ export default function TerminationPageClient({
             </CardHeader>
             <CardContent className="space-y-1">
               <ResultRow
-                label="FGTS sobre verbas rescisorias (8%)"
+                label="FGTS sobre verbas rescisórias (8%)"
                 value={result.fgtsOnTermination}
-                tip="8% sobre saldo de salario + aviso previo indenizado + 13o proporcional"
+                tip="8% sobre saldo de salário + aviso prévio indenizado + 13o proporcional"
               />
               <ResultRow
                 label="Saldo FGTS informado"
@@ -391,7 +391,7 @@ export default function TerminationPageClient({
                 <>
                   <Separator className="my-2" />
                   <ResultRow
-                    label="Multa rescisoria (40%)"
+                    label="Multa rescisória (40%)"
                     value={result.fgtsPenalty}
                     variant="earning"
                     bold
@@ -422,7 +422,7 @@ export default function TerminationPageClient({
                 </div>
                 <Separator />
                 <div className="flex justify-between">
-                  <span className="text-sm font-medium">Valor liquido</span>
+                  <span className="text-sm font-medium">Valor líquido</span>
                   <span className="text-lg font-bold tabular-nums">{formatBRL(result.netAmount)}</span>
                 </div>
                 {result.fgtsPenalty > 0 && (
@@ -454,7 +454,7 @@ export default function TerminationPageClient({
                     ) : saving ? (
                       'Salvando...'
                     ) : (
-                      <><Save className="h-4 w-4 mr-2" /> Salvar rescisao</>
+                      <><Save className="h-4 w-4 mr-2" /> Salvar rescisão</>
                     )}
                   </Button>
                   <Button

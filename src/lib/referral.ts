@@ -18,7 +18,7 @@ export function getReferralLink(code: string): string {
 // Build WhatsApp share URL with pre-filled Portuguese message
 export function getWhatsAppShareUrl(code: string): string {
   const link = getReferralLink(code)
-  const message = `Oi! Uso a Lardia para cuidar do eSocial da minha empregada domestica e facilita muito. Cadastre-se com meu link e ganhe beneficios: ${link}`
+  const message = `Oi! Uso a Lardia para cuidar do eSocial da minha empregada doméstica e facilita muito. Cadastre-se com meu link e ganhe benefícios: ${link}`
   return `https://wa.me/?text=${encodeURIComponent(message)}`
 }
 

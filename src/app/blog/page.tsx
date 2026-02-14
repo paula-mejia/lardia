@@ -7,12 +7,12 @@ import NewsletterSignup from '@/components/newsletter-signup'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Blog | Lardia - Guias sobre eSocial e empregada domestica',
+  title: 'Blog | Lardia - Guias sobre eSocial e empregada doméstica',
   description:
-    'Artigos, guias e dicas sobre eSocial domestico, folha de pagamento, ferias, rescisao e tudo sobre empregada domestica no Brasil.',
+    'Artigos, guias e dicas sobre eSocial doméstico, folha de pagamento, férias, rescisão e tudo sobre empregada doméstica no Brasil.',
   openGraph: {
     title: 'Blog | Lardia',
-    description: 'Guias completos sobre eSocial domestico e gestao de empregados domesticos.',
+    description: 'Guias completos sobre eSocial doméstico e gestão de empregados domésticos.',
     type: 'website',
     url: 'https://lardia.com.br/blog',
   },
@@ -51,10 +51,10 @@ export default function BlogIndex() {
             <span className="text-sm font-medium text-emerald-600 uppercase tracking-wider">Blog</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Guias sobre eSocial e empregada domestica
+            Guias sobre eSocial e empregada doméstica
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tudo o que voce precisa saber para gerenciar sua empregada domestica
+            Tudo o que você precisa saber para gerenciar sua empregada doméstica
             com seguranca e dentro da lei.
           </p>
         </div>
@@ -104,11 +104,11 @@ export default function BlogIndex() {
         <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-2xl font-bold mb-4">Cansado de calcular tudo manualmente?</h2>
           <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-            A Lardia automatiza folha de pagamento, ferias, 13o e rescisao. Cadastre-se gratis.
+            A Lardia automatiza folha de pagamento, férias, 13o e rescisão. Cadastre-se grátis.
           </p>
           <Link href="/signup">
             <Button size="lg">
-              Criar conta gratis <ArrowRight className="ml-2 h-4 w-4" />
+              Criar conta grátis <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>

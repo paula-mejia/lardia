@@ -118,7 +118,7 @@ export default function ReferralPage() {
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Indicar amigos</h1>
             <p className="text-sm text-muted-foreground">
-              Convide amigos e ganhe 1 mes gratis para cada indicacao
+              Convide amigos e ganhe 1 mês grátis para cada indicação
             </p>
           </div>
         </div>
@@ -128,10 +128,10 @@ export default function ReferralPage() {
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <Gift className="h-5 w-5 text-emerald-500" />
-              Seu codigo de indicacao
+              Seu código de indicação
             </CardTitle>
             <CardDescription>
-              Compartilhe seu codigo ou link com amigos empregadores domesticos
+              Compartilhe seu código ou link com amigos empregadores domésticos
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -206,7 +206,7 @@ export default function ReferralPage() {
           <CardContent>
             {referrals.length === 0 ? (
               <p className="text-sm text-muted-foreground text-center py-4">
-                Voce ainda nao indicou ninguem. Compartilhe seu codigo!
+                Você ainda não indicou ninguém. Compartilhe seu código!
               </p>
             ) : (
               <div className="space-y-3">

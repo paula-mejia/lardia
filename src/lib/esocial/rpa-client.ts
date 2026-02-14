@@ -271,7 +271,7 @@ export class EsocialRpaClient {
     try {
       this.log('info', 'Navigating to domestic employer section...')
 
-      // Look for "Empregador Domestico" menu/link
+      // Look for "Empregador Doméstico" menu/link
       const domesticLink = this.page.locator(
         'a:has-text("Empregador Dom"), a:has-text("Empregado Dom"), ' +
         '[href*="domestico"], [href*="empregador"]'

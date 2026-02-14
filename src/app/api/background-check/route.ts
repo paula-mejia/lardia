@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
-    return NextResponse.json({ error: 'Nao autorizado' }, { status: 401 })
+    return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
   }
 
   const { data: employer } = await supabase
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     .single()
 
   if (!employer) {
-    return NextResponse.json({ error: 'Empregador nao encontrado' }, { status: 404 })
+    return NextResponse.json({ error: 'Empregador não encontrado' }, { status: 404 })
   }
 
   const body = await request.json()
@@ -34,11 +34,11 @@ export async function POST(request: NextRequest) {
   }
 
   if (!lgpdConsent) {
-    return NextResponse.json({ error: 'Consentimento LGPD obrigatorio' }, { status: 400 })
+    return NextResponse.json({ error: 'Consentimento LGPD obrigatório' }, { status: 400 })
   }
 
   if (!validateCpfChecksum(candidateCpf)) {
-    return NextResponse.json({ error: 'CPF invalido' }, { status: 400 })
+    return NextResponse.json({ error: 'CPF inválido' }, { status: 400 })
   }
 
   try {

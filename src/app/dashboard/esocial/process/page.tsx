@@ -82,11 +82,11 @@ export default function EsocialProcessPage() {
       setProxyStatus(
         data.connected
           ? 'Conectado ao eSocial via servidor Sao Paulo'
-          : data.error || 'Falha na conexao com o proxy'
+          : data.error || 'Falha na conexão com o proxy'
       )
     } catch {
       setProxyConnected(false)
-      setProxyStatus('Erro ao testar conexao')
+      setProxyStatus('Erro ao testar conexão')
     } finally {
       setProxyTesting(false)
     }
@@ -190,7 +190,7 @@ export default function EsocialProcessPage() {
               )}
               <div>
                 <p className="text-sm font-medium">
-                  {proxyStatus || 'Verificando conexao...'}
+                  {proxyStatus || 'Verificando conexão...'}
                 </p>
                 {!proxyConnected && proxyStatus && (
                   <p className="text-xs text-muted-foreground">
@@ -208,7 +208,7 @@ export default function EsocialProcessPage() {
               {proxyTesting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                'Testar Conexao'
+                'Testar Conexão'
               )}
             </Button>
           </div>
@@ -218,7 +218,7 @@ export default function EsocialProcessPage() {
       {/* Month/Year selector */}
       <Card>
         <CardHeader>
-          <CardTitle>Periodo de referencia</CardTitle>
+          <CardTitle>Periodo de referência</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex gap-4 items-end">
@@ -286,7 +286,7 @@ export default function EsocialProcessPage() {
                     <div>
                       <p className="font-medium">{emp.full_name}</p>
                       <p className="text-sm text-muted-foreground">
-                        Salario: {formatBRL(emp.salary)}
+                        Salário: {formatBRL(emp.salary)}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
@@ -376,7 +376,7 @@ export default function EsocialProcessPage() {
                 <span className="text-right">{formatBRL(result.dae.breakdown.gilrat)}</span>
                 <span className="text-muted-foreground">FGTS Mensal:</span>
                 <span className="text-right">{formatBRL(result.dae.breakdown.fgtsmensal)}</span>
-                <span className="text-muted-foreground">FGTS Antecipacao:</span>
+                <span className="text-muted-foreground">FGTS Antecipação:</span>
                 <span className="text-right">{formatBRL(result.dae.breakdown.fgtsAntecipacao)}</span>
               </div>
               <div className="border-t pt-2 flex justify-between font-medium">
@@ -394,7 +394,7 @@ export default function EsocialProcessPage() {
 
             <div className="flex gap-2">
               <Link href="/dashboard/esocial/dae">
-                <Button variant="outline">Ver historico de DAEs</Button>
+                <Button variant="outline">Ver histórico de DAEs</Button>
               </Link>
             </div>
           </CardContent>

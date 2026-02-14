@@ -21,7 +21,7 @@ export default function NewsletterSignup({ source = 'landing' }: NewsletterSignu
     setErrorMessage('')
 
     if (!isValidEmail(email)) {
-      setErrorMessage('Por favor, insira um email valido.')
+      setErrorMessage('Por favor, insira um email válido.')
       setStatus('error')
       return
     }
@@ -58,7 +58,7 @@ export default function NewsletterSignup({ source = 'landing' }: NewsletterSignu
                 Email cadastrado com sucesso!
               </p>
               <p className="text-sm text-muted-foreground mt-2">
-                Voce recebera nossos alertas em breve.
+                Você receberá nossos alertas em breve.
               </p>
             </CardContent>
           </Card>
@@ -74,10 +74,10 @@ export default function NewsletterSignup({ source = 'landing' }: NewsletterSignu
           <CardContent className="pt-8 pb-8 text-center">
             <Mail className="h-10 w-10 text-emerald-600 dark:text-emerald-400 mx-auto mb-4" />
             <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-2">
-              Fique por dentro das mudancas no eSocial
+              Fique por dentro das mudanças no eSocial
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Receba alertas de prazos, mudancas na legislacao e dicas para empregadores domesticos
+              Receba alertas de prazos, mudanças na legislação e dicas para empregadores domésticos
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input

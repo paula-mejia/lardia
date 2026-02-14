@@ -120,7 +120,7 @@ export function generatePayslipPDF(data: PayslipData): void {
 
   // -- Earnings section --
   addSectionTitle('VENCIMENTOS')
-  addRow('Salario bruto', b.grossSalary)
+  addRow('Salário bruto', b.grossSalary)
   if (b.overtimePay > 0) {
     addRow('Horas extras', b.overtimePay)
   }
@@ -137,7 +137,7 @@ export function generatePayslipPDF(data: PayslipData): void {
 
   // -- Deductions section --
   addSectionTitle('DESCONTOS')
-  addRow('INSS (contribuicao)', b.inssEmployee)
+  addRow('INSS (contribuição)', b.inssEmployee)
   if (b.irrfEmployee > 0) {
     addRow('IRRF', b.irrfEmployee)
   }
@@ -172,7 +172,7 @@ export function generatePayslipPDF(data: PayslipData): void {
   addRow('INSS patronal (8%)', b.inssEmployer)
   addRow('GILRAT (0,8%)', b.gilrat)
   addRow('FGTS (8%)', b.fgtsMonthly)
-  addRow('FGTS antecipacao (3,2%)', b.fgtsAnticipation)
+  addRow('FGTS antecipação (3,2%)', b.fgtsAnticipation)
   y += 1
   drawLine(y)
   y += 5

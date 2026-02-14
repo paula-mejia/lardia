@@ -135,41 +135,41 @@ export function generateEmploymentContractPDF(data: ContractData): void {
   addClause(
     2,
     'FUNCAO',
-    `O(A) EMPREGADO(A) exercera a funcao de ${data.jobFunction}, desempenhando as atividades inerentes ao cargo, no ambito residencial do(a) EMPREGADOR(A).`
+    `O(A) EMPREGADO(A) exercera a função de ${data.jobFunction}, desempenhando as atividades inerentes ao cargo, no âmbito residencial do(a) EMPREGADOR(A).`
   )
 
   // Clause 3: Work location
   addClause(
     3,
     'LOCAL DE TRABALHO',
-    `O trabalho sera prestado na residencia do(a) EMPREGADOR(A), localizada em ${data.workLocation}.`
+    `O trabalho será prestado na residencia do(a) EMPREGADOR(A), localizada em ${data.workLocation}.`
   )
 
   // Clause 4: Work schedule
   addClause(
     4,
     'JORNADA DE TRABALHO',
-    `A jornada de trabalho sera de ${data.hoursPerDay} horas diarias, ${data.daysPerWeek} dias por semana, com inicio as ${data.startTime} e termino as ${data.endTime}, com intervalo de ${data.breakTime} para refeicao e descanso, conforme artigo 2o da LC 150/2015. As horas que excederem a jornada normal serao remuneradas com adicional de no minimo 50% (cinquenta por cento) sobre o valor da hora normal.`
+    `A jornada de trabalho será de ${data.hoursPerDay} horas diárias, ${data.daysPerWeek} dias por semana, com início as ${data.startTime} e término as ${data.endTime}, com intervalo de ${data.breakTime} para refeição e descanso, conforme artigo 2o da LC 150/2015. As horas que excederem a jornada normal serão remuneradas com adicional de no mínimo 50% (cinquenta por cento) sobre o valor da hora normal.`
   )
 
   // Clause 5: Compensation
   addClause(
     5,
     'REMUNERACAO',
-    `O(A) EMPREGADO(A) recebera o salario mensal de R$ ${formatBRL(data.salary)} (${salaryInWords(data.salary)}), a ser pago ate o dia ${data.paymentDay} de cada mes, mediante recibo. O pagamento do 13o salario e ferias acrescidas de 1/3 seguira o disposto na legislacao vigente.`
+    `O(A) EMPREGADO(A) receberá o salário mensal de R$ ${formatBRL(data.salary)} (${salaryInWords(data.salary)}), a ser pago até o dia ${data.paymentDay} de cada mês, mediante recibo. O pagamento do 13o salário e férias acrescidas de 1/3 seguira o disposto na legislação vigente.`
   )
 
   // Clause 6: Start date
   addClause(
     6,
     'INICIO DO CONTRATO',
-    `O presente contrato tera inicio em ${formatDate(data.startDate)}.`
+    `O presente contrato terá início em ${formatDate(data.startDate)}.`
   )
 
   // Clause 7: Contract type
   const contractTypeText = data.contractType === 'indeterminado'
-    ? 'O presente contrato e firmado por prazo indeterminado, podendo ser rescindido por qualquer das partes, mediante aviso previo de 30 (trinta) dias, conforme legislacao vigente.'
-    : `O presente contrato e firmado por prazo determinado, com termino previsto para ${formatDate(data.endDate || '')}, podendo ser prorrogado nos termos da lei.`
+    ? 'O presente contrato e firmado por prazo indeterminado, podendo ser rescindido por qualquer das partes, mediante aviso prévio de 30 (trinta) dias, conforme legislação vigente.'
+    : `O presente contrato e firmado por prazo determinado, com término previsto para ${formatDate(data.endDate || '')}, podendo ser prorrogado nos termos da lei.`
 
   addClause(7, 'PRAZO DO CONTRATO', contractTypeText)
 
@@ -178,15 +178,15 @@ export function generateEmploymentContractPDF(data: ContractData): void {
   if (data.valeTransporte) benefitsList.push('Vale-transporte, conforme Lei 7.418/1985')
   if (data.otherBenefits) benefitsList.push(data.otherBenefits)
   const benefitsText = benefitsList.length > 0
-    ? `O(A) EMPREGADO(A) tera direito aos seguintes beneficios: ${benefitsList.join('; ')}.`
-    : 'Nao foram acordados beneficios adicionais alem dos previstos em lei.'
+    ? `O(A) EMPREGADO(A) terá direito aos seguintes benefícios: ${benefitsList.join('; ')}.`
+    : 'Não foram acordados benefícios adicionais além dos previstos em lei.'
 
   addClause(8, 'BENEFICIOS', benefitsText)
 
   // Clause 9: Trial period
   const trialText = data.trialPeriod
-    ? `O presente contrato tera periodo de experiencia de ${data.trialDays} dias, podendo ser prorrogado por igual periodo, desde que a soma nao ultrapasse 90 (noventa) dias, conforme artigo 443 da CLT.`
-    : 'As partes dispensam o periodo de experiencia.'
+    ? `O presente contrato terá período de experiencia de ${data.trialDays} dias, podendo ser prorrogado por igual período, desde que a soma não ultrapasse 90 (noventa) dias, conforme artigo 443 da CLT.`
+    : 'As partes dispensam o período de experiencia.'
 
   addClause(9, 'PERIODO DE EXPERIENCIA', trialText)
 
@@ -194,7 +194,7 @@ export function generateEmploymentContractPDF(data: ContractData): void {
   addClause(
     10,
     'DISPOSICOES GERAIS',
-    'Este contrato e regido pela Consolidacao das Leis do Trabalho (CLT) e pela Lei Complementar 150/2015, que dispoe sobre o contrato de trabalho domestico. O(A) EMPREGADOR(A) devera realizar o registro do(a) EMPREGADO(A) no eSocial e recolher os encargos trabalhistas e previdenciarios devidos, incluindo FGTS e contribuicao ao INSS. Quaisquer alteracoes neste contrato deverao ser feitas por escrito e assinadas por ambas as partes.'
+    'Este contrato e regido pela Consolidação das Leis do Trabalho (CLT) e pela Lei Complementar 150/2015, que dispõe sobre o contrato de trabalho doméstico. O(A) EMPREGADOR(A) deverá realizar o registro do(a) EMPREGADO(A) no eSocial e recolher os encargos trabalhistas e previdenciários devidos, incluindo FGTS e contribuição ao INSS. Quaisquer alterações neste contrato deverao ser feitas por escrito e assinadas por ambas as partes.'
   )
 
   // Date and city
@@ -305,40 +305,40 @@ function buildContractDoc(data: ContractData): jsPDF {
     `EMPREGADOR(A): ${data.employerName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employerCpf)}, residente e domiciliado(a) em ${data.employerAddress}.\n\nEMPREGADO(A): ${data.employeeName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employeeCpf)}, portador(a) da CTPS n. ${data.employeeCtps}, residente e domiciliado(a) em ${data.employeeAddress}.`)
 
   addClause(2, 'FUNCAO',
-    `O(A) EMPREGADO(A) exercera a funcao de ${data.jobFunction}, desempenhando as atividades inerentes ao cargo, no ambito residencial do(a) EMPREGADOR(A).`)
+    `O(A) EMPREGADO(A) exercera a função de ${data.jobFunction}, desempenhando as atividades inerentes ao cargo, no âmbito residencial do(a) EMPREGADOR(A).`)
 
   addClause(3, 'LOCAL DE TRABALHO',
-    `O trabalho sera prestado na residencia do(a) EMPREGADOR(A), localizada em ${data.workLocation}.`)
+    `O trabalho será prestado na residencia do(a) EMPREGADOR(A), localizada em ${data.workLocation}.`)
 
   addClause(4, 'JORNADA DE TRABALHO',
-    `A jornada de trabalho sera de ${data.hoursPerDay} horas diarias, ${data.daysPerWeek} dias por semana, com inicio as ${data.startTime} e termino as ${data.endTime}, com intervalo de ${data.breakTime} para refeicao e descanso, conforme artigo 2o da LC 150/2015. As horas que excederem a jornada normal serao remuneradas com adicional de no minimo 50% (cinquenta por cento) sobre o valor da hora normal.`)
+    `A jornada de trabalho será de ${data.hoursPerDay} horas diárias, ${data.daysPerWeek} dias por semana, com início as ${data.startTime} e término as ${data.endTime}, com intervalo de ${data.breakTime} para refeição e descanso, conforme artigo 2o da LC 150/2015. As horas que excederem a jornada normal serão remuneradas com adicional de no mínimo 50% (cinquenta por cento) sobre o valor da hora normal.`)
 
   addClause(5, 'REMUNERACAO',
-    `O(A) EMPREGADO(A) recebera o salario mensal de R$ ${formatBRL(data.salary)} (${salaryInWords(data.salary)}), a ser pago ate o dia ${data.paymentDay} de cada mes, mediante recibo. O pagamento do 13o salario e ferias acrescidas de 1/3 seguira o disposto na legislacao vigente.`)
+    `O(A) EMPREGADO(A) receberá o salário mensal de R$ ${formatBRL(data.salary)} (${salaryInWords(data.salary)}), a ser pago até o dia ${data.paymentDay} de cada mês, mediante recibo. O pagamento do 13o salário e férias acrescidas de 1/3 seguira o disposto na legislação vigente.`)
 
   addClause(6, 'INICIO DO CONTRATO',
-    `O presente contrato tera inicio em ${formatDate(data.startDate)}.`)
+    `O presente contrato terá início em ${formatDate(data.startDate)}.`)
 
   const contractTypeText = data.contractType === 'indeterminado'
-    ? 'O presente contrato e firmado por prazo indeterminado, podendo ser rescindido por qualquer das partes, mediante aviso previo de 30 (trinta) dias, conforme legislacao vigente.'
-    : `O presente contrato e firmado por prazo determinado, com termino previsto para ${formatDate(data.endDate || '')}, podendo ser prorrogado nos termos da lei.`
+    ? 'O presente contrato e firmado por prazo indeterminado, podendo ser rescindido por qualquer das partes, mediante aviso prévio de 30 (trinta) dias, conforme legislação vigente.'
+    : `O presente contrato e firmado por prazo determinado, com término previsto para ${formatDate(data.endDate || '')}, podendo ser prorrogado nos termos da lei.`
   addClause(7, 'PRAZO DO CONTRATO', contractTypeText)
 
   const benefitsList: string[] = []
   if (data.valeTransporte) benefitsList.push('Vale-transporte, conforme Lei 7.418/1985')
   if (data.otherBenefits) benefitsList.push(data.otherBenefits)
   const benefitsText = benefitsList.length > 0
-    ? `O(A) EMPREGADO(A) tera direito aos seguintes beneficios: ${benefitsList.join('; ')}.`
-    : 'Nao foram acordados beneficios adicionais alem dos previstos em lei.'
+    ? `O(A) EMPREGADO(A) terá direito aos seguintes benefícios: ${benefitsList.join('; ')}.`
+    : 'Não foram acordados benefícios adicionais além dos previstos em lei.'
   addClause(8, 'BENEFICIOS', benefitsText)
 
   const trialText = data.trialPeriod
-    ? `O presente contrato tera periodo de experiencia de ${data.trialDays} dias, podendo ser prorrogado por igual periodo, desde que a soma nao ultrapasse 90 (noventa) dias, conforme artigo 443 da CLT.`
-    : 'As partes dispensam o periodo de experiencia.'
+    ? `O presente contrato terá período de experiencia de ${data.trialDays} dias, podendo ser prorrogado por igual período, desde que a soma não ultrapasse 90 (noventa) dias, conforme artigo 443 da CLT.`
+    : 'As partes dispensam o período de experiencia.'
   addClause(9, 'PERIODO DE EXPERIENCIA', trialText)
 
   addClause(10, 'DISPOSICOES GERAIS',
-    'Este contrato e regido pela Consolidacao das Leis do Trabalho (CLT) e pela Lei Complementar 150/2015, que dispoe sobre o contrato de trabalho domestico. O(A) EMPREGADOR(A) devera realizar o registro do(a) EMPREGADO(A) no eSocial e recolher os encargos trabalhistas e previdenciarios devidos, incluindo FGTS e contribuicao ao INSS. Quaisquer alteracoes neste contrato deverao ser feitas por escrito e assinadas por ambas as partes.')
+    'Este contrato e regido pela Consolidação das Leis do Trabalho (CLT) e pela Lei Complementar 150/2015, que dispõe sobre o contrato de trabalho doméstico. O(A) EMPREGADOR(A) deverá realizar o registro do(a) EMPREGADO(A) no eSocial e recolher os encargos trabalhistas e previdenciários devidos, incluindo FGTS e contribuição ao INSS. Quaisquer alterações neste contrato deverao ser feitas por escrito e assinadas por ambas as partes.')
 
   checkPageBreak(15)
   y += 10

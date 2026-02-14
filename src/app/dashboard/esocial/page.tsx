@@ -37,7 +37,7 @@ export default async function ESocialPage() {
           <div>
             <h1 className="text-2xl font-bold tracking-tight">eSocial</h1>
             <p className="text-sm text-muted-foreground">
-              Gerencie sua integracao com o eSocial
+              Gerencie sua integração com o eSocial
             </p>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default async function ESocialPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <FileText className="h-5 w-5" />
-              Status da Conexao
+              Status da Conexão
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -72,10 +72,10 @@ export default async function ESocialPage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <XCircle className="h-5 w-5 text-muted-foreground" />
-                  <Badge variant="secondary">Nao conectado</Badge>
+                  <Badge variant="secondary">Não conectado</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Conecte seu eSocial para que a Lardia gerencie suas obrigacoes
+                  Conecte seu eSocial para que a Lardia gerencie suas obrigações
                   automaticamente.
                 </p>
                 <Link href="/dashboard/esocial/connect">
@@ -96,7 +96,7 @@ export default async function ESocialPage() {
               <Link href="/dashboard/esocial/status">
                 <Button variant="outline" className="w-full justify-start">
                   <FileText className="h-4 w-4 mr-2" />
-                  Status mensal e obrigacoes
+                  Status mensal e obrigações
                 </Button>
               </Link>
             </CardContent>

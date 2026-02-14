@@ -12,12 +12,12 @@ export async function POST(req: NextRequest) {
     const { email } = body
 
     if (!email || typeof email !== 'string') {
-      return NextResponse.json({ error: 'Email obrigatorio.' }, { status: 400 })
+      return NextResponse.json({ error: 'Email obrigatório.' }, { status: 400 })
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: 'Email invalido.' }, { status: 400 })
+      return NextResponse.json({ error: 'Email inválido.' }, { status: 400 })
     }
 
     const { error } = await supabase

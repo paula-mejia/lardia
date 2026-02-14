@@ -22,7 +22,7 @@ interface DeadlineInfo {
 const DEADLINES: Record<DeadlineType, DeadlineInfo> = {
   dae: {
     label: "Pagamento DAE",
-    description: "Documento de Arrecadacao do eSocial - recolhimento unificado de tributos e FGTS.",
+    description: "Documento de Arrecadação do eSocial - recolhimento unificado de tributos e FGTS.",
   },
   fgts: {
     label: "FGTS Digital",
@@ -33,16 +33,16 @@ const DEADLINES: Record<DeadlineType, DeadlineInfo> = {
     description: "Prazo para envio dos eventos periodicos (folha de pagamento).",
   },
   vacation_notice: {
-    label: "Aviso de Ferias",
-    description: "Comunicar ferias ao empregado com no minimo 30 dias de antecedencia.",
+    label: "Aviso de Férias",
+    description: "Comunicar férias ao empregado com no mínimo 30 dias de antecedência.",
   },
   thirteenth_1st: {
-    label: "13o Salario (1a parcela)",
-    description: "Primeira parcela do decimo terceiro salario.",
+    label: "13o Salário (1a parcela)",
+    description: "Primeira parcela do décimo terceiro salário.",
   },
   thirteenth_2nd: {
-    label: "13o Salario (2a parcela)",
-    description: "Segunda parcela do decimo terceiro salario.",
+    label: "13o Salário (2a parcela)",
+    description: "Segunda parcela do décimo terceiro salário.",
   },
   income_report: {
     label: "Informe de Rendimentos",
@@ -130,7 +130,7 @@ function buildEmailHtml(employerName: string, deadlines: Array<{ type: DeadlineT
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #1a1a1a;">Lembrete de Prazos eSocial</h2>
       <p>Ola, ${employerName}!</p>
-      <p>Voce tem prazos do eSocial se aproximando:</p>
+      <p>Você tem prazos do eSocial se aproximando:</p>
       <table style="width: 100%; border-collapse: collapse;">
         ${items}
       </table>
@@ -146,13 +146,13 @@ function buildWhatsAppMessage(deadline: { type: DeadlineType; date: Date; daysUn
   if (deadline.type === "dae" || deadline.type === "fgts") {
     const dueDay = deadline.date.getDate();
     if (deadline.daysUntil === 0) {
-      return `Hoje e o ultimo dia para pagar o DAE! Valor: R$XXX. Nao esqueca!`;
+      return `Hoje e o último dia para pagar o DAE! Valor: R$XXX. Não esqueca!`;
     }
-    return `Lembrete: o DAE do mes vence em ${deadline.daysUntil} dias (dia ${dueDay}). Valor estimado: R$XXX. Acesse Lardia para gerar o comprovante.`;
+    return `Lembrete: o DAE do mês vence em ${deadline.daysUntil} dias (dia ${dueDay}). Valor estimado: R$XXX. Acesse Lardia para gerar o comprovante.`;
   }
 
   if (deadline.type === "esocial_closing") {
-    return `Hora de fechar a folha de pagamento do mes. Acesse Lardia.`;
+    return `Hora de fechar a folha de pagamento do mês. Acesse Lardia.`;
   }
 
   // Generic message for other deadlines

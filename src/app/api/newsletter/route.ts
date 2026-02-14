@@ -14,12 +14,12 @@ export async function POST(req: NextRequest) {
     const { email, source } = body
 
     if (!email || typeof email !== 'string') {
-      return NextResponse.json({ error: 'Email obrigatorio.' }, { status: 400 })
+      return NextResponse.json({ error: 'Email obrigatório.' }, { status: 400 })
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: 'Email invalido.' }, { status: 400 })
+      return NextResponse.json({ error: 'Email inválido.' }, { status: 400 })
     }
 
     const validSource = VALID_SOURCES.includes(source) ? source : 'landing'

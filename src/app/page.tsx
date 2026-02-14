@@ -67,9 +67,9 @@ export default function Home() {
             <span className="text-emerald-600 dark:text-emerald-400">sem estresse</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Gestao completa do eSocial domestico: folha de pagamento, guia DAE,
-            fechamento mensal e todas as obrigacoes no piloto automatico.
-            Voce cuida da sua familia, a Lardia cuida do resto.
+            Gestão completa do eSocial doméstico: folha de pagamento, guia DAE,
+            fechamento mensal e todas as obrigações no piloto automático.
+            Você cuida da sua família, a Lardia cuida do resto.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">
@@ -80,7 +80,7 @@ export default function Home() {
             </Link>
             <Link href="#calculadora">
               <Button variant="outline" size="lg" className="w-full sm:w-auto text-base px-8">
-                Testar calculadora gratis
+                Testar calculadora grátis
               </Button>
             </Link>
           </div>
@@ -92,10 +92,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-              Contratar uma empregada domestica no Brasil e complicado
+              Contratar uma empregada doméstica no Brasil e complicado
             </h2>
             <p className="text-muted-foreground text-lg">
-              Sao dezenas de obrigacoes legais, calculos complexos e prazos
+              Sao dezenas de obrigações legais, cálculos complexos e prazos
               apertados. Um erro pode gerar multas ou processos trabalhistas.
             </p>
           </div>
@@ -104,33 +104,33 @@ export default function Home() {
             {[
               {
                 icon: AlertTriangle,
-                title: 'eSocial obrigatorio',
-                desc: 'Todos os empregadores domesticos precisam declarar no eSocial. O sistema e confuso e qualquer campo errado trava tudo.',
+                title: 'eSocial obrigatório',
+                desc: 'Todos os empregadores domésticos precisam declarar no eSocial. O sistema e confuso e qualquer campo errado trava tudo.',
               },
               {
                 icon: Calculator,
-                title: 'Calculos complexos',
-                desc: 'INSS progressivo, IRRF com deducoes, FGTS, GILRAT, antecipacao rescisoria... cada mes e um quebra-cabeca.',
+                title: 'Cálculos complexos',
+                desc: 'INSS progressivo, IRRF com deduções, FGTS, GILRAT, antecipação rescisória... cada mês e um quebra-cabeça.',
               },
               {
                 icon: FileText,
-                title: 'Guia DAE todo mes',
-                desc: 'A guia DAE precisa ser gerada e paga ate o dia 7. Atrasou? Multa automatica com juros.',
+                title: 'Guia DAE todo mês',
+                desc: 'A guia DAE precisa ser gerada é paga até o dia 7. Atrasou? Multa automática com juros.',
               },
               {
                 icon: Calendar,
-                title: 'Ferias, 13o, rescisao',
-                desc: 'Cada evento tem regras proprias, prazos legais e calculos especificos que mudam conforme o caso.',
+                title: 'Férias, 13o, rescisão',
+                desc: 'Cada evento tem regras proprias, prazos legais e cálculos especificos que mudam conforme o caso.',
               },
               {
                 icon: Clock,
-                title: 'Prazos que nao esperam',
-                desc: 'Dia 7 para DAE, aviso de ferias com 30 dias, 1a parcela do 13o ate novembro. Esqueceu? Problema.',
+                title: 'Prazos que não esperam',
+                desc: 'Dia 7 para DAE, aviso de férias com 30 dias, 1a parcela do 13o até novembro. Esqueceu? Problema.',
               },
               {
                 icon: Shield,
                 title: 'Risco trabalhista',
-                desc: 'Contracheque errado, FGTS nao depositado ou ferias mal calculadas podem virar acao na Justica do Trabalho.',
+                desc: 'Contracheque errado, FGTS não depositado ou férias mal calculadas podem virar acao na Justica do Trabalho.',
               },
             ].map((item, i) => (
               <Card key={i} className="border-none shadow-sm">
@@ -151,11 +151,11 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center mb-12">
             <Badge variant="secondary" className="mb-4">Novidade</Badge>
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-              Gestao completa do eSocial
+              Gestão completa do eSocial
             </h2>
             <p className="text-muted-foreground text-lg">
               A Lardia cuida do envio mensal, geracao da DAE e controle de prazos.
-              Voce nao precisa mais de um contador para manter tudo em dia.
+              Você não precisa mais de um contador para manter tudo em dia.
             </p>
           </div>
 
@@ -165,19 +165,19 @@ export default function Home() {
                 icon: ClipboardList,
                 step: '1',
                 title: 'Cadastro',
-                desc: 'Cadastre sua empregada com os dados basicos. A Lardia configura tudo no eSocial para voce.',
+                desc: 'Cadastre sua empregada com os dados basicos. A Lardia configura tudo no eSocial para você.',
               },
               {
                 icon: UserCheck,
                 step: '2',
-                title: 'Procuracao',
-                desc: 'Autorize a Lardia a enviar eventos no eSocial em seu nome com uma procuracao digital simples.',
+                title: 'Procuração',
+                desc: 'Autorize a Lardia a enviar eventos no eSocial em seu nome com uma procuração digital simples.',
               },
               {
                 icon: Zap,
                 step: '3',
                 title: 'Automacao',
-                desc: 'Pronto. Todo mes a folha e fechada, os eventos sao enviados e a guia DAE e gerada automaticamente.',
+                desc: 'Pronto. Todo mês a folha e fechada, os eventos são enviados é a guia DAE é gerada automaticamente.',
               },
             ].map((item, i) => (
               <Card key={i} className="border shadow-sm text-center">
@@ -198,7 +198,7 @@ export default function Home() {
           {/* Connector arrows (visible on md+) */}
           <div className="hidden md:flex justify-center items-center gap-2 -mt-8 mb-8">
             <p className="text-sm text-muted-foreground font-medium">
-              Cadastro → Procuracao → Automacao
+              Cadastro → Procuração → Automacao
             </p>
           </div>
 
@@ -222,8 +222,8 @@ export default function Home() {
               Calcule a folha agora mesmo
             </h2>
             <p className="text-muted-foreground text-lg">
-              Veja quanto custa manter uma empregada domestica registrada.
-              Salario liquido, INSS, FGTS e valor da guia DAE, tudo calculado
+              Veja quanto custa manter uma empregada doméstica registrada.
+              Salário líquido, INSS, FGTS e valor da guia DAE, tudo calculado
               em tempo real.
             </p>
           </div>
@@ -236,11 +236,11 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-              Tudo que voce precisa, num so lugar
+              Tudo que você precisa, num so lugar
             </h2>
             <p className="text-muted-foreground text-lg">
-              A Lardia automatiza os calculos e te lembra de cada obrigacao.
-              Voce so precisa pagar.
+              A Lardia automatiza os cálculos e te lembra de cada obrigação.
+              Você so precisa pagar.
             </p>
           </div>
 
@@ -248,18 +248,18 @@ export default function Home() {
             {[
               {
                 icon: Calculator,
-                title: 'Calculo automatico',
-                desc: 'Folha mensal, ferias, 13o salario e rescisao calculados com precisao. Sempre atualizado com as tabelas vigentes de INSS, IRRF e salario minimo.',
+                title: 'Cálculo automático',
+                desc: 'Folha mensal, férias, 13o salário e rescisão calculados com precisão. Sempre atualizado com as tabelas vigentes de INSS, IRRF e salário mínimo.',
               },
               {
                 icon: Calendar,
-                title: 'Calendario de obrigacoes',
-                desc: 'Veja todas as datas importantes do mes: vencimento da DAE, aviso de ferias, parcelas do 13o. Nunca mais perca um prazo.',
+                title: 'Calendario de obrigações',
+                desc: 'Veja todas as datas importantes do mês: vencimento da DAE, aviso de férias, parcelas do 13o. Nunca mais perca um prazo.',
               },
               {
                 icon: Bell,
                 title: 'Alertas e lembretes',
-                desc: 'Receba notificacoes antes de cada prazo. DAE vencendo, ferias se aproximando, 13o chegando. Tudo no seu tempo.',
+                desc: 'Receba notificações antes de cada prazo. DAE vencendo, férias se aproximando, 13o chegando. Tudo no seu tempo.',
               },
               {
                 icon: FileText,
@@ -291,7 +291,7 @@ export default function Home() {
               <Search className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
             </div>
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-              Verificacao de antecedentes
+              Verificação de antecedentes
             </h2>
             <p className="text-muted-foreground text-lg mb-6">
               Contrate com seguranca. Antes de admitir, verifique antecedentes
@@ -339,7 +339,7 @@ export default function Home() {
             </h2>
             <p className="text-muted-foreground text-lg">
               Empregadores em todo o Brasil usam a Lardia para simplificar
-              o eSocial domestico e evitar dores de cabeca.
+              o eSocial doméstico e evitar dores de cabeça.
             </p>
           </div>
 
@@ -348,17 +348,17 @@ export default function Home() {
               {
                 name: 'Maria S.',
                 city: 'Sao Paulo, SP',
-                text: 'Antes da Lardia eu pagava um contador so para o eSocial. Agora faco tudo sozinha em 5 minutos por mes.',
+                text: 'Antes da Lardia eu pagava um contador so para o eSocial. Agora faco tudo sozinha em 5 minutos por mês.',
               },
               {
                 name: 'Roberto L.',
                 city: 'Rio de Janeiro, RJ',
-                text: 'Os alertas de prazo ja me salvaram de multas varias vezes. Vale cada centavo.',
+                text: 'Os alertas de prazo já me salvaram de multas varias vezes. Vale cada centavo.',
               },
               {
                 name: 'Ana C.',
                 city: 'Belo Horizonte, MG',
-                text: 'A verificacao de antecedentes me deu tranquilidade para contratar. Recomendo muito.',
+                text: 'A verificação de antecedentes me deu tranquilidade para contratar. Recomendo muito.',
               },
             ].map((item, i) => (
               <Card key={i} className="border shadow-sm">
@@ -383,10 +383,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-              Escolha o plano ideal para voce
+              Escolha o plano ideal para você
             </h2>
             <p className="text-muted-foreground text-lg">
-              Comece gratis com as calculadoras ou desbloqueie a gestao completa do eSocial.
+              Comece grátis com as calculadoras ou desbloqueie a gestão completa do eSocial.
             </p>
           </div>
 
@@ -406,9 +406,9 @@ export default function Home() {
                 <ul className="text-left space-y-3 mb-8">
                   {[
                     'Calculadora de folha',
-                    'Calculadora de 13o salario',
-                    'Calculadora de ferias',
-                    'Calculadora de rescisao',
+                    'Calculadora de 13o salário',
+                    'Calculadora de férias',
+                    'Calculadora de rescisão',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
@@ -419,7 +419,7 @@ export default function Home() {
 
                 <Link href="#calculadora">
                   <Button variant="outline" size="lg" className="w-full text-base">
-                    Usar gratis
+                    Usar grátis
                   </Button>
                 </Link>
               </CardContent>
@@ -434,7 +434,7 @@ export default function Home() {
                 <div className="flex items-baseline justify-center gap-1 mb-1">
                   <span className="text-sm text-muted-foreground">R$</span>
                   <span className="text-5xl font-bold">29,90</span>
-                  <span className="text-muted-foreground">/mes</span>
+                  <span className="text-muted-foreground">/mês</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">por empregada</p>
 
@@ -442,10 +442,10 @@ export default function Home() {
                   {[
                     'Tudo do plano Gratis',
                     'Dashboard de empregados',
-                    'Calendario de obrigacoes',
+                    'Calendario de obrigações',
                     'Contracheque em PDF',
                     'Alertas por e-mail',
-                    'Historico de calculos',
+                    'Historico de cálculos',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
@@ -475,16 +475,16 @@ export default function Home() {
                 <div className="flex items-baseline justify-center gap-1 mb-1">
                   <span className="text-sm text-muted-foreground">R$</span>
                   <span className="text-5xl font-bold">49,90</span>
-                  <span className="text-muted-foreground">/mes</span>
+                  <span className="text-muted-foreground">/mês</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6">por empregada</p>
 
                 <ul className="text-left space-y-3 mb-8">
                   {[
                     'Tudo do plano Basico',
-                    'Gestao eSocial automatizada',
+                    'Gestão eSocial automatizada',
                     'Geracao de DAE',
-                    'Fechamento mensal automatico',
+                    'Fechamento mensal automático',
                     'Notificacoes por WhatsApp',
                     'Suporte prioritario',
                   ].map((feature, i) => (
@@ -502,7 +502,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <p className="text-xs text-muted-foreground mt-3 text-center">
-                  7 dias gratis. Cancele quando quiser.
+                  7 dias grátis. Cancele quando quiser.
                 </p>
               </CardContent>
             </Card>
@@ -520,15 +520,15 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-emerald-600 dark:bg-emerald-800">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white mb-4">
-            Chega de dor de cabeca com eSocial
+            Chega de dor de cabeça com eSocial
           </h2>
           <p className="text-emerald-100 text-lg max-w-xl mx-auto mb-8">
-            Cadastre sua empregada, informe o salario e deixe a Lardia cuidar
+            Cadastre sua empregada, informe o salário e deixe a Lardia cuidar
             de todo o resto. Simples assim.
           </p>
           <Link href="/signup">
             <Button size="lg" variant="secondary" className="text-base px-8">
-              Criar conta gratis
+              Criar conta grátis
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>

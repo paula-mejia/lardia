@@ -57,7 +57,7 @@ export default function BackgroundCheckPage() {
 
   async function handleRunCheck() {
     if (!consent) {
-      setError('O consentimento LGPD e obrigatorio')
+      setError('O consentimento LGPD é obrigatório')
       return
     }
 
@@ -105,7 +105,7 @@ export default function BackgroundCheckPage() {
           </Link>
           <div className="flex items-center gap-2">
             <Shield className="h-6 w-6 text-primary" />
-            <h1 className="text-xl font-bold">Verificacao Pre-Contratacao</h1>
+            <h1 className="text-xl font-bold">Verificação Pre-Contratacao</h1>
           </div>
         </div>
 
@@ -202,7 +202,7 @@ export default function BackgroundCheckPage() {
                 <p className="text-amber-700 dark:text-amber-300">
                   De acordo com a LGPD (Lei 13.709/2018), o candidato deve autorizar
                   esta consulta antes de ser realizada. O uso discriminatorio destas
-                  informacoes e ilegal.
+                  informações e ilegal.
                 </p>
               </div>
 
@@ -213,7 +213,7 @@ export default function BackgroundCheckPage() {
                   onCheckedChange={(checked) => setConsent(checked === true)}
                 />
                 <Label htmlFor="consent" className="text-sm leading-relaxed cursor-pointer">
-                  O candidato autorizou esta consulta e esta ciente de quais dados serao verificados,
+                  O candidato autorizou esta consulta e esta ciente de quais dados serão verificados,
                   conforme exigido pela LGPD.
                 </Label>
               </div>

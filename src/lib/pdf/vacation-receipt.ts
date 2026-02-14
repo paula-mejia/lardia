@@ -1,5 +1,5 @@
 /**
- * PDF generator for Brazilian vacation payment receipt (Recibo de Ferias).
+ * PDF generator for Brazilian vacation payment receipt (Recibo de Férias).
  *
  * A4, black and white, professional layout.
  * All labels in Portuguese; code and comments in English.
@@ -117,8 +117,8 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   y += 2
   addInfoRow('Empregado(a):', data.employeeName)
   addInfoRow('CPF:', formatCPF(data.employeeCpf))
-  addInfoRow('Funcao:', data.employeeRole)
-  addInfoRow('Data de admissao:', formatDate(data.admissionDate))
+  addInfoRow('Função:', data.employeeRole)
+  addInfoRow('Data de admissão:', formatDate(data.admissionDate))
 
   y += 2
   drawLine(y)
@@ -127,7 +127,7 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   // -- Vacation periods --
   addInfoRow('Periodo aquisitivo:', `${formatDate(data.acquisitionPeriodStart)} a ${formatDate(data.acquisitionPeriodEnd)}`)
   addInfoRow('Periodo de gozo:', `${formatDate(data.vacationStartDate)} a ${formatDate(data.vacationEndDate)}`)
-  addInfoRow('Dias de ferias:', `${b.daysEnjoyed} dias`)
+  addInfoRow('Dias de férias:', `${b.daysEnjoyed} dias`)
   if (b.daysSold > 0) {
     addInfoRow('Abono pecuniario:', `${b.daysSold} dias vendidos`)
   }
@@ -138,7 +138,7 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
 
   // -- Earnings --
   addSectionTitle('VENCIMENTOS')
-  addRow(`Ferias gozadas (${b.daysEnjoyed} dias)`, b.vacationPay)
+  addRow(`Férias gozadas (${b.daysEnjoyed} dias)`, b.vacationPay)
   addRow('Terco constitucional (1/3)', b.tercoConstitucional)
 
   if (b.daysSold > 0) {
@@ -181,14 +181,14 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   if (b.paymentDeadline) {
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(9)
-    doc.text(`Data limite de pagamento: ${formatDate(b.paymentDeadline)} (2 dias antes do inicio das ferias)`, margin, y)
+    doc.text(`Data limite de pagamento: ${formatDate(b.paymentDeadline)} (2 dias antes do início das férias)`, margin, y)
     y += 8
   }
 
   // -- Declaration --
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(9)
-  const declaration = `Declaro ter recebido a importancia liquida de R$ ${formatBRL(b.netPayment)} referente ao pagamento de ferias acima discriminadas.`
+  const declaration = `Declaro ter recebido a importancia líquida de R$ ${formatBRL(b.netPayment)} referente ao pagamento de férias acima discriminadas.`
   const lines = doc.splitTextToSize(declaration, contentWidth)
   for (const line of lines) {
     doc.text(line, margin, y)
@@ -217,6 +217,6 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   doc.text('Documento gerado por Lardia', pageWidth / 2, pageHeight - 10, { align: 'center' })
 
   // -- Save --
-  const filename = `recibo-ferias-${data.employeeName.toLowerCase().replace(/\s+/g, '-')}.pdf`
+  const filename = `recibo-férias-${data.employeeName.toLowerCase().replace(/\s+/g, '-')}.pdf`
   doc.save(filename)
 }

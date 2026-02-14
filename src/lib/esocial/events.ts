@@ -1,5 +1,5 @@
 /**
- * eSocial event type definitions for domestic employers (Empregador Domestico).
+ * eSocial event type definitions for domestic employers (Empregador Doméstico).
  * Based on eSocial simplified layout version 1.2.
  */
 

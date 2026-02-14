@@ -22,7 +22,7 @@ interface Props {
 }
 
 /**
- * Calculate aviso previo days: 30 base + 3 per year worked, max 90.
+ * Calculate aviso prévio days: 30 base + 3 per year worked, max 90.
  */
 function calculateNoticeDays(admissionDate: string, noticeDate: string): number {
   const adm = new Date(admissionDate + 'T12:00')
@@ -88,7 +88,7 @@ export default function PriorNoticePageClient({
         <CardHeader>
           <CardTitle className="text-xl">Aviso Previo</CardTitle>
           <CardDescription>
-            Gere o documento de aviso previo para {employeeName}
+            Gere o documento de aviso prévio para {employeeName}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -101,16 +101,16 @@ export default function PriorNoticePageClient({
               </div>
             </div>
             <div className="space-y-2">
-              <Label>Funcao</Label>
+              <Label>Função</Label>
               <div className="flex h-9 items-center rounded-md border bg-muted/50 px-3">
-                <span className="text-sm">{employeeRole || 'Nao informada'}</span>
+                <span className="text-sm">{employeeRole || 'Não informada'}</span>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label>Data de admissao</Label>
+              <Label>Data de admissão</Label>
               <div className="flex h-9 items-center rounded-md border bg-muted/50 px-3">
                 <span className="text-sm">{formatDateBR(admissionDate)}</span>
               </div>
@@ -127,14 +127,14 @@ export default function PriorNoticePageClient({
 
           {/* Notice type */}
           <div className="space-y-2">
-            <Label>Tipo de aviso previo</Label>
+            <Label>Tipo de aviso prévio</Label>
             <Select value={noticeType} onValueChange={(v) => setNoticeType(v as PriorNoticeType)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="indenizado">Indenizado (dispensa imediata)</SelectItem>
-                <SelectItem value="trabalhado">Trabalhado (cumpre o periodo)</SelectItem>
+                <SelectItem value="trabalhado">Trabalhado (cumpre o período)</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -158,7 +158,7 @@ export default function PriorNoticePageClient({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="2_hours_daily">2 horas diarias</SelectItem>
+                    <SelectItem value="2_hours_daily">2 horas diárias</SelectItem>
                     <SelectItem value="7_days">7 dias corridos</SelectItem>
                   </SelectContent>
                 </Select>
@@ -190,7 +190,7 @@ export default function PriorNoticePageClient({
               <span className="text-sm font-medium">{noticeDate ? formatDateBR(noticeDate) : '-'}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-muted-foreground">Ultimo dia de trabalho</span>
+              <span className="text-sm text-muted-foreground">Último dia de trabalho</span>
               <span className="text-sm font-medium">{lastWorkDay ? formatDateBR(lastWorkDay) : '-'}</span>
             </div>
           </div>

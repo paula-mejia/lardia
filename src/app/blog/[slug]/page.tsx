@@ -151,11 +151,11 @@ export default async function BlogPost({
         <div className="my-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-8 text-center">
           <h3 className="text-xl font-bold mb-2">Simplifique o eSocial com a Lardia</h3>
           <p className="text-muted-foreground mb-4">
-            Calculos automaticos, lembretes de prazos e tudo que voce precisa para ficar em dia.
+            Cálculos automaticos, lembretes de prazos e tudo que você precisa para ficar em dia.
           </p>
           <Link href="/signup">
             <Button>
-              Comece agora gratis <ArrowRight className="ml-2 h-4 w-4" />
+              Comece agora grátis <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>

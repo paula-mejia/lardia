@@ -64,7 +64,7 @@ export function SubscriptionCard({
           <CardTitle>Assinatura</CardTitle>
           <Badge variant={status.variant}>{status.label}</Badge>
         </div>
-        <CardDescription>Lardia Pro - R$29,90/mes</CardDescription>
+        <CardDescription>Lardia Pro - R$29,90/mês</CardDescription>
       </CardHeader>
       <CardContent>
         {isActive ? (

@@ -19,7 +19,7 @@ export default function PrivacidadePage() {
 
         <div className="prose prose-sm max-w-none space-y-6">
           <p className="text-sm text-muted-foreground">
-            Ultima atualizacao: 14 de fevereiro de 2026
+            Ultima atualização: 14 de fevereiro de 2026
           </p>
 
           <section className="space-y-3">
@@ -45,19 +45,19 @@ export default function PrivacidadePage() {
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
-                <strong>Dados do empregador:</strong> nome, email, CPF, endereco
+                <strong>Dados do empregador:</strong> nome, email, CPF, endereço
               </li>
               <li>
                 <strong>Dados do empregado:</strong> nome completo, CPF, data de
-                nascimento, endereco, dados bancarios, cargo, salario, data de
-                admissao
+                nascimento, endereço, dados bancários, cargo, salário, data de
+                admissão
               </li>
               <li>
-                <strong>Dados financeiros:</strong> informacoes de salario,
-                descontos, beneficios, historico de folha de pagamento
+                <strong>Dados financeiros:</strong> informações de salário,
+                descontos, benefícios, histórico de folha de pagamento
               </li>
               <li>
-                <strong>Dados de uso:</strong> logs de acesso, acoes realizadas
+                <strong>Dados de uso:</strong> logs de acesso, ações realizadas
                 na plataforma
               </li>
             </ul>
@@ -69,19 +69,19 @@ export default function PrivacidadePage() {
               Utilizamos seus dados para as seguintes finalidades:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
-              <li>Calcular folha de pagamento, ferias, 13o salario e rescisao</li>
-              <li>Enviar informacoes ao eSocial em nome do empregador</li>
+              <li>Calcular folha de pagamento, férias, 13o salário e rescisão</li>
+              <li>Enviar informações ao eSocial em nome do empregador</li>
               <li>Gerar guias DAE para pagamento</li>
-              <li>Enviar lembretes sobre prazos e obrigacoes</li>
+              <li>Enviar lembretes sobre prazos e obrigações</li>
               <li>Processar pagamentos da assinatura</li>
-              <li>Melhorar nossos servicos e experiencia do usuario</li>
+              <li>Melhorar nossos serviços e experiencia do usuário</li>
             </ul>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">3. Armazenamento de Dados</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Seus dados sao armazenados de forma segura utilizando os servicos
+              Seus dados são armazenados de forma segura utilizando os serviços
               da Supabase, com as seguintes medidas de protecao:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
@@ -97,7 +97,7 @@ export default function PrivacidadePage() {
             <h2 className="text-xl font-semibold">4. Compartilhamento com Terceiros</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Compartilhamos dados com os seguintes parceiros, apenas na medida
-              necessaria para a prestacao dos servicos:
+              necessaria para a prestacao dos serviços:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
@@ -113,19 +113,19 @@ export default function PrivacidadePage() {
                 </a>
               </li>
               <li>
-                <strong>BigDataCorp:</strong> verificacao de antecedentes. Recebe
+                <strong>BigDataCorp:</strong> verificação de antecedentes. Recebe
                 CPF e nome do empregado para consulta
               </li>
               <li>
-                <strong>eSocial / Receita Federal:</strong> envio de obrigacoes
-                trabalhistas conforme procuracao eletronica
+                <strong>eSocial / Receita Federal:</strong> envio de obrigações
+                trabalhistas conforme procuração eletrônica
               </li>
               <li>
                 <strong>Supabase:</strong> armazenamento de dados (infraestrutura)
               </li>
             </ul>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Nao vendemos, alugamos ou compartilhamos seus dados pessoais para
+              Não vendemos, alugamos ou compartilhamos seus dados pessoais para
               fins de marketing ou publicidade.
             </p>
           </section>
@@ -133,25 +133,25 @@ export default function PrivacidadePage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">5. Seus Direitos (LGPD)</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Conforme a LGPD, voce tem os seguintes direitos sobre seus dados
+              Conforme a LGPD, você tem os seguintes direitos sobre seus dados
               pessoais:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
                 <strong>Acesso:</strong> solicitar uma copia de todos os dados
-                que temos sobre voce
+                que temos sobre você
               </li>
               <li>
                 <strong>Correcao:</strong> solicitar a correcao de dados
                 incompletos ou incorretos
               </li>
               <li>
-                <strong>Exclusao:</strong> solicitar a exclusao dos seus dados
+                <strong>Exclusao:</strong> solicitar a exclusão dos seus dados
                 pessoais
               </li>
               <li>
                 <strong>Portabilidade:</strong> solicitar a transferencia dos
-                seus dados para outro servico
+                seus dados para outro serviço
               </li>
               <li>
                 <strong>Revogacao do consentimento:</strong> retirar o
@@ -159,7 +159,7 @@ export default function PrivacidadePage() {
               </li>
               <li>
                 <strong>Informacao:</strong> ser informado sobre com quem seus
-                dados sao compartilhados
+                dados são compartilhados
               </li>
             </ul>
             <p className="text-sm leading-relaxed text-muted-foreground">
@@ -170,31 +170,31 @@ export default function PrivacidadePage() {
               >
                 privacidade@lardia.com.br
               </a>
-              . Responderemos em ate 15 dias uteis.
+              . Responderemos em até 15 dias úteis.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">6. Retencao de Dados</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Mantemos seus dados pelos seguintes periodos:
+              Mantemos seus dados pelos seguintes períodos:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
                 <strong>Conta ativa:</strong> enquanto sua conta estiver ativa e
-                o servico em uso
+                o serviço em uso
               </li>
               <li>
-                <strong>Apos cancelamento:</strong> 90 dias para permitir
+                <strong>Após cancelamento:</strong> 90 dias para permitir
                 reativacao
               </li>
               <li>
-                <strong>Obrigacoes legais:</strong> dados trabalhistas sao
-                mantidos por 5 anos conforme legislacao vigente
+                <strong>Obrigacoes legais:</strong> dados trabalhistas são
+                mantidos por 5 anos conforme legislação vigente
               </li>
               <li>
-                <strong>Apos exclusao:</strong> dados sao removidos
-                permanentemente em ate 30 dias, exceto quando houver obrigacao
+                <strong>Após exclusão:</strong> dados são removidos
+                permanentemente em até 30 dias, exceto quando houver obrigação
                 legal de retencao
               </li>
             </ul>
@@ -207,7 +207,7 @@ export default function PrivacidadePage() {
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
-                <strong>Cookies de sessao:</strong> para manter voce logado na
+                <strong>Cookies de sessao:</strong> para manter você logado na
                 plataforma
               </li>
               <li>
@@ -216,7 +216,7 @@ export default function PrivacidadePage() {
               </li>
             </ul>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Nao utilizamos cookies de rastreamento ou publicidade.
+              Não utilizamos cookies de rastreamento ou publicidade.
             </p>
           </section>
 
@@ -246,8 +246,8 @@ export default function PrivacidadePage() {
             <h2 className="text-xl font-semibold">9. Alteracoes</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Esta politica pode ser atualizada periodicamente. Notificaremos
-              voce sobre alteracoes significativas por email. A versao mais
-              recente estara sempre disponivel nesta pagina.
+              você sobre alterações significativas por email. A versão mais
+              recente estará sempre disponível nesta página.
             </p>
           </section>
         </div>

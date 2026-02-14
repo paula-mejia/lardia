@@ -40,7 +40,7 @@ export default async function EmployeeVacationPage({
         </Link>
         <div>
           <h1 className="text-xl font-bold">{employee.full_name}</h1>
-          <p className="text-sm text-muted-foreground">Ferias</p>
+          <p className="text-sm text-muted-foreground">Férias</p>
         </div>
       </div>
 

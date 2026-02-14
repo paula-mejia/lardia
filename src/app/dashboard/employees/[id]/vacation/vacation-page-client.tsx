@@ -140,15 +140,15 @@ export default function VacationPageClient({
       {/* Input */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl">Ferias</CardTitle>
+          <CardTitle className="text-xl">Férias</CardTitle>
           <CardDescription>
-            Calcule as ferias de {employeeName}
+            Calcule as férias de {employeeName}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="salaryVac">Salario bruto (R$)</Label>
+              <Label htmlFor="salaryVac">Salário bruto (R$)</Label>
               <Input
                 id="salaryVac"
                 type="number"
@@ -161,8 +161,8 @@ export default function VacationPageClient({
             </div>
             <div className="space-y-2">
               <Label htmlFor="vacStart">
-                Inicio das ferias
-                <InfoTip>Data de inicio das ferias. O pagamento deve ser feito 2 dias antes.</InfoTip>
+                Início das férias
+                <InfoTip>Data de início das férias. O pagamento deve ser feito 2 dias antes.</InfoTip>
               </Label>
               <Input
                 id="vacStart"
@@ -177,7 +177,7 @@ export default function VacationPageClient({
             <div className="space-y-2">
               <Label htmlFor="absVac">
                 Faltas
-                <InfoTip>Faltas no periodo aquisitivo. Reduz os dias de ferias conforme art. 130 da CLT.</InfoTip>
+                <InfoTip>Faltas no período aquisitivo. Reduz os dias de férias conforme art. 130 da CLT.</InfoTip>
               </Label>
               <Input
                 id="absVac"
@@ -190,7 +190,7 @@ export default function VacationPageClient({
             <div className="space-y-2">
               <Label htmlFor="daysSold">
                 Dias vendidos
-                <InfoTip>Abono pecuniario: venda de ate 10 dias de ferias.</InfoTip>
+                <InfoTip>Abono pecuniario: venda de até 10 dias de férias.</InfoTip>
               </Label>
               <Input
                 id="daysSold"
@@ -214,7 +214,7 @@ export default function VacationPageClient({
           </div>
 
           <p className="text-xs text-muted-foreground">
-            Admissao: {formatDateBR(admissionDate)}
+            Admissão: {formatDateBR(admissionDate)}
           </p>
         </CardContent>
       </Card>
@@ -224,7 +224,7 @@ export default function VacationPageClient({
           <CardContent className="flex items-center gap-3 py-4">
             <AlertCircle className="h-5 w-5 text-destructive" />
             <p className="text-sm text-destructive">
-              Com {absences} faltas, a empregada perdeu o direito a ferias neste periodo.
+              Com {absences} faltas, a empregada perdeu o direito a férias neste período.
             </p>
           </CardContent>
         </Card>
@@ -236,13 +236,13 @@ export default function VacationPageClient({
           <Card>
             <CardHeader className="pb-3">
               <div className="flex justify-between items-center">
-                <CardTitle className="text-lg">Calculo das ferias</CardTitle>
+                <CardTitle className="text-lg">Cálculo das férias</CardTitle>
                 <Badge variant="outline">{result.totalVacationDays} dias de direito</Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-1">
               <ResultRow
-                label={`Ferias gozadas (${result.daysEnjoyed} dias)`}
+                label={`Férias gozadas (${result.daysEnjoyed} dias)`}
                 value={result.vacationPay}
                 variant="earning"
               />
@@ -250,7 +250,7 @@ export default function VacationPageClient({
                 label="Terco constitucional (1/3)"
                 value={result.tercoConstitucional}
                 variant="earning"
-                tip="Adicional de 1/3 sobre o valor das ferias, garantido pela Constituicao."
+                tip="Adicional de 1/3 sobre o valor das férias, garantido pela Constituição."
               />
 
               {result.daysSold > 0 && (
@@ -288,7 +288,7 @@ export default function VacationPageClient({
                 >
                   <span className="text-sm text-muted-foreground flex items-center">
                     INSS
-                    <InfoTip>Calculado sobre ferias + terco constitucional. Abono pecuniario e isento.</InfoTip>
+                    <InfoTip>Calculado sobre férias + terço constitucional. Abono pecuniario é isento.</InfoTip>
                     {showINSSDetails ? <ChevronUp className="h-3 w-3 ml-1" /> : <ChevronDown className="h-3 w-3 ml-1" />}
                   </span>
                   <span className="text-sm tabular-nums text-red-500">- {formatBRL(result.inssEmployee)}</span>
@@ -314,7 +314,7 @@ export default function VacationPageClient({
                   label="IRRF"
                   value={result.irrfEmployee}
                   variant="deduction"
-                  tip={`Base de calculo IRRF: ${formatBRL(result.irrfBase)}`}
+                  tip={`Base de cálculo IRRF: ${formatBRL(result.irrfBase)}`}
                 />
               )}
 
@@ -331,7 +331,7 @@ export default function VacationPageClient({
             <CardContent>
               <div className="bg-muted/50 rounded-lg p-4 space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-sm font-medium">Valor liquido a pagar</span>
+                  <span className="text-sm font-medium">Valor líquido a pagar</span>
                   <span className="text-lg font-bold tabular-nums">{formatBRL(result.netPayment)}</span>
                 </div>
 
@@ -346,7 +346,7 @@ export default function VacationPageClient({
                 <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">
                     FGTS a recolher (8%)
-                    <InfoTip>FGTS sobre ferias + terco. Recolhido pelo empregador via DAE.</InfoTip>
+                    <InfoTip>FGTS sobre férias + terço. Recolhido pelo empregador via DAE.</InfoTip>
                   </span>
                   <span className="text-sm font-medium tabular-nums">{formatBRL(result.fgtsDue)}</span>
                 </div>
@@ -366,14 +366,14 @@ export default function VacationPageClient({
                     ) : saving ? (
                       'Salvando...'
                     ) : (
-                      <><Save className="h-4 w-4 mr-2" /> Salvar ferias</>
+                      <><Save className="h-4 w-4 mr-2" /> Salvar férias</>
                     )}
                   </Button>
                   <Button
                     onClick={handleGenerateReceipt}
                     variant="outline"
                     disabled={!vacationStartDate}
-                    title={!vacationStartDate ? 'Preencha a data de inicio das ferias' : ''}
+                    title={!vacationStartDate ? 'Preencha a data de início das férias' : ''}
                   >
                     <FileText className="h-4 w-4 mr-2" /> Gerar Recibo
                   </Button>

@@ -106,8 +106,8 @@ export function generatePriorNoticePDF(data: PriorNoticeData): void {
     doc.setFontSize(10)
 
     const reductionText = data.reductionOption === '2_hours_daily'
-      ? 'O(a) empregado(a) optou pela reducao de 2 (duas) horas diarias durante o periodo do aviso previo, conforme artigo 488 da CLT.'
-      : 'O(a) empregado(a) optou pela reducao de 7 (sete) dias corridos ao final do periodo do aviso previo, conforme paragrafo unico do artigo 488 da CLT.'
+      ? 'O(a) empregado(a) optou pela redução de 2 (duas) horas diárias durante o período do aviso prévio, conforme artigo 488 da CLT.'
+      : 'O(a) empregado(a) optou pela redução de 7 (sete) dias corridos ao final do período do aviso prévio, conforme parágrafo único do artigo 488 da CLT.'
 
     const redLines = doc.splitTextToSize(reductionText, contentWidth)
     for (const line of redLines) {
@@ -159,26 +159,26 @@ export function generatePriorNoticePDF(data: PriorNoticeData): void {
   doc.text('Documento gerado por Lardia', pageWidth / 2, pageHeight - 10, { align: 'center' })
 
   // -- Save --
-  const filename = `aviso-previo-${data.employeeName.toLowerCase().replace(/\s+/g, '-')}-${data.noticeDate}.pdf`
+  const filename = `aviso-prévio-${data.employeeName.toLowerCase().replace(/\s+/g, '-')}-${data.noticeDate}.pdf`
   doc.save(filename)
 }
 
 /** Build text for worked prior notice. */
 function buildWorkedNoticeText(data: PriorNoticeData): string {
-  return `Pelo presente instrumento, fica o(a) empregado(a) ${data.employeeName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employeeCpf)}, exercendo a funcao de ${data.employeeRole}, admitido(a) em ${formatDate(data.admissionDate)}, notificado(a) de que seu contrato de trabalho sera rescindido.
+  return `Pelo presente instrumento, fica o(a) empregado(a) ${data.employeeName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employeeCpf)}, exercendo a função de ${data.employeeRole}, admitido(a) em ${formatDate(data.admissionDate)}, notificado(a) de que seu contrato de trabalho será rescindido.
 
-O presente aviso previo tera duracao de ${data.durationDays} (${numberToWords(data.durationDays)}) dias, com inicio em ${formatDate(data.noticeDate)} e termino em ${formatDate(data.lastWorkDay)}, devendo o(a) empregado(a) comparecer normalmente ao trabalho durante este periodo.
+O presente aviso prévio terá duracao de ${data.durationDays} (${numberToWords(data.durationDays)}) dias, com início em ${formatDate(data.noticeDate)} e término em ${formatDate(data.lastWorkDay)}, devendo o(a) empregado(a) comparecer normalmente ao trabalho durante este período.
 
-Conforme disposto no artigo 7o, inciso XXI, da Constituicao Federal e no artigo 1o da Lei 12.506/2011, o aviso previo proporcional e de ${data.durationDays} dias (30 dias base + 3 dias por ano de servico, limitado a 90 dias).`
+Conforme disposto no artigo 7o, inciso XXI, da Constituição Federal e no artigo 1o da Lei 12.506/2011, o aviso prévio proporcional é de ${data.durationDays} dias (30 dias base + 3 dias por ano de serviço, limitado a 90 dias).`
 }
 
 /** Build text for indemnified prior notice. */
 function buildIndemnifiedNoticeText(data: PriorNoticeData): string {
-  return `Pelo presente instrumento, fica o(a) empregado(a) ${data.employeeName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employeeCpf)}, exercendo a funcao de ${data.employeeRole}, admitido(a) em ${formatDate(data.admissionDate)}, notificado(a) de que seu contrato de trabalho sera rescindido.
+  return `Pelo presente instrumento, fica o(a) empregado(a) ${data.employeeName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employeeCpf)}, exercendo a função de ${data.employeeRole}, admitido(a) em ${formatDate(data.admissionDate)}, notificado(a) de que seu contrato de trabalho será rescindido.
 
-O presente aviso previo e INDENIZADO, com duracao de ${data.durationDays} (${numberToWords(data.durationDays)}) dias. O(a) empregado(a) fica dispensado(a) do cumprimento do aviso, sendo o ultimo dia de trabalho ${formatDate(data.lastWorkDay)}.
+O presente aviso prévio e INDENIZADO, com duracao de ${data.durationDays} (${numberToWords(data.durationDays)}) dias. O(a) empregado(a) fica dispensado(a) do cumprimento do aviso, sendo o último dia de trabalho ${formatDate(data.lastWorkDay)}.
 
-O valor correspondente ao aviso previo indenizado sera pago juntamente com as demais verbas rescisorias, conforme legislacao vigente.`
+O valor correspondente ao aviso prévio indenizado será pago juntamente com as demais verbas rescisórias, conforme legislação vigente.`
 }
 
 /** Simple number to Portuguese words for common values (30-90). */

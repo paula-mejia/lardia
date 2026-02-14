@@ -329,7 +329,7 @@ export function calculateTermination(input: TerminationInput): TerminationBreakd
 
   const typeLabels: Record<TerminationType, string> = {
     sem_justa_causa: 'Dispensa sem justa causa',
-    pedido_demissao: 'Pedido de demissao',
+    pedido_demissao: 'Pedido de demissão',
     justa_causa: 'Dispensa por justa causa',
   }
 

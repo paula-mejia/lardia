@@ -266,8 +266,8 @@ export default function FaqPage() {
             Perguntas Frequentes
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tudo o que voce precisa saber sobre eSocial domestico, DAE,
-            encargos, ferias, 13o e muito mais.
+            Tudo o que você precisa saber sobre eSocial doméstico, DAE,
+            encargos, férias, 13o e muito mais.
           </p>
         </div>
       </section>
@@ -291,10 +291,10 @@ export default function FaqPage() {
       <section className="border-t bg-emerald-50 dark:bg-emerald-950/20">
         <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Ainda tem duvidas? A Lardia resolve para voce
+            Ainda tem duvidas? A Lardia resolve para você
           </h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            Cadastre-se e deixe a burocracia do eSocial domestico com a gente.
+            Cadastre-se e deixe a burocracia do eSocial doméstico com a gente.
           </p>
           <Link href="/signup">
             <Button size="lg" className="text-base px-8">

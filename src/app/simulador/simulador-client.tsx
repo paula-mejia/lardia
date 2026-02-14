@@ -201,17 +201,17 @@ export default function SimuladorClient() {
           color: '#d97706',
         },
         {
-          label: 'FGTS Antecipacao (3,2%)',
+          label: 'FGTS Antecipação (3,2%)',
           value: cost.annualFGTSAnticipacao + cost.thirteenthFGTSAnticipacao + cost.vacationFGTSAnticipacao,
           color: '#e11d48',
         },
         {
-          label: '13o Salario',
+          label: '13o Salário',
           value: cost.thirteenthSalary,
           color: '#7c3aed',
         },
         {
-          label: 'Ferias (salario + 1/3)',
+          label: 'Férias (salário + 1/3)',
           value: cost.vacationPay,
           color: '#0d9488',
         },
@@ -262,12 +262,12 @@ export default function SimuladorClient() {
             Quanto custa contratar
             <br />
             <span className="text-emerald-600 dark:text-emerald-400">
-              uma empregada domestica?
+              uma empregada doméstica?
             </span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Descubra o custo real incluindo salario, INSS, FGTS, ferias, 13o e
-            todos os encargos obrigatorios. Resultado instantaneo.
+            Descubra o custo real incluindo salário, INSS, FGTS, férias, 13o e
+            todos os encargos obrigatórios. Resultado instantâneo.
           </p>
         </div>
       </section>
@@ -278,7 +278,7 @@ export default function SimuladorClient() {
           <Card className="border-2 border-emerald-200 dark:border-emerald-800 shadow-lg">
             <CardContent className="pt-6">
               <Label htmlFor="salary" className="text-base font-semibold mb-2 block">
-                Salario bruto mensal (R$)
+                Salário bruto mensal (R$)
               </Label>
               <div className="relative">
                 <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -293,7 +293,7 @@ export default function SimuladorClient() {
                 />
               </div>
               <p className="text-xs text-muted-foreground mt-2">
-                Salario minimo 2026: {formatBRL(minimumWage)}
+                Salário mínimo 2026: {formatBRL(minimumWage)}
               </p>
             </CardContent>
           </Card>
@@ -372,7 +372,7 @@ export default function SimuladorClient() {
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-emerald-500" />
                       <span>
-                        Salario da empregada: {formatBRL(cost.totalSalaryPortion)}
+                        Salário da empregada: {formatBRL(cost.totalSalaryPortion)}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -417,11 +417,11 @@ export default function SimuladorClient() {
                         Custos mensais (x12)
                       </h3>
                       <div className="space-y-2">
-                        <Row label="Salario bruto" value={cost.annualSalary} />
+                        <Row label="Salário bruto" value={cost.annualSalary} />
                         <Row label="INSS Patronal (8%)" value={cost.annualINSSPatronal} />
                         <Row label="GILRAT (0,8%)" value={cost.annualGILRAT} />
                         <Row label="FGTS (8%)" value={cost.annualFGTS} />
-                        <Row label="FGTS Antecipacao (3,2%)" value={cost.annualFGTSAnticipacao} />
+                        <Row label="FGTS Antecipação (3,2%)" value={cost.annualFGTSAnticipacao} />
                       </div>
                     </div>
 
@@ -430,14 +430,14 @@ export default function SimuladorClient() {
                     {/* 13th salary */}
                     <div>
                       <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-                        13o Salario
+                        13o Salário
                       </h3>
                       <div className="space-y-2">
-                        <Row label="13o salario (integral)" value={cost.thirteenthSalary} />
+                        <Row label="13o salário (integral)" value={cost.thirteenthSalary} />
                         <Row label="INSS Patronal sobre 13o" value={cost.thirteenthINSS} />
                         <Row label="GILRAT sobre 13o" value={cost.thirteenthGILRAT} />
                         <Row label="FGTS sobre 13o" value={cost.thirteenthFGTS} />
-                        <Row label="FGTS Antecipacao sobre 13o" value={cost.thirteenthFGTSAnticipacao} />
+                        <Row label="FGTS Antecipação sobre 13o" value={cost.thirteenthFGTSAnticipacao} />
                       </div>
                     </div>
 
@@ -446,14 +446,14 @@ export default function SimuladorClient() {
                     {/* Vacation */}
                     <div>
                       <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-                        Ferias
+                        Férias
                       </h3>
                       <div className="space-y-2">
-                        <Row label="Ferias (salario + 1/3)" value={cost.vacationPay} />
-                        <Row label="INSS Patronal sobre ferias" value={cost.vacationINSS} />
-                        <Row label="GILRAT sobre ferias" value={cost.vacationGILRAT} />
-                        <Row label="FGTS sobre ferias" value={cost.vacationFGTS} />
-                        <Row label="FGTS Antecipacao sobre ferias" value={cost.vacationFGTSAnticipacao} />
+                        <Row label="Férias (salário + 1/3)" value={cost.vacationPay} />
+                        <Row label="INSS Patronal sobre férias" value={cost.vacationINSS} />
+                        <Row label="GILRAT sobre férias" value={cost.vacationGILRAT} />
+                        <Row label="FGTS sobre férias" value={cost.vacationFGTS} />
+                        <Row label="FGTS Antecipação sobre férias" value={cost.vacationFGTSAnticipacao} />
                       </div>
                     </div>
 
@@ -482,12 +482,12 @@ export default function SimuladorClient() {
                 Gerencie tudo isso automaticamente com Lardia
               </h2>
               <p className="text-emerald-100 text-lg max-w-xl mx-auto mb-8">
-                Folha de pagamento, guia DAE, ferias, 13o e eSocial no piloto
-                automatico. Voce so precisa informar o salario.
+                Folha de pagamento, guia DAE, férias, 13o e eSocial no piloto
+                automático. Você so precisa informar o salário.
               </p>
               <Link href="/signup">
                 <Button size="lg" variant="secondary" className="text-base px-8">
-                  Criar conta gratis
+                  Criar conta grátis
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>

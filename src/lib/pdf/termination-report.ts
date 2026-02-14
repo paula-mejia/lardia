@@ -1,5 +1,5 @@
 /**
- * PDF generator for TRCT (Termo de Rescisao do Contrato de Trabalho).
+ * PDF generator for TRCT (Termo de Rescisão do Contrato de Trabalho).
  *
  * A4, black and white, professional layout.
  * All labels in Portuguese; code and comments in English.
@@ -127,17 +127,17 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
   addSectionTitle('IDENTIFICACAO DO EMPREGADO')
   addInfoRow('Nome:', data.employeeName)
   addInfoRow('CPF:', formatCPF(data.employeeCpf))
-  addInfoRow('Funcao:', data.employeeRole)
+  addInfoRow('Função:', data.employeeRole)
 
   y += 2
 
   // -- Contract details --
   addSectionTitle('DADOS DO CONTRATO')
-  addInfoRow('Data de admissao:', formatDate(data.admissionDate))
+  addInfoRow('Data de admissão:', formatDate(data.admissionDate))
   addInfoRow('Data de desligamento:', formatDate(data.terminationDate))
-  addInfoRow('Tipo de rescisao:', b.terminationTypeLabel)
-  addInfoRow('Tempo de servico:', `${b.yearsWorked} ano(s) e ${b.monthsWorked % 12} mes(es)`)
-  addInfoRow('Ultimo salario:', `R$ ${formatBRL(data.salary)}`)
+  addInfoRow('Tipo de rescisão:', b.terminationTypeLabel)
+  addInfoRow('Tempo de serviço:', `${b.yearsWorked} ano(s) e ${b.monthsWorked % 12} mês(es)`)
+  addInfoRow('Último salário:', `R$ ${formatBRL(data.salary)}`)
 
   y += 2
   drawThickLine(y)
@@ -146,25 +146,25 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
   // -- Earnings --
   addSectionTitle('VERBAS RESCISORIAS - PROVENTOS')
 
-  addRow(`Saldo de salario (${b.saldoSalarioDays} dias)`, b.saldoSalario)
+  addRow(`Saldo de salário (${b.saldoSalarioDays} dias)`, b.saldoSalario)
 
   if (b.avisoPrevio > 0) {
     const tipo = b.avisoPrevioIndemnizado ? 'indenizado' : 'trabalhado'
-    addRow(`Aviso previo ${tipo} (${b.avisoPrevioDays} dias)`, b.avisoPrevio)
+    addRow(`Aviso prévio ${tipo} (${b.avisoPrevioDays} dias)`, b.avisoPrevio)
   }
 
   if (b.thirteenthProportional > 0) {
-    addRow(`13o salario proporcional (${b.thirteenthMonths}/12 avos)`, b.thirteenthProportional)
+    addRow(`13o salário proporcional (${b.thirteenthMonths}/12 avos)`, b.thirteenthProportional)
   }
 
   if (b.vacationProportional > 0) {
-    addRow(`Ferias proporcionais (${b.vacationProportionalMonths}/12 avos)`, b.vacationProportional)
-    addRow('1/3 constitucional (ferias proporcionais)', b.vacationProportionalOneThird)
+    addRow(`Férias proporcionais (${b.vacationProportionalMonths}/12 avos)`, b.vacationProportional)
+    addRow('1/3 constitucional (férias proporcionais)', b.vacationProportionalOneThird)
   }
 
   if (b.accruedVacation > 0) {
-    addRow(`Ferias vencidas (${b.accruedVacationPeriods} periodo(s))`, b.accruedVacation)
-    addRow('1/3 constitucional (ferias vencidas)', b.accruedVacationOneThird)
+    addRow(`Férias vencidas (${b.accruedVacationPeriods} período(s))`, b.accruedVacation)
+    addRow('1/3 constitucional (férias vencidas)', b.accruedVacationOneThird)
   }
 
   y += 1
@@ -183,7 +183,7 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
     addRow('IRRF', b.irrfEmployee)
   }
   if (b.avisoPrevioDeduction > 0) {
-    addRow('Aviso previo (nao cumprido)', b.avisoPrevioDeduction)
+    addRow('Aviso prévio (não cumprido)', b.avisoPrevioDeduction)
   }
 
   y += 1
@@ -206,9 +206,9 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
 
   // -- FGTS --
   addSectionTitle('FGTS')
-  addRow('FGTS sobre verbas rescisorias (8%)', b.fgtsOnTermination)
+  addRow('FGTS sobre verbas rescisórias (8%)', b.fgtsOnTermination)
   if (b.fgtsPenalty > 0) {
-    addRow('Multa rescisoria FGTS (40%)', b.fgtsPenalty)
+    addRow('Multa rescisória FGTS (40%)', b.fgtsPenalty)
   }
   addRow('Total FGTS a depositar', b.totalFgts, true)
 
@@ -233,8 +233,8 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(9)
   const deadlineText = b.avisoPrevioIndemnizado
-    ? 'Prazo de pagamento: ate 10 dias corridos a partir do desligamento.'
-    : 'Prazo de pagamento: ate o primeiro dia util apos o termino do aviso previo.'
+    ? 'Prazo de pagamento: até 10 dias corridos a partir do desligamento.'
+    : 'Prazo de pagamento: até o primeiro dia útil após o término do aviso prévio.'
   doc.text(deadlineText, margin, y)
   y += 8
 

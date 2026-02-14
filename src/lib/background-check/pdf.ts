@@ -37,14 +37,14 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
   // Title
   doc.setFontSize(18)
   doc.setFont('helvetica', 'bold')
-  doc.text('Relatorio de Verificacao Pre-Contratacao', 105, y, { align: 'center' })
+  doc.text('Relatorio de Verificação Pre-Contratacao', 105, y, { align: 'center' })
   y += 12
 
   // Subtitle
   doc.setFontSize(10)
   doc.setFont('helvetica', 'normal')
   doc.setTextColor(100)
-  doc.text('Lardia - Gestao de Empregados Domesticos', 105, y, { align: 'center' })
+  doc.text('Lardia - Gestão de Empregados Domesticos', 105, y, { align: 'center' })
   y += 15
 
   // Candidate info
@@ -114,8 +114,8 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
   doc.setFontSize(8)
   doc.setFont('helvetica', 'italic')
   const disclaimer = [
-    'Este relatorio e informativo. A decisao de contratacao e de responsabilidade do empregador.',
-    'A existencia de registros nao pode ser o unico motivo para recusar uma contratacao.',
+    'Este relatorio e informativo. A decisao de contratação é de responsabilidade do empregador.',
+    'A existencia de registros não pode ser o único motivo para recusar uma contratação.',
     'Dados consultados conforme LGPD (Lei 13.709/2018) com consentimento do candidato.',
   ]
   for (const line of disclaimer) {
@@ -123,5 +123,5 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
     y += 5
   }
 
-  doc.save(`verificacao-${check.candidate_cpf.replace(/\D/g, '')}.pdf`)
+  doc.save(`verificação-${check.candidate_cpf.replace(/\D/g, '')}.pdf`)
 }

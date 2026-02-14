@@ -31,7 +31,7 @@ function ReferralBannerInner() {
       <div className="container mx-auto px-4 py-3 flex items-center justify-center gap-3 text-sm">
         <Gift className="h-4 w-4 text-emerald-600" />
         <span className="text-emerald-800 dark:text-emerald-200">
-          Voce foi indicado por um amigo! Cadastre-se e aproveite.
+          Você foi indicado por um amigo! Cadastre-se e aproveite.
         </span>
         <Link href={`/signup?ref=${ref}`}>
           <Button size="sm" variant="default" className="h-7 text-xs">
@@ -53,7 +53,7 @@ export function ReferralSection() {
           <h3 className="text-xl font-bold">Indique e ganhe</h3>
         </div>
         <p className="text-muted-foreground max-w-md mx-auto mb-4">
-          Indique amigos empregadores e ganhe 1 mes gratis para cada amigo que assinar a Lardia.
+          Indique amigos empregadores e ganhe 1 mês grátis para cada amigo que assinar a Lardia.
         </p>
         <Link href="/signup">
           <Button variant="outline">

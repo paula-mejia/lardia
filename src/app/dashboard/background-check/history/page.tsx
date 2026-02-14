@@ -84,7 +84,7 @@ export default function BackgroundCheckHistoryPage() {
             <CardContent className="py-8 text-center">
               <Shield className="h-10 w-10 text-muted-foreground mx-auto mb-3" />
               <p className="text-muted-foreground mb-4">
-                Nenhuma verificacao realizada ainda.
+                Nenhuma verificação realizada ainda.
               </p>
               <Link href="/dashboard/background-check">
                 <Button>Realizar Primeira Consulta</Button>

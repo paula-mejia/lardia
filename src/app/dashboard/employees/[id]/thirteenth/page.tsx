@@ -38,7 +38,7 @@ export default async function EmployeeThirteenthPage({
         </Link>
         <div>
           <h1 className="text-xl font-bold">{employee.full_name}</h1>
-          <p className="text-sm text-muted-foreground">13o Salario</p>
+          <p className="text-sm text-muted-foreground">13o Salário</p>
         </div>
       </div>
 

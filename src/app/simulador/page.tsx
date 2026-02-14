@@ -2,23 +2,23 @@ import type { Metadata } from 'next'
 import SimuladorClient from './simulador-client'
 
 export const metadata: Metadata = {
-  title: 'Quanto custa contratar uma empregada domestica? | Simulador Lardia',
+  title: 'Quanto custa contratar uma empregada doméstica? | Simulador Lardia',
   description:
-    'Descubra o custo total de contratar uma empregada domestica em 2026. Simule salario, INSS, FGTS, ferias, 13o e todos os encargos. Calculadora gratuita.',
+    'Descubra o custo total de contratar uma empregada doméstica em 2026. Simule salário, INSS, FGTS, férias, 13o e todos os encargos. Calculadora gratuita.',
   keywords: [
-    'quanto custa empregada domestica',
-    'custo empregada domestica',
-    'simulador empregada domestica',
-    'encargos empregada domestica',
-    'custo total empregada domestica 2026',
-    'INSS empregada domestica',
-    'FGTS empregada domestica',
-    'eSocial domestico',
+    'quanto custa empregada doméstica',
+    'custo empregada doméstica',
+    'simulador empregada doméstica',
+    'encargos empregada doméstica',
+    'custo total empregada doméstica 2026',
+    'INSS empregada doméstica',
+    'FGTS empregada doméstica',
+    'eSocial doméstico',
   ],
   openGraph: {
-    title: 'Quanto custa contratar uma empregada domestica em 2026?',
+    title: 'Quanto custa contratar uma empregada doméstica em 2026?',
     description:
-      'Simulador gratuito: descubra o custo real com salario, INSS, FGTS, ferias e 13o. Resultado instantaneo.',
+      'Simulador gratuito: descubra o custo real com salário, INSS, FGTS, férias e 13o. Resultado instantâneo.',
     type: 'website',
     locale: 'pt_BR',
     url: 'https://lardia.com.br/simulador',
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Simulador de Custo de Empregada Domestica',
+  name: 'Simulador de Custo de Empregada Doméstica',
   description:
-    'Calculadora gratuita para simular o custo total de contratar uma empregada domestica no Brasil em 2026.',
+    'Calculadora gratuita para simular o custo total de contratar uma empregada doméstica no Brasil em 2026.',
   url: 'https://lardia.com.br/simulador',
   applicationCategory: 'FinanceApplication',
   operatingSystem: 'Web',
