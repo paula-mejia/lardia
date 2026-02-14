@@ -29,6 +29,7 @@ import { ReferralBanner, ReferralSection } from '@/components/referral-banner'
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
+      <ReferralBanner />
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
@@ -504,6 +505,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Referral */}
+      <ReferralSection />
 
       {/* Final CTA */}
       <section className="py-16 md:py-24 bg-emerald-600 dark:bg-emerald-800">

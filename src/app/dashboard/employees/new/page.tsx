@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { generateReferralCode, trackReferral } from '@/lib/referral'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -126,6 +127,7 @@ export default function NewEmployeePage() {
           full_name: user.email || 'Empregador',
           cpf: '000.000.000-00',
           email: user.email,
+          referral_code: generateReferralCode(),
         })
         .select('id')
         .single()
@@ -136,6 +138,14 @@ export default function NewEmployeePage() {
         return
       }
       employer = newEmployer
+
+      // Track referral if user signed up with a ref code
+      const refCode = localStorage.getItem('lardia_ref')
+        || user.user_metadata?.referral_code
+      if (refCode && newEmployer) {
+        await trackReferral(refCode, newEmployer.id)
+        localStorage.removeItem('lardia_ref')
+      }
     }
 
     // Create employee

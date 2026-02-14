@@ -44,6 +44,42 @@ export async function POST(request: NextRequest) {
           .from('employers')
           .update({ subscription_status: 'active' })
           .eq('stripe_customer_id', session.customer as string)
+
+        // Reward referrer if this employer was referred
+        const { data: employer } = await supabase
+          .from('employers')
+          .select('id')
+          .eq('stripe_customer_id', session.customer as string)
+          .single()
+
+        if (employer) {
+          const { data: referral } = await supabase
+            .from('referrals')
+            .select('id, referrer_id')
+            .eq('referee_id', employer.id)
+            .eq('status', 'pending')
+            .single()
+
+          if (referral) {
+            // Mark referral as rewarded
+            await supabase
+              .from('referrals')
+              .update({ status: 'rewarded', completed_at: new Date().toISOString() })
+              .eq('id', referral.id)
+
+            // Add 1 bonus month to referrer
+            const { data: referrer } = await supabase
+              .from('employers')
+              .select('referral_bonus_months')
+              .eq('id', referral.referrer_id)
+              .single()
+
+            await supabase
+              .from('employers')
+              .update({ referral_bonus_months: (referrer?.referral_bonus_months || 0) + 1 })
+              .eq('id', referral.referrer_id)
+          }
+        }
       }
       break
     }
