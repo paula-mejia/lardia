@@ -29,27 +29,25 @@ export default async function EmployeeVacationPage({
   if (!employee) notFound()
 
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center gap-3 mb-6">
-          <Link href={`/dashboard/employees/${id}/payroll`}>
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <div>
-            <h1 className="text-xl font-bold">{employee.full_name}</h1>
-            <p className="text-sm text-muted-foreground">Ferias</p>
-          </div>
+    <div>
+      <div className="flex items-center gap-3 mb-6">
+        <Link href={`/dashboard/employees/${id}/payroll`}>
+          <Button variant="ghost" size="icon">
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        </Link>
+        <div>
+          <h1 className="text-xl font-bold">{employee.full_name}</h1>
+          <p className="text-sm text-muted-foreground">Ferias</p>
         </div>
-
-        <VacationPageClient
-          initialSalary={employee.salary}
-          employeeId={employee.id}
-          employeeName={employee.full_name}
-          admissionDate={employee.admission_date}
-        />
       </div>
-    </main>
+
+      <VacationPageClient
+        initialSalary={employee.salary}
+        employeeId={employee.id}
+        employeeName={employee.full_name}
+        admissionDate={employee.admission_date}
+      />
+    </div>
   )
 }

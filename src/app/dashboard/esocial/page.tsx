@@ -26,7 +26,7 @@ export default async function ESocialPage() {
     : null
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         <div className="flex items-center gap-3 mb-6">
           <Link href="/dashboard">
@@ -103,6 +103,6 @@ export default async function ESocialPage() {
           </Card>
         )}
       </div>
-    </main>
+    </>
   )
 }

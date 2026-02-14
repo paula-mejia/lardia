@@ -74,7 +74,7 @@ export default function ContractsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -148,6 +148,6 @@ export default function ContractsPage() {
           </div>
         )}
       </div>
-    </main>
+    </>
   )
 }

@@ -85,7 +85,7 @@ export default async function ESocialStatusPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -184,6 +184,6 @@ export default async function ESocialStatusPage() {
           </CardContent>
         </Card>
       </div>
-    </main>
+    </>
   )
 }

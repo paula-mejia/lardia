@@ -31,28 +31,26 @@ export default async function EmployeePayrollPage({
   const employer = employee.employers as unknown as { user_id: string; full_name: string }
 
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center gap-3 mb-6">
-          <Link href="/dashboard">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <div>
-            <h1 className="text-xl font-bold">{employee.full_name}</h1>
-            <p className="text-sm text-muted-foreground">{employee.role}</p>
-          </div>
+    <div>
+      <div className="flex items-center gap-3 mb-6">
+        <Link href="/dashboard">
+          <Button variant="ghost" size="icon">
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        </Link>
+        <div>
+          <h1 className="text-xl font-bold">{employee.full_name}</h1>
+          <p className="text-sm text-muted-foreground">{employee.role}</p>
         </div>
-
-        <PayrollPageClient
-          initialSalary={employee.salary}
-          employeeId={employee.id}
-          employeeName={employee.full_name}
-          employeeCpf={employee.cpf}
-          employerName={employer.full_name}
-        />
       </div>
-    </main>
+
+      <PayrollPageClient
+        initialSalary={employee.salary}
+        employeeId={employee.id}
+        employeeName={employee.full_name}
+        employeeCpf={employee.cpf}
+        employerName={employer.full_name}
+      />
+    </div>
   )
 }

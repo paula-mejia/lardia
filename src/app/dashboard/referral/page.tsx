@@ -94,11 +94,11 @@ export default function ReferralPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-background">
+      <>
         <div className="container mx-auto px-4 py-6 max-w-2xl">
           <p className="text-muted-foreground">Carregando...</p>
         </div>
-      </main>
+      </>
     )
   }
 
@@ -106,7 +106,7 @@ export default function ReferralPage() {
   const whatsappUrl = referralCode ? getWhatsAppShareUrl(referralCode) : ''
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -230,6 +230,6 @@ export default function ReferralPage() {
           </CardContent>
         </Card>
       </div>
-    </main>
+    </>
   )
 }

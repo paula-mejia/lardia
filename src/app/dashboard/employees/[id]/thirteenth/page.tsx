@@ -29,27 +29,25 @@ export default async function EmployeeThirteenthPage({
   if (!employee) notFound()
 
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center gap-3 mb-6">
-          <Link href={`/dashboard/employees/${id}/payroll`}>
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-          </Link>
-          <div>
-            <h1 className="text-xl font-bold">{employee.full_name}</h1>
-            <p className="text-sm text-muted-foreground">13º Salário</p>
-          </div>
+    <div>
+      <div className="flex items-center gap-3 mb-6">
+        <Link href={`/dashboard/employees/${id}/payroll`}>
+          <Button variant="ghost" size="icon">
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        </Link>
+        <div>
+          <h1 className="text-xl font-bold">{employee.full_name}</h1>
+          <p className="text-sm text-muted-foreground">13o Salario</p>
         </div>
-
-        <ThirteenthPageClient
-          initialSalary={employee.salary}
-          employeeId={employee.id}
-          employeeName={employee.full_name}
-          admissionDate={employee.admission_date}
-        />
       </div>
-    </main>
+
+      <ThirteenthPageClient
+        initialSalary={employee.salary}
+        employeeId={employee.id}
+        employeeName={employee.full_name}
+        admissionDate={employee.admission_date}
+      />
+    </div>
   )
 }

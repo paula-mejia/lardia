@@ -15,12 +15,9 @@ import {
   Search,
   UserCheck,
   Scale,
-  CreditCard,
   ClipboardList,
   Zap,
-  Users,
   Star,
-  MessageCircle,
 } from 'lucide-react'
 import Link from 'next/link'
 import PayrollCalculator from '@/components/payroll-calculator'

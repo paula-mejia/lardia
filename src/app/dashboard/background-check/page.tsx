@@ -92,7 +92,7 @@ export default function BackgroundCheckPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <div className="container mx-auto px-4 py-6 max-w-lg">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -262,6 +262,6 @@ export default function BackgroundCheckPage() {
           </Card>
         )}
       </div>
-    </main>
+    </>
   )
 }

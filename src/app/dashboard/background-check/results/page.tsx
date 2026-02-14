@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   ArrowLeft,
   Shield,
@@ -69,9 +69,9 @@ function formatCpfDisplay(cpf: string) {
 export default function BackgroundCheckResultsPage() {
   return (
     <Suspense fallback={
-      <main className="min-h-screen bg-background flex items-center justify-center">
+      <div>
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </main>
+      </div>
     }>
       <BackgroundCheckResultsContent />
     </Suspense>
@@ -110,15 +110,15 @@ function BackgroundCheckResultsContent() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-background flex items-center justify-center">
+      <div>
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </main>
+      </div>
     )
   }
 
   if (error || !check) {
     return (
-      <main className="min-h-screen bg-background">
+      <div>
         <div className="container mx-auto px-4 py-6 max-w-lg text-center">
           <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
           <p className="text-lg font-medium">{error || 'Consulta nao encontrada'}</p>
@@ -126,14 +126,14 @@ function BackgroundCheckResultsContent() {
             <Button className="mt-4">Voltar</Button>
           </Link>
         </div>
-      </main>
+      </div>
     )
   }
 
   const r = check.results
 
   return (
-    <main className="min-h-screen bg-background">
+    <div>
       <div className="container mx-auto px-4 py-6 max-w-lg">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -296,6 +296,6 @@ function BackgroundCheckResultsContent() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

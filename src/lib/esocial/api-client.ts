@@ -6,8 +6,7 @@
 import * as https from 'https'
 import * as crypto from 'crypto'
 import { parseStringPromise } from 'xml2js'
-import { CertificateBundle, signXml } from './certificate'
-import { v4 as uuidv4 } from 'uuid'
+import { CertificateBundle } from './certificate'
 
 // eSocial environments
 export const ESOCIAL_ENDPOINTS = {

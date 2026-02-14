@@ -352,7 +352,7 @@ export default function OnboardingPage() {
   const isLast = step === STEPS.length - 1
 
   return (
-    <main className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div>
       <Card className="w-full max-w-lg">
         <CardHeader>
           <CardTitle className="text-xl">Bem-vindo a Lardia!</CardTitle>
@@ -410,6 +410,6 @@ export default function OnboardingPage() {
           </div>
         </CardContent>
       </Card>
-    </main>
+    </div>
   )
 }

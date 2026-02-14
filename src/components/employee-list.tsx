@@ -6,22 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Calculator, Gift, Palmtree, UserMinus } from 'lucide-react'
 import Link from 'next/link'
 
-interface Employee {
-  id: string
-  full_name: string
-  role: string
-  salary: number
-  admission_date: string
-  status: string
-}
-
-function formatBRL(value: number): string {
-  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-}
-
-function formatDate(dateStr: string): string {
-  return new Date(dateStr + 'T12:00').toLocaleDateString('pt-BR')
-}
+import { formatBRL, formatDateBR } from '@/components/calculator/format'
+import type { EmployeeListItem } from '@/types'
 
 function statusLabel(status: string): { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' } {
   switch (status) {
@@ -33,7 +19,7 @@ function statusLabel(status: string): { label: string; variant: 'default' | 'sec
   }
 }
 
-export function EmployeeList({ employees }: { employees: Employee[] }) {
+export function EmployeeList({ employees }: { employees: EmployeeListItem[] }) {
   return (
     <div className="space-y-3">
       {employees.map((emp) => {
@@ -50,7 +36,7 @@ export function EmployeeList({ employees }: { employees: Employee[] }) {
                   {emp.role}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {formatBRL(emp.salary)} · Admissão: {formatDate(emp.admission_date)}
+                  {formatBRL(emp.salary)} · Admissão: {formatDateBR(emp.admission_date)}
                 </p>
               </div>
               <div className="flex gap-2">

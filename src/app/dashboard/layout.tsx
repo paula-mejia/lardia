@@ -1,5 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { TrialBanner } from '@/components/trial-banner'
+import { DashboardNav } from '@/components/dashboard-nav'
+import { LogoutButton } from '@/components/logout-button'
 
 export default async function DashboardLayout({
   children,
@@ -8,12 +10,14 @@ export default async function DashboardLayout({
 }) {
   let showBanner = false
   let daysLeft = 14
+  let userEmail = ''
 
   try {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
     if (user) {
+      userEmail = user.email || ''
       const { data: employer } = await supabase
         .from('employers')
         .select('subscription_status, created_at')
@@ -35,9 +39,20 @@ export default async function DashboardLayout({
   }
 
   return (
-    <>
-      {showBanner && <TrialBanner daysLeft={daysLeft} />}
-      {children}
-    </>
+    <div className="min-h-screen bg-background flex">
+      <DashboardNav />
+      <div className="flex-1 lg:ml-0">
+        {showBanner && <TrialBanner daysLeft={daysLeft} />}
+        {/* Top bar */}
+        <header className="border-b px-4 py-3 flex justify-between items-center lg:px-6">
+          <div className="lg:hidden w-10" /> {/* Spacer for mobile hamburger */}
+          <p className="text-sm text-muted-foreground hidden lg:block">{userEmail}</p>
+          <LogoutButton />
+        </header>
+        <main className="p-4 lg:p-6">
+          {children}
+        </main>
+      </div>
+    </div>
   )
 }

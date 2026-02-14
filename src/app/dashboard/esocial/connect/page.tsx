@@ -14,7 +14,6 @@ import {
   Loader2,
 } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
 const TOTAL_STEPS = 4
@@ -25,7 +24,6 @@ export default function ConnectESocialPage() {
   const [verifying, setVerifying] = useState(false)
   const [verified, setVerified] = useState(false)
   const [error, setError] = useState('')
-  const router = useRouter()
 
   // Format CPF as user types (XXX.XXX.XXX-XX)
   function formatCpf(value: string) {
@@ -75,7 +73,7 @@ export default function ConnectESocialPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -414,6 +412,6 @@ export default function ConnectESocialPage() {
           </Card>
         )}
       </div>
-    </main>
+    </>
   )
 }

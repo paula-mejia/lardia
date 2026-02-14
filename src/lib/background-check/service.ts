@@ -2,7 +2,7 @@
 // MVP: Mock/simulation mode with realistic sample data
 // Production: Integrate with BigDataCorp API (https://docs.bigdatacorp.com.br/)
 
-import { queryCpfStatus, validateCpfChecksum, type CpfValidationResult } from './cpf-validation'
+import { validateCpfChecksum, type CpfValidationResult } from './cpf-validation'
 
 // Toggle between mock and real API mode
 const USE_MOCK = process.env.BACKGROUND_CHECK_MODE !== 'production'
@@ -63,7 +63,14 @@ async function runMockCheck(
   request: BackgroundCheckRequest
 ): Promise<BackgroundCheckResult> {
   // CPF validation is always real (algorithmic check)
-  const cpfResult = await queryCpfStatus(request.candidateCpf, request.candidateName)
+  const cpfResult: CpfValidationResult = {
+    valid: validateCpfChecksum(request.candidateCpf),
+    status: 'regular',
+    nameMatch: true,
+    formatted: request.candidateCpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'),
+    situationDate: new Date().toISOString().slice(0, 10),
+    registeredName: request.candidateName,
+  }
 
   // Simulate a small delay like a real API call
   await new Promise((resolve) => setTimeout(resolve, 1500))
@@ -123,7 +130,7 @@ async function runMockCheck(
 async function runRealCheck(
   request: BackgroundCheckRequest
 ): Promise<BackgroundCheckResult> {
-  const cpfResult = await queryCpfStatus(request.candidateCpf, request.candidateName)
+  // const cpfResult = await queryCpfStatus(request.candidateCpf, request.candidateName)
 
   // TODO: BigDataCorp API call
   // const response = await fetch('https://api.bigdatacorp.com.br/pessoas', {

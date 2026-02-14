@@ -6,7 +6,7 @@
 import {
   S2200Data, S2206Data, S1200Data, S1210Data,
   S2230Data, S2250Data, S2299Data, S2300Data,
-  EsocialEvent, EsocialEventType
+  EsocialEvent
 } from './events'
 import { calculatePayroll, PayrollBreakdown } from '../calc/payroll'
 
