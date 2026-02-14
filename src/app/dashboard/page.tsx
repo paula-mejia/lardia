@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { LogoutButton } from '@/components/logout-button'
 import { EmployeeList } from '@/components/employee-list'
 import { Button } from '@/components/ui/button'
-import { Plus, Calendar, Settings, Shield, FileText } from 'lucide-react'
+import { Plus, Calendar, Settings, Shield, FileText, Gift } from 'lucide-react'
 import Link from 'next/link'
 
 export default async function DashboardPage() {
@@ -73,10 +73,22 @@ export default async function DashboardPage() {
                 Verificacao
               </Button>
             </Link>
+            <Link href="/dashboard/contracts">
+              <Button variant="outline" size="sm">
+                <FileText className="h-4 w-4 mr-1" />
+                Contratos
+              </Button>
+            </Link>
             <Link href="/dashboard/esocial">
               <Button variant="outline" size="sm">
                 <FileText className="h-4 w-4 mr-1" />
                 eSocial
+              </Button>
+            </Link>
+            <Link href="/dashboard/referral">
+              <Button variant="outline" size="sm">
+                <Gift className="h-4 w-4 mr-1" />
+                Indicar
               </Button>
             </Link>
             <Link href="/dashboard/settings">

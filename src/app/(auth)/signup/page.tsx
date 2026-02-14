@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -16,6 +17,20 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
+  const searchParams = useSearchParams()
+  const [refCode, setRefCode] = useState<string | null>(null)
+
+  useEffect(() => {
+    const ref = searchParams.get('ref')
+    if (ref) {
+      setRefCode(ref)
+      // Store in localStorage so we can track after email confirmation
+      localStorage.setItem('lardia_ref', ref)
+    } else {
+      const stored = localStorage.getItem('lardia_ref')
+      if (stored) setRefCode(stored)
+    }
+  }, [searchParams])
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault()
@@ -35,10 +50,14 @@ export default function SignupPage() {
     }
 
     const supabase = createClient()
-    const { error } = await supabase.auth.signUp({
+    const signUpOptions: { email: string; password: string; options?: { data: { referral_code: string } } } = {
       email,
       password,
-    })
+    }
+    if (refCode) {
+      signUpOptions.options = { data: { referral_code: refCode } }
+    }
+    const { error } = await supabase.auth.signUp(signUpOptions)
 
     if (error) {
       setError('Erro ao criar conta. Tente novamente.')

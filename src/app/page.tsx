@@ -24,6 +24,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import PayrollCalculator from '@/components/payroll-calculator'
+import { ReferralBanner, ReferralSection } from '@/components/referral-banner'
 
 export default function Home() {
   return (
