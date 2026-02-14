@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,6 +12,7 @@ import { createClient } from '@/lib/supabase/client'
 import { ChevronDown, ChevronUp, Save, Check, FileDown } from 'lucide-react'
 import { generatePayslipPDF } from '@/lib/pdf/payslip'
 import { formatBRL, InfoTip, ResultRow } from '@/components/calculator'
+import { trackCalculatorUsed, trackPdfDownloaded } from '@/lib/analytics'
 
 interface PayrollCalculatorProps {
   initialSalary?: number
@@ -51,6 +52,14 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
       dsrAbsenceDays: parseFloat(dsrDays) || 0,
     })
   }, [salary, dependents, overtimeHours, absenceDays, dsrDays])
+
+  const trackedSalary = useRef<string | null>(null)
+  useEffect(() => {
+    if (result && salary && salary !== trackedSalary.current) {
+      trackedSalary.current = salary
+      trackCalculatorUsed('payroll')
+    }
+  }, [result, salary])
 
   async function handleSave() {
     if (!result || !employeeId) return
@@ -434,6 +443,7 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
                       variant="outline"
                       className="w-full"
                       onClick={() => {
+                        trackPdfDownloaded('payslip')
                         generatePayslipPDF({
                           employerName,
                           employeeName,

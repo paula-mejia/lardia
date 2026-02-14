@@ -19,14 +19,16 @@ export default async function EmployeeTerminationPage({
   const { data: employee } = await supabase
     .from('employees')
     .select(`
-      id, full_name, salary, role, admission_date,
+      id, full_name, cpf, salary, role, admission_date,
       employer_id,
-      employers!inner(user_id)
+      employers!inner(user_id, full_name, cpf)
     `)
     .eq('id', id)
     .single()
 
   if (!employee) notFound()
+
+  const employer = employee.employers as unknown as { full_name: string; cpf: string }
 
   return (
     <div>
@@ -46,7 +48,11 @@ export default async function EmployeeTerminationPage({
         initialSalary={employee.salary}
         employeeId={employee.id}
         employeeName={employee.full_name}
+        employeeCpf={employee.cpf || ''}
+        employeeRole={employee.role || ''}
         admissionDate={employee.admission_date}
+        employerName={employer.full_name || ''}
+        employerCpf={employer.cpf || ''}
       />
     </div>
   )

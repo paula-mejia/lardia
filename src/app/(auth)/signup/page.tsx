@@ -9,6 +9,7 @@ import { PasswordInput } from '@/components/ui/password-input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { trackSignupStarted, trackSignupCompleted } from '@/lib/analytics'
 
 export default function SignupPage() {
   return (
@@ -42,6 +43,7 @@ function SignupForm() {
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault()
+    trackSignupStarted()
     setLoading(true)
     setError(null)
 
@@ -73,6 +75,7 @@ function SignupForm() {
       return
     }
 
+    trackSignupCompleted()
     setSuccess(true)
     setLoading(false)
   }

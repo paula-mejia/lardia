@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ArrowLeft, Shield, Loader2, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
+import { trackBackgroundCheckStarted } from '@/lib/analytics'
 
 type Step = 'info' | 'consent' | 'processing'
 
@@ -60,6 +61,7 @@ export default function BackgroundCheckPage() {
       return
     }
 
+    trackBackgroundCheckStarted()
     setError(null)
     setLoading(true)
     setStep('processing')

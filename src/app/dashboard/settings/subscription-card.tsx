@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { trackSubscriptionCheckoutStarted } from '@/lib/analytics'
 
 const statusLabels: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
   active: { label: 'Ativo', variant: 'default' },
@@ -25,6 +26,7 @@ export function SubscriptionCard({
   const status = statusLabels[subscriptionStatus] || statusLabels.none
 
   async function handleCheckout() {
+    trackSubscriptionCheckoutStarted()
     setLoading(true)
     try {
       const res = await fetch('/api/stripe/checkout', { method: 'POST' })

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, Plus, Download, FileText } from 'lucide-react'
 import Link from 'next/link'
 import { generateEmploymentContractPDF } from '@/lib/pdf/employment-contract'
+import { trackPdfDownloaded } from '@/lib/analytics'
 import type { ContractData } from '@/lib/pdf/employment-contract'
 
 interface Contract {
@@ -66,6 +67,7 @@ export default function ContractsPage() {
   }
 
   function handleDownload(contract: Contract) {
+    trackPdfDownloaded('employment_contract')
     generateEmploymentContractPDF(contract.contract_data)
   }
 

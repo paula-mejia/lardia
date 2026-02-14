@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import GoogleAnalytics from "@/components/analytics/google-analytics";
+import MetaPixel from "@/components/analytics/meta-pixel";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,6 +35,8 @@ export default function RootLayout({
         <TooltipProvider>
           {children}
         </TooltipProvider>
+        <GoogleAnalytics />
+        <MetaPixel />
         <Analytics />
         <SpeedInsights />
       </body>

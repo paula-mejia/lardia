@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { calculateThirteenth, type ThirteenthBreakdown } from '@/lib/calc'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { formatBRL, InfoTip, ResultRow } from '@/components/calculator'
+import { trackCalculatorUsed } from '@/lib/analytics'
 
 interface Props {
   initialSalary?: number
@@ -30,6 +31,14 @@ export default function ThirteenthCalculator({ initialSalary }: Props = {}) {
       dependents: parseInt(dependents) || 0,
     })
   }, [salary, monthsWorked, dependents])
+
+  const trackedSalary = useRef<string | null>(null)
+  useEffect(() => {
+    if (result && salary && salary !== trackedSalary.current) {
+      trackedSalary.current = salary
+      trackCalculatorUsed('thirteenth_salary')
+    }
+  }, [result, salary])
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">

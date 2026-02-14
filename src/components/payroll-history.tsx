@@ -8,6 +8,7 @@ import { Separator } from '@/components/ui/separator'
 import { createClient } from '@/lib/supabase/client'
 import { History, ChevronDown, ChevronUp, Loader2, FileDown } from 'lucide-react'
 import { generatePayslipPDF } from '@/lib/pdf/payslip'
+import { trackPdfDownloaded } from '@/lib/analytics'
 import { calculatePayroll } from '@/lib/calc'
 
 function formatBRL(value: number): string {
@@ -215,6 +216,7 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
                           absenceDays: record.absence_days,
                           dsrAbsenceDays: record.dsr_absence_days,
                         })
+                        trackPdfDownloaded('payslip')
                         generatePayslipPDF({
                           employerName,
                           employeeName,

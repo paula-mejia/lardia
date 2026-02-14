@@ -12,18 +12,24 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { calculateTermination } from '@/lib/calc'
 import type { TerminationBreakdown, TerminationType } from '@/lib/calc'
 import { createClient } from '@/lib/supabase/client'
-import { Save, Check } from 'lucide-react'
+import { Save, Check, FileText } from 'lucide-react'
 import { formatBRL, InfoTip, ResultRow } from '@/components/calculator'
+import { generateTerminationReportPDF } from '@/lib/pdf/termination-report'
 
 interface Props {
   initialSalary: number
   employeeId: string
   employeeName: string
+  employeeCpf: string
+  employeeRole: string
   admissionDate: string
+  employerName: string
+  employerCpf: string
 }
 
 export default function TerminationPageClient({
-  initialSalary, employeeId, employeeName, admissionDate,
+  initialSalary, employeeId, employeeName, employeeCpf, employeeRole,
+  admissionDate, employerName, employerCpf,
 }: Props) {
   const today = new Date().toISOString().split('T')[0]
 
@@ -104,6 +110,21 @@ export default function TerminationPageClient({
     }
     setSaving(false)
   }, [result, employeeId, terminationDate, salary, dependents])
+
+  const handleGenerateTRCT = useCallback(() => {
+    if (!result) return
+    generateTerminationReportPDF({
+      employerName,
+      employerCpf,
+      employeeName,
+      employeeCpf,
+      employeeRole,
+      admissionDate,
+      terminationDate,
+      salary: parseFloat(salary) || 0,
+      breakdown: result,
+    })
+  }, [result, employerName, employerCpf, employeeName, employeeCpf, employeeRole, admissionDate, terminationDate, salary])
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
@@ -422,19 +443,27 @@ export default function TerminationPageClient({
               {/* Save */}
               <div className="pt-4">
                 {saveError && <p className="text-sm text-red-500 mb-2">{saveError}</p>}
-                <Button
-                  onClick={handleSave}
-                  disabled={saving || saved}
-                  className="w-full"
-                >
-                  {saved ? (
-                    <><Check className="h-4 w-4 mr-2" /> Salvo com sucesso</>
-                  ) : saving ? (
-                    'Salvando...'
-                  ) : (
-                    <><Save className="h-4 w-4 mr-2" /> Salvar rescisao</>
-                  )}
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={handleSave}
+                    disabled={saving || saved}
+                    className="flex-1"
+                  >
+                    {saved ? (
+                      <><Check className="h-4 w-4 mr-2" /> Salvo com sucesso</>
+                    ) : saving ? (
+                      'Salvando...'
+                    ) : (
+                      <><Save className="h-4 w-4 mr-2" /> Salvar rescisao</>
+                    )}
+                  </Button>
+                  <Button
+                    onClick={handleGenerateTRCT}
+                    variant="outline"
+                  >
+                    <FileText className="h-4 w-4 mr-2" /> Gerar TRCT
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>

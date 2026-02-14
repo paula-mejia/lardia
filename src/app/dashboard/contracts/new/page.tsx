@@ -13,6 +13,7 @@ import { ArrowLeft, FileText } from 'lucide-react'
 import Link from 'next/link'
 import { generateEmploymentContractPDF } from '@/lib/pdf/employment-contract'
 import type { ContractData } from '@/lib/pdf/employment-contract'
+import { trackContractGenerated, trackPdfDownloaded } from '@/lib/analytics'
 
 const JOB_FUNCTIONS = [
   'Empregado(a) domestico(a)',
@@ -165,6 +166,8 @@ export default function NewContractPage() {
       }
 
       // Generate and download PDF
+      trackContractGenerated()
+      trackPdfDownloaded('employment_contract')
       generateEmploymentContractPDF(contractData)
 
       router.push('/dashboard/contracts')

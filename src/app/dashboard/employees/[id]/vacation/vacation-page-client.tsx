@@ -9,18 +9,24 @@ import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { calculateVacation, type VacationBreakdown } from '@/lib/calc/vacation'
 import { createClient } from '@/lib/supabase/client'
-import { ChevronDown, ChevronUp, Save, Check, AlertCircle } from 'lucide-react'
+import { ChevronDown, ChevronUp, Save, Check, AlertCircle, FileText } from 'lucide-react'
 import { formatBRL, formatDateBR, InfoTip, ResultRow } from '@/components/calculator'
+import { generateVacationReceiptPDF } from '@/lib/pdf/vacation-receipt'
 
 interface Props {
   initialSalary: number
   employeeId: string
   employeeName: string
+  employeeCpf: string
+  employeeRole: string
   admissionDate: string
+  employerName: string
+  employerCpf: string
 }
 
 export default function VacationPageClient({
-  initialSalary, employeeId, employeeName, admissionDate,
+  initialSalary, employeeId, employeeName, employeeCpf, employeeRole,
+  admissionDate, employerName, employerCpf,
 }: Props) {
   const [salary, setSalary] = useState<string>(String(initialSalary))
   const [absences, setAbsences] = useState<string>('0')
@@ -93,6 +99,41 @@ export default function VacationPageClient({
     }
     setSaving(false)
   }, [result, employeeId, absences, dependents])
+
+  const handleGenerateReceipt = useCallback(() => {
+    if (!result || !vacationStartDate) return
+
+    // Calculate acquisition period (1 year before vacation)
+    const admDate = new Date(admissionDate + 'T12:00')
+    const vacStart = new Date(vacationStartDate + 'T12:00')
+
+    // Acquisition period ends 12 months after admission (simplified)
+    const acqStart = new Date(admDate)
+    const acqEnd = new Date(admDate)
+    acqEnd.setFullYear(acqEnd.getFullYear() + 1)
+    acqEnd.setDate(acqEnd.getDate() - 1)
+
+    // Vacation end date
+    const vacEnd = new Date(vacStart)
+    vacEnd.setDate(vacEnd.getDate() + result.daysEnjoyed - 1)
+
+    const toISO = (d: Date) => d.toISOString().split('T')[0]
+
+    generateVacationReceiptPDF({
+      employerName,
+      employerCpf,
+      employeeName,
+      employeeCpf,
+      employeeRole,
+      admissionDate,
+      salary: parseFloat(salary) || 0,
+      vacationStartDate,
+      vacationEndDate: toISO(vacEnd),
+      acquisitionPeriodStart: toISO(acqStart),
+      acquisitionPeriodEnd: toISO(acqEnd),
+      breakdown: result,
+    })
+  }, [result, vacationStartDate, admissionDate, salary, employerName, employerCpf, employeeName, employeeCpf, employeeRole])
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
@@ -314,19 +355,29 @@ export default function VacationPageClient({
               {/* Save button */}
               <div className="pt-4">
                 {saveError && <p className="text-sm text-red-500 mb-2">{saveError}</p>}
-                <Button
-                  onClick={handleSave}
-                  disabled={saving || saved}
-                  className="w-full"
-                >
-                  {saved ? (
-                    <><Check className="h-4 w-4 mr-2" /> Salvo com sucesso</>
-                  ) : saving ? (
-                    'Salvando...'
-                  ) : (
-                    <><Save className="h-4 w-4 mr-2" /> Salvar ferias</>
-                  )}
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={handleSave}
+                    disabled={saving || saved}
+                    className="flex-1"
+                  >
+                    {saved ? (
+                      <><Check className="h-4 w-4 mr-2" /> Salvo com sucesso</>
+                    ) : saving ? (
+                      'Salvando...'
+                    ) : (
+                      <><Save className="h-4 w-4 mr-2" /> Salvar ferias</>
+                    )}
+                  </Button>
+                  <Button
+                    onClick={handleGenerateReceipt}
+                    variant="outline"
+                    disabled={!vacationStartDate}
+                    title={!vacationStartDate ? 'Preencha a data de inicio das ferias' : ''}
+                  >
+                    <FileText className="h-4 w-4 mr-2" /> Gerar Recibo
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
