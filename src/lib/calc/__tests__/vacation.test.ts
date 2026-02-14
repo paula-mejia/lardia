@@ -74,7 +74,7 @@ describe('calculateVacation', () => {
         taxTable: table,
       })
 
-      const _dailyRate = 100 // 3000/30
+      // dailyRate = 100 (3000/30)
       expect(result.totalVacationDays).toBe(30)
       expect(result.daysEnjoyed).toBe(20)
       expect(result.daysSold).toBe(10)

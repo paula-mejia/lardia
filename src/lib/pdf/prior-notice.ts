@@ -55,12 +55,6 @@ export function generatePriorNoticePDF(data: PriorNoticeData): void {
   const contentWidth = pageWidth - margin * 2
   let y = margin
 
-  function drawLine(yPos: number) {
-    doc.setDrawColor(0)
-    doc.setLineWidth(0.3)
-    doc.line(margin, yPos, pageWidth - margin, yPos)
-  }
-
   function drawThickLine(yPos: number) {
     doc.setDrawColor(0)
     doc.setLineWidth(0.6)

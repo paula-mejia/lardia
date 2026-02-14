@@ -16,7 +16,8 @@ const statusLabels: Record<string, { label: string; variant: 'default' | 'second
 
 export function SubscriptionCard({
   subscriptionStatus,
-  hasCustomer: _hasCustomer,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  hasCustomer,
 }: {
   subscriptionStatus: string
   hasCustomer: boolean
