@@ -15,7 +15,7 @@ const statusLabels: Record<string, { label: string; variant: 'default' | 'second
 
 export function SubscriptionCard({
   subscriptionStatus,
-  hasCustomer,
+  hasCustomer: _hasCustomer,
 }: {
   subscriptionStatus: string
   hasCustomer: boolean

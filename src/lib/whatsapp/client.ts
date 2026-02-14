@@ -20,7 +20,7 @@ export function validateBrazilianPhone(phone: string): string | null {
   // Strip everything except digits and leading +
   const cleaned = phone.replace(/[^\d+]/g, '')
 
-  let digits = cleaned.startsWith('+') ? cleaned.slice(1) : cleaned
+  const digits = cleaned.startsWith('+') ? cleaned.slice(1) : cleaned
 
   // If starts with 55 and has 12-13 digits total, it's already with country code
   if (digits.startsWith('55') && (digits.length === 12 || digits.length === 13)) {

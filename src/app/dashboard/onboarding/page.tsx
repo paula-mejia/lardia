@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
-  User, MapPin, Users, Bell, Rocket,
+  User, Users, Bell, Rocket,
   ArrowRight, ArrowLeft, Check, Loader2
 } from 'lucide-react'
 

@@ -9,7 +9,7 @@ export function markdownToHtml(md: string): string {
   let inBlockquote = false
 
   for (let i = 0; i < lines.length; i++) {
-    let line = lines[i]
+    const line = lines[i]
 
     // Blank line
     if (line.trim() === '') {
