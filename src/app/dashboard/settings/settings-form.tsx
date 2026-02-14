@@ -138,7 +138,7 @@ export function SettingsForm({
 
       {/* Email notification toggle */}
       <Card className="p-4">
-        <h2 className="font-semibold mb-4">Notificacoes por email</h2>
+        <h2 className="font-semibold mb-4">Notificações por email</h2>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -190,7 +190,7 @@ export function SettingsForm({
 
       {/* WhatsApp notification toggle */}
       <Card className="p-4">
-        <h2 className="font-semibold mb-4">Notificacoes por WhatsApp</h2>
+        <h2 className="font-semibold mb-4">Notificações por WhatsApp</h2>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

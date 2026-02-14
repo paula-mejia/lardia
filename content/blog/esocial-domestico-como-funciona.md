@@ -43,7 +43,7 @@ Todo mês, o empregador doméstico deve:
 2. **Gerar é pagar a DAE** até o dia 7 (ou dia útil anterior)
 3. **Informar horas extras, faltas e adicional noturno**
 
-## Obrigacoes anuais
+## Obrigações anuais
 
 - **13o salário:** primeira parcela até 30/11, segunda até 20/12
 - **Férias:** conceder e registrar no eSocial antes do início

@@ -68,7 +68,7 @@ Clique em "Registrar Empregado" e preencha:
 
 Revise todos os dados com atenção. Após confirmar, o empregado estará registrado no eSocial. O sistema gera automaticamente a qualificacao cadastral — se houver divergencias com os dados da Receita Federal ou INSS, o cadastro será rejeitado até a correcao.
 
-## Obrigacoes mensais no eSocial
+## Obrigações mensais no eSocial
 
 Após o cadastro inicial, você tem obrigações recorrentes que devem ser cumpridas todo mês.
 
@@ -103,7 +103,7 @@ Além da folha mensal, você deve registrar no eSocial sempre que ocorrer:
 - **Alteracoes contratuais:** mudanca de jornada, função
 - **Desligamento:** quando houver demissão ou pedido de demissão
 
-## Calendario anual do empregador doméstico
+## Calendário anual do empregador doméstico
 
 | Mes | Obrigacao | Prazo |
 |-----|-----------|-------|

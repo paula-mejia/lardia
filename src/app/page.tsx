@@ -253,7 +253,7 @@ export default function Home() {
               },
               {
                 icon: Calendar,
-                title: 'Calendario de obrigações',
+                title: 'Calendário de obrigações',
                 desc: 'Veja todas as datas importantes do mês: vencimento da DAE, aviso de férias, parcelas do 13o. Nunca mais perca um prazo.',
               },
               {
@@ -442,10 +442,10 @@ export default function Home() {
                   {[
                     'Tudo do plano Gratis',
                     'Dashboard de empregados',
-                    'Calendario de obrigações',
+                    'Calendário de obrigações',
                     'Contracheque em PDF',
                     'Alertas por e-mail',
-                    'Historico de cálculos',
+                    'Histórico de cálculos',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
@@ -485,7 +485,7 @@ export default function Home() {
                     'Gestão eSocial automatizada',
                     'Geracao de DAE',
                     'Fechamento mensal automático',
-                    'Notificacoes por WhatsApp',
+                    'Notificações por WhatsApp',
                     'Suporte prioritario',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">

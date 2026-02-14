@@ -48,13 +48,13 @@ const navGroups: NavGroup[] = [
       { label: 'Status', href: '/dashboard/esocial', icon: <FileCheck className="h-4 w-4" /> },
       { label: 'Processar', href: '/dashboard/esocial/process', icon: <Cpu className="h-4 w-4" /> },
       { label: 'DAE', href: '/dashboard/esocial/dae', icon: <Receipt className="h-4 w-4" /> },
-      { label: 'Calendario', href: '/dashboard/calendar', icon: <Calendar className="h-4 w-4" /> },
+      { label: 'Calendário', href: '/dashboard/calendar', icon: <Calendar className="h-4 w-4" /> },
     ],
   },
   {
     label: 'Conta',
     items: [
-      { label: 'Configuracoes', href: '/dashboard/settings', icon: <Settings className="h-4 w-4" /> },
+      { label: 'Configurações', href: '/dashboard/settings', icon: <Settings className="h-4 w-4" /> },
       { label: 'Indicar', href: '/dashboard/referral', icon: <Heart className="h-4 w-4" /> },
     ],
   },

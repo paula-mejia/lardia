@@ -41,7 +41,7 @@ export default function TermosPage() {
               <li>Calculadora de folha de pagamento (salário, férias, 13o, rescisão)</li>
               <li>Geracao automatizada de guias DAE</li>
               <li>Integração com o eSocial via procuração eletrônica</li>
-              <li>Calendario de obrigações e lembretes</li>
+              <li>Calendário de obrigações e lembretes</li>
               <li>Verificação de antecedentes (via parceiros)</li>
             </ul>
           </section>

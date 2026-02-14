@@ -189,7 +189,7 @@ export default function PrivacidadePage() {
                 reativacao
               </li>
               <li>
-                <strong>Obrigacoes legais:</strong> dados trabalhistas são
+                <strong>Obrigações legais:</strong> dados trabalhistas são
                 mantidos por 5 anos conforme legislação vigente
               </li>
               <li>

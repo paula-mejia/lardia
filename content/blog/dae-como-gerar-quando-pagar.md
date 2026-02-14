@@ -66,9 +66,9 @@ O atraso na DAE gera:
 
 ## Nunca mais perca o prazo da DAE
 
-Com a Lardia, você recebe lembretes automaticos antes do vencimento da DAE. Nosso calendario de prazos garante que você nunca pague multa por esquecimento.
+Com a Lardia, você recebe lembretes automaticos antes do vencimento da DAE. Nosso calendário de prazos garante que você nunca pague multa por esquecimento.
 
-[Ver calendario de prazos →](/signup)
+[Ver calendário de prazos →](/signup)
 
 ---
 

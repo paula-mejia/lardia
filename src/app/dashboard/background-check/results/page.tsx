@@ -292,7 +292,7 @@ function BackgroundCheckResultsContent() {
             <Button variant="outline" className="w-full">Nova Consulta</Button>
           </Link>
           <Link href="/dashboard/background-check/history" className="flex-1">
-            <Button variant="outline" className="w-full">Historico</Button>
+            <Button variant="outline" className="w-full">Histórico</Button>
           </Link>
         </div>
       </div>

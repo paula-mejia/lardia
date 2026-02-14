@@ -9,7 +9,7 @@ const ACTION_LABELS: Record<string, string> = {
   employee_updated: 'Empregado atualizado',
   payroll_calculated: 'Folha calculada',
   payroll_saved: 'Folha salva',
-  background_check_requested: 'Verificacao solicitada',
+  background_check_requested: 'Verificação solicitada',
   contract_generated: 'Contrato gerado',
   subscription_created: 'Assinatura criada',
   subscription_canceled: 'Assinatura cancelada',

@@ -51,7 +51,7 @@ interface NotificationPrefs {
 const STEPS = [
   { label: 'Dados do empregador', icon: User },
   { label: 'Primeira empregada', icon: Users },
-  { label: 'Notificacoes', icon: Bell },
+  { label: 'Notificações', icon: Bell },
   { label: 'Conheca a Lardia', icon: Rocket },
 ]
 
@@ -220,7 +220,7 @@ function StepTour() {
     { icon: '📊', title: 'Folha de pagamento', desc: 'Calcule salarios com todos os descontos automaticamente.' },
     { icon: '🏖️', title: 'Férias', desc: 'Controle períodos de férias e calcule valores com precisão.' },
     { icon: '🎄', title: '13o salário', desc: 'Cálculo automático das parcelas do décimo terceiro.' },
-    { icon: '📅', title: 'Calendario', desc: 'Acompanhe prazos e datas importantes do eSocial.' },
+    { icon: '📅', title: 'Calendário', desc: 'Acompanhe prazos e datas importantes do eSocial.' },
     { icon: '📄', title: 'Rescisão', desc: 'Simulação completa de rescisão contratual.' },
   ]
 

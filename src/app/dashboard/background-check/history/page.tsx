@@ -64,7 +64,7 @@ export default function BackgroundCheckHistoryPage() {
             </Link>
             <div className="flex items-center gap-2">
               <Shield className="h-6 w-6 text-primary" />
-              <h1 className="text-xl font-bold">Historico de Verificacoes</h1>
+              <h1 className="text-xl font-bold">Histórico de Verificações</h1>
             </div>
           </div>
           <Link href="/dashboard/background-check">

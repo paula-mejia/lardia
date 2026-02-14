@@ -119,7 +119,7 @@ export default function DaeHistoryPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold">Historico de DAEs</h1>
+          <h1 className="text-2xl font-bold">Histórico de DAEs</h1>
           <p className="text-muted-foreground">Todas as guias de recolhimento geradas</p>
         </div>
         <Badge variant="secondary" className="ml-auto bg-amber-100 text-amber-800 border-amber-300">

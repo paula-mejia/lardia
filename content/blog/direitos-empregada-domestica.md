@@ -205,7 +205,7 @@ Dependendo do tipo de rescisão, o empregado pode ter direito a:
 | FGTS 3,2% | Empregado | Empregador | 50%/50% |
 | Seguro-desemprego | Sim | Não | Não |
 
-## Obrigacoes do empregado doméstico
+## Obrigações do empregado doméstico
 
 Assim como tem direitos, o empregado também tem deveres:
 - Cumprir a jornada de trabalho acordada

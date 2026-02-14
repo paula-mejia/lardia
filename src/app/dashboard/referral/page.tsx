@@ -214,7 +214,7 @@ export default function ReferralPage() {
                   <div key={ref.id} className="flex items-center justify-between border-b pb-3 last:border-0">
                     <div>
                       <p className="text-sm font-medium">
-                        Indicacao #{ref.id.slice(0, 8)}
+                        Indicação #{ref.id.slice(0, 8)}
                       </p>
                       <p className="text-xs text-muted-foreground">
                         {new Date(ref.created_at).toLocaleDateString('pt-BR')}

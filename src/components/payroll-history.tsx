@@ -167,7 +167,7 @@ export default function PayrollHistory({ employeeId, employeeName, employeeCpf, 
       <CardHeader className="pb-3">
         <CardTitle className="text-lg flex items-center gap-2">
           <History className="h-5 w-5" />
-          Historico de cálculos
+          Histórico de cálculos
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-2">

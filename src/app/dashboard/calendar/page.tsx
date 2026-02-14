@@ -129,7 +129,7 @@ export default function CalendarPage() {
               <ArrowLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight">Calendario de Obrigacoes</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Calendário de Obrigações</h1>
         </div>
 
         {/* Month navigation */}
