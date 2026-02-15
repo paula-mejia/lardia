@@ -14,7 +14,7 @@
 
 **Uso del nombre:**
 - Logo/marca visual: **LarDia** (camelCase, D mayúscula)
-- Texto corrido: **Lardia**
+- Texto corrido: **LarDia**
 - URL: lardia.com.br
 - Dominio de email: @lardia.com.br
 

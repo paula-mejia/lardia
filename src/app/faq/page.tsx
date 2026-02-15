@@ -6,7 +6,7 @@ import { FaqAccordion } from "./faq-accordion";
 import NewsletterSignup from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
-  title: "Perguntas Frequentes | Lardia - eSocial Doméstico",
+  title: "Perguntas Frequentes | LarDia - eSocial Doméstico",
   description:
     "Tire todas as suas dúvidas sobre eSocial doméstico, DAE, FGTS, INSS, férias, 13º salário e rescisão. Guia completo para empregadores domésticos no Brasil.",
   keywords: [
@@ -55,7 +55,7 @@ const faqCategories = [
       {
         question: "Preciso de contador para o eSocial doméstico?",
         answer:
-          "Não é obrigatório ter um contador para o eSocial doméstico, mas muitos empregadores preferem ter ajuda profissional para evitar erros. O sistema foi desenhado para ser acessível a pessoas físicas, porém os cálculos de encargos, férias e rescisão podem ser complexos. A Lardia foi criada justamente para resolver isso: você tem a precisão de um contador com a simplicidade de um aplicativo.",
+          "Não é obrigatório ter um contador para o eSocial doméstico, mas muitos empregadores preferem ter ajuda profissional para evitar erros. O sistema foi desenhado para ser acessível a pessoas físicas, porém os cálculos de encargos, férias e rescisão podem ser complexos. A LarDia foi criada justamente para resolver isso: você tem a precisão de um contador com a simplicidade de um aplicativo.",
       },
       {
         question: "O que mudou no eSocial em 2026?",
@@ -90,7 +90,7 @@ const faqCategories = [
       {
         question: "Como gero a DAE?",
         answer:
-          "Para gerar a DAE, acesse o portal do eSocial (esocial.gov.br), vá em 'Empregado Doméstico' e clique em 'Folha/Recebimentos e Pagamentos'. Após conferir os valores da folha de pagamento do mês, feche a folha e clique em 'Emitir DAE'. O sistema gerará um boleto com código de barras. Com a Lardia, esse processo é automatizado: a folha é calculada e a DAE fica pronta para pagamento com um clique.",
+          "Para gerar a DAE, acesse o portal do eSocial (esocial.gov.br), vá em 'Empregado Doméstico' e clique em 'Folha/Recebimentos e Pagamentos'. Após conferir os valores da folha de pagamento do mês, feche a folha e clique em 'Emitir DAE'. O sistema gerará um boleto com código de barras. Com a LarDia, esse processo é automatizado: a folha é calculada e a DAE fica pronta para pagamento com um clique.",
       },
       {
         question: "O que acontece se atrasar a DAE?",
@@ -175,32 +175,32 @@ const faqCategories = [
     ],
   },
   {
-    title: "Sobre a Lardia",
+    title: "Sobre a LarDia",
     items: [
       {
-        question: "O que é a Lardia?",
+        question: "O que é a LarDia?",
         answer:
-          "A Lardia é uma plataforma que automatiza toda a gestão do eSocial doméstico para empregadores. Com a Lardia, você calcula folha de pagamento, gera a DAE, controla férias, 13º salário e rescisões com precisão total. Nossa missão é eliminar a complexidade burocrática para que você não precise ser especialista em legislação trabalhista para manter tudo em dia.",
+          "A LarDia é uma plataforma que automatiza toda a gestão do eSocial doméstico para empregadores. Com a LarDia, você calcula folha de pagamento, gera a DAE, controla férias, 13º salário e rescisões com precisão total. Nossa missão é eliminar a complexidade burocrática para que você não precise ser especialista em legislação trabalhista para manter tudo em dia.",
       },
       {
-        question: "Quanto custa a Lardia?",
+        question: "Quanto custa a LarDia?",
         answer:
-          "A Lardia oferece planos a partir de R$ 49,90 por mês por empregado. Esse valor inclui cálculo automático da folha, geração da DAE, controle de férias e 13º, alertas de prazos e suporte especializado. Comparado ao custo de um contador (que cobra entre R$ 150 e R$ 300 por mês), a Lardia é significativamente mais acessível e ainda oferece mais praticidade no dia a dia.",
+          "A LarDia oferece planos a partir de R$ 49,90 por mês por empregado. Esse valor inclui cálculo automático da folha, geração da DAE, controle de férias e 13º, alertas de prazos e suporte especializado. Comparado ao custo de um contador (que cobra entre R$ 150 e R$ 300 por mês), a LarDia é significativamente mais acessível e ainda oferece mais praticidade no dia a dia.",
       },
       {
-        question: "A Lardia substitui um contador?",
+        question: "A LarDia substitui um contador?",
         answer:
-          "Para a maioria dos empregadores domésticos, sim. A Lardia faz todos os cálculos trabalhistas e previdenciários com base na legislação vigente (LC 150/2015, CLT e normas da Receita Federal). No entanto, em situações muito específicas, como ações trabalhistas ou planejamento tributário complexo, pode ser recomendável consultar um profissional. A Lardia cuida do operacional para que você só precise de um contador em casos excepcionais.",
+          "Para a maioria dos empregadores domésticos, sim. A LarDia faz todos os cálculos trabalhistas e previdenciários com base na legislação vigente (LC 150/2015, CLT e normas da Receita Federal). No entanto, em situações muito específicas, como ações trabalhistas ou planejamento tributário complexo, pode ser recomendável consultar um profissional. A LarDia cuida do operacional para que você só precise de um contador em casos excepcionais.",
       },
       {
         question: "Como funciona a verificação de antecedentes?",
         answer:
-          "A Lardia oferece um serviço de verificação de antecedentes para ajudar na contratação segura de empregados domésticos. O processo consulta bases públicas de dados, incluindo antecedentes criminais, situação do CPF e pendências judiciais. O resultado é entregue em até 24 horas, de forma confidencial. Tudo é feito em conformidade com a LGPD, com consentimento prévio do candidato.",
+          "A LarDia oferece um serviço de verificação de antecedentes para ajudar na contratação segura de empregados domésticos. O processo consulta bases públicas de dados, incluindo antecedentes criminais, situação do CPF e pendências judiciais. O resultado é entregue em até 24 horas, de forma confidencial. Tudo é feito em conformidade com a LGPD, com consentimento prévio do candidato.",
       },
       {
         question: "Meus dados estão seguros?",
         answer:
-          "Sim. A Lardia utiliza criptografia de ponta a ponta e segue todas as diretrizes da Lei Geral de Proteção de Dados (LGPD). Seus dados pessoais e os de seus empregados são armazenados em servidores seguros com certificação SOC 2. Nunca compartilhamos informações com terceiros sem seu consentimento explícito e você pode solicitar a exclusão dos seus dados a qualquer momento.",
+          "Sim. A LarDia utiliza criptografia de ponta a ponta e segue todas as diretrizes da Lei Geral de Proteção de Dados (LGPD). Seus dados pessoais e os de seus empregados são armazenados em servidores seguros com certificação SOC 2. Nunca compartilhamos informações com terceiros sem seu consentimento explícito e você pode solicitar a exclusão dos seus dados a qualquer momento.",
       },
     ],
   },
@@ -233,7 +233,7 @@ export default function FaqPage() {
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-tight">
-            Lardia
+            LarDia
           </Link>
           <div className="flex items-center gap-3">
             <Link
@@ -292,7 +292,7 @@ export default function FaqPage() {
       <section className="border-t bg-emerald-50 dark:bg-emerald-950/20">
         <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Ainda tem duvidas? A Lardia resolve para você
+            Ainda tem duvidas? A LarDia resolve para você
           </h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             Cadastre-se e deixe a burocracia do eSocial doméstico com a gente.
@@ -309,7 +309,7 @@ export default function FaqPage() {
       <footer className="border-t py-10">
         <div className="container mx-auto px-4">
           <p className="text-center text-xs text-muted-foreground">
-            &copy; 2026 Lardia. Todos os direitos reservados.
+            &copy; 2026 LarDia. Todos os direitos reservados.
           </p>
         </div>
       </footer>

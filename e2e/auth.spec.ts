@@ -1,40 +1,84 @@
 import { test, expect } from '@playwright/test'
 
-test.describe('Authentication', () => {
-  test('login page loads', async ({ page }) => {
-    await page.goto('/login')
-    await expect(page.locator('form')).toBeVisible()
-    await expect(page.locator('input[type="email"], input[name="email"]')).toBeVisible()
-    await expect(page.locator('input[type="password"], input[name="password"]')).toBeVisible()
-  })
-
-  test('signup page loads', async ({ page }) => {
+test.describe('Signup Flow', () => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('/signup')
+  })
+
+  test('signup page loads with email, password and confirm password fields', async ({ page }) => {
     await expect(page.locator('form')).toBeVisible()
-    await expect(page.locator('input[type="email"], input[name="email"]')).toBeVisible()
+    await expect(page.locator('#email')).toBeVisible()
+    await expect(page.locator('#password')).toBeVisible()
+    await expect(page.locator('#confirm-password')).toBeVisible()
+    await expect(page.locator('button[type="submit"]')).toBeVisible()
   })
 
-  test('invalid email shows error on login', async ({ page }) => {
-    await page.goto('/login')
-    const emailInput = page.locator('input[type="email"], input[name="email"]')
-    const passwordInput = page.locator('input[type="password"], input[name="password"]')
-
-    await emailInput.fill('not-an-email')
-    await passwordInput.fill('somepassword123')
+  test('submitting with mismatched passwords shows error', async ({ page }) => {
+    await page.locator('#email').fill('maria.silva@exemplo.com')
+    await page.locator('#password').fill('senhaSegura123')
+    await page.locator('#confirm-password').fill('senhaDiferente456')
     await page.locator('button[type="submit"]').click()
 
-    // Expect an error message to appear
-    await expect(page.locator('text=/erro|inválido|invalid|error/i')).toBeVisible({ timeout: 10_000 })
+    await expect(page.locator('text=/senhas não coincidem/i')).toBeVisible()
   })
 
-  test('empty form shows validation errors on login', async ({ page }) => {
-    await page.goto('/login')
+  test('submitting with short password shows error', async ({ page }) => {
+    await page.locator('#email').fill('joao.santos@exemplo.com')
+    await page.locator('#password').fill('123')
+    await page.locator('#confirm-password').fill('123')
     await page.locator('button[type="submit"]').click()
 
-    // Browser native validation or custom error should prevent empty submission
-    const emailInput = page.locator('input[type="email"], input[name="email"]')
-    // Check that the field is marked invalid or an error message appears
-    const isRequired = await emailInput.getAttribute('required')
-    expect(isRequired !== null || await page.locator('text=/obrigatório|required|erro|error/i').isVisible()).toBeTruthy()
+    await expect(page.locator('text=/pelo menos 6 caracteres/i')).toBeVisible()
+  })
+
+  test('empty form submission is blocked by required fields', async ({ page }) => {
+    await page.locator('button[type="submit"]').click()
+
+    // Email field has required attribute, browser blocks submission
+    const emailInput = page.locator('#email')
+    expect(await emailInput.getAttribute('required')).not.toBeNull()
+  })
+
+  test('link to login page is visible', async ({ page }) => {
+    const loginLink = page.locator('a[href="/login"]')
+    await expect(loginLink).toBeVisible()
+    await expect(loginLink).toContainText('Entrar')
+  })
+})
+
+test.describe('Login Flow', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/login')
+  })
+
+  test('login page loads with email and password fields', async ({ page }) => {
+    await expect(page.locator('form')).toBeVisible()
+    await expect(page.locator('#email')).toBeVisible()
+    await expect(page.locator('#password')).toBeVisible()
+    await expect(page.locator('button[type="submit"]')).toContainText('Entrar')
+  })
+
+  test('submitting with invalid credentials shows error message', async ({ page }) => {
+    await page.locator('#email').fill('usuario.falso@exemplo.com')
+    await page.locator('#password').fill('senhaErrada123')
+    await page.locator('button[type="submit"]').click()
+
+    // App shows "E-mail ou senha incorretos."
+    await expect(page.locator('text=/incorretos|inválido|error|erro/i')).toBeVisible({ timeout: 10_000 })
+  })
+
+  test('empty form submission is blocked by required fields', async ({ page }) => {
+    await page.locator('button[type="submit"]').click()
+
+    const emailInput = page.locator('#email')
+    expect(await emailInput.getAttribute('required')).not.toBeNull()
+    const passwordInput = page.locator('#password')
+    expect(await passwordInput.getAttribute('required')).not.toBeNull()
+  })
+
+  test('link to signup page is visible', async ({ page }) => {
+    const signupLink = page.locator('a[href="/signup"]')
+    await expect(signupLink).toBeVisible()
+    await expect(signupLink).toContainText('Criar conta')
   })
 })

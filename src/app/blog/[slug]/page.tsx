@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, Clock, User } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import NewsletterSignup from '@/components/newsletter-signup'
 
 // Static generation for all blog posts
 export function generateStaticParams() {
@@ -24,7 +25,7 @@ export async function generateMetadata({
   if (!post) return {}
 
   return {
-    title: `${post.title} | Lardia`,
+    title: `${post.title} | LarDia`,
     description: post.description,
     keywords: post.keywords,
     authors: [{ name: post.author }],
@@ -69,7 +70,7 @@ export default async function BlogPost({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Lardia',
+      name: 'LarDia',
       url: 'https://lardia.com.br',
     },
     mainEntityOfPage: {
@@ -85,7 +86,7 @@ export default async function BlogPost({
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-tight">
-            Lardia
+            LarDia
           </Link>
           <div className="flex items-center gap-4">
             <Link href="/blog" className="text-sm font-medium text-emerald-600">
@@ -150,7 +151,7 @@ export default async function BlogPost({
 
         {/* CTA Banner */}
         <div className="my-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-8 text-center">
-          <h3 className="text-xl font-bold mb-2">Simplifique o eSocial com a Lardia</h3>
+          <h3 className="text-xl font-bold mb-2">Simplifique o eSocial com a LarDia</h3>
           <p className="text-muted-foreground mb-4">
             Cálculos automaticos, lembretes de prazos e tudo que você precisa para ficar em dia.
           </p>
@@ -160,6 +161,9 @@ export default async function BlogPost({
             </Button>
           </Link>
         </div>
+
+        {/* Newsletter CTA */}
+        <NewsletterSignup source="blog" compact />
 
         {/* Related Posts */}
         {related.length > 0 && (
@@ -192,7 +196,7 @@ export default async function BlogPost({
       {/* Footer */}
       <footer className="border-t py-8 mt-8">
         <div className="container mx-auto px-4 text-center text-xs text-muted-foreground">
-          &copy; 2026 Lardia. Todos os direitos reservados.
+          &copy; 2026 LarDia. Todos os direitos reservados.
         </div>
       </footer>
     </main>

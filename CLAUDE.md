@@ -1,6 +1,6 @@
 # CLAUDE.md - Project Guidelines
 
-## Project: Lardia
+## Project: LarDia
 Smart eSocial assistant for Brazilian domestic employers.
 
 ## Tech Stack

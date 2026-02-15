@@ -3,7 +3,7 @@ title: "Quanto custa ter uma empregada doméstica em 2026?"
 description: "Descubra quanto custa ter uma empregada doméstica em 2026: salário mínimo, INSS, FGTS, GILRAT, DAE e todos os encargos. Inclui exemplo de cálculo completo."
 slug: "quanto-custa-empregada-doméstica-2026"
 date: "2026-02-14"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["quanto custa empregada doméstica 2026", "custo empregada doméstica", "encargos empregada doméstica", "salário empregada doméstica 2026"]
 relatedSlugs: ["salário-empregada-doméstica-2026", "dae-como-gerar-quando-pagar", "fgts-empregada-doméstica"]
 ---
@@ -181,7 +181,7 @@ Erros no eSocial podem gerar multas. O fechamento da folha fora do prazo, por ex
 
 ### 4. Use uma ferramenta de gestão
 
-Plataformas como a Lardia automatizam o cálculo da folha, a geracao da DAE e o controle de férias e 13o, reduzindo erros e economizando tempo.
+Plataformas como a LarDia automatizam o cálculo da folha, a geracao da DAE e o controle de férias e 13o, reduzindo erros e economizando tempo.
 
 ## Empregada doméstica vs diarista: qual custa menos?
 
@@ -196,11 +196,11 @@ Se você precisa de trabalho doméstico 3 ou mais dias por semana, não ha alter
 
 Cada situação e única: o salário pode ser diferente do mínimo, pode haver horas extras, adicional noturno, vale-transporte com valores diferentes, entre outros fatores.
 
-Para saber exatamente quanto você vai gastar, use a **calculadora gratuita da Lardia**. Basta informar o salário e os detalhes do contrato para ter o custo total detalhado em segundos.
+Para saber exatamente quanto você vai gastar, use a **calculadora gratuita da LarDia**. Basta informar o salário e os detalhes do contrato para ter o custo total detalhado em segundos.
 
-**[Experimente a calculadora gratuita da Lardia →](https://lardia.com.br)**
+**[Experimente a calculadora gratuita da LarDia →](https://lardia.com.br)**
 
-Com a Lardia, você tem clareza total sobre os custos e nunca mais e pego de surpresa com encargos que não esperava. Cadastre-se e simplifique a gestão do seu empregado doméstico.
+Com a LarDia, você tem clareza total sobre os custos e nunca mais e pego de surpresa com encargos que não esperava. Cadastre-se e simplifique a gestão do seu empregado doméstico.
 
 ## Perguntas frequentes
 

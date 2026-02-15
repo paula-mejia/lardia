@@ -8,11 +8,11 @@ import NewsletterSignup from '@/components/newsletter-signup'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Blog | Lardia - Guias sobre eSocial e empregada doméstica',
+  title: 'Blog | LarDia - Guias sobre eSocial e empregada doméstica',
   description:
     'Artigos, guias e dicas sobre eSocial doméstico, folha de pagamento, férias, rescisão e tudo sobre empregada doméstica no Brasil.',
   openGraph: {
-    title: 'Blog | Lardia',
+    title: 'Blog | LarDia',
     description: 'Guias completos sobre eSocial doméstico e gestão de empregados domésticos.',
     type: 'website',
     url: 'https://lardia.com.br/blog',
@@ -28,7 +28,7 @@ export default function BlogIndex() {
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-tight">
-            Lardia
+            LarDia
           </Link>
           <div className="flex items-center gap-4">
             <Link href="/blog" className="text-sm font-medium text-emerald-600">
@@ -105,7 +105,7 @@ export default function BlogIndex() {
         <div className="container mx-auto px-4 py-16 text-center">
           <h2 className="text-2xl font-bold mb-4">Cansado de calcular tudo manualmente?</h2>
           <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-            A Lardia automatiza folha de pagamento, férias, 13o e rescisão. Cadastre-se grátis.
+            A LarDia automatiza folha de pagamento, férias, 13o e rescisão. Cadastre-se grátis.
           </p>
           <Link href="/signup">
             <Button size="lg">
@@ -118,7 +118,7 @@ export default function BlogIndex() {
       {/* Footer */}
       <footer className="border-t py-8">
         <div className="container mx-auto px-4 text-center text-xs text-muted-foreground">
-          &copy; 2026 Lardia. Todos os direitos reservados.
+          &copy; 2026 LarDia. Todos os direitos reservados.
         </div>
       </footer>
     </main>

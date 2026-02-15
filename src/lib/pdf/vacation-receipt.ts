@@ -214,7 +214,7 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   // -- Footer --
   doc.setFont('helvetica', 'italic')
   doc.setFontSize(7)
-  doc.text('Documento gerado por Lardia', pageWidth / 2, pageHeight - 10, { align: 'center' })
+  doc.text('Documento gerado por LarDia', pageWidth / 2, pageHeight - 10, { align: 'center' })
 
   // -- Save --
   const filename = `recibo-férias-${data.employeeName.toLowerCase().replace(/\s+/g, '-')}.pdf`

@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -7,6 +8,8 @@ const supabase = createClient(
 )
 
 export async function POST(req: NextRequest) {
+  const rateLimited = applyRateLimit(req, 'newsletter-unsub', RATE_LIMITS.public)
+  if (rateLimited) return rateLimited
   try {
     const body = await req.json()
     const { email } = body
@@ -22,16 +25,19 @@ export async function POST(req: NextRequest) {
 
     const { error } = await supabase
       .from('newsletter_subscribers')
-      .update({ unsubscribed_at: new Date().toISOString() })
+      .update({
+        status: 'unsubscribed',
+        unsubscribed_at: new Date().toISOString(),
+      })
       .eq('email', email.toLowerCase().trim())
 
     if (error) {
       console.error('Newsletter unsubscribe error:', error)
-      return NextResponse.json({ error: 'Erro ao cancelar inscricao.' }, { status: 500 })
+      return NextResponse.json({ error: 'Erro ao cancelar inscrição.' }, { status: 500 })
     }
 
     return NextResponse.json({ success: true })
   } catch {
-    return NextResponse.json({ error: 'Erro ao processar requisicao.' }, { status: 500 })
+    return NextResponse.json({ error: 'Erro ao processar requisição.' }, { status: 500 })
   }
 }

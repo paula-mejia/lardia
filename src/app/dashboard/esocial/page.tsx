@@ -75,7 +75,7 @@ export default async function ESocialPage() {
                   <Badge variant="secondary">Não conectado</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Conecte seu eSocial para que a Lardia gerencie suas obrigações
+                  Conecte seu eSocial para que a LarDia gerencie suas obrigações
                   automaticamente.
                 </p>
                 <Link href="/dashboard/esocial/connect">

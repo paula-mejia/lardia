@@ -224,7 +224,7 @@ export default function SimuladorClient() {
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-tight">
-            Lardia
+            LarDia
           </Link>
           <div className="flex items-center gap-3">
             <Link
@@ -479,7 +479,7 @@ export default function SimuladorClient() {
           <section className="py-12 md:py-16 bg-emerald-600 dark:bg-emerald-800">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Gerencie tudo isso automaticamente com Lardia
+                Gerencie tudo isso automaticamente com LarDia
               </h2>
               <p className="text-emerald-100 text-lg max-w-xl mx-auto mb-8">
                 Folha de pagamento, guia DAE, férias, 13o e eSocial no piloto
@@ -501,7 +501,7 @@ export default function SimuladorClient() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="col-span-2 md:col-span-1">
-              <p className="font-bold text-lg mb-2">Lardia</p>
+              <p className="font-bold text-lg mb-2">LarDia</p>
               <p className="text-sm text-muted-foreground">
                 eSocial sem erro, sem estresse.
               </p>
@@ -559,7 +559,7 @@ export default function SimuladorClient() {
           </div>
           <Separator className="my-8" />
           <p className="text-center text-xs text-muted-foreground">
-            &copy; 2026 Lardia. Todos os direitos reservados.
+            &copy; 2026 LarDia. Todos os direitos reservados.
           </p>
         </div>
       </footer>

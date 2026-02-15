@@ -44,7 +44,7 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
   doc.setFontSize(10)
   doc.setFont('helvetica', 'normal')
   doc.setTextColor(100)
-  doc.text('Lardia - Gestão de Empregados Domesticos', 105, y, { align: 'center' })
+  doc.text('LarDia - Gestão de Empregados Domesticos', 105, y, { align: 'center' })
   y += 15
 
   // Candidate info

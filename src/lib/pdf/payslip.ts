@@ -209,7 +209,7 @@ export function generatePayslipPDF(data: PayslipData): void {
     minute: '2-digit',
   })
   doc.text(`Documento gerado em ${generationDate}`, pageWidth / 2, footerY, { align: 'center' })
-  doc.text('Gerado por Lardia', pageWidth / 2, footerY + 3, { align: 'center' })
+  doc.text('Gerado por LarDia', pageWidth / 2, footerY + 3, { align: 'center' })
 
   // -- Save --
   const filename = `contracheque_${data.referenceMonth.toString().padStart(2, '0')}_${data.referenceYear}_${data.employeeName.replace(/\s+/g, '_')}.pdf`

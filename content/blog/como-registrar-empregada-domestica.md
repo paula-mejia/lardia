@@ -3,7 +3,7 @@ title: "Como registrar uma empregada doméstica: passo a passo"
 description: "Aprenda como registrar uma empregada doméstica: documentos necessarios, CTPS, eSocial, contrato de trabalho, exame admissional e primeira DAE. Guia completo."
 slug: "como-registrar-empregada-doméstica"
 date: "2026-02-14"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["como registrar empregada doméstica", "registro empregada doméstica", "admissão empregada doméstica", "contratar empregada doméstica"]
 relatedSlugs: ["guia-esocial-empregador-doméstico", "direitos-empregada-doméstica", "quanto-custa-empregada-doméstica-2026"]
 ---
@@ -87,7 +87,7 @@ O contrato pode prever um período de experiencia de até **90 dias**, que pode 
 
 ### Modelo de contrato
 
-Você pode encontrar modelos de contrato de trabalho doméstico em sites do governo ou utilizar o modelo disponibilizado pela Lardia, que já vem com todas as clausulas obrigatorias preenchidas.
+Você pode encontrar modelos de contrato de trabalho doméstico em sites do governo ou utilizar o modelo disponibilizado pela LarDia, que já vem com todas as clausulas obrigatorias preenchidas.
 
 ## Passo 3: Registre na CTPS (Carteira de Trabalho)
 
@@ -243,9 +243,9 @@ O registro em si e gratuito (o eSocial não cobra taxas). Os custos iniciais sã
 
 A partir do segundo mês, o custo se estabiliza no salário + encargos mensais.
 
-## Registre sua empregada doméstica com a Lardia
+## Registre sua empregada doméstica com a LarDia
 
-O processo de registro pode parecer complicado, mas com a **Lardia** fica simples:
+O processo de registro pode parecer complicado, mas com a **LarDia** fica simples:
 
 - **Cadastro guiado** do empregado com verificação automática de dados
 - **Modelo de contrato** de trabalho pronto para usar
@@ -253,15 +253,15 @@ O processo de registro pode parecer complicado, mas com a **Lardia** fica simple
 - **Cálculo automático** da primeira folha e DAE
 - **Checklist interativo** para você não esquecer nenhuma etapa
 
-**[Registre sua empregada doméstica com a Lardia →](https://lardia.com.br)**
+**[Registre sua empregada doméstica com a LarDia →](https://lardia.com.br)**
 
-Faca o registro correto desde o primeiro dia e tenha tranquilidade para focar no que importa. A Lardia cuida da burocracia por você.
+Faca o registro correto desde o primeiro dia e tenha tranquilidade para focar no que importa. A LarDia cuida da burocracia por você.
 
 ## Perguntas frequentes
 
 ### Posso registrar a empregada doméstica sozinho, sem contador?
 
-Sim. O eSocial foi feito para que o proprio empregador doméstico faca o cadastro e a gestão mensal sem precisar de contador. A Lardia facilita ainda mais o processo.
+Sim. O eSocial foi feito para que o proprio empregador doméstico faca o cadastro e a gestão mensal sem precisar de contador. A LarDia facilita ainda mais o processo.
 
 ### Quanto tempo leva para registrar no eSocial?
 

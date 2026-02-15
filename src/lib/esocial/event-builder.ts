@@ -1,5 +1,5 @@
 /**
- * eSocial event builder - transforms Lardia internal data into eSocial event format.
+ * eSocial event builder - transforms LarDia internal data into eSocial event format.
  * Includes validation and mock XML generation.
  */
 

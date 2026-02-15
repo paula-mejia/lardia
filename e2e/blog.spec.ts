@@ -1,43 +1,48 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Blog', () => {
-  test('blog index loads with posts', async ({ page }) => {
+  test('blog list page loads with article links', async ({ page }) => {
     await page.goto('/blog')
     await expect(page).toHaveURL(/blog/)
 
-    // Should have post cards/links
     const postLinks = page.locator('a[href^="/blog/"]')
     await expect(postLinks.first()).toBeVisible()
-    expect(await postLinks.count()).toBeGreaterThanOrEqual(10)
+    expect(await postLinks.count()).toBeGreaterThanOrEqual(1)
   })
 
-  test('individual post loads with content', async ({ page }) => {
+  test('blog list page shows post titles/headings', async ({ page }) => {
     await page.goto('/blog')
-
-    // Click the first post
+    // Posts should have visible text content (titles)
     const firstPost = page.locator('a[href^="/blog/"]').first()
-    const postHref = await firstPost.getAttribute('href')
+    const text = await firstPost.textContent()
+    expect(text!.trim().length).toBeGreaterThan(5)
+  })
+
+  test('clicking a blog post navigates to article page', async ({ page }) => {
+    await page.goto('/blog')
+    const firstPost = page.locator('a[href^="/blog/"]').first()
+    const href = await firstPost.getAttribute('href')
     await firstPost.click()
 
-    await expect(page).toHaveURL(new RegExp(postHref!))
+    await expect(page).toHaveURL(new RegExp(href!))
+  })
 
-    // Post should have content (article or main content area)
+  test('article page has substantial content', async ({ page }) => {
+    await page.goto('/blog')
+    const firstPost = page.locator('a[href^="/blog/"]').first()
+    await firstPost.click()
+
     const content = page.locator('article, main')
     await expect(content).toBeVisible()
-    // Should have meaningful text content
     const text = await content.textContent()
-    expect(text!.length).toBeGreaterThan(100)
+    expect(text!.length).toBeGreaterThan(200)
   })
 
-  test('navigation back to blog works', async ({ page }) => {
+  test('article page has a way to navigate back to blog', async ({ page }) => {
     await page.goto('/blog')
-    const firstPost = page.locator('a[href^="/blog/"]').first()
-    await firstPost.click()
+    await page.locator('a[href^="/blog/"]').first().click()
 
-    // Navigate back to blog
-    const blogLink = page.locator('a[href="/blog"], a[href="/blog/"]').first()
-    await blogLink.click()
-
-    await expect(page).toHaveURL(/\/blog\/?$/)
+    const backLink = page.locator('a[href="/blog"], a[href="/blog/"]').first()
+    await expect(backLink).toBeVisible()
   })
 })

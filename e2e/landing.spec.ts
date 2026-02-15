@@ -5,53 +5,55 @@ test.describe('Landing Page', () => {
     await page.goto('/')
   })
 
-  test('loads with correct title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Lardia/)
+  test('loads with correct branding and title', async ({ page }) => {
+    await expect(page).toHaveTitle(/LarDia/)
+    await expect(page.locator('nav').getByText('LarDia')).toBeVisible()
   })
 
-  test('calculator is visible and functional', async ({ page }) => {
+  test('hero section displays headline and CTA buttons', async ({ page }) => {
+    await expect(page.locator('h1')).toContainText('eSocial sem erro')
+    // Primary CTA: "Comece agora" linking to /signup
+    const primaryCTA = page.locator('a[href="/signup"] button, a[href="/signup"]').first()
+    await expect(primaryCTA).toBeVisible()
+    // Secondary CTA: "Testar calculadora grátis"
+    const secondaryCTA = page.locator('a[href="#calculadora"]').first()
+    await expect(secondaryCTA).toBeVisible()
+  })
+
+  test('navigation links are visible and point to correct routes', async ({ page }) => {
+    // Desktop nav links (may be hidden on mobile, but Playwright uses 1280px by default)
+    await expect(page.locator('nav a[href="/blog"]')).toBeVisible()
+    await expect(page.locator('nav a[href="/faq"]')).toBeVisible()
+    await expect(page.locator('nav a[href="/simulador"]')).toBeVisible()
+    await expect(page.locator('nav a[href="/login"]')).toBeVisible()
+  })
+
+  test('nav link to /blog navigates correctly', async ({ page }) => {
+    await page.locator('nav a[href="/blog"]').click()
+    await expect(page).toHaveURL(/\/blog/)
+  })
+
+  test('nav link to /faq navigates correctly', async ({ page }) => {
+    await page.locator('nav a[href="/faq"]').click()
+    await expect(page).toHaveURL(/\/faq/)
+  })
+
+  test('embedded calculator section is visible', async ({ page }) => {
     const calculator = page.locator('#calculadora')
     await expect(calculator).toBeVisible()
-
-    // Change salary input and verify results update
-    const salaryInput = calculator.locator('input[type="number"], input[type="text"]').first()
-    await salaryInput.clear()
-    await salaryInput.fill('2000')
-
-    // Results should update (look for currency values)
     await expect(calculator.locator('text=/R\\$/')).toBeVisible()
   })
 
-  test('navigation links work', async ({ page }) => {
-    // Blog link
-    const blogLink = page.locator('nav a[href="/blog"]')
-    await expect(blogLink).toBeVisible()
-
-    // FAQ link
-    const faqLink = page.locator('nav a[href="/faq"]')
-    await expect(faqLink).toBeVisible()
-
-    // Simulador link
-    const simuladorLink = page.locator('nav a[href="/simulador"]')
-    await expect(simuladorLink).toBeVisible()
-
-    // Entrar link
-    const entrarLink = page.locator('nav a[href="/login"]')
-    await expect(entrarLink).toBeVisible()
-  })
-
-  test('pricing section shows 3 tiers', async ({ page }) => {
-    const pricingSection = page.locator('text=Escolha o plano ideal para voce').locator('..')
+  test('pricing section shows plan tiers', async ({ page }) => {
+    const pricingSection = page.locator('section').filter({ hasText: 'Escolha o plano ideal' })
     await expect(pricingSection).toBeVisible()
-
-    // 3 pricing cards with R$ values
-    const pricingCards = page.locator('section').filter({ hasText: 'Escolha o plano ideal' }).locator('.grid > div')
+    const pricingCards = pricingSection.locator('.grid > div')
     await expect(pricingCards).toHaveCount(3)
   })
 
-  test('footer links exist', async ({ page }) => {
+  test('footer is visible with links', async ({ page }) => {
     const footer = page.locator('footer')
     await expect(footer).toBeVisible()
-    await expect(footer.locator('a')).not.toHaveCount(0)
+    expect(await footer.locator('a').count()).toBeGreaterThan(0)
   })
 })

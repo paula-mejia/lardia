@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { trackAuditEvent } from '@/lib/audit-client'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -34,6 +35,7 @@ export default function LoginPage() {
       return
     }
 
+    trackAuditEvent('login', 'auth', { email })
     router.push('/dashboard')
     router.refresh()
   }
@@ -42,7 +44,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Entrar no Lardia</CardTitle>
+          <CardTitle className="text-2xl">Entrar no LarDia</CardTitle>
           <CardDescription>
             Gerencie o eSocial da sua empregada doméstica
           </CardDescription>

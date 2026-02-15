@@ -156,7 +156,7 @@ export function generatePriorNoticePDF(data: PriorNoticeData): void {
   // -- Footer --
   doc.setFont('helvetica', 'italic')
   doc.setFontSize(7)
-  doc.text('Documento gerado por Lardia', pageWidth / 2, pageHeight - 10, { align: 'center' })
+  doc.text('Documento gerado por LarDia', pageWidth / 2, pageHeight - 10, { align: 'center' })
 
   // -- Save --
   const filename = `aviso-prévio-${data.employeeName.toLowerCase().replace(/\s+/g, '-')}-${data.noticeDate}.pdf`

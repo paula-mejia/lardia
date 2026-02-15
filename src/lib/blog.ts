@@ -67,7 +67,7 @@ export function getAllPosts(): BlogPost[] {
       description: (metadata.description as string) || '',
       slug: (metadata.slug as string) || file.replace('.md', ''),
       date: (metadata.date as string) || '',
-      author: (metadata.author as string) || 'Equipe Lardia',
+      author: (metadata.author as string) || 'Equipe LarDia',
       keywords: (metadata.keywords as string[]) || [],
       relatedSlugs: (metadata.relatedSlugs as string[]) || [],
       content,

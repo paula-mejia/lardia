@@ -56,7 +56,7 @@ export default function Home() {
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Gestão completa do eSocial doméstico: folha de pagamento, guia DAE,
             fechamento mensal e todas as obrigações no piloto automático.
-            Você cuida da sua família, a Lardia cuida do resto.
+            Você cuida da sua família, a LarDia cuida do resto.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/signup">
@@ -141,7 +141,7 @@ export default function Home() {
               Gestão completa do eSocial
             </h2>
             <p className="text-muted-foreground text-lg">
-              A Lardia cuida do envio mensal, geracao da DAE e controle de prazos.
+              A LarDia cuida do envio mensal, geracao da DAE e controle de prazos.
               Você não precisa mais de um contador para manter tudo em dia.
             </p>
           </div>
@@ -152,13 +152,13 @@ export default function Home() {
                 icon: ClipboardList,
                 step: '1',
                 title: 'Cadastro',
-                desc: 'Cadastre sua empregada com os dados basicos. A Lardia configura tudo no eSocial para você.',
+                desc: 'Cadastre sua empregada com os dados basicos. A LarDia configura tudo no eSocial para você.',
               },
               {
                 icon: UserCheck,
                 step: '2',
                 title: 'Procuração',
-                desc: 'Autorize a Lardia a enviar eventos no eSocial em seu nome com uma procuração digital simples.',
+                desc: 'Autorize a LarDia a enviar eventos no eSocial em seu nome com uma procuração digital simples.',
               },
               {
                 icon: Zap,
@@ -226,7 +226,7 @@ export default function Home() {
               Tudo que você precisa, num so lugar
             </h2>
             <p className="text-muted-foreground text-lg">
-              A Lardia automatiza os cálculos e te lembra de cada obrigação.
+              A LarDia automatiza os cálculos e te lembra de cada obrigação.
               Você so precisa pagar.
             </p>
           </div>
@@ -322,10 +322,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-              Mais de 500 empregadores confiam na Lardia
+              Mais de 500 empregadores confiam na LarDia
             </h2>
             <p className="text-muted-foreground text-lg">
-              Empregadores em todo o Brasil usam a Lardia para simplificar
+              Empregadores em todo o Brasil usam a LarDia para simplificar
               o eSocial doméstico e evitar dores de cabeça.
             </p>
           </div>
@@ -335,7 +335,7 @@ export default function Home() {
               {
                 name: 'Maria S.',
                 city: 'Sao Paulo, SP',
-                text: 'Antes da Lardia eu pagava um contador so para o eSocial. Agora faco tudo sozinha em 5 minutos por mês.',
+                text: 'Antes da LarDia eu pagava um contador so para o eSocial. Agora faco tudo sozinha em 5 minutos por mês.',
               },
               {
                 name: 'Roberto L.',
@@ -510,7 +510,7 @@ export default function Home() {
             Chega de dor de cabeça com eSocial
           </h2>
           <p className="text-emerald-100 text-lg max-w-xl mx-auto mb-8">
-            Cadastre sua empregada, informe o salário e deixe a Lardia cuidar
+            Cadastre sua empregada, informe o salário e deixe a LarDia cuidar
             de todo o resto. Simples assim.
           </p>
           <Link href="/signup">
@@ -527,7 +527,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="col-span-2 md:col-span-1">
-              <p className="font-bold text-lg mb-2">Lardia</p>
+              <p className="font-bold text-lg mb-2">LarDia</p>
               <p className="text-sm text-muted-foreground">
                 eSocial sem erro, sem estresse.
               </p>
@@ -559,7 +559,7 @@ export default function Home() {
           </div>
           <Separator className="my-8" />
           <p className="text-center text-xs text-muted-foreground">
-            &copy; 2026 Lardia. Todos os direitos reservados.
+            &copy; 2026 LarDia. Todos os direitos reservados.
           </p>
         </div>
       </footer>

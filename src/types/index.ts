@@ -1,4 +1,4 @@
-// Shared types for the Lardia application
+// Shared types for the LarDia application
 
 // Database entity types
 export interface Employer {

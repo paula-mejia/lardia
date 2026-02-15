@@ -221,7 +221,7 @@ export function generateEmploymentContractPDF(data: ContractData): void {
   doc.setFont('helvetica', 'italic')
   doc.setFontSize(7)
   doc.text(
-    'Documento gerado por Lardia (lardia.vercel.app)',
+    'Documento gerado por LarDia (lardia.vercel.app)',
     pageWidth / 2,
     pageHeight - 10,
     { align: 'center' }
@@ -353,7 +353,7 @@ function buildContractDoc(data: ContractData): jsPDF {
 
   doc.setFont('helvetica', 'italic')
   doc.setFontSize(7)
-  doc.text('Documento gerado por Lardia (lardia.vercel.app)', pageWidth / 2, pageHeight - 10, { align: 'center' })
+  doc.text('Documento gerado por LarDia (lardia.vercel.app)', pageWidth / 2, pageHeight - 10, { align: 'center' })
 
   return doc
 }

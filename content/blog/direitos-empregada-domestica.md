@@ -3,7 +3,7 @@ title: "Direitos da empregada doméstica: guia completo 2026"
 description: "Conheca todos os direitos da empregada doméstica em 2026: salário, férias, 13o, FGTS, horas extras, intervalos, feriados e mais. Baseado na LC 150/2015."
 slug: "direitos-empregada-doméstica"
 date: "2026-02-14"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["direitos empregada doméstica", "direitos trabalhistas doméstica 2026", "LC 150 empregada doméstica", "lei empregada doméstica"]
 relatedSlugs: ["fgts-empregada-doméstica", "férias-empregada-doméstica", "quanto-custa-empregada-doméstica-2026"]
 ---
@@ -225,11 +225,11 @@ O empregador também tem direitos, como:
 - Demitir com ou sem justa causa
 - Exigir atestado medico para faltas por doença
 
-## Simplifique a gestão dos direitos com a Lardia
+## Simplifique a gestão dos direitos com a LarDia
 
 Cumprir todos os direitos da empregada doméstica exige organizacao: cálculos de horas extras, controle de férias, pagamento de 13o, recolhimento de FGTS e INSS, registro no eSocial... E muita coisa para gerenciar manualmente.
 
-A **Lardia** automatiza tudo isso para você:
+A **LarDia** automatiza tudo isso para você:
 
 - **Cálculo automático** de salário, férias, 13o e rescisão
 - **Controle de jornada** com registro de horas extras
@@ -237,9 +237,9 @@ A **Lardia** automatiza tudo isso para você:
 - **Folha de pagamento** completa e em conformidade com a lei
 - **Guias e orientacoes** para cada situação trabalhista
 
-**[Cadastre-se gratuitamente na Lardia →](https://lardia.com.br)**
+**[Cadastre-se gratuitamente na LarDia →](https://lardia.com.br)**
 
-Garanta que todos os direitos do seu empregado estejam sendo cumpridos corretamente e proteja-se de problemas trabalhistas. Com a Lardia, você tem tranquilidade.
+Garanta que todos os direitos do seu empregado estejam sendo cumpridos corretamente e proteja-se de problemas trabalhistas. Com a LarDia, você tem tranquilidade.
 
 ## Perguntas frequentes
 

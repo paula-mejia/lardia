@@ -34,12 +34,12 @@ export default function UnsubscribePage() {
 
       if (!res.ok) {
         const data = await res.json()
-        throw new Error(data.error || 'Erro ao cancelar inscricao.')
+        throw new Error(data.error || 'Erro ao cancelar inscrição.')
       }
 
       setStatus('success')
     } catch (err) {
-      setErrorMessage(err instanceof Error ? err.message : 'Erro ao cancelar inscricao.')
+      setErrorMessage(err instanceof Error ? err.message : 'Erro ao cancelar inscrição.')
       setStatus('error')
     }
   }
@@ -49,7 +49,7 @@ export default function UnsubscribePage() {
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center">
           <Link href="/" className="text-xl font-bold tracking-tight">
-            Lardia
+            LarDia
           </Link>
         </div>
       </nav>
@@ -59,9 +59,12 @@ export default function UnsubscribePage() {
           <Card className="max-w-md w-full">
             <CardContent className="pt-8 pb-8 text-center">
               <CheckCircle className="h-12 w-12 text-emerald-500 mx-auto mb-4" />
-              <h1 className="text-xl font-bold mb-2">Inscricao cancelada</h1>
-              <p className="text-sm text-muted-foreground">
-                Você não receberá mais emails da Lardia.
+              <h1 className="text-xl font-bold mb-2">Inscrição cancelada</h1>
+              <p className="text-sm text-muted-foreground mb-4">
+                Você não receberá mais emails da LarDia.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Caso mude de ideia, você pode se inscrever novamente a qualquer momento.
               </p>
             </CardContent>
           </Card>
@@ -69,7 +72,7 @@ export default function UnsubscribePage() {
           <Card className="max-w-md w-full">
             <CardContent className="pt-8 pb-8 text-center">
               <MailX className="h-10 w-10 text-muted-foreground mx-auto mb-4" />
-              <h1 className="text-xl font-bold mb-2">Cancelar inscricao</h1>
+              <h1 className="text-xl font-bold mb-2">Cancelar inscrição</h1>
               <p className="text-sm text-muted-foreground mb-6">
                 Insira seu email para deixar de receber nossos alertas.
               </p>
@@ -86,7 +89,7 @@ export default function UnsubscribePage() {
                   required
                 />
                 <Button type="submit" variant="destructive" disabled={status === 'loading'}>
-                  {status === 'loading' ? 'Processando...' : 'Cancelar inscricao'}
+                  {status === 'loading' ? 'Processando...' : 'Cancelar inscrição'}
                 </Button>
               </form>
               {status === 'error' && errorMessage && (

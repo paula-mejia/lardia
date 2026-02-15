@@ -115,13 +115,13 @@ export default function ConnectESocialPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm leading-relaxed">
-                Para que a Lardia gerencie seu eSocial, você precisa nos
+                Para que a LarDia gerencie seu eSocial, você precisa nos
                 autorizar via procuração eletrônica no eCAC (Centro Virtual de
                 Atendimento da Receita Federal).
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground">
                 A procuração eletrônica é um documento digital que autoriza a
-                Lardia a enviar e consultar informações no eSocial em seu nome.
+                LarDia a enviar e consultar informações no eSocial em seu nome.
                 Isso é necessário para que possamos automatizar o envio da folha
                 de pagamento, gerar as guias DAE e manter suas obrigações em
                 dia.
@@ -269,7 +269,7 @@ export default function ConnectESocialPage() {
                   </Badge>
                   <div className="space-y-1">
                     <p className="text-sm font-medium">
-                      Insira o CNPJ da Lardia
+                      Insira o CNPJ da LarDia
                     </p>
                     <p className="text-xs text-muted-foreground">
                       No campo de CNPJ do procurador, insira o CNPJ da{' '}
@@ -352,7 +352,7 @@ export default function ConnectESocialPage() {
                 <div className="text-center space-y-4">
                   <CheckCircle className="h-16 w-16 text-emerald-600 mx-auto" />
                   <p className="text-sm text-muted-foreground">
-                    Sua procuração eletrônica foi verificada. A Lardia agora pode
+                    Sua procuração eletrônica foi verificada. A LarDia agora pode
                     gerenciar seu eSocial.
                   </p>
                   <Link href="/dashboard/esocial">

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import SimuladorClient from './simulador-client'
 
 export const metadata: Metadata = {
-  title: 'Quanto custa contratar uma empregada doméstica? | Simulador Lardia',
+  title: 'Quanto custa contratar uma empregada doméstica? | Simulador LarDia',
   description:
     'Descubra o custo total de contratar uma empregada doméstica em 2026. Simule salário, INSS, FGTS, férias, 13o e todos os encargos. Calculadora gratuita.',
   keywords: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
     url: 'https://lardia.com.br/simulador',
-    siteName: 'Lardia',
+    siteName: 'LarDia',
   },
   alternates: {
     canonical: 'https://lardia.com.br/simulador',
@@ -46,7 +46,7 @@ const jsonLd = {
   },
   provider: {
     '@type': 'Organization',
-    name: 'Lardia',
+    name: 'LarDia',
     url: 'https://lardia.com.br',
   },
 }

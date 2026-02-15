@@ -103,9 +103,9 @@ export function buildDaeReminderMessage(daysUntil: number, dueDay: number, estim
     return `Hoje e o ultimo dia para pagar o DAE! Valor: ${valor}. Nao esqueca!`
   }
 
-  return `Lembrete: o DAE do mes vence em ${daysUntil} dias (dia ${dueDay}). Valor estimado: ${valor}. Acesse Lardia para gerar o comprovante.`
+  return `Lembrete: o DAE do mes vence em ${daysUntil} dias (dia ${dueDay}). Valor estimado: ${valor}. Acesse LarDia para gerar o comprovante.`
 }
 
 export function buildPayrollReminderMessage(): string {
-  return 'Hora de fechar a folha de pagamento do mes. Acesse Lardia.'
+  return 'Hora de fechar a folha de pagamento do mes. Acesse LarDia.'
 }

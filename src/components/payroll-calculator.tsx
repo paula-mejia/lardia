@@ -13,6 +13,7 @@ import { ChevronDown, ChevronUp, Save, Check, FileDown } from 'lucide-react'
 import { generatePayslipPDF } from '@/lib/pdf/payslip'
 import { formatBRL, InfoTip, ResultRow } from '@/components/calculator'
 import { trackCalculatorUsed, trackPdfDownloaded } from '@/lib/analytics'
+import { trackAuditEvent } from '@/lib/audit-client'
 
 interface PayrollCalculatorProps {
   initialSalary?: number
@@ -105,6 +106,12 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
       setSaveError('Erro ao salvar. Tente novamente.')
     } else {
       setSaved(true)
+      trackAuditEvent('payroll_saved', 'payroll', {
+        employeeId,
+        month: refMonth,
+        year: refYear,
+        netSalary: result.netSalary,
+      })
       onSaved?.()
       setTimeout(() => setSaved(false), 3000)
     }

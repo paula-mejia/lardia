@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 
 const PROXY_URL = process.env.ESOCIAL_PROXY_URL
 const PROXY_API_KEY = process.env.ESOCIAL_PROXY_API_KEY
@@ -10,6 +11,8 @@ const PROXY_API_KEY = process.env.ESOCIAL_PROXY_API_KEY
  * Actions: test, send, query, ecac-test
  */
 export async function GET(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'esocial-proxy', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
   const auth = await checkAuth()
   if (auth) return auth
 
@@ -51,6 +54,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const rateLimited = applyRateLimit(request, 'esocial-proxy', RATE_LIMITS.api)
+  if (rateLimited) return rateLimited
   const auth = await checkAuth()
   if (auth) return auth
 

@@ -1,4 +1,4 @@
-# Lardia
+# LarDia
 
 Smart eSocial assistant for Brazilian domestic employers. Calculate payroll, taxes, vacation, and 13th salary with 100% accuracy.
 

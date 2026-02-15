@@ -153,7 +153,7 @@ export function DashboardNav() {
       >
         <div className="mb-6 px-3">
           <Link href="/dashboard" className="text-xl font-bold tracking-tight text-emerald-600">
-            Lardia
+            LarDia
           </Link>
         </div>
         {navContent}

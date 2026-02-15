@@ -3,7 +3,7 @@ title: "Como calcular o salário de empregada doméstica em 2026"
 description: "Aprenda a calcular o salário líquido da empregada doméstica em 2026: salário mínimo, INSS, IRRF, adicional noturno e mais. Guia completo e atualizado."
 slug: "salário-empregada-doméstica-2026"
 date: "2026-02-14"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["salário empregada doméstica 2026", "calcular salário doméstica", "folha de pagamento doméstica", "INSS empregada doméstica"]
 relatedSlugs: ["esocial-doméstico-como-funciona", "dae-como-gerar-quando-pagar"]
 ---
@@ -65,11 +65,11 @@ Além do salário, o empregador paga encargos mensais via DAE:
 - **Adicional noturno:** 20% sobre a hora noturna (22h as 5h)
 - **Vale-transporte:** desconto de até 6% do salário
 
-## Calcule automaticamente com a Lardia
+## Calcule automaticamente com a LarDia
 
 Fazer esses cálculos manualmente todo mês e cansativo e arriscado. Um erro pode gerar multas no eSocial.
 
-**Use a calculadora gratuita da Lardia** para calcular o salário líquido, encargos e gerar o demonstrativo de pagamento automaticamente.
+**Use a calculadora gratuita da LarDia** para calcular o salário líquido, encargos e gerar o demonstrativo de pagamento automaticamente.
 
 [Calcular salário agora →](/calculadoras/décimo-terceiro)
 

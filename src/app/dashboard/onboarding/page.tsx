@@ -52,7 +52,7 @@ const STEPS = [
   { label: 'Dados do empregador', icon: User },
   { label: 'Primeira empregada', icon: Users },
   { label: 'Notificações', icon: Bell },
-  { label: 'Conheca a Lardia', icon: Rocket },
+  { label: 'Conheca a LarDia', icon: Rocket },
 ]
 
 // -- Step Components --
@@ -161,7 +161,7 @@ function StepFirstEmployee() {
       <Users className="mx-auto h-12 w-12 text-primary" />
       <h3 className="text-lg font-semibold">Cadastre sua primeira empregada</h3>
       <p className="text-muted-foreground text-sm">
-        Para começar a usar a Lardia, você precisa cadastrar pelo menos uma empregada doméstica.
+        Para começar a usar a LarDia, você precisa cadastrar pelo menos uma empregada doméstica.
         Pode fazer isso agora ou depois no painel principal.
       </p>
       <Button asChild className="mt-2">
@@ -205,7 +205,7 @@ function StepNotifications({
           onCheckedChange={v => setPrefs({ ...prefs, notify_updates: !!v })}
         />
         <div>
-          <Label htmlFor="notify_updates" className="font-medium">Novidades da Lardia</Label>
+          <Label htmlFor="notify_updates" className="font-medium">Novidades da LarDia</Label>
           <p className="text-sm text-muted-foreground">
             Fique por dentro de novas funcionalidades e atualizacoes.
           </p>
@@ -227,7 +227,7 @@ function StepTour() {
   return (
     <div className="space-y-4 py-2">
       <p className="text-sm text-muted-foreground text-center mb-4">
-        Conhega as principais funcionalidades da Lardia:
+        Conhega as principais funcionalidades da LarDia:
       </p>
       {features.map(f => (
         <div key={f.title} className="flex items-start gap-3 p-3 rounded-lg border">
@@ -355,7 +355,7 @@ export default function OnboardingPage() {
     <div>
       <Card className="w-full max-w-lg">
         <CardHeader>
-          <CardTitle className="text-xl">Bem-vindo a Lardia!</CardTitle>
+          <CardTitle className="text-xl">Bem-vindo a LarDia!</CardTitle>
           <CardDescription>Vamos configurar sua conta em poucos passos.</CardDescription>
           {/* Progress */}
           <div className="flex gap-1 pt-3">

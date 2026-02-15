@@ -3,7 +3,7 @@ title: "Férias da empregada doméstica: como calcular é pagar"
 description: "Guia completo sobre férias da empregada doméstica: como calcular, quando pagar, abono pecuniario, terço constitucional e registro no eSocial."
 slug: "férias-empregada-doméstica"
 date: "2026-02-08"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["férias empregada doméstica", "calcular férias doméstica", "terço de férias", "abono pecuniario doméstica"]
 relatedSlugs: ["salário-empregada-doméstica-2026", "demitir-empregada-doméstica-guia"]
 ---
@@ -70,7 +70,7 @@ Se o empregador não conceder férias dentro do período concessivo (24 meses ap
 
 ## Calcule as férias automaticamente
 
-A Lardia calcula férias com todos os cenarios: com ou sem abono, fracionamento, descontos de INSS e IRRF. Tudo pronto para registrar no eSocial.
+A LarDia calcula férias com todos os cenarios: com ou sem abono, fracionamento, descontos de INSS e IRRF. Tudo pronto para registrar no eSocial.
 
 [Calcular férias agora →](/signup)
 

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { trackEmployeeAdded } from '@/lib/analytics'
+import { trackAuditEvent } from '@/lib/audit-client'
 import { generateReferralCode, trackReferral } from '@/lib/referral'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -184,6 +185,7 @@ export default function NewEmployeePage() {
     }
 
     trackEmployeeAdded()
+    trackAuditEvent('employee_created', 'employee', { name: fullName, role })
     router.push('/dashboard')
     router.refresh()
   }

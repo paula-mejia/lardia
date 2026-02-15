@@ -3,7 +3,7 @@ title: "O que é o eSocial Doméstico e como funciona"
 description: "Entenda o que é o eSocial Doméstico, quem precisa usar, quais são as obrigações e como evitar multas. Guia completo para empregadores domésticos."
 slug: "esocial-doméstico-como-funciona"
 date: "2026-02-12"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["esocial doméstico", "o que é esocial", "esocial empregada doméstica", "obrigações esocial doméstico"]
 relatedSlugs: ["salário-empregada-doméstica-2026", "dae-como-gerar-quando-pagar"]
 ---
@@ -58,9 +58,9 @@ O descumprimento pode gerar:
 - **Multa por não depositar FGTS:** R$ 10,64 por empregado/mês
 - **Acoes trabalhistas** com valores retroativos
 
-## Como a Lardia simplifica o eSocial
+## Como a LarDia simplifica o eSocial
 
-A Lardia automatiza todo o processo:
+A LarDia automatiza todo o processo:
 
 - Calcula folha de pagamento com precisão
 - Lembra você dos prazos antes do vencimento

@@ -3,7 +3,7 @@ title: "Como demitir empregada doméstica: guia completo"
 description: "Saiba como demitir empregada doméstica corretamente: tipos de demissão, aviso prévio, FGTS 40%, cálculo da rescisão e TRCT. Passo a passo completo."
 slug: "demitir-empregada-doméstica-guia"
 date: "2026-02-06"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["demitir empregada doméstica", "rescisão empregada doméstica", "aviso prévio doméstica", "FGTS 40% doméstica", "TRCT doméstica"]
 relatedSlugs: ["férias-empregada-doméstica", "esocial-doméstico-como-funciona"]
 ---
@@ -103,7 +103,7 @@ O não cumprimento do prazo gera multa equivalente ao salário do empregado.
 
 ## Calcule a rescisão automaticamente
 
-A Lardia calcula todas as verbas rescisórias para qualquer tipo de demissão: com ou sem justa causa, pedido de demissão, aviso prévio trabalhado ou indenizado. Tudo pronto para registrar no eSocial.
+A LarDia calcula todas as verbas rescisórias para qualquer tipo de demissão: com ou sem justa causa, pedido de demissão, aviso prévio trabalhado ou indenizado. Tudo pronto para registrar no eSocial.
 
 [Calcular rescisão agora →](/signup)
 

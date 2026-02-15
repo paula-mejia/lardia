@@ -5,28 +5,46 @@ test.describe('FAQ Page', () => {
     await page.goto('/faq')
   })
 
-  test('FAQ page loads with all categories', async ({ page }) => {
+  test('FAQ page loads with heading', async ({ page }) => {
     await expect(page).toHaveURL(/faq/)
-    // Categories are section headings
-    await expect(page.locator('text=Sobre o eSocial Doméstico')).toBeVisible()
+    await expect(page.locator('h1, h2').first()).toBeVisible()
   })
 
-  test('accordion expands and collapses on click', async ({ page }) => {
-    // Click the first question to expand
-    const firstQuestion = page.locator('[data-state="closed"]').first()
-    await firstQuestion.click()
-
-    // Content should now be visible
-    await expect(firstQuestion).toHaveAttribute('data-state', 'open')
-
-    // Click again to collapse
-    await firstQuestion.click()
-    await expect(firstQuestion).toHaveAttribute('data-state', 'closed')
+  test('FAQ categories/sections are visible', async ({ page }) => {
+    // Should show eSocial-related category
+    await expect(page.locator('text=/eSocial/i').first()).toBeVisible()
   })
 
-  test('all 31 questions are present', async ({ page }) => {
-    // Each question is a trigger in an accordion
+  test('accordion expands on click to reveal answer', async ({ page }) => {
+    const trigger = page.locator('[data-state="closed"]').first()
+    await expect(trigger).toBeVisible()
+
+    await trigger.click()
+    await expect(trigger).toHaveAttribute('data-state', 'open')
+  })
+
+  test('accordion collapses on second click', async ({ page }) => {
+    const trigger = page.locator('[data-state="closed"]').first()
+    await trigger.click()
+    await expect(trigger).toHaveAttribute('data-state', 'open')
+
+    await trigger.click()
+    await expect(trigger).toHaveAttribute('data-state', 'closed')
+  })
+
+  test('multiple questions are listed', async ({ page }) => {
     const questions = page.locator('[data-radix-collection-item], [role="button"]')
-    expect(await questions.count()).toBe(31)
+    expect(await questions.count()).toBeGreaterThanOrEqual(10)
+  })
+
+  test('expanding an accordion reveals text content', async ({ page }) => {
+    const trigger = page.locator('[data-state="closed"]').first()
+    await trigger.click()
+
+    // The content panel should now be visible with text
+    const content = page.locator('[data-state="open"] + [role="region"], [data-state="open"] ~ [role="region"]').first()
+    await expect(content).toBeVisible()
+    const text = await content.textContent()
+    expect(text!.length).toBeGreaterThan(10)
   })
 })

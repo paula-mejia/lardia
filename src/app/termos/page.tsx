@@ -23,7 +23,7 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">Identificacao da Empresa</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              A plataforma Lardia e operada por{' '}
+              A plataforma LarDia e operada por{' '}
               <strong>COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA</strong>,
               inscrita no CNPJ sob o nº{' '}
               <strong>46.728.966/0001-40</strong>.
@@ -33,7 +33,7 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">1. Descricao do Serviço</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              A Lardia e uma plataforma digital que oferece ferramentas de
+              A LarDia e uma plataforma digital que oferece ferramentas de
               cálculo de folha de pagamento e gestão de obrigações do eSocial
               para empregadores domésticos no Brasil. Nossos serviços incluem:
             </p>
@@ -49,7 +49,7 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">2. Responsabilidades do Usuario</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Ao utilizar a Lardia, você se compromete a:
+              Ao utilizar a LarDia, você se compromete a:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>Fornecer informações verdadeiras e atualizadas sobre empregados e salarios</li>
@@ -61,14 +61,14 @@ export default function TermosPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold">3. Responsabilidades e Limitacoes da Lardia</h2>
+            <h2 className="text-xl font-semibold">3. Responsabilidades e Limitacoes da LarDia</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              A Lardia se compromete a fornecer cálculos precisos baseados na
+              A LarDia se compromete a fornecer cálculos precisos baseados na
               legislação trabalhista vigente. No entanto:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
-                A Lardia não substitui assessoria juridica ou contabil
+                A LarDia não substitui assessoria juridica ou contabil
                 profissional
               </li>
               <li>
@@ -90,12 +90,12 @@ export default function TermosPage() {
             <h2 className="text-xl font-semibold">4. Procuração Eletrônica</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Para utilizar a funcionalidade de gestão do eSocial, o usuário deve
-              cadastrar uma procuração eletrônica no eCAC autorizando a Lardia.
+              cadastrar uma procuração eletrônica no eCAC autorizando a LarDia.
               O usuário entende que:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
-                A procuração autoriza a Lardia a enviar e consultar informações
+                A procuração autoriza a LarDia a enviar e consultar informações
                 no eSocial em nome do empregador
               </li>
               <li>
@@ -103,7 +103,7 @@ export default function TermosPage() {
                 diretamente no eCAC
               </li>
               <li>
-                A Lardia utilizará a procuração exclusivamente para os serviços
+                A LarDia utilizará a procuração exclusivamente para os serviços
                 contratados
               </li>
               <li>
@@ -160,14 +160,14 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">8. Limitacao de Responsabilidade</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              A Lardia não será responsável por danos indiretos, incidentais,
+              A LarDia não será responsável por danos indiretos, incidentais,
               especiais ou consequenciais decorrentes do uso ou impossibilidade
               de uso do serviço. Nossa responsabilidade total esta limitada ao
               valor pago pelo usuário nos ultimos 12 meses.
             </p>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Em caso de erros em cálculos que resultem em prejuizo ao usuário,
-              a Lardia se compromete a corrigir o erro e auxiliar na
+              a LarDia se compromete a corrigir o erro e auxiliar na
               regularizacao junto aos orgaos competentes.
             </p>
           </section>
@@ -175,7 +175,7 @@ export default function TermosPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold">9. Alteracoes nos Termos</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              A Lardia pode alterar estes termos a qualquer momento. Usuarios
+              A LarDia pode alterar estes termos a qualquer momento. Usuarios
               serão notificados por email sobre alterações significativas. O uso
               continuado do serviço após a notificação constitui aceitação dos
               novos termos.

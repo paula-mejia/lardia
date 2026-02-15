@@ -53,7 +53,7 @@ export function ReferralSection() {
           <h3 className="text-xl font-bold">Indique e ganhe</h3>
         </div>
         <p className="text-muted-foreground max-w-md mx-auto mb-4">
-          Indique amigos empregadores e ganhe 1 mês grátis para cada amigo que assinar a Lardia.
+          Indique amigos empregadores e ganhe 1 mês grátis para cada amigo que assinar a LarDia.
         </p>
         <Link href="/signup">
           <Button variant="outline">

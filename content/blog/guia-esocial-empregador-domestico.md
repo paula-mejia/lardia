@@ -3,7 +3,7 @@ title: "Guia completo do eSocial para empregador doméstico"
 description: "Guia completo do eSocial para empregador doméstico: cadastro passo a passo, obrigações mensais, prazos, erros comuns e como evitar multas em 2026."
 slug: "guia-esocial-empregador-doméstico"
 date: "2026-02-14"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["esocial empregador doméstico guia", "esocial doméstico", "como usar esocial", "cadastro esocial empregada doméstica"]
 relatedSlugs: ["esocial-doméstico-como-funciona", "dae-como-gerar-quando-pagar", "como-registrar-empregada-doméstica"]
 ---
@@ -203,9 +203,9 @@ Tenha sempre a mao: contrato de trabalho, comprovante de exame admissional, reci
 
 Se houver reajuste salarial, mudanca de jornada ou qualquer alteracao, registre no eSocial no mesmo dia. Deixar para depois aumenta o risco de esquecer.
 
-## Deixe a Lardia cuidar do seu eSocial
+## Deixe a LarDia cuidar do seu eSocial
 
-Gerenciar o eSocial manualmente exige atenção a prazos, cálculos e registros que tomam tempo e podem gerar erros. A **Lardia** simplifica tudo isso:
+Gerenciar o eSocial manualmente exige atenção a prazos, cálculos e registros que tomam tempo e podem gerar erros. A **LarDia** simplifica tudo isso:
 
 - **Fechamento automático da folha** com todos os cálculos corretos
 - **Geracao automática da DAE** com lembrete de pagamento
@@ -213,9 +213,9 @@ Gerenciar o eSocial manualmente exige atenção a prazos, cálculos e registros 
 - **Alertas de prazos** para você nunca atrasar
 - **Controle completo** de todos os encargos e obrigações
 
-**[Cadastre-se na Lardia e simplifique seu eSocial →](https://lardia.com.br)**
+**[Cadastre-se na LarDia e simplifique seu eSocial →](https://lardia.com.br)**
 
-Pare de perder tempo com burocracia. A Lardia cuida da parte chata para você poder focar no que importa.
+Pare de perder tempo com burocracia. A LarDia cuida da parte chata para você poder focar no que importa.
 
 ## Perguntas frequentes
 
@@ -229,7 +229,7 @@ Sim. O acesso e uso do eSocial Doméstico são totalmente gratuitos. Você paga 
 
 ### Posso fechar a folha pelo celular?
 
-O portal do eSocial e responsivo e funciona no navegador do celular, mas a experiencia e melhor no computador. A Lardia oferece uma interface otimizada para celular.
+O portal do eSocial e responsivo e funciona no navegador do celular, mas a experiencia e melhor no computador. A LarDia oferece uma interface otimizada para celular.
 
 ### O que acontece se eu pagar a DAE com atraso?
 

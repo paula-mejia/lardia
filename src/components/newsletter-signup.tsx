@@ -4,13 +4,16 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { CheckCircle, Mail } from 'lucide-react'
+import Link from 'next/link'
 
 interface NewsletterSignupProps {
-  source?: 'landing' | 'blog' | 'simulator' | 'faq'
+  source?: 'landing' | 'blog' | 'simulator' | 'calculator' | 'faq'
+  compact?: boolean
 }
 
-export default function NewsletterSignup({ source = 'landing' }: NewsletterSignupProps) {
+export default function NewsletterSignup({ source = 'landing', compact = false }: NewsletterSignupProps) {
   const [email, setEmail] = useState('')
+  const [lgpdConsent, setLgpdConsent] = useState(false)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -26,13 +29,19 @@ export default function NewsletterSignup({ source = 'landing' }: NewsletterSignu
       return
     }
 
+    if (!lgpdConsent) {
+      setErrorMessage('É necessário aceitar a política de privacidade.')
+      setStatus('error')
+      return
+    }
+
     setStatus('loading')
 
     try {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, lgpdConsent }),
       })
 
       if (!res.ok) {
@@ -49,7 +58,7 @@ export default function NewsletterSignup({ source = 'landing' }: NewsletterSignu
 
   if (status === 'success') {
     return (
-      <section className="py-12 md:py-16">
+      <section className={compact ? 'py-6' : 'py-12 md:py-16'}>
         <div className="container mx-auto px-4">
           <Card className="max-w-xl mx-auto border-emerald-200 dark:border-emerald-800">
             <CardContent className="pt-8 pb-8 text-center">
@@ -68,7 +77,7 @@ export default function NewsletterSignup({ source = 'landing' }: NewsletterSignu
   }
 
   return (
-    <section className="py-12 md:py-16">
+    <section className={compact ? 'py-6' : 'py-12 md:py-16'}>
       <div className="container mx-auto px-4">
         <Card className="max-w-xl mx-auto">
           <CardContent className="pt-8 pb-8 text-center">
@@ -79,21 +88,41 @@ export default function NewsletterSignup({ source = 'landing' }: NewsletterSignu
             <p className="text-sm text-muted-foreground mb-6">
               Receba alertas de prazos, mudanças na legislação e dicas para empregadores domésticos
             </p>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="seu@email.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value)
-                  if (status === 'error') setStatus('idle')
-                }}
-                className="flex-1 h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                required
-              />
-              <Button type="submit" disabled={status === 'loading'}>
-                {status === 'loading' ? 'Enviando...' : 'Receber alertas'}
-              </Button>
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="seu@email.com"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                    if (status === 'error') setStatus('idle')
+                  }}
+                  className="flex-1 h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  required
+                />
+                <Button type="submit" disabled={status === 'loading' || !lgpdConsent}>
+                  {status === 'loading' ? 'Enviando...' : 'Receber alertas'}
+                </Button>
+              </div>
+              <label className="flex items-start gap-2 mt-4 text-left cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={lgpdConsent}
+                  onChange={(e) => {
+                    setLgpdConsent(e.target.checked)
+                    if (status === 'error') setStatus('idle')
+                  }}
+                  className="mt-0.5 h-4 w-4 rounded border-input accent-emerald-600"
+                />
+                <span className="text-xs text-muted-foreground">
+                  Concordo em receber comunicações da LarDia e aceito a{' '}
+                  <Link href="/privacidade" className="underline hover:text-foreground" target="_blank">
+                    Política de Privacidade
+                  </Link>
+                  . Você pode cancelar a inscrição a qualquer momento.
+                </span>
+              </label>
             </form>
             {status === 'error' && errorMessage && (
               <p className="text-sm text-red-500 mt-3">{errorMessage}</p>

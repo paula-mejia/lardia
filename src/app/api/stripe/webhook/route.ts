@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { getStripe } from '@/lib/stripe/config'
 import { createServerClient } from '@supabase/ssr'
+import { logAudit } from '@/lib/audit'
 
 // Use service role for webhook - no user session available
 function getServiceSupabase() {
@@ -98,6 +99,11 @@ export async function POST(request: NextRequest) {
         .from('employers')
         .update({ subscription_status: mapped })
         .eq('stripe_customer_id', subscription.customer as string)
+      await logAudit('subscription_created', 'subscription', {
+        status: mapped,
+        stripeSubscriptionId: subscription.id,
+        customerId: subscription.customer,
+      }, request)
       break
     }
 
@@ -107,6 +113,10 @@ export async function POST(request: NextRequest) {
         .from('employers')
         .update({ subscription_status: 'canceled' })
         .eq('stripe_customer_id', subscription.customer as string)
+      await logAudit('subscription_canceled', 'subscription', {
+        stripeSubscriptionId: subscription.id,
+        customerId: subscription.customer,
+      }, request)
       break
     }
 

@@ -3,7 +3,7 @@ title: "DAE: o que é, como gerar e quando pagar"
 description: "Saiba tudo sobre a DAE (Documento de Arrecadação do eSocial): o que inclui, como gerar no eSocial e qual o prazo de pagamento. Evite multas!"
 slug: "dae-como-gerar-quando-pagar"
 date: "2026-02-10"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["DAE empregada doméstica", "DAE esocial", "como gerar DAE", "prazo DAE empregada doméstica"]
 relatedSlugs: ["esocial-doméstico-como-funciona", "salário-empregada-doméstica-2026"]
 ---
@@ -66,7 +66,7 @@ O atraso na DAE gera:
 
 ## Nunca mais perca o prazo da DAE
 
-Com a Lardia, você recebe lembretes automaticos antes do vencimento da DAE. Nosso calendário de prazos garante que você nunca pague multa por esquecimento.
+Com a LarDia, você recebe lembretes automaticos antes do vencimento da DAE. Nosso calendário de prazos garante que você nunca pague multa por esquecimento.
 
 [Ver calendário de prazos →](/signup)
 

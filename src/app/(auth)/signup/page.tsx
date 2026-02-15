@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { trackSignupStarted, trackSignupCompleted } from '@/lib/analytics'
+import { trackAuditEvent } from '@/lib/audit-client'
 
 export default function SignupPage() {
   return (
@@ -76,6 +77,7 @@ function SignupForm() {
     }
 
     trackSignupCompleted()
+    trackAuditEvent('signup', 'auth', { email })
     setSuccess(true)
     setLoading(false)
   }

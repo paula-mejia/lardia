@@ -137,7 +137,7 @@ function buildEmailHtml(employerName: string, deadlines: Array<{ type: DeadlineT
       <p style="margin-top: 20px; color: #666; font-size: 14px;">
         Acesse o <a href="https://lardia.app/dashboard/calendar">calendario</a> para mais detalhes.
       </p>
-      <p style="color: #999; font-size: 12px;">Lardia - eSocial sem erro, sem estresse</p>
+      <p style="color: #999; font-size: 12px;">LarDia - eSocial sem erro, sem estresse</p>
     </div>`;
 }
 
@@ -148,17 +148,17 @@ function buildWhatsAppMessage(deadline: { type: DeadlineType; date: Date; daysUn
     if (deadline.daysUntil === 0) {
       return `Hoje e o último dia para pagar o DAE! Valor: R$XXX. Não esqueca!`;
     }
-    return `Lembrete: o DAE do mês vence em ${deadline.daysUntil} dias (dia ${dueDay}). Valor estimado: R$XXX. Acesse Lardia para gerar o comprovante.`;
+    return `Lembrete: o DAE do mês vence em ${deadline.daysUntil} dias (dia ${dueDay}). Valor estimado: R$XXX. Acesse LarDia para gerar o comprovante.`;
   }
 
   if (deadline.type === "esocial_closing") {
-    return `Hora de fechar a folha de pagamento do mês. Acesse Lardia.`;
+    return `Hora de fechar a folha de pagamento do mês. Acesse LarDia.`;
   }
 
   // Generic message for other deadlines
   const info = DEADLINES[deadline.type];
   const urgency = deadline.daysUntil === 0 ? "HOJE" : `em ${deadline.daysUntil} dias`;
-  return `Lembrete Lardia: ${info.label} vence ${urgency} (${formatDate(deadline.date)}). ${info.description}`;
+  return `Lembrete LarDia: ${info.label} vence ${urgency} (${formatDate(deadline.date)}). ${info.description}`;
 }
 
 // Send WhatsApp via Twilio API
@@ -339,7 +339,7 @@ Deno.serve(async (req) => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                from: "Lardia <noreply@lardia.app>",
+                from: "LarDia <noreply@lardia.app>",
                 to: [email],
                 subject,
                 html: emailHtml,

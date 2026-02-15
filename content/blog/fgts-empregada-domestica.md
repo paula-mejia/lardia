@@ -3,7 +3,7 @@ title: "FGTS da empregada doméstica: como funciona e como calcular"
 description: "Entenda como funciona o FGTS da empregada doméstica: depósito de 8%, antecipação rescisória de 3,2%, FGTS Digital, cálculo prático e regras de saque."
 slug: "fgts-empregada-doméstica"
 date: "2026-02-14"
-author: "Equipe Lardia"
+author: "Equipe LarDia"
 keywords: ["FGTS empregada doméstica", "FGTS doméstica como calcular", "FGTS 3.2 doméstica", "depósito FGTS doméstica"]
 relatedSlugs: ["quanto-custa-empregada-doméstica-2026", "dae-como-gerar-quando-pagar", "direitos-empregada-doméstica"]
 ---
@@ -191,11 +191,11 @@ A conta do FGTS rende **TR + 3% ao ano**, o que acrescenta alguns reais ao saldo
 
 ## Calcule o FGTS da sua empregada doméstica
 
-O valor do FGTS depende do salário é de verbas adicionais como horas extras e adicional noturno. Para um cálculo preciso e personalizado, use a **calculadora gratuita da Lardia**.
+O valor do FGTS depende do salário é de verbas adicionais como horas extras e adicional noturno. Para um cálculo preciso e personalizado, use a **calculadora gratuita da LarDia**.
 
 **[Calcule agora o FGTS e todos os encargos →](https://lardia.com.br)**
 
-A Lardia calcula automaticamente o FGTS regular, o compensatório e todos os encargos da DAE. Você tem clareza total sobre o custo do seu empregado doméstico, sem surpresas.
+A LarDia calcula automaticamente o FGTS regular, o compensatório e todos os encargos da DAE. Você tem clareza total sobre o custo do seu empregado doméstico, sem surpresas.
 
 ## Perguntas frequentes
 

@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     : [{
         price_data: {
           currency: 'brl',
-          product_data: { name: 'Lardia Pro - Gestao de Folha' },
+          product_data: { name: 'LarDia Pro - Gestao de Folha' },
           unit_amount: 2990, // R$29.90
           recurring: { interval: 'month' as const },
         },
