@@ -30,7 +30,7 @@ export function ResultRow({
 }) {
   const colorClass = {
     default: 'text-foreground',
-    earning: 'text-emerald-700',
+    earning: 'text-emerald-500',
     deduction: 'text-red-500',
     highlight: 'text-primary',
   }[variant]

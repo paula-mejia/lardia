@@ -104,7 +104,7 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   y += 7
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(14)
-  doc.text('RECIBO DE PAGAMENTO DE FERIAS', pageWidth / 2, y, { align: 'center' })
+  doc.text('RECIBO DE PAGAMENTO DE FÉRIAS', pageWidth / 2, y, { align: 'center' })
   y += 5
   drawThickLine(y)
   y += 6
@@ -125,8 +125,8 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   y += 6
 
   // -- Vacation periods --
-  addInfoRow('Periodo aquisitivo:', `${formatDate(data.acquisitionPeriodStart)} a ${formatDate(data.acquisitionPeriodEnd)}`)
-  addInfoRow('Periodo de gozo:', `${formatDate(data.vacationStartDate)} a ${formatDate(data.vacationEndDate)}`)
+  addInfoRow('Período aquisitivo:', `${formatDate(data.acquisitionPeriodStart)} a ${formatDate(data.acquisitionPeriodEnd)}`)
+  addInfoRow('Período de gozo:', `${formatDate(data.vacationStartDate)} a ${formatDate(data.vacationEndDate)}`)
   addInfoRow('Dias de férias:', `${b.daysEnjoyed} dias`)
   if (b.daysSold > 0) {
     addInfoRow('Abono pecuniario:', `${b.daysSold} dias vendidos`)
@@ -139,11 +139,11 @@ export function generateVacationReceiptPDF(data: VacationReceiptData): void {
   // -- Earnings --
   addSectionTitle('VENCIMENTOS')
   addRow(`Férias gozadas (${b.daysEnjoyed} dias)`, b.vacationPay)
-  addRow('Terco constitucional (1/3)', b.tercoConstitucional)
+  addRow('Terço constitucional (1/3)', b.tercoConstitucional)
 
   if (b.daysSold > 0) {
     addRow(`Abono pecuniario (${b.daysSold} dias)`, b.abonoPay)
-    addRow('Terco sobre abono (1/3)', b.abonoTerco)
+    addRow('Terço sobre abono (1/3)', b.abonoTerco)
   }
 
   y += 1

@@ -183,7 +183,7 @@ export default function SimuladorClient() {
         {
           label: 'Salários (12 meses)',
           value: cost.annualSalary,
-          color: '#047857',
+          color: '#10B981',
         },
         {
           label: 'INSS Patronal (8%)',
@@ -229,7 +229,7 @@ export default function SimuladorClient() {
           <div className="flex items-center gap-3">
             <Link
               href="/simulador"
-              className="text-sm font-medium text-emerald-700 dark:text-emerald-400 transition-colors"
+              className="text-sm font-medium text-emerald-500 dark:text-emerald-400 transition-colors"
             >
               Simulador
             </Link>
@@ -261,7 +261,7 @@ export default function SimuladorClient() {
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
             Quanto custa contratar
             <br />
-            <span className="text-emerald-700 dark:text-emerald-400">
+            <span className="text-emerald-500 dark:text-emerald-400">
               uma empregada doméstica?
             </span>
           </h1>
@@ -275,7 +275,7 @@ export default function SimuladorClient() {
       {/* Salary input */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 max-w-lg">
-          <Card className="border-2 border-emerald-200 dark:border-emerald-800 shadow-lg">
+          <Card className="border-2 border-emerald-200 dark:border-emerald-600 shadow-lg">
             <CardContent className="pt-6">
               <Label htmlFor="salary" className="text-base font-semibold mb-2 block">
                 Salário bruto mensal (R$)
@@ -309,11 +309,11 @@ export default function SimuladorClient() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
                 <Card className="border shadow-sm bg-emerald-50 dark:bg-emerald-950/20">
                   <CardContent className="pt-6 text-center">
-                    <Calculator className="h-6 w-6 text-emerald-700 mx-auto mb-2" />
+                    <Calculator className="h-6 w-6 text-emerald-500 mx-auto mb-2" />
                     <p className="text-sm text-muted-foreground mb-1">
                       Custo mensal medio
                     </p>
-                    <p className="text-2xl md:text-3xl font-bold text-emerald-800 dark:text-emerald-400">
+                    <p className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">
                       {formatBRL(cost.monthlyAverage)}
                     </p>
                   </CardContent>
@@ -462,7 +462,7 @@ export default function SimuladorClient() {
                     {/* Total */}
                     <div className="flex justify-between items-center py-2">
                       <span className="text-lg font-bold">Total anual</span>
-                      <span className="text-lg font-bold text-emerald-700 dark:text-emerald-400">
+                      <span className="text-lg font-bold text-emerald-500 dark:text-emerald-400">
                         {formatBRL(cost.totalAnnual)}
                       </span>
                     </div>
@@ -476,7 +476,7 @@ export default function SimuladorClient() {
           <NewsletterSignup source="simulator" />
 
           {/* CTA */}
-          <section className="py-12 md:py-16 bg-emerald-700 dark:bg-emerald-800">
+          <section className="py-12 md:py-16 bg-emerald-500 dark:bg-emerald-600">
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 Gerencie tudo isso automaticamente com LarDia

@@ -49,7 +49,7 @@ interface PayrollRecord {
 }
 
 function DetailRow({ label, value, variant }: { label: string; value: number; variant?: 'deduction' | 'earning' | 'highlight' }) {
-  const color = variant === 'deduction' ? 'text-red-500' : variant === 'earning' ? 'text-emerald-700' : variant === 'highlight' ? 'text-primary font-semibold' : ''
+  const color = variant === 'deduction' ? 'text-red-500' : variant === 'earning' ? 'text-emerald-500' : variant === 'highlight' ? 'text-primary font-semibold' : ''
   return (
     <div className="flex justify-between items-center py-1">
       <span className="text-sm text-muted-foreground">{label}</span>

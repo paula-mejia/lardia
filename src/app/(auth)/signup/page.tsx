@@ -153,11 +153,11 @@ function SignupForm() {
         <CardContent>
           {/* Magic Link - Primary Signup Method */}
           {magicLinkSent ? (
-            <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-center dark:border-emerald-800 dark:bg-emerald-950">
-              <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
+            <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-center dark:border-emerald-600 dark:bg-emerald-950">
+              <p className="text-sm font-medium text-emerald-600 dark:text-emerald-200">
                 ✉️ Link enviado! Verifique seu email.
               </p>
-              <p className="mt-1 text-xs text-emerald-700 dark:text-emerald-400">
+              <p className="mt-1 text-xs text-emerald-500 dark:text-emerald-400">
                 Enviamos um link de acesso para <strong>{email}</strong>
               </p>
               <Button

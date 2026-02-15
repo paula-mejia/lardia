@@ -27,10 +27,10 @@ function ReferralBannerInner() {
   if (!ref) return null
 
   return (
-    <div className="bg-emerald-50 dark:bg-emerald-950/30 border-b border-emerald-200 dark:border-emerald-800">
+    <div className="bg-emerald-50 dark:bg-emerald-950/30 border-b border-emerald-200 dark:border-emerald-600">
       <div className="container mx-auto px-4 py-3 flex items-center justify-center gap-3 text-sm">
-        <Gift className="h-4 w-4 text-emerald-700" />
-        <span className="text-emerald-800 dark:text-emerald-200">
+        <Gift className="h-4 w-4 text-emerald-500" />
+        <span className="text-emerald-600 dark:text-emerald-200">
           Você foi indicado por um amigo! Cadastre-se e aproveite.
         </span>
         <Link href={`/signup?ref=${ref}`}>
@@ -49,7 +49,7 @@ export function ReferralSection() {
     <section className="py-12 bg-gradient-to-r from-emerald-50 to-sky-50 dark:from-emerald-950/20 dark:to-sky-950/20">
       <div className="container mx-auto px-4 text-center">
         <div className="flex items-center justify-center gap-2 mb-3">
-          <Gift className="h-6 w-6 text-emerald-700" />
+          <Gift className="h-6 w-6 text-emerald-500" />
           <h3 className="text-xl font-bold">Indique e ganhe</h3>
         </div>
         <p className="text-muted-foreground max-w-md mx-auto mb-4">

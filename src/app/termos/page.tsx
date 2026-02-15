@@ -21,7 +21,7 @@ export default function TermosPage() {
           </p>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold">Identificacao da Empresa</h2>
+            <h2 className="text-xl font-semibold">Identificação da Empresa</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               A plataforma LarDia e operada por{' '}
               <strong>COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA</strong>,
@@ -39,7 +39,7 @@ export default function TermosPage() {
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>Calculadora de folha de pagamento (salário, férias, 13o, rescisão)</li>
-              <li>Geracao automatizada de guias DAE</li>
+              <li>Geração automatizada de guias DAE</li>
               <li>Integração com o eSocial via procuração eletrônica</li>
               <li>Calendário de obrigações e lembretes</li>
               <li>Verificação de antecedentes (via parceiros)</li>
@@ -117,7 +117,7 @@ export default function TermosPage() {
             <h2 className="text-xl font-semibold">5. Tratamento de Dados</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Os dados pessoais coletados são tratados conforme nossa{' '}
-              <Link href="/privacidade" className="text-emerald-700 underline">
+              <Link href="/privacidade" className="text-emerald-500 underline">
                 Politica de Privacidade
               </Link>
               , em conformidade com a Lei Geral de Protecao de Dados (LGPD - Lei
@@ -158,7 +158,7 @@ export default function TermosPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold">8. Limitacao de Responsabilidade</h2>
+            <h2 className="text-xl font-semibold">8. Limitação de Responsabilidade</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               A LarDia não será responsável por danos indiretos, incidentais,
               especiais ou consequenciais decorrentes do uso ou impossibilidade
@@ -168,7 +168,7 @@ export default function TermosPage() {
             <p className="text-sm leading-relaxed text-muted-foreground">
               Em caso de erros em cálculos que resultem em prejuizo ao usuário,
               a LarDia se compromete a corrigir o erro e auxiliar na
-              regularizacao junto aos orgaos competentes.
+              regularização junto aos órgãos competentes.
             </p>
           </section>
 
@@ -183,7 +183,7 @@ export default function TermosPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold">10. Foro e Legislacao Aplicavel</h2>
+            <h2 className="text-xl font-semibold">10. Foro e Legislação Aplicável</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Estes termos são regidos pelas leis da Republica Federativa do
               Brasil. Fica eleito o foro da comarca de São Paulo/SP para dirimir
@@ -197,7 +197,7 @@ export default function TermosPage() {
               Em caso de duvidas sobre estes termos, entre em contato pelo email:{' '}
               <a
                 href="mailto:contato@lardia.com.br"
-                className="text-emerald-700 underline"
+                className="text-emerald-500 underline"
               >
                 contato@lardia.com.br
               </a>

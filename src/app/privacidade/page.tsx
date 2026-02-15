@@ -23,7 +23,7 @@ export default function PrivacidadePage() {
           </p>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold">Identificacao da Empresa</h2>
+            <h2 className="text-xl font-semibold">Identificação da Empresa</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               A plataforma LarDia e operada por{' '}
               <strong>COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA</strong>,
@@ -87,7 +87,7 @@ export default function PrivacidadePage() {
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>Criptografia em transito (TLS/SSL)</li>
               <li>Criptografia em repouso (AES-256)</li>
-              <li>Acesso restrito por autenticacao e autorizacao (RLS)</li>
+              <li>Acesso restrito por autenticação e autorização (RLS)</li>
               <li>Backups regulares</li>
               <li>Servidores localizados nos Estados Unidos (Supabase)</li>
             </ul>
@@ -97,7 +97,7 @@ export default function PrivacidadePage() {
             <h2 className="text-xl font-semibold">4. Compartilhamento com Terceiros</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Compartilhamos dados com os seguintes parceiros, apenas na medida
-              necessaria para a prestacao dos serviços:
+              necessária para a prestação dos serviços:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
               <li>
@@ -107,7 +107,7 @@ export default function PrivacidadePage() {
                   href="https://stripe.com/privacy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-700 underline"
+                  className="text-emerald-500 underline"
                 >
                   politica de privacidade da Stripe
                 </a>
@@ -154,7 +154,7 @@ export default function PrivacidadePage() {
                 seus dados para outro serviço
               </li>
               <li>
-                <strong>Revogacao do consentimento:</strong> retirar o
+                <strong>Revogação do consentimento:</strong> retirar o
                 consentimento para o tratamento dos dados a qualquer momento
               </li>
               <li>
@@ -166,7 +166,7 @@ export default function PrivacidadePage() {
               Para exercer qualquer desses direitos, envie um email para{' '}
               <a
                 href="mailto:privacidade@lardia.com.br"
-                className="text-emerald-700 underline"
+                className="text-emerald-500 underline"
               >
                 privacidade@lardia.com.br
               </a>
@@ -231,7 +231,7 @@ export default function PrivacidadePage() {
                 Email:{' '}
                 <a
                   href="mailto:privacidade@lardia.com.br"
-                  className="text-emerald-700 underline"
+                  className="text-emerald-500 underline"
                 >
                   privacidade@lardia.com.br
                 </a>

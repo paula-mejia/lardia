@@ -155,9 +155,9 @@ export default function BackgroundCheckPage() {
   ]
 
   const benefits = [
-    { icon: <ShieldCheck className="h-5 w-5 text-emerald-700" />, text: 'Contrate com segurança' },
-    { icon: <Clock className="h-5 w-5 text-emerald-700" />, text: 'Resultado em minutos' },
-    { icon: <FileText className="h-5 w-5 text-emerald-700" />, text: 'Relatório completo em PDF' },
+    { icon: <ShieldCheck className="h-5 w-5 text-emerald-500" />, text: 'Contrate com segurança' },
+    { icon: <Clock className="h-5 w-5 text-emerald-500" />, text: 'Resultado em minutos' },
+    { icon: <FileText className="h-5 w-5 text-emerald-500" />, text: 'Relatório completo em PDF' },
   ]
 
   return (
@@ -185,10 +185,10 @@ export default function BackgroundCheckPage() {
       {step === 'intro' && (
         <div className="space-y-6">
           {/* Hero */}
-          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 border border-emerald-200 dark:border-emerald-800 p-6 md:p-8">
+          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 border border-emerald-200 dark:border-emerald-600 p-6 md:p-8">
             <div className="flex flex-col md:flex-row md:items-center gap-4">
               <div className="flex-1 space-y-3">
-                <Badge variant="secondary" className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 text-xs">
+                <Badge variant="secondary" className="bg-emerald-100 text-emerald-600 dark:bg-emerald-900 dark:text-emerald-200 text-xs">
                   Serviço Avulso
                 </Badge>
                 <h2 className="text-2xl font-bold tracking-tight">
@@ -198,13 +198,13 @@ export default function BackgroundCheckPage() {
                   Verifique antecedentes criminais, processos judiciais e situação de crédito de candidatos antes de contratar. Proteja sua casa e sua família.
                 </p>
                 <div className="flex items-baseline gap-2 pt-1">
-                  <span className="text-3xl font-bold text-emerald-800 dark:text-emerald-400">R$&nbsp;99,90</span>
+                  <span className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">R$&nbsp;99,90</span>
                   <span className="text-sm text-muted-foreground">por consulta</span>
                 </div>
               </div>
               <div className="hidden md:flex items-center justify-center">
                 <div className="w-24 h-24 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center">
-                  <ShieldCheck className="h-12 w-12 text-emerald-700 dark:text-emerald-400" />
+                  <ShieldCheck className="h-12 w-12 text-emerald-500 dark:text-emerald-400" />
                 </div>
               </div>
             </div>
@@ -253,10 +253,10 @@ export default function BackgroundCheckPage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Validação do CPF na Receita Federal</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Antecedentes criminais em bases públicas</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Processos judiciais cíveis</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Situação de crédito</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" /> Validação do CPF na Receita Federal</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" /> Antecedentes criminais em bases públicas</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" /> Processos judiciais cíveis</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" /> Situação de crédito</li>
               </ul>
             </CardContent>
           </Card>
@@ -428,7 +428,7 @@ export default function BackgroundCheckPage() {
                     const msg = encodeURIComponent('Olá! Como parte do processo de contratação, precisamos realizar uma verificação pré-contratação que inclui: validação de CPF, antecedentes criminais, processos judiciais cíveis e situação de crédito. De acordo com a LGPD (Lei 13.709/2018), precisamos da sua autorização. Você autoriza a realização desta consulta? Responda SIM para autorizar.')
                     window.open(`https://wa.me/?text=${msg}`, '_blank')
                   }}
-                  className="text-emerald-700 hover:text-emerald-800 text-xs font-medium underline"
+                  className="text-emerald-500 hover:text-emerald-600 text-xs font-medium underline"
                 >
                   Enviar via WhatsApp →
                 </button>

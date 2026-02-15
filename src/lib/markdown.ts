@@ -100,7 +100,7 @@ export function markdownToHtml(md: string): string {
 
 function inlineFormat(text: string): string {
   // Links [text](url)
-  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-emerald-700 hover:text-emerald-800 underline underline-offset-2">$1</a>')
+  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-emerald-500 hover:text-emerald-600 underline underline-offset-2">$1</a>')
   // Bold **text**
   text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
   // Inline code `text`

@@ -56,7 +56,7 @@ export default async function AuditLogPage({
       {/* Filter */}
       <form className="flex items-center gap-3">
         <label htmlFor="action" className="text-sm font-medium">
-          Filtrar por acao:
+          Filtrar por ação:
         </label>
         <select
           id="action"

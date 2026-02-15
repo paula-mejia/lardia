@@ -247,7 +247,7 @@ export default function VacationPageClient({
                 variant="earning"
               />
               <ResultRow
-                label="Terco constitucional (1/3)"
+                label="Terço constitucional (1/3)"
                 value={result.tercoConstitucional}
                 variant="earning"
                 tip="Adicional de 1/3 sobre o valor das férias, garantido pela Constituição."
@@ -263,7 +263,7 @@ export default function VacationPageClient({
                     tip="Valor dos dias vendidos. Isento de INSS e IRRF."
                   />
                   <ResultRow
-                    label="Terco sobre abono"
+                    label="Terço sobre abono"
                     value={result.abonoTerco}
                     variant="earning"
                   />

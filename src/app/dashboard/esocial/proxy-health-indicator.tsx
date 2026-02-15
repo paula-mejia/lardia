@@ -58,11 +58,11 @@ export function ProxyHealthIndicator() {
             ) : health.status === 'connected' ? (
               <>
                 <div className="relative">
-                  <Wifi className="h-4 w-4 text-emerald-700" />
+                  <Wifi className="h-4 w-4 text-emerald-500" />
                   <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-emerald-800">
+                  <span className="text-sm font-medium text-emerald-600">
                     Servidor eSocial online
                   </span>
                   <span className="text-xs text-muted-foreground ml-2">

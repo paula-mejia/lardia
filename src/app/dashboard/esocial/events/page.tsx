@@ -49,7 +49,7 @@ function statusBadge(status: string) {
     case 'pendente':
       return <Badge className="bg-yellow-100 text-yellow-800">Pendente</Badge>
     case 'enviado':
-      return <Badge className="bg-emerald-100 text-emerald-800">Enviado</Badge>
+      return <Badge className="bg-emerald-100 text-emerald-600">Enviado</Badge>
     case 'erro':
       return <Badge className="bg-red-100 text-red-800">Erro</Badge>
     case 'processando':

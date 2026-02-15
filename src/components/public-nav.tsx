@@ -23,7 +23,7 @@ export function PublicNav() {
             <Button variant="ghost" size="sm">Entrar</Button>
           </Link>
           <Link href="/signup">
-            <Button size="sm" className="bg-emerald-700 hover:bg-emerald-800">Comece agora</Button>
+            <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600">Comece agora</Button>
           </Link>
         </div>
       </div>

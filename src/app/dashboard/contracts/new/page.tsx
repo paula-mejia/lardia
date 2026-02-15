@@ -326,11 +326,11 @@ export default function NewContractPage() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <Label>Horario de entrada</Label>
+                  <Label>Horário de entrada</Label>
                   <Input type="time" value={form.startTime} onChange={e => updateForm('startTime', e.target.value)} />
                 </div>
                 <div>
-                  <Label>Horario de saida</Label>
+                  <Label>Horário de saída</Label>
                   <Input type="time" value={form.endTime} onChange={e => updateForm('endTime', e.target.value)} />
                 </div>
               </div>
@@ -344,7 +344,7 @@ export default function NewContractPage() {
           {/* Compensation */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Remuneracao</CardTitle>
+              <CardTitle className="text-base">Remuneração</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>

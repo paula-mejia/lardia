@@ -107,7 +107,7 @@ export function DashboardNav() {
                   className={cn(
                     'flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors',
                     isActive(item.href)
-                      ? 'bg-emerald-50 text-emerald-800 font-medium dark:bg-emerald-950 dark:text-emerald-300'
+                      ? 'bg-emerald-50 text-emerald-600 font-medium dark:bg-emerald-950 dark:text-emerald-300'
                       : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                   )}
                 >

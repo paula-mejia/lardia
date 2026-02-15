@@ -89,7 +89,7 @@ export default async function BlogPost({
             LarDia
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/blog" className="text-sm font-medium text-emerald-700">
+            <Link href="/blog" className="text-sm font-medium text-emerald-500">
               Blog
             </Link>
             <Link href="/login">
@@ -150,10 +150,10 @@ export default async function BlogPost({
         />
 
         {/* CTA Banner */}
-        <div className="my-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 p-8 text-center">
+        <div className="my-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-600 p-8 text-center">
           <h3 className="text-xl font-bold mb-2">Simplifique o eSocial com a LarDia</h3>
           <p className="text-muted-foreground mb-4">
-            Cálculos automaticos, lembretes de prazos e tudo que você precisa para ficar em dia.
+            Cálculos automáticos, lembretes de prazos e tudo que você precisa para ficar em dia.
           </p>
           <Link href="/signup">
             <Button>
@@ -181,7 +181,7 @@ export default async function BlogPost({
                           year: 'numeric',
                         })}
                       </p>
-                      <h3 className="font-semibold text-sm group-hover:text-emerald-700">
+                      <h3 className="font-semibold text-sm group-hover:text-emerald-500">
                         {r.title}
                       </h3>
                     </CardContent>

@@ -109,13 +109,13 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
   y += 7
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(12)
-  doc.text('TERMO DE RESCISAO DO CONTRATO DE TRABALHO', pageWidth / 2, y, { align: 'center' })
+  doc.text('TERMO DE RESCISÃO DO CONTRATO DE TRABALHO', pageWidth / 2, y, { align: 'center' })
   y += 5
   drawThickLine(y)
   y += 6
 
   // -- Employer identification --
-  addSectionTitle('IDENTIFICACAO DO EMPREGADOR')
+  addSectionTitle('IDENTIFICAÇÃO DO EMPREGADOR')
   addInfoRow('Nome:', data.employerName)
   if (data.employerCpf) {
     addInfoRow('CPF:', formatCPF(data.employerCpf))
@@ -124,7 +124,7 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
   y += 2
 
   // -- Employee identification --
-  addSectionTitle('IDENTIFICACAO DO EMPREGADO')
+  addSectionTitle('IDENTIFICAÇÃO DO EMPREGADO')
   addInfoRow('Nome:', data.employeeName)
   addInfoRow('CPF:', formatCPF(data.employeeCpf))
   addInfoRow('Função:', data.employeeRole)
@@ -144,7 +144,7 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
   y += 3
 
   // -- Earnings --
-  addSectionTitle('VERBAS RESCISORIAS - PROVENTOS')
+  addSectionTitle('VERBAS RESCISÓRIAS - PROVENTOS')
 
   addRow(`Saldo de salário (${b.saldoSalarioDays} dias)`, b.saldoSalario)
 

@@ -31,7 +31,7 @@ export default function BlogIndex() {
             LarDia
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/blog" className="text-sm font-medium text-emerald-700">
+            <Link href="/blog" className="text-sm font-medium text-emerald-500">
               Blog
             </Link>
             <Link href="/login">
@@ -48,8 +48,8 @@ export default function BlogIndex() {
       <section className="border-b bg-muted/30">
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <BookOpen className="h-6 w-6 text-emerald-700" />
-            <span className="text-sm font-medium text-emerald-700 uppercase tracking-wider">Blog</span>
+            <BookOpen className="h-6 w-6 text-emerald-500" />
+            <span className="text-sm font-medium text-emerald-500 uppercase tracking-wider">Blog</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
             Guias sobre eSocial e empregada doméstica
@@ -81,13 +81,13 @@ export default function BlogIndex() {
                       {post.readingTime} min de leitura
                     </span>
                   </div>
-                  <h2 className="text-lg font-semibold mb-2 group-hover:text-emerald-700 transition-colors">
+                  <h2 className="text-lg font-semibold mb-2 group-hover:text-emerald-500 transition-colors">
                     {post.title}
                   </h2>
                   <p className="text-sm text-muted-foreground flex-1 mb-4">
                     {post.description}
                   </p>
-                  <span className="text-sm font-medium text-emerald-700 flex items-center gap-1">
+                  <span className="text-sm font-medium text-emerald-500 flex items-center gap-1">
                     Ler artigo <ArrowRight className="h-3 w-3" />
                   </span>
                 </CardContent>

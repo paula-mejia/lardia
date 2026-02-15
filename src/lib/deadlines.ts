@@ -73,14 +73,14 @@ export const DEADLINE_DEFINITIONS: Record<DeadlineType, DeadlineDefinition> = {
     type: 'income_report',
     label: 'Informe de Rendimentos',
     description:
-      'Entrega do informe de rendimentos ao empregado para declaracao do IR. Prazo até 28 de fevereiro.',
+      'Entrega do informe de rendimentos ao empregado para declaração do IR. Prazo até 28 de fevereiro.',
     color: 'bg-emerald-600',
   },
   dirf: {
     type: 'dirf',
     label: 'DIRF',
     description:
-      'Declaracao do Imposto de Renda Retido na Fonte. Prazo até 28 de fevereiro.',
+      'Declaração do Imposto de Renda Retido na Fonte. Prazo até 28 de fevereiro.',
     color: 'bg-green-500',
   },
 }

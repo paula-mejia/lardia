@@ -60,10 +60,10 @@ export default function NewsletterSignup({ source = 'landing', compact = false }
     return (
       <section className={compact ? 'py-6' : 'py-12 md:py-16'}>
         <div className="container mx-auto px-4">
-          <Card className="max-w-xl mx-auto border-emerald-200 dark:border-emerald-800">
+          <Card className="max-w-xl mx-auto border-emerald-200 dark:border-emerald-600">
             <CardContent className="pt-8 pb-8 text-center">
               <CheckCircle className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
-              <p className="text-lg font-semibold text-emerald-800 dark:text-emerald-400">
+              <p className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
                 Email cadastrado com sucesso!
               </p>
               <p className="text-sm text-muted-foreground mt-2">
@@ -81,7 +81,7 @@ export default function NewsletterSignup({ source = 'landing', compact = false }
       <div className="container mx-auto px-4">
         <Card className="max-w-xl mx-auto">
           <CardContent className="pt-8 pb-8 text-center">
-            <Mail className="h-10 w-10 text-emerald-700 dark:text-emerald-400 mx-auto mb-4" />
+            <Mail className="h-10 w-10 text-emerald-500 dark:text-emerald-400 mx-auto mb-4" />
             <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-2">
               Fique por dentro das mudanças no eSocial
             </h2>
@@ -113,7 +113,7 @@ export default function NewsletterSignup({ source = 'landing', compact = false }
                     setLgpdConsent(e.target.checked)
                     if (status === 'error') setStatus('idle')
                   }}
-                  className="mt-0.5 h-4 w-4 rounded border-input accent-emerald-700"
+                  className="mt-0.5 h-4 w-4 rounded border-input accent-emerald-500"
                 />
                 <span className="text-xs text-muted-foreground">
                   Concordo em receber comunicações da LarDia e aceito a{' '}

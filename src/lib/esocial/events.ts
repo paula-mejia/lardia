@@ -278,7 +278,7 @@ export interface DaeRecord {
 // Event type labels (Portuguese)
 export const EVENT_TYPE_LABELS: Record<EsocialEventType, string> = {
   'S-2200': 'Cadastramento Inicial',
-  'S-2206': 'Alteracao Contratual',
+  'S-2206': 'Alteração Contratual',
   'S-1200': 'Remuneracao',
   'S-1210': 'Pagamentos',
   'S-2230': 'Afastamento Temporario',

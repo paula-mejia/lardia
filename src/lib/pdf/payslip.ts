@@ -18,7 +18,7 @@ export interface PayslipData {
 }
 
 const MONTH_NAMES = [
-  'Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho',
+  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
 ]
 
@@ -110,7 +110,7 @@ export function generatePayslipPDF(data: PayslipData): void {
 
   // Reference month on the right
   doc.setFont('helvetica', 'bold')
-  doc.text('Competencia:', pageWidth - margin - 55, y)
+  doc.text('Competência:', pageWidth - margin - 55, y)
   doc.setFont('helvetica', 'normal')
   const refLabel = `${MONTH_NAMES[data.referenceMonth - 1]} / ${data.referenceYear}`
   doc.text(refLabel, pageWidth - margin - 2, y, { align: 'right' })

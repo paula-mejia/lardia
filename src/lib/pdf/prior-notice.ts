@@ -66,7 +66,7 @@ export function generatePriorNoticePDF(data: PriorNoticeData): void {
   y += 8
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(16)
-  doc.text('AVISO PREVIO', pageWidth / 2, y, { align: 'center' })
+  doc.text('AVISO PRÉVIO', pageWidth / 2, y, { align: 'center' })
   y += 6
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(10)
@@ -167,23 +167,23 @@ export function generatePriorNoticePDF(data: PriorNoticeData): void {
 function buildWorkedNoticeText(data: PriorNoticeData): string {
   return `Pelo presente instrumento, fica o(a) empregado(a) ${data.employeeName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employeeCpf)}, exercendo a função de ${data.employeeRole}, admitido(a) em ${formatDate(data.admissionDate)}, notificado(a) de que seu contrato de trabalho será rescindido.
 
-O presente aviso prévio terá duracao de ${data.durationDays} (${numberToWords(data.durationDays)}) dias, com início em ${formatDate(data.noticeDate)} e término em ${formatDate(data.lastWorkDay)}, devendo o(a) empregado(a) comparecer normalmente ao trabalho durante este período.
+O presente aviso prévio terá duração de ${data.durationDays} (${numberToWords(data.durationDays)}) dias, com início em ${formatDate(data.noticeDate)} e término em ${formatDate(data.lastWorkDay)}, devendo o(a) empregado(a) comparecer normalmente ao trabalho durante este período.
 
-Conforme disposto no artigo 7o, inciso XXI, da Constituição Federal e no artigo 1o da Lei 12.506/2011, o aviso prévio proporcional é de ${data.durationDays} dias (30 dias base + 3 dias por ano de serviço, limitado a 90 dias).`
+Conforme disposto no artigo 7º, inciso XXI, da Constituição Federal e no artigo 1º da Lei 12.506/2011, o aviso prévio proporcional é de ${data.durationDays} dias (30 dias base + 3 dias por ano de serviço, limitado a 90 dias).`
 }
 
 /** Build text for indemnified prior notice. */
 function buildIndemnifiedNoticeText(data: PriorNoticeData): string {
   return `Pelo presente instrumento, fica o(a) empregado(a) ${data.employeeName}, inscrito(a) no CPF sob o n. ${formatCPF(data.employeeCpf)}, exercendo a função de ${data.employeeRole}, admitido(a) em ${formatDate(data.admissionDate)}, notificado(a) de que seu contrato de trabalho será rescindido.
 
-O presente aviso prévio e INDENIZADO, com duracao de ${data.durationDays} (${numberToWords(data.durationDays)}) dias. O(a) empregado(a) fica dispensado(a) do cumprimento do aviso, sendo o último dia de trabalho ${formatDate(data.lastWorkDay)}.
+O presente aviso prévio é INDENIZADO, com duração de ${data.durationDays} (${numberToWords(data.durationDays)}) dias. O(a) empregado(a) fica dispensado(a) do cumprimento do aviso, sendo o último dia de trabalho ${formatDate(data.lastWorkDay)}.
 
 O valor correspondente ao aviso prévio indenizado será pago juntamente com as demais verbas rescisórias, conforme legislação vigente.`
 }
 
 /** Simple number to Portuguese words for common values (30-90). */
 function numberToWords(n: number): string {
-  const units = ['', 'um', 'dois', 'tres', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove']
+  const units = ['', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove']
   const tens = ['', 'dez', 'vinte', 'trinta', 'quarenta', 'cinquenta', 'sessenta', 'setenta', 'oitenta', 'noventa']
   const teens = ['dez', 'onze', 'doze', 'treze', 'quatorze', 'quinze', 'dezesseis', 'dezessete', 'dezoito', 'dezenove']
 

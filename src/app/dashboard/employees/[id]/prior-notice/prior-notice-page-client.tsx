@@ -182,7 +182,7 @@ export default function PriorNoticePageClient({
               </Badge>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-muted-foreground">Duracao do aviso</span>
+              <span className="text-sm text-muted-foreground">Duração do aviso</span>
               <span className="text-sm font-medium">{noticeDays} dias</span>
             </div>
             <div className="flex justify-between">
