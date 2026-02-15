@@ -1,25 +1,25 @@
 ---
-title: "Guia completo do eSocial para empregador doméstico"
-description: "Guia completo do eSocial para empregador doméstico: cadastro passo a passo, obrigações mensais, prazos, erros comuns e como evitar multas em 2026."
-slug: "guia-esocial-empregador-doméstico"
+title: "Guia completo do eSocial para empregador domestico"
+description: "Guia completo do eSocial para empregador domestico: cadastro passo a passo, obrigações mensais, prazos, erros comuns e como evitar multas em 2026."
+slug: "guia-esocial-empregador-domestico"
 date: "2026-02-14"
 author: "Equipe LarDia"
-keywords: ["esocial empregador doméstico guia", "esocial doméstico", "como usar esocial", "cadastro esocial empregada doméstica"]
-relatedSlugs: ["esocial-doméstico-como-funciona", "dae-como-gerar-quando-pagar", "como-registrar-empregada-doméstica"]
+keywords: ["esocial empregador domestico guia", "esocial domestico", "como usar esocial", "cadastro esocial empregada domestica"]
+relatedSlugs: ["esocial-domestico-como-funciona", "dae-como-gerar-quando-pagar", "como-registrar-empregada-domestica"]
 ---
 
-O eSocial para empregador doméstico é obrigatório desde 2015, mas ainda gera muitas duvidas. Neste guia completo do eSocial para empregador doméstico, vamos explicar passo a passo como se cadastrar, quais são as obrigações mensais, os prazos que você precisa cumprir e os erros mais comuns que podem gerar multas. Se você tem ou pretende contratar uma empregada doméstica, cuidador, motorista ou qualquer trabalhador doméstico, este artigo e para você.
+O eSocial para empregador domestico é obrigatório desde 2015, mas ainda gera muitas duvidas. Neste guia completo do eSocial para empregador domestico, vamos explicar passo a passo como se cadastrar, quais são as obrigações mensais, os prazos que você precisa cumprir e os erros mais comuns que podem gerar multas. Se você tem ou pretende contratar uma empregada domestica, cuidador, motorista ou qualquer trabalhador domestico, este artigo e para você.
 
 ## O que é o eSocial Doméstico?
 
-O eSocial Doméstico e a plataforma digital do Governo Federal onde empregadores domésticos registram e gerenciam todas as informações trabalhistas, previdenciarias e fiscais dos seus empregados. Criado pela **Lei Complementar 150/2015**, o sistema unificou diversas obrigações que antes eram feitas separadamente.
+O eSocial Doméstico e a plataforma digital do Governo Federal onde empregadores domesticos registram e gerenciam todas as informações trabalhistas, previdenciarias e fiscais dos seus empregados. Criado pela **Lei Complementar 150/2015**, o sistema unificou diversas obrigações que antes eram feitas separadamente.
 
 Pelo eSocial, você:
 - Registra a admissão do empregado
-- Informa salário e alterações contratuais
+- Informa salario e alterações contratuais
 - Fecha a folha de pagamento mensal
 - Gera a DAE (guia de pagamento)
-- Registra férias, afastamentos e demissoes
+- Registra ferias, afastamentos e demissoes
 - Comunica acidentes de trabalho
 
 O acesso é feito pelo portal **login.esocial.gov.br** usando sua conta Gov.br (nivel prata ou ouro).
@@ -59,10 +59,10 @@ Clique em "Registrar Empregado" e preencha:
 - Jornada de trabalho (horas semanais)
 - Tipo de contrato (prazo indeterminado ou determinado)
 - Local de trabalho (endereço da residencia)
-- Cargo (empregada doméstica, cuidador, motorista, etc.)
+- Cargo (empregada domestica, cuidador, motorista, etc.)
 
 **Dependentes (se houver):**
-- Filhos menores de 14 anos (para salário-família, se aplicavel)
+- Filhos menores de 14 anos (para salario-família, se aplicavel)
 
 ### Passo 4: Confirme e salve
 
@@ -90,7 +90,7 @@ Após fechar a folha, o eSocial gera a DAE (Documento de Arrecadação do eSocia
 - FGTS (8%)
 - FGTS compensatório (3,2%)
 - GILRAT (0,8%)
-- IRRF (se o salário ultrapassar a faixa de isencao)
+- IRRF (se o salario ultrapassar a faixa de isencao)
 
 **Prazo de pagamento da DAE:** também até o dia **7 do mês seguinte**.
 
@@ -103,13 +103,13 @@ Além da folha mensal, você deve registrar no eSocial sempre que ocorrer:
 - **Alteracoes contratuais:** mudanca de jornada, função
 - **Desligamento:** quando houver demissão ou pedido de demissão
 
-## Calendário anual do empregador doméstico
+## Calendário anual do empregador domestico
 
 | Mes | Obrigacao | Prazo |
 |-----|-----------|-------|
 | Todo mês | Fechamento da folha + DAE | Dia 7 do mês seguinte |
-| Novembro | 1a parcela do 13o salário | Ate 30/11 |
-| Dezembro | 2a parcela do 13o salário | Ate 20/12 |
+| Novembro | 1a parcela do 13o salario | Ate 30/11 |
+| Dezembro | 2a parcela do 13o salario | Ate 20/12 |
 | Dezembro | Folha anual do 13o (eSocial) | Ate 07/01 |
 | Fevereiro | Informe de rendimentos | Ate 28/02 |
 | Quando ocorrer | Férias, afastamentos, rescisão | Datas especificas por evento |
@@ -128,17 +128,17 @@ Se o nome, CPF ou NIS do empregado estiver diferente nos sistemas da Receita Fed
 
 **Como evitar:** antes de cadastrar, faca a qualificacao cadastral no proprio site do eSocial (menu "Consulta Qualificacao Cadastral").
 
-### 3. Não registrar férias no eSocial
+### 3. Não registrar ferias no eSocial
 
-Muitos empregadores concedem férias verbalmente, mas não registram no sistema. Isso pode gerar problemas em uma eventual fiscalizacao ou acao trabalhista.
+Muitos empregadores concedem ferias verbalmente, mas não registram no sistema. Isso pode gerar problemas em uma eventual fiscalizacao ou acao trabalhista.
 
-**Como evitar:** sempre registre as férias no eSocial antes do início do período de gozo.
+**Como evitar:** sempre registre as ferias no eSocial antes do início do período de gozo.
 
-### 4. Pagar salário diferente do informado
+### 4. Pagar salario diferente do informado
 
-Se você informou um salário de R$ 1.518 no eSocial mas paga R$ 1.800 "por fora", esta criando uma situação irregular. Em caso de acao trabalhista, o empregado pode exigir o recálculo de todos os direitos sobre o valor real.
+Se você informou um salario de R$ 1.518 no eSocial mas paga R$ 1.800 "por fora", esta criando uma situação irregular. Em caso de acao trabalhista, o empregado pode exigir o recálculo de todos os direitos sobre o valor real.
 
-**Como evitar:** sempre informe o salário real no eSocial.
+**Como evitar:** sempre informe o salario real no eSocial.
 
 ### 5. Não registrar horas extras
 
@@ -183,7 +183,7 @@ Para simplificar, veja a rotina que você deve seguir todo mês:
 
 **Dia 6-7:** Gere a DAE e realize o pagamento. O pagamento pode ser feito por boleto bancario ou debito automático.
 
-**Dia 30:** Pague o salário ao empregado (até o 5o dia útil do mês seguinte).
+**Dia 30:** Pague o salario ao empregado (até o 5o dia útil do mês seguinte).
 
 ## Dicas para facilitar o uso do eSocial
 
@@ -197,7 +197,7 @@ Alguns bancos permitem cadastrar o debito automático da DAE, evitando esquecime
 
 ### Mantenha os documentos digitalizados
 
-Tenha sempre a mao: contrato de trabalho, comprovante de exame admissional, recibos de férias é pagamento. Em caso de fiscalizacao, você precisara deles.
+Tenha sempre a mao: contrato de trabalho, comprovante de exame admissional, recibos de ferias é pagamento. Em caso de fiscalizacao, você precisara deles.
 
 ### Anote alterações contratuais imediatamente
 
@@ -209,7 +209,7 @@ Gerenciar o eSocial manualmente exige atenção a prazos, cálculos e registros 
 
 - **Fechamento automático da folha** com todos os cálculos corretos
 - **Geracao automática da DAE** com lembrete de pagamento
-- **Registro de férias, 13o e afastamentos** de forma guiada
+- **Registro de ferias, 13o e afastamentos** de forma guiada
 - **Alertas de prazos** para você nunca atrasar
 - **Controle completo** de todos os encargos e obrigações
 
@@ -235,6 +235,6 @@ O portal do eSocial e responsivo e funciona no navegador do celular, mas a exper
 
 Você terá que gerar uma nova DAE com os acrescimos legais (multa de 0,33% ao dia + juros SELIC). O sistema calcula automaticamente ao gerar a guia em atraso.
 
-### Empregador doméstico precisa ter CNPJ?
+### Empregador domestico precisa ter CNPJ?
 
-Não. O empregador doméstico e pessoa fisica e utiliza seu CPF para todas as obrigações no eSocial.
+Não. O empregador domestico e pessoa fisica e utiliza seu CPF para todas as obrigações no eSocial.

@@ -4,17 +4,17 @@ description: "Saiba tudo sobre a DAE (Documento de Arrecadação do eSocial): o 
 slug: "dae-como-gerar-quando-pagar"
 date: "2026-02-10"
 author: "Equipe LarDia"
-keywords: ["DAE empregada doméstica", "DAE esocial", "como gerar DAE", "prazo DAE empregada doméstica"]
-relatedSlugs: ["esocial-doméstico-como-funciona", "salário-empregada-doméstica-2026"]
+keywords: ["DAE empregada domestica", "DAE esocial", "como gerar DAE", "prazo DAE empregada domestica"]
+relatedSlugs: ["esocial-domestico-como-funciona", "salario-empregada-domestica-2026"]
 ---
 
-A DAE (Documento de Arrecadação do eSocial) é a guia unificada que o empregador doméstico paga mensalmente. Ela reúne todos os encargos trabalhistas e previdenciários em um único boleto. Veja como funciona.
+A DAE (Documento de Arrecadação do eSocial) é a guia unificada que o empregador domestico paga mensalmente. Ela reúne todos os encargos trabalhistas e previdenciários em um único boleto. Veja como funciona.
 
 ## O que é a DAE?
 
 A DAE substitui as diversas guias que existiam antes do eSocial. Em um único documento, estao inclusos:
 
-- **INSS do empregado** (descontado do salário)
+- **INSS do empregado** (descontado do salario)
 - **INSS patronal** (8%)
 - **FGTS** (8%)
 - **FGTS antecipação rescisória** (3,2%)
@@ -23,7 +23,7 @@ A DAE substitui as diversas guias que existiam antes do eSocial. Em um único do
 
 ## Quanto custa a DAE?
 
-Para um salário de R$ 1.518,00 (mínimo 2026), a DAE totaliza aproximadamente:
+Para um salario de R$ 1.518,00 (mínimo 2026), a DAE totaliza aproximadamente:
 
 | Item | Valor |
 |---|---|
@@ -34,7 +34,7 @@ Para um salário de R$ 1.518,00 (mínimo 2026), a DAE totaliza aproximadamente:
 | FGTS antecipação (3,2%) | R$ 48,58 |
 | **Total DAE** | **R$ 417,45** |
 
-> Nota: o INSS do empregado é descontado do salário. O custo extra do empregador e a DAE menos o INSS do empregado.
+> Nota: o INSS do empregado é descontado do salario. O custo extra do empregador e a DAE menos o INSS do empregado.
 
 ## Qual o prazo de pagamento?
 
@@ -51,7 +51,7 @@ A DAE deve ser paga **até o dia 7 de cada mês**, referente ao mês anterior. S
 1. Acesse [esocial.gov.br](https://esocial.gov.br) com seu login Gov.br
 2. Va em **Folha/Recebimentos e Pagamentos**
 3. Selecione o mês de competencia
-4. Confira os valores de salário, horas extras e descontos
+4. Confira os valores de salario, horas extras e descontos
 5. Clique em **Encerrar folha**
 6. Va em **DAE** e clique em **Emitir DAE**
 7. Pague via código de barras ou Pix

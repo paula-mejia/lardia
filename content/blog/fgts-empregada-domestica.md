@@ -1,46 +1,46 @@
 ---
-title: "FGTS da empregada doméstica: como funciona e como calcular"
-description: "Entenda como funciona o FGTS da empregada doméstica: depósito de 8%, antecipação rescisória de 3,2%, FGTS Digital, cálculo prático e regras de saque."
-slug: "fgts-empregada-doméstica"
+title: "FGTS da empregada domestica: como funciona e como calcular"
+description: "Entenda como funciona o FGTS da empregada domestica: depósito de 8%, antecipação rescisória de 3,2%, FGTS Digital, cálculo prático e regras de saque."
+slug: "fgts-empregada-domestica"
 date: "2026-02-14"
 author: "Equipe LarDia"
-keywords: ["FGTS empregada doméstica", "FGTS doméstica como calcular", "FGTS 3.2 doméstica", "depósito FGTS doméstica"]
-relatedSlugs: ["quanto-custa-empregada-doméstica-2026", "dae-como-gerar-quando-pagar", "direitos-empregada-doméstica"]
+keywords: ["FGTS empregada domestica", "FGTS domestica como calcular", "FGTS 3.2 domestica", "depósito FGTS domestica"]
+relatedSlugs: ["quanto-custa-empregada-domestica-2026", "dae-como-gerar-quando-pagar", "direitos-empregada-domestica"]
 ---
 
-O FGTS da empregada doméstica é um direito garantido desde 2015 pela Lei Complementar 150. Diferente do que acontecia antes, quando o depósito era facultativo, hoje o empregador doméstico é obrigado a recolher o FGTS mensalmente. Neste artigo, explicamos como funciona o FGTS da empregada doméstica, como calcular o valor, como o depósito é feito pela DAE e quais são as regras de saque.
+O FGTS da empregada domestica é um direito garantido desde 2015 pela Lei Complementar 150. Diferente do que acontecia antes, quando o depósito era facultativo, hoje o empregador domestico é obrigado a recolher o FGTS mensalmente. Neste artigo, explicamos como funciona o FGTS da empregada domestica, como calcular o valor, como o depósito é feito pela DAE e quais são as regras de saque.
 
 ## O que é o FGTS?
 
 O Fundo de Garantia do Tempo de Serviço (FGTS) é uma poupança compulsória formada por depósitos mensais feitos pelo empregador em uma conta vinculada ao trabalhador na Caixa Econômica Federal. O objetivo é proteger o empregado em situações como demissão sem justa causa, doença grave ou aposentadoria.
 
-Para empregados domésticos, o FGTS se tornou obrigatório com a **LC 150/2015**, que regulamentou o trabalho doméstico e equiparou diversos direitos aos demais trabalhadores.
+Para empregados domesticos, o FGTS se tornou obrigatório com a **LC 150/2015**, que regulamentou o trabalho domestico e equiparou diversos direitos aos demais trabalhadores.
 
-## Aliquotas do FGTS para empregados domésticos
+## Aliquotas do FGTS para empregados domesticos
 
-O empregador doméstico recolhe duas parcelas relacionadas ao FGTS:
+O empregador domestico recolhe duas parcelas relacionadas ao FGTS:
 
 ### FGTS regular: 8%
 
-Todo mês, o empregador deposita **8% do salário bruto** do empregado na conta vinculada do FGTS. Esse valor não é descontado do salário — é um custo adicional do empregador.
+Todo mês, o empregador deposita **8% do salario bruto** do empregado na conta vinculada do FGTS. Esse valor não é descontado do salario — é um custo adicional do empregador.
 
 ### FGTS compensatório (antecipação rescisória): 3,2%
 
-Além dos 8%, o empregador doméstico paga **3,2% adicionais** a título de antecipação da indenização compensatória (equivalente a multa de 40% do FGTS). Essa é uma particularidade do trabalho doméstico.
+Além dos 8%, o empregador domestico paga **3,2% adicionais** a título de antecipação da indenização compensatória (equivalente a multa de 40% do FGTS). Essa é uma particularidade do trabalho domestico.
 
 **Por que os 3,2% existem?**
 
-Nos demais setores, quando o empregador demite sem justa causa, ele paga 40% sobre o saldo total do FGTS como multa rescisória. Para empregados domésticos, o legislador optou por diluir esse custo mensalmente: 3,2% x 12 meses = 38,4% ao ano, que se aproxima dos 40%.
+Nos demais setores, quando o empregador demite sem justa causa, ele paga 40% sobre o saldo total do FGTS como multa rescisória. Para empregados domesticos, o legislador optou por diluir esse custo mensalmente: 3,2% x 12 meses = 38,4% ao ano, que se aproxima dos 40%.
 
 Esse valor é depositado em uma conta separada e só é movimentado na rescisão:
 - **Demissão sem justa causa:** o empregado recebe os 3,2% acumulados
 - **Demissão por justa causa ou pedido de demissão:** o empregador resgata os 3,2%
 
-## Como calcular o FGTS da empregada doméstica
+## Como calcular o FGTS da empregada domestica
 
-O cálculo é simples e incide sobre o salário bruto (incluindo horas extras, adicional noturno e outras verbas salariais):
+O cálculo é simples e incide sobre o salario bruto (incluindo horas extras, adicional noturno e outras verbas salariais):
 
-### Exemplo com salário mínimo (R$ 1.518,00)
+### Exemplo com salario mínimo (R$ 1.518,00)
 
 | Componente | Aliquota | Valor |
 |-----------|----------|-------|
@@ -48,7 +48,7 @@ O cálculo é simples e incide sobre o salário bruto (incluindo horas extras, a
 | FGTS compensatório | 3,2% | R$ 48,58 |
 | **Total FGTS mensal** | **11,2%** | **R$ 170,02** |
 
-### Exemplo com salário de R$ 2.000,00
+### Exemplo com salario de R$ 2.000,00
 
 | Componente | Aliquota | Valor |
 |-----------|----------|-------|
@@ -56,22 +56,22 @@ O cálculo é simples e incide sobre o salário bruto (incluindo horas extras, a
 | FGTS compensatório | 3,2% | R$ 64,00 |
 | **Total FGTS mensal** | **11,2%** | **R$ 224,00** |
 
-### FGTS sobre 13o salário e férias
+### FGTS sobre 13o salario e ferias
 
 O FGTS também incide sobre:
-- **13o salário:** os 8% são cobrados na DAE da competencia do 13o
-- **Férias indenizadas (na rescisão):** incide FGTS sobre o valor das férias indenizadas
+- **13o salario:** os 8% são cobrados na DAE da competencia do 13o
+- **Férias indenizadas (na rescisão):** incide FGTS sobre o valor das ferias indenizadas
 - **Horas extras, adicional noturno:** qualquer verba de natureza salarial
 
-**Atenção:** sobre as férias gozadas (usufruídas normalmente), não incide FGTS adicional — o depósito regular do mês já cobre.
+**Atenção:** sobre as ferias gozadas (usufruídas normalmente), não incide FGTS adicional — o depósito regular do mês já cobre.
 
 ## Como o FGTS é depositado: a DAE
 
-O empregador doméstico não faz o depósito do FGTS diretamente na Caixa. O recolhimento é feito por meio da **DAE (Documento de Arrecadação do eSocial)**, que é a guia única gerada no sistema eSocial.
+O empregador domestico não faz o depósito do FGTS diretamente na Caixa. O recolhimento é feito por meio da **DAE (Documento de Arrecadação do eSocial)**, que é a guia única gerada no sistema eSocial.
 
 A DAE reúne todos os encargos em um único boleto:
 - INSS patronal (8%)
-- INSS do empregado (descontado do salário)
+- INSS do empregado (descontado do salario)
 - FGTS regular (8%)
 - FGTS compensatório (3,2%)
 - GILRAT (0,8%)
@@ -85,21 +85,21 @@ A DAE reúne todos os encargos em um único boleto:
 4. Pague a DAE até o dia **7 do mês seguinte**
 5. O proprio sistema direciona os valores do FGTS para a conta do empregado na Caixa
 
-**Importante:** não existe boleto separado para o FGTS doméstico. Tudo é pago pela DAE.
+**Importante:** não existe boleto separado para o FGTS domestico. Tudo é pago pela DAE.
 
-## FGTS Digital: o que muda para o empregador doméstico
+## FGTS Digital: o que muda para o empregador domestico
 
-O **FGTS Digital** é o novo sistema que está substituindo a SEFIP e o Conectividade Social para gestão dos depósitos do FGTS. Para empregadores domésticos, as mudanças práticas são:
+O **FGTS Digital** é o novo sistema que está substituindo a SEFIP e o Conectividade Social para gestão dos depósitos do FGTS. Para empregadores domesticos, as mudanças práticas são:
 
 ### O que já mudou
 
 - **Consulta de extratos:** você pode consultar os depósitos feitos na conta FGTS do empregado pelo portal do FGTS Digital
-- **Guia de recolhimento:** para empregadores domésticos, a DAE continua sendo gerada pelo eSocial — o FGTS Digital não altera esse processo
+- **Guia de recolhimento:** para empregadores domesticos, a DAE continua sendo gerada pelo eSocial — o FGTS Digital não altera esse processo
 - **Recolhimento via Pix:** o FGTS Digital permite pagamento por Pix em algumas situações
 
 ### O que não muda para você
 
-Como empregador doméstico, sua rotina permanece a mesma: fechar a folha no eSocial é pagar a DAE. O FGTS Digital impacta mais os empregadores de empresas que usam SEFIP.
+Como empregador domestico, sua rotina permanece a mesma: fechar a folha no eSocial é pagar a DAE. O FGTS Digital impacta mais os empregadores de empresas que usam SEFIP.
 
 ### Como consultar o saldo FGTS do empregado
 
@@ -110,9 +110,9 @@ O empregado pode consultar seu saldo pelo:
 
 O empregador pode verificar os depósitos no portal do FGTS Digital.
 
-## Regras de saque do FGTS para empregados domésticos
+## Regras de saque do FGTS para empregados domesticos
 
-O empregado doméstico pode sacar o FGTS nas seguintes situações:
+O empregado domestico pode sacar o FGTS nas seguintes situações:
 
 ### 1. Demissão sem justa causa
 
@@ -180,7 +180,7 @@ Os acrescimos incluem:
 
 ## Simulação: quanto o empregado acumula de FGTS em 1 ano
 
-Considerando salário mínimo de R$ 1.518,00 e depósito regular de 8%:
+Considerando salario mínimo de R$ 1.518,00 e depósito regular de 8%:
 
 - Deposito mensal: R$ 121,44
 - Deposito do 13o: R$ 121,44
@@ -189,17 +189,17 @@ Considerando salário mínimo de R$ 1.518,00 e depósito regular de 8%:
 
 A conta do FGTS rende **TR + 3% ao ano**, o que acrescenta alguns reais ao saldo.
 
-## Calcule o FGTS da sua empregada doméstica
+## Calcule o FGTS da sua empregada domestica
 
-O valor do FGTS depende do salário é de verbas adicionais como horas extras e adicional noturno. Para um cálculo preciso e personalizado, use a **calculadora gratuita da LarDia**.
+O valor do FGTS depende do salario é de verbas adicionais como horas extras e adicional noturno. Para um cálculo preciso e personalizado, use a **calculadora gratuita da LarDia**.
 
 **[Calcule agora o FGTS e todos os encargos →](https://lardia.com.br)**
 
-A LarDia calcula automaticamente o FGTS regular, o compensatório e todos os encargos da DAE. Você tem clareza total sobre o custo do seu empregado doméstico, sem surpresas.
+A LarDia calcula automaticamente o FGTS regular, o compensatório e todos os encargos da DAE. Você tem clareza total sobre o custo do seu empregado domestico, sem surpresas.
 
 ## Perguntas frequentes
 
-### O FGTS da empregada doméstica é obrigatório?
+### O FGTS da empregada domestica é obrigatório?
 
 Sim, desde outubro de 2015 (LC 150/2015). O depósito mensal de 8% e os 3,2% compensatórios são obrigatórios.
 
@@ -211,9 +211,9 @@ O empregado pode consultar pelo app FGTS ou site da Caixa. O empregador pode ver
 
 Não. Em caso de pedido de demissão, o saldo do FGTS fica na conta e os 3,2% compensatórios são resgatados pelo empregador.
 
-### O FGTS incide sobre férias?
+### O FGTS incide sobre ferias?
 
-Sobre férias gozadas, não ha depósito adicional (o FGTS regular do mês já cobre). Sobre férias indenizadas na rescisão, incide FGTS.
+Sobre ferias gozadas, não ha depósito adicional (o FGTS regular do mês já cobre). Sobre ferias indenizadas na rescisão, incide FGTS.
 
 ### Qual a diferenca entre FGTS 8% e 3,2%?
 

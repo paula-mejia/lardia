@@ -1,14 +1,14 @@
 ---
-title: "Como demitir empregada doméstica: guia completo"
-description: "Saiba como demitir empregada doméstica corretamente: tipos de demissão, aviso prévio, FGTS 40%, cálculo da rescisão e TRCT. Passo a passo completo."
-slug: "demitir-empregada-doméstica-guia"
+title: "Como demitir empregada domestica: guia completo"
+description: "Saiba como demitir empregada domestica corretamente: tipos de demissão, aviso prévio, FGTS 40%, cálculo da rescisão e TRCT. Passo a passo completo."
+slug: "demitir-empregada-domestica-guia"
 date: "2026-02-06"
 author: "Equipe LarDia"
-keywords: ["demitir empregada doméstica", "rescisão empregada doméstica", "aviso prévio doméstica", "FGTS 40% doméstica", "TRCT doméstica"]
-relatedSlugs: ["férias-empregada-doméstica", "esocial-doméstico-como-funciona"]
+keywords: ["demitir empregada domestica", "rescisão empregada domestica", "aviso prévio domestica", "FGTS 40% domestica", "TRCT domestica"]
+relatedSlugs: ["ferias-empregada-domestica", "esocial-domestico-como-funciona"]
 ---
 
-Demitir uma empregada doméstica exige atenção aos direitos trabalhistas, cálculos de rescisão e registros no eSocial. Neste guia, explicamos os 3 tipos de demissão, os valores devidos e o passo a passo para fazer tudo corretamente.
+Demitir uma empregada domestica exige atenção aos direitos trabalhistas, cálculos de rescisão e registros no eSocial. Neste guia, explicamos os 3 tipos de demissão, os valores devidos e o passo a passo para fazer tudo corretamente.
 
 ## Os 3 tipos de demissão
 
@@ -17,9 +17,9 @@ Demitir uma empregada doméstica exige atenção aos direitos trabalhistas, cál
 O empregador decide encerrar o contrato sem motivo grave. E o tipo mais comum e que gera mais direitos ao empregado.
 
 **Direitos do empregado:**
-- Saldo de salário (dias trabalhados no mês)
+- Saldo de salario (dias trabalhados no mês)
 - Aviso prévio (trabalhado ou indenizado)
-- 13o salário proporcional
+- 13o salario proporcional
 - Férias proporcionais + 1/3
 - Férias vencidas + 1/3 (se houver)
 - Saque do FGTS
@@ -36,18 +36,18 @@ Ocorre quando o empregado comete falta grave prevista na CLT (artigo 482), como:
 - Embriaguez habitual em serviço
 
 **Direitos do empregado (apenas):**
-- Saldo de salário
+- Saldo de salario
 - Férias vencidas + 1/3 (se houver)
 
-> O empregado perde direito a aviso prévio, 13o proporcional, férias proporcionais, saque do FGTS e multa de 40%.
+> O empregado perde direito a aviso prévio, 13o proporcional, ferias proporcionais, saque do FGTS e multa de 40%.
 
 ### 3. Pedido de demissão (iniciativa do empregado)
 
 O empregado decide sair por vontade propria.
 
 **Direitos do empregado:**
-- Saldo de salário
-- 13o salário proporcional
+- Saldo de salario
+- 13o salario proporcional
 - Férias proporcionais + 1/3
 - Férias vencidas + 1/3 (se houver)
 
@@ -90,7 +90,7 @@ O empregador tem **10 dias corridos** após o término do contrato para:
 - Pagar todas as verbas rescisórias
 - Entregar documentos (TRCT, guias do seguro-desemprego, extrato do FGTS)
 
-O não cumprimento do prazo gera multa equivalente ao salário do empregado.
+O não cumprimento do prazo gera multa equivalente ao salario do empregado.
 
 ## Como registrar a demissão no eSocial
 

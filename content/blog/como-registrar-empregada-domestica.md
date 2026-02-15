@@ -1,18 +1,18 @@
 ---
-title: "Como registrar uma empregada doméstica: passo a passo"
-description: "Aprenda como registrar uma empregada doméstica: documentos necessarios, CTPS, eSocial, contrato de trabalho, exame admissional e primeira DAE. Guia completo."
-slug: "como-registrar-empregada-doméstica"
+title: "Como registrar uma empregada domestica: passo a passo"
+description: "Aprenda como registrar uma empregada domestica: documentos necessarios, CTPS, eSocial, contrato de trabalho, exame admissional e primeira DAE. Guia completo."
+slug: "como-registrar-empregada-domestica"
 date: "2026-02-14"
 author: "Equipe LarDia"
-keywords: ["como registrar empregada doméstica", "registro empregada doméstica", "admissão empregada doméstica", "contratar empregada doméstica"]
-relatedSlugs: ["guia-esocial-empregador-doméstico", "direitos-empregada-doméstica", "quanto-custa-empregada-doméstica-2026"]
+keywords: ["como registrar empregada domestica", "registro empregada domestica", "admissão empregada domestica", "contratar empregada domestica"]
+relatedSlugs: ["guia-esocial-empregador-domestico", "direitos-empregada-domestica", "quanto-custa-empregada-domestica-2026"]
 ---
 
-Como registrar uma empregada doméstica corretamente? Esse é o primeiro passo — e um dos mais importantes — para quem vai contratar um trabalhador doméstico. O registro formaliza a relacao de trabalho, garante os direitos do empregado e protege o empregador contra ações trabalhistas. Neste guia passo a passo, explicamos tudo o que você precisa fazer: da documentacao ao cadastro no eSocial, do contrato de trabalho ao pagamento da primeira DAE.
+Como registrar uma empregada domestica corretamente? Esse é o primeiro passo — e um dos mais importantes — para quem vai contratar um trabalhador domestico. O registro formaliza a relacao de trabalho, garante os direitos do empregado e protege o empregador contra ações trabalhistas. Neste guia passo a passo, explicamos tudo o que você precisa fazer: da documentacao ao cadastro no eSocial, do contrato de trabalho ao pagamento da primeira DAE.
 
 ## Quando o registro é obrigatório?
 
-O registro é obrigatório sempre que o trabalhador doméstico prestar serviços **3 ou mais dias por semana** para o mesmo empregador. A Lei Complementar 150/2015 define vinculo empregaticio quando o trabalho e:
+O registro é obrigatório sempre que o trabalhador domestico prestar serviços **3 ou mais dias por semana** para o mesmo empregador. A Lei Complementar 150/2015 define vinculo empregaticio quando o trabalho e:
 
 - **Continuo:** mais de 2 dias por semana
 - **Subordinado:** o empregador define tarefas e horarios
@@ -20,7 +20,7 @@ O registro é obrigatório sempre que o trabalhador doméstico prestar serviços
 - **Pessoal:** o trabalho e prestado pela propria pessoa (não pode enviar substituto)
 - **No âmbito residencial:** em casa de pessoa fisica ou família
 
-**Atenção:** se você tem uma diarista que vem 3 vezes por semana, ela já e considerada empregada doméstica perante a lei e deve ser registrada.
+**Atenção:** se você tem uma diarista que vem 3 vezes por semana, ela já e considerada empregada domestica perante a lei e deve ser registrada.
 
 ## Documentos necessarios para o registro
 
@@ -54,11 +54,11 @@ Antes de registrar o empregado no eSocial, você deve providenciar o **exame adm
 
 ### Quanto custa
 
-O exame admissional custa entre **R$ 50 e R$ 150**, dependendo da cidade e da clinica. Algumas clinicas de medicina do trabalho oferecem pacotes para empregadores domésticos.
+O exame admissional custa entre **R$ 50 e R$ 150**, dependendo da cidade e da clinica. Algumas clinicas de medicina do trabalho oferecem pacotes para empregadores domesticos.
 
 ### Onde fazer
 
-Procure clinicas de medicina do trabalho na sua cidade. Muitas aceitam agendamento online. Não é necessário que seja uma clinica especializada em empregados domésticos — qualquer medico do trabalho pode emitir o ASO.
+Procure clinicas de medicina do trabalho na sua cidade. Muitas aceitam agendamento online. Não é necessário que seja uma clinica especializada em empregados domesticos — qualquer medico do trabalho pode emitir o ASO.
 
 ## Passo 2: Elabore o contrato de trabalho
 
@@ -69,7 +69,7 @@ O contrato de trabalho formaliza as condicoes da relacao empregaticia. Embora n�
 - **Dados do empregador:** nome, CPF, endereço
 - **Dados do empregado:** nome, CPF, função
 - **Data de admissão**
-- **Função:** empregada doméstica, cuidador, motorista, etc.
+- **Função:** empregada domestica, cuidador, motorista, etc.
 - **Salário:** valor mensal e data de pagamento
 - **Jornada de trabalho:** horário de entrada, saida e intervalo
 - **Dias de trabalho:** segunda a sexta, segunda a sábado, etc.
@@ -87,7 +87,7 @@ O contrato pode prever um período de experiencia de até **90 dias**, que pode 
 
 ### Modelo de contrato
 
-Você pode encontrar modelos de contrato de trabalho doméstico em sites do governo ou utilizar o modelo disponibilizado pela LarDia, que já vem com todas as clausulas obrigatorias preenchidas.
+Você pode encontrar modelos de contrato de trabalho domestico em sites do governo ou utilizar o modelo disponibilizado pela LarDia, que já vem com todas as clausulas obrigatorias preenchidas.
 
 ## Passo 3: Registre na CTPS (Carteira de Trabalho)
 
@@ -179,9 +179,9 @@ Após fechar a folha, gere a DAE. Essa é a guia única que você pagara todo m�
 
 ### Exemplo prático
 
-Empregada admitida em 10/02/2026 com salário de R$ 1.518,00:
+Empregada admitida em 10/02/2026 com salario de R$ 1.518,00:
 - Salário proporcional fevereiro (19 dias): R$ 1.518 / 28 x 19 = **R$ 1.029,64**
-- INSS empregado (7,5%): R$ 77,22 (descontado do salário)
+- INSS empregado (7,5%): R$ 77,22 (descontado do salario)
 - INSS patronal (8%): R$ 82,37
 - FGTS (8%): R$ 82,37
 - FGTS compensatório (3,2%): R$ 32,95
@@ -204,7 +204,7 @@ Use esta lista para não esquecer nenhuma etapa:
 - [ ] Fazer a qualificacao cadastral do empregado
 - [ ] Cadastrar o empregado no eSocial (até 1 dia antes do início)
 - [ ] Informar opcao de vale-transporte
-- [ ] Combinar forma de pagamento do salário
+- [ ] Combinar forma de pagamento do salario
 - [ ] No mês seguinte: fechar a folha é pagar a primeira DAE
 
 ## Erros comuns na hora de registrar
@@ -223,27 +223,27 @@ O registro deve ser feito até o dia anterior ao início do trabalho. Cadastrar 
 
 ### 4. Não fazer contrato escrito
 
-Embora o vinculo possa ser verbal, a falta de contrato escrito e a principal causa de conflitos sobre jornada, salário e funcoes. Sempre formalize por escrito.
+Embora o vinculo possa ser verbal, a falta de contrato escrito e a principal causa de conflitos sobre jornada, salario e funcoes. Sempre formalize por escrito.
 
-### 5. Confundir diarista com empregada doméstica
+### 5. Confundir diarista com empregada domestica
 
-Se a trabalhadora vem 3 ou mais vezes por semana, ela já e empregada doméstica e deve ser registrada. Manter uma "diarista" informal nessa situação e ilegal e pode gerar acao trabalhista com custos altissimos.
+Se a trabalhadora vem 3 ou mais vezes por semana, ela já e empregada domestica e deve ser registrada. Manter uma "diarista" informal nessa situação e ilegal e pode gerar acao trabalhista com custos altissimos.
 
-## Quanto custa registrar uma empregada doméstica?
+## Quanto custa registrar uma empregada domestica?
 
 O registro em si e gratuito (o eSocial não cobra taxas). Os custos iniciais são:
 
 | Item | Custo estimado |
 |------|----------------|
 | Exame admissional | R$ 50 - R$ 150 |
-| Primeiro salário (proporcional) | Variavel |
+| Primeiro salario (proporcional) | Variavel |
 | Primeira DAE | Variavel |
 | Vale-transporte (primeiro mês) | Variavel |
 | **Total estimado (primeiro mês)** | **R$ 1.700 - R$ 2.100** |
 
-A partir do segundo mês, o custo se estabiliza no salário + encargos mensais.
+A partir do segundo mês, o custo se estabiliza no salario + encargos mensais.
 
-## Registre sua empregada doméstica com a LarDia
+## Registre sua empregada domestica com a LarDia
 
 O processo de registro pode parecer complicado, mas com a **LarDia** fica simples:
 
@@ -253,15 +253,15 @@ O processo de registro pode parecer complicado, mas com a **LarDia** fica simple
 - **Cálculo automático** da primeira folha e DAE
 - **Checklist interativo** para você não esquecer nenhuma etapa
 
-**[Registre sua empregada doméstica com a LarDia →](https://lardia.com.br)**
+**[Registre sua empregada domestica com a LarDia →](https://lardia.com.br)**
 
 Faca o registro correto desde o primeiro dia e tenha tranquilidade para focar no que importa. A LarDia cuida da burocracia por você.
 
 ## Perguntas frequentes
 
-### Posso registrar a empregada doméstica sozinho, sem contador?
+### Posso registrar a empregada domestica sozinho, sem contador?
 
-Sim. O eSocial foi feito para que o proprio empregador doméstico faca o cadastro e a gestão mensal sem precisar de contador. A LarDia facilita ainda mais o processo.
+Sim. O eSocial foi feito para que o proprio empregador domestico faca o cadastro e a gestão mensal sem precisar de contador. A LarDia facilita ainda mais o processo.
 
 ### Quanto tempo leva para registrar no eSocial?
 
@@ -275,7 +275,7 @@ Não. Trabalhador que presta serviço até 2 dias por semana para o mesmo empreg
 
 Não e recomendado. O eSocial aceita cadastro retroativo, mas isso pode gerar inconsistencias e multas. O ideal e registrar antes do início do trabalho.
 
-### Empregada doméstica precisa ter conta em banco?
+### Empregada domestica precisa ter conta em banco?
 
 Não é obrigatório, mas e recomendavel. O pagamento pode ser feito por transferencia, Pix ou dinheiro. Qualquer que seja a forma, sempre obtenha um **recibo assinado**.
 
