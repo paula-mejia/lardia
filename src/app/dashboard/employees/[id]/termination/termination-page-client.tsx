@@ -429,7 +429,7 @@ export default function TerminationPageClient({
                   <>
                     <div className="flex justify-between">
                       <span className="text-sm text-muted-foreground">+ Multa FGTS 40%</span>
-                      <span className="text-sm font-medium tabular-nums text-emerald-600">{formatBRL(result.fgtsPenalty)}</span>
+                      <span className="text-sm font-medium tabular-nums text-emerald-700">{formatBRL(result.fgtsPenalty)}</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between">

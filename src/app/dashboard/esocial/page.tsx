@@ -55,7 +55,7 @@ const monthNames = [
 
 function statusIcon(status: string) {
   switch (status) {
-    case 'ok': return <CheckCircle className="h-4 w-4 text-emerald-600" />
+    case 'ok': return <CheckCircle className="h-4 w-4 text-emerald-700" />
     case 'pendente': return <Clock className="h-4 w-4 text-yellow-600" />
     case 'atrasado': return <AlertTriangle className="h-4 w-4 text-red-600" />
     default: return <div className="h-4 w-4 rounded-full bg-muted" />
@@ -123,7 +123,7 @@ export default function ESocialDashboard() {
             <div className="flex items-center gap-3">
               {connection.connected ? (
                 <>
-                  <Wifi className="h-5 w-5 text-emerald-600" />
+                  <Wifi className="h-5 w-5 text-emerald-700" />
                   <div>
                     <p className="font-medium text-sm">Procuração ativa</p>
                     <p className="text-xs text-muted-foreground">
@@ -170,7 +170,7 @@ export default function ESocialDashboard() {
         </Card>
         <Card>
           <CardContent className="pt-4 pb-4 text-center">
-            <CheckCircle className="h-5 w-5 mx-auto mb-1 text-emerald-600" />
+            <CheckCircle className="h-5 w-5 mx-auto mb-1 text-emerald-700" />
             <p className="text-2xl font-bold">{summary.eventsSent}</p>
             <p className="text-xs text-muted-foreground">Enviados</p>
           </CardContent>

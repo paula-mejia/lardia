@@ -62,7 +62,7 @@ export function markdownToHtml(md: string): string {
     if (line.startsWith('>')) {
       const text = inlineFormat(line.replace(/^>\s*/, ''))
       if (!inBlockquote) {
-        html.push('<blockquote class="border-l-4 border-emerald-500 pl-4 py-2 my-6 text-muted-foreground italic">')
+        html.push('<blockquote class="border-l-4 border-emerald-600 pl-4 py-2 my-6 text-muted-foreground italic">')
         inBlockquote = true
       }
       html.push(`<p>${text}</p>`)
@@ -100,7 +100,7 @@ export function markdownToHtml(md: string): string {
 
 function inlineFormat(text: string): string {
   // Links [text](url)
-  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-emerald-600 hover:text-emerald-700 underline underline-offset-2">$1</a>')
+  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-emerald-700 hover:text-emerald-800 underline underline-offset-2">$1</a>')
   // Bold **text**
   text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
   // Inline code `text`

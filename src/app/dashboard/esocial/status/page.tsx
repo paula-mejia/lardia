@@ -276,7 +276,7 @@ export default async function ESocialStatusPage() {
             {obligations.map((item) => (
               <li key={item.id} className="flex items-center gap-3">
                 {item.done ? (
-                  <CheckCircle className="h-5 w-5 text-emerald-600 shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-700 shrink-0" />
                 ) : (
                   <Circle className="h-5 w-5 text-muted-foreground shrink-0" />
                 )}
@@ -310,7 +310,7 @@ export default async function ESocialStatusPage() {
             <ul className="space-y-3">
               {history.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <FileText className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
+                  <FileText className="h-4 w-4 text-emerald-700 mt-0.5 shrink-0" />
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <p className="text-sm">{item.action}</p>

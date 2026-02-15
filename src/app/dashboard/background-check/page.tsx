@@ -155,9 +155,9 @@ export default function BackgroundCheckPage() {
   ]
 
   const benefits = [
-    { icon: <ShieldCheck className="h-5 w-5 text-emerald-600" />, text: 'Contrate com segurança' },
-    { icon: <Clock className="h-5 w-5 text-emerald-600" />, text: 'Resultado em minutos' },
-    { icon: <FileText className="h-5 w-5 text-emerald-600" />, text: 'Relatório completo em PDF' },
+    { icon: <ShieldCheck className="h-5 w-5 text-emerald-700" />, text: 'Contrate com segurança' },
+    { icon: <Clock className="h-5 w-5 text-emerald-700" />, text: 'Resultado em minutos' },
+    { icon: <FileText className="h-5 w-5 text-emerald-700" />, text: 'Relatório completo em PDF' },
   ]
 
   return (
@@ -198,13 +198,13 @@ export default function BackgroundCheckPage() {
                   Verifique antecedentes criminais, processos judiciais e situação de crédito de candidatos antes de contratar. Proteja sua casa e sua família.
                 </p>
                 <div className="flex items-baseline gap-2 pt-1">
-                  <span className="text-3xl font-bold text-emerald-700 dark:text-emerald-400">R$&nbsp;99,90</span>
+                  <span className="text-3xl font-bold text-emerald-800 dark:text-emerald-400">R$&nbsp;99,90</span>
                   <span className="text-sm text-muted-foreground">por consulta</span>
                 </div>
               </div>
               <div className="hidden md:flex items-center justify-center">
                 <div className="w-24 h-24 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center">
-                  <ShieldCheck className="h-12 w-12 text-emerald-600 dark:text-emerald-400" />
+                  <ShieldCheck className="h-12 w-12 text-emerald-700 dark:text-emerald-400" />
                 </div>
               </div>
             </div>
@@ -253,10 +253,10 @@ export default function BackgroundCheckPage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" /> Validação do CPF na Receita Federal</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" /> Antecedentes criminais em bases públicas</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" /> Processos judiciais cíveis</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" /> Situação de crédito</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Validação do CPF na Receita Federal</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Antecedentes criminais em bases públicas</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Processos judiciais cíveis</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" /> Situação de crédito</li>
               </ul>
             </CardContent>
           </Card>
@@ -428,7 +428,7 @@ export default function BackgroundCheckPage() {
                     const msg = encodeURIComponent('Olá! Como parte do processo de contratação, precisamos realizar uma verificação pré-contratação que inclui: validação de CPF, antecedentes criminais, processos judiciais cíveis e situação de crédito. De acordo com a LGPD (Lei 13.709/2018), precisamos da sua autorização. Você autoriza a realização desta consulta? Responda SIM para autorizar.')
                     window.open(`https://wa.me/?text=${msg}`, '_blank')
                   }}
-                  className="text-emerald-600 hover:text-emerald-700 text-xs font-medium underline"
+                  className="text-emerald-700 hover:text-emerald-800 text-xs font-medium underline"
                 >
                   Enviar via WhatsApp →
                 </button>

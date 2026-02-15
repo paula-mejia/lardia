@@ -22,6 +22,7 @@ import {
   X,
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import PayrollCalculator from '@/components/payroll-calculator'
 import { ReferralBanner, ReferralSection } from '@/components/referral-banner'
 import NewsletterSignup from '@/components/newsletter-signup'
@@ -34,8 +35,8 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight">
-            Lar<span className="text-emerald-600">Dia</span>
+          <Link href="/" className="flex items-center">
+            <Image src="/logo-sm.png" alt="LarDia" width={120} height={40} className="h-9 w-auto" priority />
           </Link>
           <MobileNav />
         </div>
@@ -51,7 +52,7 @@ export default function Home() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
             eSocial sem erro,
             <br />
-            <span className="text-emerald-600 dark:text-emerald-400">sem estresse</span>
+            <span className="text-emerald-700 dark:text-emerald-400">sem estresse</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Gestão completa do eSocial doméstico: folha de pagamento, guia DAE,
@@ -170,9 +171,9 @@ export default function Home() {
               <Card key={i} className="border shadow-sm text-center">
                 <CardContent className="pt-6">
                   <div className="mx-auto h-14 w-14 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
-                    <item.icon className="h-7 w-7 text-emerald-600 dark:text-emerald-400" />
+                    <item.icon className="h-7 w-7 text-emerald-700 dark:text-emerald-400" />
                   </div>
-                  <div className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-600 text-white text-xs font-bold mb-2">
+                  <div className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-700 text-white text-xs font-bold mb-2">
                     {item.step}
                   </div>
                   <h3 className="font-semibold mb-2">{item.title}</h3>
@@ -257,7 +258,7 @@ export default function Home() {
               <Card key={i} className="border shadow-sm">
                 <CardContent className="pt-6 flex gap-4">
                   <div className="shrink-0 h-12 w-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                    <item.icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                    <item.icon className="h-6 w-6 text-emerald-700 dark:text-emerald-400" />
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">{item.title}</h3>
@@ -275,7 +276,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <div className="mx-auto h-16 w-16 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-6">
-              <Search className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+              <Search className="h-8 w-8 text-emerald-700 dark:text-emerald-400" />
             </div>
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
               Verificação de antecedentes
@@ -293,7 +294,7 @@ export default function Home() {
                 { icon: UserCheck, label: 'Validação de CPF' },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center gap-2 p-4">
-                  <item.icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                  <item.icon className="h-6 w-6 text-emerald-700 dark:text-emerald-400" />
                   <span className="text-sm font-medium">{item.label}</span>
                 </div>
               ))}
@@ -398,7 +399,7 @@ export default function Home() {
                     'Calculadora de rescisão',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
-                      <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -435,7 +436,7 @@ export default function Home() {
                     'Histórico de cálculos',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
-                      <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -451,12 +452,12 @@ export default function Home() {
             </Card>
 
             {/* Complete Tier */}
-            <Card className="border-2 border-emerald-500 shadow-lg relative">
+            <Card className="border-2 border-emerald-600 shadow-lg relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <Badge className="bg-emerald-600 text-white hover:bg-emerald-600">Recomendado</Badge>
+                <Badge className="bg-emerald-700 text-white hover:bg-emerald-700">Recomendado</Badge>
               </div>
               <CardContent className="pt-8 pb-8">
-                <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wide mb-2">
+                <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400 uppercase tracking-wide mb-2">
                   Completo
                 </p>
                 <div className="flex items-baseline justify-center gap-1 mb-1">
@@ -476,7 +477,7 @@ export default function Home() {
                     'Suporte prioritario',
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
-                      <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -504,7 +505,7 @@ export default function Home() {
       <ReferralSection />
 
       {/* Final CTA */}
-      <section className="py-16 md:py-24 bg-emerald-600 dark:bg-emerald-800">
+      <section className="py-16 md:py-24 bg-emerald-700 dark:bg-emerald-800">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white mb-4">
             Chega de dor de cabeça com eSocial

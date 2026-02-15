@@ -157,7 +157,7 @@ function SignupForm() {
               <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
                 ✉️ Link enviado! Verifique seu email.
               </p>
-              <p className="mt-1 text-xs text-emerald-600 dark:text-emerald-400">
+              <p className="mt-1 text-xs text-emerald-700 dark:text-emerald-400">
                 Enviamos um link de acesso para <strong>{email}</strong>
               </p>
               <Button

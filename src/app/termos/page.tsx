@@ -117,7 +117,7 @@ export default function TermosPage() {
             <h2 className="text-xl font-semibold">5. Tratamento de Dados</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Os dados pessoais coletados são tratados conforme nossa{' '}
-              <Link href="/privacidade" className="text-emerald-600 underline">
+              <Link href="/privacidade" className="text-emerald-700 underline">
                 Politica de Privacidade
               </Link>
               , em conformidade com a Lei Geral de Protecao de Dados (LGPD - Lei
@@ -197,7 +197,7 @@ export default function TermosPage() {
               Em caso de duvidas sobre estes termos, entre em contato pelo email:{' '}
               <a
                 href="mailto:contato@lardia.com.br"
-                className="text-emerald-600 underline"
+                className="text-emerald-700 underline"
               >
                 contato@lardia.com.br
               </a>

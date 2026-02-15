@@ -89,7 +89,7 @@ export default async function BlogPost({
             LarDia
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/blog" className="text-sm font-medium text-emerald-600">
+            <Link href="/blog" className="text-sm font-medium text-emerald-700">
               Blog
             </Link>
             <Link href="/login">
@@ -181,7 +181,7 @@ export default async function BlogPost({
                           year: 'numeric',
                         })}
                       </p>
-                      <h3 className="font-semibold text-sm group-hover:text-emerald-600">
+                      <h3 className="font-semibold text-sm group-hover:text-emerald-700">
                         {r.title}
                       </h3>
                     </CardContent>

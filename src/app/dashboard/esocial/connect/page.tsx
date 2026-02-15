@@ -98,7 +98,7 @@ export default function ConnectESocialPage() {
             <div
               key={i}
               className={`h-1.5 flex-1 rounded-full ${
-                i < step ? 'bg-emerald-600' : 'bg-muted'
+                i < step ? 'bg-emerald-700' : 'bg-muted'
               }`}
             />
           ))}
@@ -150,7 +150,7 @@ export default function ConnectESocialPage() {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-700 mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm font-medium">
                       Conta gov.br nivel prata ou ouro
@@ -161,7 +161,7 @@ export default function ConnectESocialPage() {
                         href="https://sso.acesso.gov.br/signup"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-600 underline"
+                        className="text-emerald-700 underline"
                       >
                         crie sua conta gov.br aqui
                         <ExternalLink className="h-3 w-3 inline ml-0.5" />
@@ -170,7 +170,7 @@ export default function ConnectESocialPage() {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-700 mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm font-medium">CPF do empregador</p>
                     <p className="text-xs text-muted-foreground">
@@ -225,7 +225,7 @@ export default function ConnectESocialPage() {
                         href="https://cav.receita.fazenda.gov.br/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-600 underline"
+                        className="text-emerald-700 underline"
                       >
                         cav.receita.fazenda.gov.br
                         <ExternalLink className="h-3 w-3 inline ml-0.5" />
@@ -350,7 +350,7 @@ export default function ConnectESocialPage() {
             <CardContent className="space-y-4">
               {verified ? (
                 <div className="text-center space-y-4">
-                  <CheckCircle className="h-16 w-16 text-emerald-600 mx-auto" />
+                  <CheckCircle className="h-16 w-16 text-emerald-700 mx-auto" />
                   <p className="text-sm text-muted-foreground">
                     Sua procuração eletrônica foi verificada. A LarDia agora pode
                     gerenciar seu eSocial.

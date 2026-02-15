@@ -107,8 +107,8 @@ A primeira plataforma tecnológica que automatiza 100% da gestão eSocial domés
 ### Paleta de cores (proposta atual para refinar)
 
 **Cor primária:** Verde (confiança, crescimento, dinheiro, Brasil)
-- Atual: Emerald (#10B981 / #059669)
-- Considerar: um verde mais escuro/sofisticado para transmitir mais confiança
+- Atual: Emerald-700 (#047857)
+- Verde mais escuro/sofisticado para transmitir mais confiança e seriedade
 
 **Cor secundária:** Azul escuro ou slate (seriedade, tecnologia)
 

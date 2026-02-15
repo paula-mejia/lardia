@@ -107,7 +107,7 @@ export default function PrivacidadePage() {
                   href="https://stripe.com/privacy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-600 underline"
+                  className="text-emerald-700 underline"
                 >
                   politica de privacidade da Stripe
                 </a>
@@ -166,7 +166,7 @@ export default function PrivacidadePage() {
               Para exercer qualquer desses direitos, envie um email para{' '}
               <a
                 href="mailto:privacidade@lardia.com.br"
-                className="text-emerald-600 underline"
+                className="text-emerald-700 underline"
               >
                 privacidade@lardia.com.br
               </a>
@@ -231,7 +231,7 @@ export default function PrivacidadePage() {
                 Email:{' '}
                 <a
                   href="mailto:privacidade@lardia.com.br"
-                  className="text-emerald-600 underline"
+                  className="text-emerald-700 underline"
                 >
                   privacidade@lardia.com.br
                 </a>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
@@ -106,7 +107,7 @@ export function DashboardNav() {
                   className={cn(
                     'flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors',
                     isActive(item.href)
-                      ? 'bg-emerald-50 text-emerald-700 font-medium dark:bg-emerald-950 dark:text-emerald-300'
+                      ? 'bg-emerald-50 text-emerald-800 font-medium dark:bg-emerald-950 dark:text-emerald-300'
                       : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                   )}
                 >
@@ -156,8 +157,8 @@ export function DashboardNav() {
         )}
       >
         <div className="mb-6 px-3">
-          <Link href="/dashboard" className="text-xl font-bold tracking-tight text-emerald-600">
-            LarDia
+          <Link href="/dashboard" className="flex items-center">
+            <Image src="/logo-sm.png" alt="LarDia" width={120} height={40} className="h-9 w-auto" />
           </Link>
         </div>
         {navContent}

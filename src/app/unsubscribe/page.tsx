@@ -58,7 +58,7 @@ export default function UnsubscribePage() {
         {status === 'success' ? (
           <Card className="max-w-md w-full">
             <CardContent className="pt-8 pb-8 text-center">
-              <CheckCircle className="h-12 w-12 text-emerald-500 mx-auto mb-4" />
+              <CheckCircle className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
               <h1 className="text-xl font-bold mb-2">Inscrição cancelada</h1>
               <p className="text-sm text-muted-foreground mb-4">
                 Você não receberá mais emails da LarDia.

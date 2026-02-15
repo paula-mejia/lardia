@@ -74,7 +74,7 @@ export const DEADLINE_DEFINITIONS: Record<DeadlineType, DeadlineDefinition> = {
     label: 'Informe de Rendimentos',
     description:
       'Entrega do informe de rendimentos ao empregado para declaracao do IR. Prazo até 28 de fevereiro.',
-    color: 'bg-emerald-500',
+    color: 'bg-emerald-600',
   },
   dirf: {
     type: 'dirf',

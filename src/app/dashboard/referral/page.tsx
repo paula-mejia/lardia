@@ -127,7 +127,7 @@ export default function ReferralPage() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Gift className="h-5 w-5 text-emerald-500" />
+              <Gift className="h-5 w-5 text-emerald-600" />
               Seu código de indicação
             </CardTitle>
             <CardDescription>
@@ -145,7 +145,7 @@ export default function ReferralPage() {
                 size="icon"
                 onClick={() => referralCode && copyToClipboard(referralCode, 'code')}
               >
-                {copiedCode ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
+                {copiedCode ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
               </Button>
             </div>
 
@@ -159,7 +159,7 @@ export default function ReferralPage() {
                 size="icon"
                 onClick={() => copyToClipboard(shareLink, 'link')}
               >
-                {copiedLink ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
+                {copiedLink ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
               </Button>
             </div>
 
@@ -184,7 +184,7 @@ export default function ReferralPage() {
           </Card>
           <Card>
             <CardContent className="pt-4 pb-4 text-center">
-              <Users className="h-5 w-5 mx-auto mb-1 text-emerald-500" />
+              <Users className="h-5 w-5 mx-auto mb-1 text-emerald-600" />
               <p className="text-2xl font-bold">{stats.joined}</p>
               <p className="text-xs text-muted-foreground">Assinaram</p>
             </CardContent>
