@@ -83,7 +83,7 @@ export default function Home() {
               Contratar uma empregada doméstica no Brasil e complicado
             </h2>
             <p className="text-muted-foreground text-lg">
-              Sao dezenas de obrigações legais, cálculos complexos e prazos
+              São dezenas de obrigações legais, cálculos complexos e prazos
               apertados. Um erro pode gerar multas ou processos trabalhistas.
             </p>
           </div>
@@ -335,7 +335,7 @@ export default function Home() {
             {[
               {
                 name: 'Maria S.',
-                city: 'Sao Paulo, SP',
+                city: 'São Paulo, SP',
                 text: 'Antes da LarDia eu pagava um contador so para o eSocial. Agora faco tudo sozinha em 5 minutos por mês.',
               },
               {

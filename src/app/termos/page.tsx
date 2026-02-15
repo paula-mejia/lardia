@@ -186,7 +186,7 @@ export default function TermosPage() {
             <h2 className="text-xl font-semibold">10. Foro e Legislacao Aplicavel</h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Estes termos são regidos pelas leis da Republica Federativa do
-              Brasil. Fica eleito o foro da comarca de Sao Paulo/SP para dirimir
+              Brasil. Fica eleito o foro da comarca de São Paulo/SP para dirimir
               quaisquer controversias.
             </p>
           </section>
