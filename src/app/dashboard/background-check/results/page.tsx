@@ -214,7 +214,7 @@ function BackgroundCheckResultsContent() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">Antecedentes criminais</p>
-                      <p className="text-sm text-muted-foreground">Bases publicas federais e estaduais</p>
+                      <p className="text-sm text-muted-foreground">Bases públicas federais e estaduais</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <StatusIcon ok={!r.criminal_records.has_records} />
@@ -253,7 +253,7 @@ function BackgroundCheckResultsContent() {
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">Situacao de credito</p>
+                      <p className="font-medium">Situação de crédito</p>
                       <p className="text-sm text-muted-foreground">Consulta de restricoes</p>
                     </div>
                     <CreditLight status={r.credit_score.status} />
@@ -278,7 +278,7 @@ function BackgroundCheckResultsContent() {
           </p>
           <p>
             A existencia de registros não pode ser o único motivo para recusar uma
-            contratação. O uso discriminatorio destas informações pode gerar
+            contratação. O uso discriminatório destas informações pode gerar
             responsabilidade legal.
           </p>
           <p>

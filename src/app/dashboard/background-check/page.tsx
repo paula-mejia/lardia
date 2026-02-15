@@ -105,7 +105,7 @@ export default function BackgroundCheckPage() {
           </Link>
           <div className="flex items-center gap-2">
             <Shield className="h-6 w-6 text-primary" />
-            <h1 className="text-xl font-bold">Verificação Pre-Contratacao</h1>
+            <h1 className="text-xl font-bold">Verificação Pré-Contratação</h1>
           </div>
         </div>
 
@@ -186,12 +186,12 @@ export default function BackgroundCheckPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-muted/50 rounded-lg p-4 text-sm space-y-2">
-                <p className="font-medium">Esta consulta ira verificar:</p>
+                <p className="font-medium">Esta consulta irá verificar:</p>
                 <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                  <li>Validacao do CPF na Receita Federal</li>
-                  <li>Antecedentes criminais em bases publicas</li>
-                  <li>Processos judiciais civeis</li>
-                  <li>Situacao de credito</li>
+                  <li>Validação do CPF na Receita Federal</li>
+                  <li>Antecedentes criminais em bases públicas</li>
+                  <li>Processos judiciais cíveis</li>
+                  <li>Situação de crédito</li>
                 </ul>
               </div>
 
@@ -201,9 +201,26 @@ export default function BackgroundCheckPage() {
                 </p>
                 <p className="text-amber-700 dark:text-amber-300">
                   De acordo com a LGPD (Lei 13.709/2018), o candidato deve autorizar
-                  esta consulta antes de ser realizada. O uso discriminatorio destas
-                  informações e ilegal.
+                  esta consulta antes de ser realizada. O uso discriminatório destas
+                  informações é ilegal.
                 </p>
+              </div>
+
+              <div className="bg-muted/50 border rounded-lg p-4 text-sm space-y-2">
+                <p className="font-medium">📱 Mensagem de consentimento para enviar ao candidato:</p>
+                <div className="bg-background border rounded-md p-3 text-xs leading-relaxed italic">
+                  &quot;Olá! Como parte do processo de contratação, precisamos realizar uma verificação pré-contratação que inclui: validação de CPF, antecedentes criminais, processos judiciais cíveis e situação de crédito. De acordo com a LGPD (Lei 13.709/2018), precisamos da sua autorização. Você autoriza a realização desta consulta? Responda SIM para autorizar.&quot;
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const msg = encodeURIComponent('Olá! Como parte do processo de contratação, precisamos realizar uma verificação pré-contratação que inclui: validação de CPF, antecedentes criminais, processos judiciais cíveis e situação de crédito. De acordo com a LGPD (Lei 13.709/2018), precisamos da sua autorização. Você autoriza a realização desta consulta? Responda SIM para autorizar.')
+                    window.open(`https://wa.me/?text=${msg}`, '_blank')
+                  }}
+                  className="text-emerald-600 hover:text-emerald-700 text-xs font-medium underline"
+                >
+                  Enviar via WhatsApp →
+                </button>
               </div>
 
               <div className="flex items-start gap-3 p-4 border rounded-lg">
@@ -213,7 +230,7 @@ export default function BackgroundCheckPage() {
                   onCheckedChange={(checked) => setConsent(checked === true)}
                 />
                 <Label htmlFor="consent" className="text-sm leading-relaxed cursor-pointer">
-                  O candidato autorizou esta consulta e esta ciente de quais dados serão verificados,
+                  O candidato autorizou esta consulta e está ciente de quais dados serão verificados,
                   conforme exigido pela LGPD.
                 </Label>
               </div>
