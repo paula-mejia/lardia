@@ -438,64 +438,121 @@ export function buildS1000Xml(params: {
 </eSocial>`
 }
 
+// Error messages in Portuguese for user-facing display
+export const ESOCIAL_PROXY_ERRORS = {
+  TIMEOUT: 'Tempo limite excedido ao conectar com o servidor eSocial. Tente novamente em alguns minutos.',
+  PROXY_DOWN: 'Servidor proxy eSocial indisponível. Nossa equipe foi notificada.',
+  CERTIFICATE_ERROR: 'Erro de certificado digital ao conectar com o eSocial. Verifique se o certificado está válido.',
+  NETWORK_ERROR: 'Erro de rede ao conectar com o servidor eSocial. Verifique sua conexão.',
+  AUTH_ERROR: 'Erro de autenticação com o servidor proxy. Contate o suporte.',
+  PARSE_ERROR: 'Erro ao processar resposta do eSocial. Tente novamente.',
+  UNKNOWN: 'Erro inesperado na comunicação com o eSocial. Tente novamente.',
+} as const
+
+/**
+ * Classify a proxy error into a Portuguese user-facing message.
+ */
+function classifyProxyError(error: Error): string {
+  const msg = error.message.toLowerCase()
+  if (msg.includes('timeout') || msg.includes('abort')) return ESOCIAL_PROXY_ERRORS.TIMEOUT
+  if (msg.includes('econnrefused') || msg.includes('enotfound')) return ESOCIAL_PROXY_ERRORS.PROXY_DOWN
+  if (msg.includes('cert') || msg.includes('ssl') || msg.includes('tls')) return ESOCIAL_PROXY_ERRORS.CERTIFICATE_ERROR
+  if (msg.includes('fetch') || msg.includes('network')) return ESOCIAL_PROXY_ERRORS.NETWORK_ERROR
+  return ESOCIAL_PROXY_ERRORS.UNKNOWN
+}
+
 /**
  * Proxy-based eSocial API client.
- * Routes requests through the Sao Paulo proxy server instead of making
+ * Routes requests through the EC2 proxy in São Paulo instead of making
  * direct SOAP calls (which fail from Vercel's serverless environment).
+ *
+ * EC2 proxy endpoints:
+ *   POST {proxyUrl}/esocial/producaorestrita/{path} - restricted production
+ *   POST {proxyUrl}/esocial/producao/{path}         - real production
+ *   GET  {proxyUrl}/health                          - health check
  */
 export class EsocialProxyClient {
   private proxyUrl: string
   private apiKey: string
+  private environment: EsocialEnvironment
 
-  constructor(proxyUrl: string, apiKey: string) {
-    this.proxyUrl = proxyUrl
+  constructor(proxyUrl: string, apiKey: string, environment: EsocialEnvironment = 'restricted') {
+    this.proxyUrl = proxyUrl.replace(/\/+$/, '')
     this.apiKey = apiKey
+    this.environment = environment
   }
 
-  private async request(method: string, path: string, body?: unknown): Promise<{ ok: boolean; status: number; data: unknown }> {
-    const res = await fetch(`${this.proxyUrl}${path}`, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': this.apiKey,
-      },
-      ...(body ? { body: JSON.stringify(body) } : {}),
-      signal: AbortSignal.timeout(30000),
-    })
-    const data = await res.json()
-    return { ok: res.ok, status: res.status, data }
+  /** Get the proxy base path for the current environment */
+  private getBasePath(): string {
+    return this.environment === 'production'
+      ? '/esocial/producao'
+      : '/esocial/producaorestrita'
   }
 
-  /** Test connectivity to the eSocial proxy */
-  async testConnection(): Promise<{ connected: boolean; message?: string }> {
+  private async request(method: string, path: string, body?: unknown, timeoutMs = 30000): Promise<{ ok: boolean; status: number; data: unknown }> {
     try {
-      const { ok, data } = await this.request('GET', '/api/esocial/test')
-      return { connected: ok, ...(data as object) }
-    } catch {
-      return { connected: false, message: 'Proxy unreachable' }
+      const res = await fetch(`${this.proxyUrl}${path}`, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': this.apiKey,
+        },
+        ...(body ? { body: JSON.stringify(body) } : {}),
+        signal: AbortSignal.timeout(timeoutMs),
+      })
+
+      if (res.status === 401 || res.status === 403) {
+        throw new Error(ESOCIAL_PROXY_ERRORS.AUTH_ERROR)
+      }
+
+      const contentType = res.headers.get('content-type') || ''
+      const data = contentType.includes('json') ? await res.json() : await res.text()
+      return { ok: res.ok, status: res.status, data }
+    } catch (error) {
+      if ((error as Error).message === ESOCIAL_PROXY_ERRORS.AUTH_ERROR) throw error
+      throw new Error(classifyProxyError(error as Error))
     }
   }
 
-  /** Test eCAC connectivity */
-  async testEcac(): Promise<{ connected: boolean; message?: string }> {
+  /** Check proxy health via GET /health */
+  async checkHealth(): Promise<{ healthy: boolean; message: string; latencyMs: number }> {
+    const start = Date.now()
     try {
-      const { ok, data } = await this.request('GET', '/api/ecac/test')
-      return { connected: ok, ...(data as object) }
+      const res = await fetch(`${this.proxyUrl}/health`, {
+        headers: { 'x-api-key': this.apiKey },
+        signal: AbortSignal.timeout(10000),
+      })
+      const latencyMs = Date.now() - start
+      if (res.ok) {
+        const data = await res.json().catch(() => ({}))
+        return { healthy: true, message: (data as Record<string, string>).status || 'OK', latencyMs }
+      }
+      return { healthy: false, message: `HTTP ${res.status}`, latencyMs }
     } catch {
-      return { connected: false, message: 'Proxy unreachable' }
+      return { healthy: false, message: ESOCIAL_PROXY_ERRORS.PROXY_DOWN, latencyMs: Date.now() - start }
     }
   }
 
-  /** Send events through the proxy */
-  async sendEvents(payload: unknown): Promise<EsocialApiResponse> {
+  /** Test connectivity to the eSocial proxy (alias for checkHealth) */
+  async testConnection(): Promise<{ connected: boolean; message?: string; latencyMs?: number }> {
+    const health = await this.checkHealth()
+    return { connected: health.healthy, message: health.message, latencyMs: health.latencyMs }
+  }
+
+  /** Send events through the EC2 proxy */
+  async sendEvents(payload: {
+    soapBody: string
+    environment?: EsocialEnvironment
+  }): Promise<EsocialApiResponse> {
     try {
-      const { data } = await this.request('POST', '/api/esocial/send', payload)
+      const basePath = this.getBasePath()
+      const { data } = await this.request('POST', `${basePath}/enviarLoteEventos`, payload)
       return data as EsocialApiResponse
     } catch (error) {
       return {
         success: false,
         statusCode: -1,
-        statusDescription: `Proxy error: ${(error as Error).message}`,
+        statusDescription: (error as Error).message || ESOCIAL_PROXY_ERRORS.UNKNOWN,
         occurrences: [],
         rawXml: '',
         httpStatus: 0,
@@ -503,33 +560,68 @@ export class EsocialProxyClient {
     }
   }
 
-  /** Query event results through the proxy */
-  async queryEvents(payload: unknown): Promise<EsocialApiResponse> {
+  /** Query event results through the EC2 proxy */
+  async queryEvents(payload: {
+    protocoloEnvio: string
+    environment?: EsocialEnvironment
+  }): Promise<EsocialApiResponse> {
     try {
-      const { data } = await this.request('POST', '/api/esocial/query', payload)
+      const basePath = this.getBasePath()
+      const { data } = await this.request('POST', `${basePath}/consultarLoteEventos`, payload)
       return data as EsocialApiResponse
     } catch (error) {
       return {
         success: false,
         statusCode: -1,
-        statusDescription: `Proxy error: ${(error as Error).message}`,
+        statusDescription: (error as Error).message || ESOCIAL_PROXY_ERRORS.UNKNOWN,
         occurrences: [],
         rawXml: '',
         httpStatus: 0,
       }
     }
+  }
+
+  /** Get the current environment */
+  getEnvironment(): EsocialEnvironment {
+    return this.environment
+  }
+
+  /** Set the environment */
+  setEnvironment(env: EsocialEnvironment) {
+    this.environment = env
   }
 }
 
 /**
  * Create an EsocialProxyClient from environment variables.
  * Returns null if proxy is not configured.
+ *
+ * Environment toggle:
+ * - Production (NODE_ENV=production): always uses proxy (required for Vercel)
+ * - Development: uses proxy if ESOCIAL_PROXY_URL is set, otherwise allows direct connection
  */
-export function createProxyClient(): EsocialProxyClient | null {
+export function createProxyClient(environment?: EsocialEnvironment): EsocialProxyClient | null {
   const url = process.env.ESOCIAL_PROXY_URL
   const key = process.env.ESOCIAL_PROXY_API_KEY
-  if (!url || !key) return null
-  return new EsocialProxyClient(url, key)
+
+  if (!url || !key) {
+    if (process.env.NODE_ENV === 'production') {
+      console.error('[eSocial] ESOCIAL_PROXY_URL and ESOCIAL_PROXY_API_KEY are required in production')
+    }
+    return null
+  }
+
+  const env = environment || (process.env.NODE_ENV === 'production' ? 'production' : 'restricted')
+  return new EsocialProxyClient(url, key, env)
+}
+
+/**
+ * Determine if the proxy should be used.
+ * In production, always true. In development, true if proxy env vars are set.
+ */
+export function shouldUseProxy(): boolean {
+  if (process.env.NODE_ENV === 'production') return true
+  return !!(process.env.ESOCIAL_PROXY_URL && process.env.ESOCIAL_PROXY_API_KEY)
 }
 
 /**

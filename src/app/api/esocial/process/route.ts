@@ -1,24 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { processMonthlyPayroll } from '@/lib/esocial/monthly-processor'
-import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
+import { applyRateLimit } from '@/lib/rate-limit'
 import { auditLog } from '@/lib/audit'
 
+function getClientIp(request: NextRequest): string {
+  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+}
+
 export async function POST(request: NextRequest) {
-  const rateLimited = applyRateLimit(request, 'esocial-process', RATE_LIMITS.api)
+  const rateLimited = applyRateLimit(request, 'esocial-process', { windowMs: 60000, maxRequests: 1 })
   if (rateLimited) return rateLimited
+
   try {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
     if (!user) {
-      return NextResponse.json({ error: 'Nao autorizado' }, { status: 401 })
+      return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
     }
 
-    const { month, year } = await request.json()
+    const body = await request.json()
+    const now = new Date()
+    const month = body.month || now.getMonth() + 1
+    const year = body.year || now.getFullYear()
 
-    if (!month || !year) {
-      return NextResponse.json({ error: 'Mes e ano obrigatorios' }, { status: 400 })
+    if (month < 1 || month > 12 || year < 2020 || year > 2030) {
+      return NextResponse.json({ error: 'Mês ou ano inválido' }, { status: 400 })
     }
 
     // Get employer
@@ -29,13 +37,29 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (!employer) {
-      return NextResponse.json({ error: 'Empregador nao encontrado' }, { status: 404 })
+      return NextResponse.json({ error: 'Empregador não encontrado' }, { status: 404 })
+    }
+
+    // Check for existing events this month (prevent duplicates)
+    const { data: existingEvents } = await supabase
+      .from('esocial_events')
+      .select('id')
+      .eq('employer_id', employer.id)
+      .eq('reference_month', month)
+      .eq('reference_year', year)
+      .limit(1)
+
+    if (existingEvents && existingEvents.length > 0) {
+      return NextResponse.json(
+        { error: `Já existem eventos processados para ${String(month).padStart(2, '0')}/${year}. Exclua os eventos existentes para reprocessar.` },
+        { status: 409 }
+      )
     }
 
     // Get active employees
     const { data: employees } = await supabase
       .from('employees')
-      .select('id, full_name, cpf, salary')
+      .select('id, full_name, cpf, salary, dependents')
       .eq('employer_id', employer.id)
       .eq('status', 'active')
 
@@ -43,7 +67,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Nenhum empregado ativo encontrado' }, { status: 400 })
     }
 
-    // Process payroll
+    // Process payroll for all employees
     const result = processMonthlyPayroll(
       employer.id,
       employer.cpf || '',
@@ -54,26 +78,36 @@ export async function POST(request: NextRequest) {
         name: e.full_name,
         cpf: e.cpf,
         grossSalary: e.salary,
+        dependents: e.dependents || 0,
       }))
     )
 
-    // Save events to database
-    for (const event of result.events) {
-      await supabase.from('esocial_events').insert({
-        employer_id: employer.id,
-        employee_id: event.employeeId,
-        event_type: event.eventType,
-        event_data: event.eventData,
-        status: event.status,
-        reference_month: month,
-        reference_year: year,
-        submitted_at: event.submittedAt,
-      })
+    // Store all events (S-1200 + S-1210) in esocial_events
+    const eventInserts = result.events.map((event) => ({
+      employer_id: employer.id,
+      employee_id: event.employeeId,
+      event_type: event.eventType,
+      event_data: event.eventData,
+      status: 'pending' as const,
+      reference_month: month,
+      reference_year: year,
+      submitted_at: event.submittedAt,
+    }))
+
+    if (eventInserts.length > 0) {
+      const { error: insertError } = await supabase
+        .from('esocial_events')
+        .insert(eventInserts)
+
+      if (insertError) {
+        console.error('Error inserting events:', insertError)
+        return NextResponse.json({ error: 'Erro ao salvar eventos no banco de dados' }, { status: 500 })
+      }
     }
 
-    // Save DAE record
+    // Store DAE record
     if (result.dae) {
-      await supabase.from('dae_records').insert({
+      const { error: daeError } = await supabase.from('dae_records').insert({
         employer_id: employer.id,
         reference_month: month,
         reference_year: year,
@@ -84,15 +118,66 @@ export async function POST(request: NextRequest) {
         breakdown: result.dae.breakdown,
         employees: result.dae.employees,
       })
+
+      if (daeError) {
+        console.error('Error inserting DAE:', daeError)
+      }
     }
 
-    await auditLog(employer.id, 'esocial_event_submitted', { month, year, eventCount: result.events.length }, getClientIp(request))
+    await auditLog(
+      employer.id,
+      'esocial_monthly_processed',
+      {
+        month,
+        year,
+        employeeCount: employees.length,
+        eventCount: result.totalEventsGenerated,
+        daeTotal: result.totalDaeValue,
+        errors: result.errors,
+      },
+      getClientIp(request)
+    )
 
-    return NextResponse.json(result)
+    return NextResponse.json({
+      status: result.status,
+      month: result.month,
+      year: result.year,
+      totalEventsGenerated: result.totalEventsGenerated,
+      totalDaeValue: result.totalDaeValue,
+      errors: result.errors,
+      employees: result.employees.map((e) => ({
+        employeeId: e.employeeId,
+        employeeName: e.employeeName,
+        cpf: e.cpf,
+        grossSalary: e.grossSalary,
+        status: e.status,
+        payroll: e.payroll ? {
+          netSalary: e.payroll.netSalary,
+          inssEmployee: e.payroll.inssEmployee,
+          irrfEmployee: e.payroll.irrfEmployee,
+          daeTotal: e.payroll.daeTotal,
+          totalEarnings: e.payroll.totalEarnings,
+          totalDeductions: e.payroll.totalDeductions,
+          inssEmployer: e.payroll.inssEmployer,
+          gilrat: e.payroll.gilrat,
+          fgtsMonthly: e.payroll.fgtsMonthly,
+          fgtsAnticipation: e.payroll.fgtsAnticipation,
+        } : undefined,
+        error: e.error,
+      })),
+      dae: result.dae ? {
+        totalAmount: result.dae.totalAmount,
+        dueDate: result.dae.dueDate,
+        barcode: result.dae.barcode,
+        breakdown: result.dae.breakdown,
+        employees: result.dae.employees,
+      } : undefined,
+      processedAt: result.processedAt,
+    })
   } catch (error) {
     console.error('eSocial processing error:', error)
     return NextResponse.json(
-      { error: 'Erro ao processar folha' },
+      { error: 'Erro interno ao processar folha' },
       { status: 500 }
     )
   }

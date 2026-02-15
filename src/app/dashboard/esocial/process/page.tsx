@@ -6,7 +6,10 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Loader2, CheckCircle2, XCircle, ArrowLeft, FileText, Wifi, WifiOff } from 'lucide-react'
+import {
+  Loader2, CheckCircle2, XCircle, ArrowLeft, FileText,
+  Wifi, WifiOff, RefreshCw, AlertTriangle, Users
+} from 'lucide-react'
 import Link from 'next/link'
 
 interface EmployeeResult {
@@ -22,6 +25,10 @@ interface EmployeeResult {
     daeTotal: number
     totalEarnings: number
     totalDeductions: number
+    inssEmployer: number
+    gilrat: number
+    fgtsMonthly: number
+    fgtsAnticipation: number
   }
   error?: string
 }
@@ -47,17 +54,26 @@ interface DaeResult {
 
 interface ProcessingResult {
   status: string
+  totalEventsGenerated: number
+  totalDaeValue: number
+  errors: string[]
   employees: EmployeeResult[]
   dae?: DaeResult
+  processedAt?: string
 }
 
 const MONTHS = [
-  'Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho',
+  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
 ]
 
 function formatBRL(value: number): string {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+}
+
+function maskCPF(cpf: string): string {
+  if (!cpf || cpf.length < 11) return cpf
+  return `${cpf.slice(0, 3)}.***.**${cpf.slice(-2)}`
 }
 
 export default function EsocialProcessPage() {
@@ -81,7 +97,7 @@ export default function EsocialProcessPage() {
       setProxyConnected(data.connected === true)
       setProxyStatus(
         data.connected
-          ? 'Conectado ao eSocial via servidor Sao Paulo'
+          ? 'Conectado ao eSocial via servidor São Paulo'
           : data.error || 'Falha na conexão com o proxy'
       )
     } catch {
@@ -134,12 +150,12 @@ export default function EsocialProcessPage() {
         body: JSON.stringify({ month, year }),
       })
 
+      const data = await res.json()
+
       if (!res.ok) {
-        const data = await res.json()
         throw new Error(data.error || 'Erro ao processar')
       }
 
-      const data = await res.json()
       setResult(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erro desconhecido')
@@ -150,6 +166,9 @@ export default function EsocialProcessPage() {
 
   const currentYear = new Date().getFullYear()
   const years = [currentYear - 1, currentYear, currentYear + 1]
+
+  const completedCount = result?.employees.filter((e) => e.status === 'completed').length || 0
+  const errorCount = result?.employees.filter((e) => e.status === 'error').length || 0
 
   if (loading) {
     return (
@@ -168,8 +187,8 @@ export default function EsocialProcessPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold">Processamento eSocial</h1>
-          <p className="text-muted-foreground">Processar folha de pagamento e gerar DAE</p>
+          <h1 className="text-2xl font-bold">Processamento Mensal eSocial</h1>
+          <p className="text-muted-foreground">Gerar eventos S-1200, S-1210 e DAE</p>
         </div>
         {!proxyConnected && (
           <Badge variant="secondary" className="ml-auto bg-amber-100 text-amber-800 border-amber-300">
@@ -199,17 +218,8 @@ export default function EsocialProcessPage() {
                 )}
               </div>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={testProxy}
-              disabled={proxyTesting}
-            >
-              {proxyTesting ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                'Testar Conexão'
-              )}
+            <Button variant="outline" size="sm" onClick={testProxy} disabled={proxyTesting}>
+              {proxyTesting ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Testar Conexão'}
             </Button>
           </div>
         </CardContent>
@@ -218,12 +228,12 @@ export default function EsocialProcessPage() {
       {/* Month/Year selector */}
       <Card>
         <CardHeader>
-          <CardTitle>Periodo de referência</CardTitle>
+          <CardTitle>Período de referência</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex gap-4 items-end">
+          <div className="flex gap-4 items-end flex-wrap">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Mes</label>
+              <label className="text-sm font-medium">Mês</label>
               <Select value={String(month)} onValueChange={(v) => setMonth(Number(v))}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue />
@@ -252,24 +262,78 @@ export default function EsocialProcessPage() {
                 </SelectContent>
               </Select>
             </div>
-            <Button onClick={handleProcess} disabled={processing || employees.length === 0}>
+            <Button onClick={handleProcess} disabled={processing || employees.length === 0} size="lg">
               {processing ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Processando...
                 </>
               ) : (
-                'Processar folha'
+                'Processar mês'
               )}
             </Button>
           </div>
         </CardContent>
       </Card>
 
-      {/* Employee list */}
+      {/* Progress indicator */}
+      {processing && (
+        <Card className="border-blue-200 bg-blue-50">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-3">
+              <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
+              <div>
+                <p className="font-medium text-blue-900">Processando folha de pagamento...</p>
+                <p className="text-sm text-blue-700">
+                  Calculando encargos e gerando eventos para {employees.length} empregado(s)
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Results summary */}
+      {result && (
+        <Card className="border-green-200 bg-green-50/50">
+          <CardContent className="pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div>
+                <p className="text-sm text-muted-foreground">Empregados</p>
+                <p className="text-2xl font-bold">{result.employees.length}</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Eventos gerados</p>
+                <p className="text-2xl font-bold text-blue-700">{result.totalEventsGenerated}</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Valor DAE</p>
+                <p className="text-2xl font-bold text-green-700">
+                  {formatBRL(result.totalDaeValue)}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Status</p>
+                <div className="flex items-center justify-center gap-1 mt-1">
+                  {errorCount > 0 ? (
+                    <Badge variant="destructive">{errorCount} erro(s)</Badge>
+                  ) : (
+                    <Badge className="bg-green-600">Concluído</Badge>
+                  )}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Employee list with results */}
       <Card>
         <CardHeader>
-          <CardTitle>Empregados ({employees.length})</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Users className="h-5 w-5" />
+            Empregados ({employees.length})
+          </CardTitle>
         </CardHeader>
         <CardContent>
           {employees.length === 0 ? (
@@ -288,13 +352,22 @@ export default function EsocialProcessPage() {
                       <p className="text-sm text-muted-foreground">
                         Salário: {formatBRL(emp.salary)}
                       </p>
+                      {empResult?.payroll && empResult.status === 'completed' && (
+                        <div className="text-xs text-muted-foreground mt-1 space-x-3">
+                          <span>INSS: {formatBRL(empResult.payroll.inssEmployee)}</span>
+                          {empResult.payroll.irrfEmployee > 0 && (
+                            <span>IRRF: {formatBRL(empResult.payroll.irrfEmployee)}</span>
+                          )}
+                          <span>FGTS: {formatBRL(empResult.payroll.fgtsMonthly)}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="flex items-center gap-3">
                       {empResult && (
                         <>
                           {empResult.status === 'completed' && empResult.payroll && (
-                            <span className="text-sm text-muted-foreground">
-                              Liquido: {formatBRL(empResult.payroll.netSalary)}
+                            <span className="text-sm font-medium text-green-700">
+                              Líquido: {formatBRL(empResult.payroll.netSalary)}
                             </span>
                           )}
                           {empResult.status === 'completed' ? (
@@ -323,11 +396,46 @@ export default function EsocialProcessPage() {
         </CardContent>
       </Card>
 
-      {/* Error */}
+      {/* Error with retry */}
       {error && (
         <Card className="border-red-200 bg-red-50">
           <CardContent className="pt-6">
-            <p className="text-red-700">{error}</p>
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5 shrink-0" />
+              <div className="flex-1">
+                <p className="text-red-700 font-medium">Erro no processamento</p>
+                <p className="text-sm text-red-600 mt-1">{error}</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mt-3 border-red-300 text-red-700 hover:bg-red-100"
+                  onClick={handleProcess}
+                  disabled={processing}
+                >
+                  <RefreshCw className="h-4 w-4 mr-1" />
+                  Tentar novamente
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Processing errors list */}
+      {result && result.errors.length > 0 && (
+        <Card className="border-amber-200 bg-amber-50">
+          <CardHeader>
+            <CardTitle className="text-amber-800 text-base flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4" />
+              Erros durante o processamento
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-1">
+              {result.errors.map((err, i) => (
+                <li key={i} className="text-sm text-amber-700">• {err}</li>
+              ))}
+            </ul>
           </CardContent>
         </Card>
       )}
@@ -366,13 +474,13 @@ export default function EsocialProcessPage() {
 
             {/* Breakdown */}
             <div className="border rounded-lg p-4 space-y-2">
-              <h4 className="font-medium text-sm">Composicao da DAE</h4>
+              <h4 className="font-medium text-sm">Composição da DAE</h4>
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <span className="text-muted-foreground">INSS Empregado:</span>
                 <span className="text-right">{formatBRL(result.dae.breakdown.inssEmpregado)}</span>
                 <span className="text-muted-foreground">INSS Patronal:</span>
                 <span className="text-right">{formatBRL(result.dae.breakdown.inssPatronal)}</span>
-                <span className="text-muted-foreground">GILRAT:</span>
+                <span className="text-muted-foreground">GILRAT (Seguro Acidente):</span>
                 <span className="text-right">{formatBRL(result.dae.breakdown.gilrat)}</span>
                 <span className="text-muted-foreground">FGTS Mensal:</span>
                 <span className="text-right">{formatBRL(result.dae.breakdown.fgtsmensal)}</span>
@@ -385,9 +493,22 @@ export default function EsocialProcessPage() {
               </div>
             </div>
 
+            {/* Per-employee DAE breakdown */}
+            {result.dae.employees.length > 0 && (
+              <div className="border rounded-lg p-4 space-y-2">
+                <h4 className="font-medium text-sm">Contribuição por empregado</h4>
+                {result.dae.employees.map((emp, i) => (
+                  <div key={i} className="flex justify-between text-sm py-1 border-b last:border-0">
+                    <span>{emp.employeeName}</span>
+                    <span className="font-medium">{formatBRL(emp.daeContribution)}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Mock barcode */}
             <div className="border rounded-lg p-4 bg-gray-50">
-              <p className="text-xs text-muted-foreground mb-1">Codigo de barras (simulado)</p>
+              <p className="text-xs text-muted-foreground mb-1">Código de barras (simulado)</p>
               <p className="font-mono text-sm tracking-wider">{result.dae.barcode}</p>
               <div className="mt-2 h-12 bg-[repeating-linear-gradient(90deg,#000_0px,#000_2px,#fff_2px,#fff_4px,#000_4px,#000_5px,#fff_5px,#fff_8px)] rounded" />
             </div>
@@ -395,6 +516,9 @@ export default function EsocialProcessPage() {
             <div className="flex gap-2">
               <Link href="/dashboard/esocial/dae">
                 <Button variant="outline">Ver histórico de DAEs</Button>
+              </Link>
+              <Link href="/dashboard/esocial/status">
+                <Button variant="outline">Ver status mensal</Button>
               </Link>
             </div>
           </CardContent>

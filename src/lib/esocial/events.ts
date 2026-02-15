@@ -263,6 +263,8 @@ export interface DaeRecord {
     gilrat: number
     fgtsmensal: number
     fgtsAntecipacao: number
+    irrf?: number
+    seguroAcidente?: number
   }
   employees: Array<{
     employeeId: string

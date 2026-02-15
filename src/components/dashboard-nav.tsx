@@ -47,6 +47,7 @@ const navGroups: NavGroup[] = [
     items: [
       { label: 'Status', href: '/dashboard/esocial', icon: <FileCheck className="h-4 w-4" /> },
       { label: 'Processar', href: '/dashboard/esocial/process', icon: <Cpu className="h-4 w-4" /> },
+      { label: 'Eventos', href: '/dashboard/esocial/events', icon: <FileText className="h-4 w-4" /> },
       { label: 'DAE', href: '/dashboard/esocial/dae', icon: <Receipt className="h-4 w-4" /> },
       { label: 'Calendário', href: '/dashboard/calendar', icon: <Calendar className="h-4 w-4" /> },
     ],

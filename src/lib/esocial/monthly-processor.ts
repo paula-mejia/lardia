@@ -1,11 +1,12 @@
 /**
- * Monthly eSocial processing queue.
- * Processes all employees for a given month, generates S-1200 events and DAE.
+ * Monthly eSocial processing engine.
+ * Processes all employees for a given month, generates S-1200 + S-1210 events and DAE.
  */
 
 import { buildS1200FromPayroll } from './event-builder'
+import { buildS1210 } from './event-builder'
 import { generateDae } from './dae-generator'
-import { EsocialEvent, DaeRecord } from './events'
+import { EsocialEvent, S1210Data, DaeRecord } from './events'
 import { PayrollBreakdown } from '../calc/payroll'
 
 export type ProcessingStatus = 'pending' | 'processing' | 'completed' | 'error'
@@ -16,7 +17,8 @@ export interface EmployeeProcessingResult {
   cpf: string
   grossSalary: number
   status: ProcessingStatus
-  event?: EsocialEvent
+  s1200Event?: EsocialEvent
+  s1210Event?: EsocialEvent
   payroll?: PayrollBreakdown
   error?: string
 }
@@ -29,8 +31,10 @@ export interface MonthlyProcessingResult {
   employees: EmployeeProcessingResult[]
   dae?: DaeRecord
   events: EsocialEvent[]
+  totalEventsGenerated: number
+  totalDaeValue: number
+  errors: string[]
   processedAt?: string
-  error?: string
 }
 
 export interface EmployeeInput {
@@ -47,8 +51,30 @@ export interface EmployeeInput {
 }
 
 /**
+ * Calculate payment date for a given month/year.
+ * Payment is on the 5th business day of the following month.
+ * Simplified: use the 5th of next month, adjusted for weekends.
+ */
+function calculatePaymentDate(month: number, year: number): string {
+  let payMonth = month + 1
+  let payYear = year
+  if (payMonth > 12) {
+    payMonth = 1
+    payYear += 1
+  }
+  const date = new Date(payYear, payMonth - 1, 5)
+  const day = date.getDay()
+  if (day === 0) date.setDate(date.getDate() + 1)
+  else if (day === 6) date.setDate(date.getDate() + 2)
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, '0')
+  const d = String(date.getDate()).padStart(2, '0')
+  return `${y}-${m}-${d}`
+}
+
+/**
  * Process monthly payroll for all employees.
- * Generates S-1200 events and DAE in simulation mode.
+ * Generates S-1200 (remuneração) and S-1210 (pagamento) events plus DAE.
  */
 export function processMonthlyPayroll(
   employerId: string,
@@ -65,6 +91,9 @@ export function processMonthlyPayroll(
     status: 'processing',
     employees: [],
     events: [],
+    totalEventsGenerated: 0,
+    totalDaeValue: 0,
+    errors: [],
   }
 
   const payrollResults: Array<{
@@ -74,7 +103,9 @@ export function processMonthlyPayroll(
     payroll: PayrollBreakdown
   }> = []
 
-  // Process each employee
+  const paymentDate = calculatePaymentDate(month, year)
+  const perRef = `${year}-${String(month).padStart(2, '0')}`
+
   for (const emp of employees) {
     onProgress?.(emp.id, 'processing')
 
@@ -87,7 +118,8 @@ export function processMonthlyPayroll(
     }
 
     try {
-      const { event, payroll } = buildS1200FromPayroll(
+      // Generate S-1200 (remuneração)
+      const { event: s1200Event, payroll } = buildS1200FromPayroll(
         employerId,
         emp.id,
         employerCpf,
@@ -105,15 +137,32 @@ export function processMonthlyPayroll(
         }
       )
 
-      // In simulation mode, auto-accept the event
-      event.status = 'accepted'
-      event.submittedAt = new Date().toISOString()
+      s1200Event.status = 'accepted'
+      s1200Event.submittedAt = new Date().toISOString()
 
-      empResult.event = event
+      // Generate S-1210 (pagamento)
+      const s1210Data: S1210Data = {
+        cpfTrabalhador: emp.cpf,
+        dtPagamento: paymentDate,
+        perRef,
+        vrLiquido: payroll.netSalary,
+        tpPgto: 1, // salário mensal
+        infoIRRF: payroll.irrfEmployee > 0 ? {
+          vrBaseIRRF: payroll.irrfBase,
+          vrIRRF: payroll.irrfEmployee,
+        } : undefined,
+      }
+
+      const s1210Event = buildS1210(employerId, emp.id, s1210Data, month, year)
+      s1210Event.status = 'accepted'
+      s1210Event.submittedAt = new Date().toISOString()
+
+      empResult.s1200Event = s1200Event
+      empResult.s1210Event = s1210Event
       empResult.payroll = payroll
       empResult.status = 'completed'
 
-      result.events.push(event)
+      result.events.push(s1200Event, s1210Event)
       payrollResults.push({
         employeeId: emp.id,
         employeeName: emp.name,
@@ -123,23 +172,27 @@ export function processMonthlyPayroll(
 
       onProgress?.(emp.id, 'completed')
     } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Erro desconhecido'
       empResult.status = 'error'
-      empResult.error = err instanceof Error ? err.message : 'Erro desconhecido'
+      empResult.error = errorMsg
+      result.errors.push(`${emp.name}: ${errorMsg}`)
       onProgress?.(emp.id, 'error')
     }
 
     result.employees.push(empResult)
   }
 
-  // Generate DAE if we have any successful payroll results
+  // Generate DAE aggregating all costs
   if (payrollResults.length > 0) {
     result.dae = generateDae(employerId, month, year, payrollResults)
+    result.totalDaeValue = result.dae.totalAmount
   }
 
-  // Set overall status
+  result.totalEventsGenerated = result.events.length
+
   const hasErrors = result.employees.some((e) => e.status === 'error')
   const allErrors = result.employees.every((e) => e.status === 'error')
-  result.status = allErrors ? 'error' : hasErrors ? 'completed' : 'completed'
+  result.status = allErrors ? 'error' : 'completed'
   result.processedAt = new Date().toISOString()
 
   return result
@@ -150,7 +203,7 @@ export function processMonthlyPayroll(
  */
 export function getMonthName(month: number): string {
   const months = [
-    'Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho',
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
   ]
   return months[month - 1] || ''

@@ -17,6 +17,9 @@ export type AuditAction =
   | 'subscription_canceled'
   | 'esocial_event_submitted'
   | 'pdf_generated'
+  | 'esocial_monthly_processed'
+  | 'esocial_event_retry'
+  | 'dae_pdf_generated'
 
 // Use service role to bypass RLS for inserts from any context
 function getServiceSupabase() {
