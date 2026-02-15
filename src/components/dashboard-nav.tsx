@@ -28,10 +28,7 @@ const navGroups: NavGroup[] = [
   {
     label: 'Calculadoras',
     items: [
-      { label: 'Folha', href: '/dashboard', icon: <Calculator className="h-4 w-4" /> },
-      { label: '13o Salário', href: '/dashboard#thirteenth', icon: <Gift className="h-4 w-4" /> },
-      { label: 'Férias', href: '/dashboard#vacation', icon: <Palmtree className="h-4 w-4" /> },
-      { label: 'Rescisão', href: '/dashboard#termination', icon: <UserMinus className="h-4 w-4" /> },
+      { label: 'Simulador', href: '/simulador', icon: <Calculator className="h-4 w-4" /> },
     ],
   },
   {
