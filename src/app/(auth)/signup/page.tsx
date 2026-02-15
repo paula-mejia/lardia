@@ -123,6 +123,15 @@ function SignupForm() {
 
     trackSignupCompleted()
     trackAuditEvent('signup', 'auth', { email })
+    
+    // With autoconfirm enabled, user is already logged in - redirect to dashboard
+    const { data: { session } } = await supabase.auth.getSession()
+    if (session) {
+      window.location.href = '/dashboard'
+      return
+    }
+    
+    // Fallback: show email verification screen
     setSuccess(true)
     setLoading(false)
   }
