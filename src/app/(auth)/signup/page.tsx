@@ -109,7 +109,14 @@ function SignupForm() {
     const { error } = await supabase.auth.signUp(signUpOptions)
 
     if (error) {
-      setError('Erro ao criar conta. Tente novamente.')
+      console.error('Signup error:', error.message, error)
+      if (error.message?.includes('already registered')) {
+        setError('Este email já está cadastrado. Tente fazer login.')
+      } else if (error.message?.includes('password')) {
+        setError('A senha deve ter pelo menos 6 caracteres.')
+      } else {
+        setError(error.message || 'Erro ao criar conta. Tente novamente.')
+      }
       setLoading(false)
       return
     }
