@@ -22,18 +22,21 @@ export default function SignupPage() {
 
 function SignupForm() {
   const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const [magicLinkSent, setMagicLinkSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [magicLinkLoading, setMagicLinkLoading] = useState(false)
+  const [showPasswordForm, setShowPasswordForm] = useState(false)
   const searchParams = useSearchParams()
   const ref = searchParams.get('ref')
   const [refCode, setRefCode] = useState<string | null>(ref)
 
   useEffect(() => {
     if (ref) {
-      // Store in localStorage so we can track after email confirmation
       localStorage.setItem('lardia_ref', ref)
     } else {
       const stored = localStorage.getItem('lardia_ref')
@@ -41,6 +44,37 @@ function SignupForm() {
       if (stored) setRefCode(stored)
     }
   }, [ref])
+
+  async function handleMagicLinkSignup(e: React.FormEvent) {
+    e.preventDefault()
+    trackSignupStarted()
+    setMagicLinkLoading(true)
+    setError(null)
+
+    const supabase = createClient()
+    const metadata: Record<string, string> = {}
+    if (name) metadata.name = name
+    if (refCode) metadata.referral_code = refCode
+
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: 'https://lardia.com.br/auth/callback',
+        data: metadata,
+      },
+    })
+
+    if (error) {
+      setError('Erro ao enviar link. Tente novamente.')
+      setMagicLinkLoading(false)
+      return
+    }
+
+    trackSignupCompleted()
+    trackAuditEvent('magic_link_signup', 'auth', { email })
+    setMagicLinkSent(true)
+    setMagicLinkLoading(false)
+  }
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault()
@@ -61,13 +95,17 @@ function SignupForm() {
     }
 
     const supabase = createClient()
-    const signUpOptions: { email: string; password: string; options?: { data: { referral_code: string } } } = {
+    const signUpOptions: { email: string; password: string; options?: { data: Record<string, string> } } = {
       email,
       password,
     }
-    if (refCode) {
-      signUpOptions.options = { data: { referral_code: refCode } }
+    const metadata: Record<string, string> = {}
+    if (name) metadata.name = name
+    if (refCode) metadata.referral_code = refCode
+    if (Object.keys(metadata).length > 0) {
+      signUpOptions.options = { data: metadata }
     }
+
     const { error } = await supabase.auth.signUp(signUpOptions)
 
     if (error) {
@@ -113,46 +151,117 @@ function SignupForm() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSignup} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="seu@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+          {/* Magic Link - Primary Signup Method */}
+          {magicLinkSent ? (
+            <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-center dark:border-emerald-800 dark:bg-emerald-950">
+              <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
+                ✉️ Link enviado! Verifique seu email.
+              </p>
+              <p className="mt-1 text-xs text-emerald-600 dark:text-emerald-400">
+                Enviamos um link de acesso para <strong>{email}</strong>
+              </p>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="mt-2"
+                onClick={() => { setMagicLinkSent(false); setEmail(''); setName('') }}
+              >
+                Tentar outro email
+              </Button>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
-              <PasswordInput
-                id="password"
-                placeholder="Mínimo 6 caracteres"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="confirm-password">Confirmar senha</Label>
-              <PasswordInput
-                id="confirm-password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-            </div>
+          ) : (
+            <form onSubmit={handleMagicLinkSignup} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="magic-name">Nome</Label>
+                <Input
+                  id="magic-name"
+                  type="text"
+                  placeholder="Seu nome"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="magic-email">E-mail</Label>
+                <Input
+                  id="magic-email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
 
-            {error && (
-              <p className="text-sm text-red-500">{error}</p>
-            )}
+              {error && !showPasswordForm && (
+                <p className="text-sm text-red-500">{error}</p>
+              )}
 
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Criando conta...' : 'Criar conta'}
-            </Button>
-          </form>
+              <Button type="submit" className="w-full" disabled={magicLinkLoading}>
+                {magicLinkLoading ? 'Enviando...' : 'Criar conta'}
+              </Button>
+            </form>
+          )}
+
+          {/* Divider */}
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <button
+                type="button"
+                className="bg-card px-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                onClick={() => setShowPasswordForm(!showPasswordForm)}
+              >
+                ou cadastre com senha
+              </button>
+            </div>
+          </div>
+
+          {/* Password Form - Secondary/Collapsible */}
+          {showPasswordForm && (
+            <form onSubmit={handleSignup} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">E-mail</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Senha</Label>
+                <PasswordInput
+                  id="password"
+                  placeholder="Mínimo 6 caracteres"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="confirm-password">Confirmar senha</Label>
+                <PasswordInput
+                  id="confirm-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+              </div>
+
+              {error && showPasswordForm && (
+                <p className="text-sm text-red-500">{error}</p>
+              )}
+
+              <Button type="submit" className="w-full" variant="outline" disabled={loading}>
+                {loading ? 'Criando conta...' : 'Criar conta com senha'}
+              </Button>
+            </form>
+          )}
 
           <div className="mt-4 text-center text-sm text-muted-foreground">
             Já tem conta?{' '}
