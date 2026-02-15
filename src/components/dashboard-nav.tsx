@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import Logo from '@/components/logo'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
@@ -158,7 +158,7 @@ export function DashboardNav() {
       >
         <div className="mb-6 px-3">
           <Link href="/dashboard" className="flex items-center">
-            <Image src="/logo-sm.png" alt="LarDia" width={120} height={40} className="h-9 w-auto" />
+            <Logo className="h-9" />
           </Link>
         </div>
         {navContent}

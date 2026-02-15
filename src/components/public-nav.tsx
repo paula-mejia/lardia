@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import Logo from '@/components/logo'
 
 export function PublicNav() {
   return (
     <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <Image src="/logo-sm.png" alt="LarDia" width={120} height={40} className="h-9 w-auto" priority />
+          <Logo className="h-9" />
         </Link>
         <div className="flex items-center gap-4">
           <Link href="/simulador" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hidden sm:block">

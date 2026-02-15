@@ -22,7 +22,7 @@ import {
   X,
 } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
+import Logo from '@/components/logo'
 import PayrollCalculator from '@/components/payroll-calculator'
 import { ReferralBanner, ReferralSection } from '@/components/referral-banner'
 import NewsletterSignup from '@/components/newsletter-signup'
@@ -36,7 +36,7 @@ export default function Home() {
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <Image src="/logo-sm.png" alt="LarDia" width={120} height={40} className="h-9 w-auto" priority />
+            <Logo className="h-9" />
           </Link>
           <MobileNav />
         </div>
