@@ -56,7 +56,7 @@ export default function BlogIndex() {
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Tudo o que você precisa saber para gerenciar sua empregada doméstica
-            com seguranca e dentro da lei.
+            com segurança e dentro da lei.
           </p>
         </div>
       </section>

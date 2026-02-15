@@ -37,14 +37,14 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
   // Title
   doc.setFontSize(18)
   doc.setFont('helvetica', 'bold')
-  doc.text('Relatorio de Verificação Pre-Contratacao', 105, y, { align: 'center' })
+  doc.text('Relatório de Verificação Pré-Contratação', 105, y, { align: 'center' })
   y += 12
 
   // Subtitle
   doc.setFontSize(10)
   doc.setFont('helvetica', 'normal')
   doc.setTextColor(100)
-  doc.text('LarDia - Gestão de Empregados Domesticos', 105, y, { align: 'center' })
+  doc.text('LarDia - Gestão de Empregados Domésticos', 105, y, { align: 'center' })
   y += 15
 
   // Candidate info
@@ -70,7 +70,7 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
 
   const items = [
     {
-      label: 'Situacao do CPF',
+      label: 'Situação do CPF',
       value: r.cpf_status === 'regular' ? 'Regular' : 'Irregular',
       ok: r.cpf_status === 'regular',
     },
@@ -92,7 +92,7 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
       ok: !r.lawsuits.has_lawsuits,
     },
     {
-      label: 'Situacao de credito',
+      label: 'Situação de crédito',
       value: r.credit_score.status === 'limpo' ? 'Limpo' : 'Negativado',
       ok: r.credit_score.status === 'limpo',
     },
@@ -114,7 +114,7 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
   doc.setFontSize(8)
   doc.setFont('helvetica', 'italic')
   const disclaimer = [
-    'Este relatorio e informativo. A decisao de contratação é de responsabilidade do empregador.',
+    'Este relatório é informativo. A decisão de contratação é de responsabilidade do empregador.',
     'A existencia de registros não pode ser o único motivo para recusar uma contratação.',
     'Dados consultados conforme LGPD (Lei 13.709/2018) com consentimento do candidato.',
   ]

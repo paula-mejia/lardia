@@ -140,8 +140,9 @@ export default function ThirteenthPageClient({
               <Label>
                 Meses trabalhados
                 <InfoTip>
-                  Calculado automaticamente pela data de admissão.
-                  Conta o mês se trabalhou 15 dias ou mais.
+                  O 13º salário é calculado com base nos meses que o empregado terá
+                  trabalhado até dezembro do ano de referência. Se admitido em fevereiro,
+                  por exemplo, serão 11 meses (fev-dez). Conta o mês se trabalhou 15 dias ou mais.
                 </InfoTip>
               </Label>
               <div className="flex h-9 items-center rounded-md border bg-muted/50 px-3">
@@ -150,6 +151,11 @@ export default function ThirteenthPageClient({
               </div>
               <p className="text-xs text-muted-foreground">
                 Admissão: {new Date(admissionDate + 'T12:00').toLocaleDateString('pt-BR')}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {(parseInt(refYear) || currentYear) >= currentYear
+                  ? `Projeção até dezembro de ${parseInt(refYear) || currentYear}`
+                  : 'Ano completo'}
               </p>
             </div>
             <div className="space-y-2">

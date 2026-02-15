@@ -14,7 +14,7 @@ export async function GET(
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
-    return NextResponse.json({ error: 'Nao autorizado' }, { status: 401 })
+    return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
   }
 
   const { data: employer } = await supabase
@@ -24,7 +24,7 @@ export async function GET(
     .single()
 
   if (!employer) {
-    return NextResponse.json({ error: 'Empregador nao encontrado' }, { status: 404 })
+    return NextResponse.json({ error: 'Empregador não encontrado' }, { status: 404 })
   }
 
   // RLS ensures employer can only see their own checks,
@@ -37,7 +37,7 @@ export async function GET(
     .single()
 
   if (error || !check) {
-    return NextResponse.json({ error: 'Consulta nao encontrada' }, { status: 404 })
+    return NextResponse.json({ error: 'Consulta não encontrada' }, { status: 404 })
   }
 
   return NextResponse.json(check)

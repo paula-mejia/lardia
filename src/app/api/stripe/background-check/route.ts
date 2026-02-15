@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
         price_data: {
           currency: 'brl',
           product_data: {
-            name: 'Verificação Pre-Contratacao',
+            name: 'Verificação Pré-Contratação',
             description: 'Consulta de antecedentes, processos judiciais e situação cadastral',
           },
           unit_amount: 9990, // R$99.90

@@ -100,7 +100,7 @@ export function buildDaeReminderMessage(daysUntil: number, dueDay: number, estim
   const valor = estimatedValue || 'R$XXX'
 
   if (daysUntil === 0) {
-    return `Hoje e o ultimo dia para pagar o DAE! Valor: ${valor}. Nao esqueca!`
+    return `Hoje é o último dia para pagar o DAE! Valor: ${valor}. Não esqueça!`
   }
 
   return `Lembrete: o DAE do mes vence em ${daysUntil} dias (dia ${dueDay}). Valor estimado: ${valor}. Acesse LarDia para gerar o comprovante.`

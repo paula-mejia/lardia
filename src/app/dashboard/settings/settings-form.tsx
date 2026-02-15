@@ -78,7 +78,7 @@ export function SettingsForm({
 
     // Validate phone if WhatsApp is enabled
     if (whatsappReminders && !isValidPhone) {
-      setError('Numero de WhatsApp inválido. Use o formato brasileiro completo.')
+      setError('Número de WhatsApp inválido. Use o formato brasileiro completo.')
       setSaving(false)
       return
     }
@@ -219,7 +219,7 @@ export function SettingsForm({
           {whatsappReminders && (
             <div className="pl-8 space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="whatsapp-number">Numero do WhatsApp</Label>
+                <Label htmlFor="whatsapp-number">Número do WhatsApp</Label>
                 <Input
                   id="whatsapp-number"
                   type="tel"
@@ -230,7 +230,7 @@ export function SettingsForm({
                 />
                 {rawDigits.length > 2 && !isValidPhone && (
                   <p className="text-xs text-red-500">
-                    Numero incompleto. Use DDD + número (ex: 11 99999-9999)
+                    Número incompleto. Use DDD + número (ex: 11 99999-9999)
                   </p>
                 )}
               </div>

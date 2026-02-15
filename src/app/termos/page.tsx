@@ -52,7 +52,7 @@ export default function TermosPage() {
               Ao utilizar a LarDia, você se compromete a:
             </p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
-              <li>Fornecer informações verdadeiras e atualizadas sobre empregados e salarios</li>
+              <li>Fornecer informações verdadeiras e atualizadas sobre empregados e salários</li>
               <li>Manter suas credenciais de acesso em sigilo</li>
               <li>Revisar os cálculos e documentos gerados antes de submete-los</li>
               <li>Cumprir todas as obrigações legais como empregador doméstico</li>
@@ -163,7 +163,7 @@ export default function TermosPage() {
               A LarDia não será responsável por danos indiretos, incidentais,
               especiais ou consequenciais decorrentes do uso ou impossibilidade
               de uso do serviço. Nossa responsabilidade total esta limitada ao
-              valor pago pelo usuário nos ultimos 12 meses.
+              valor pago pelo usuário nos últimos 12 meses.
             </p>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Em caso de erros em cálculos que resultem em prejuizo ao usuário,

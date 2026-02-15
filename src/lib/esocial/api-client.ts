@@ -634,10 +634,10 @@ export const ESOCIAL_ERROR_CODES: Record<number, string> = {
   401: 'Lote incorreto - erro de preenchimento',
   402: 'Lote incorreto - erro de schema',
   403: 'Lote incorreto - XML mal formado',
-  404: 'Lote incorreto - certificado invalido',
+  404: 'Lote incorreto - certificado inválido',
   501: 'Lote em processamento',
   502: 'Lote processado com erros em um ou mais eventos',
   601: 'Assinatura digital invalida',
-  609: 'Codigo de ID invalido',
+  609: 'Código de ID inválido',
   1310: 'Empregador doméstico não pode transmitir eventos por este canal',
 }

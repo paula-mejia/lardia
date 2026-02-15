@@ -45,7 +45,7 @@ export async function runBackgroundCheck(
   }
 
   if (!validateCpfChecksum(request.candidateCpf)) {
-    throw new Error('CPF invalido')
+    throw new Error('CPF inválido')
   }
 
   if (USE_MOCK) {

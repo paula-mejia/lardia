@@ -241,7 +241,7 @@ export default function CalendarPage() {
         )}
 
         {/* Upcoming 30 days */}
-        <h2 className="text-lg font-semibold mb-3">Proximos 30 dias</h2>
+        <h2 className="text-lg font-semibold mb-3">Próximos 30 dias</h2>
         {upcoming.length === 0 ? (
           <p className="text-sm text-muted-foreground">
             Nenhuma obrigação nos próximos 30 dias.

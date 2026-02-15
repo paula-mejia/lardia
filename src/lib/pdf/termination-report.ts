@@ -198,7 +198,7 @@ export function generateTerminationReportPDF(data: TerminationReportData): void 
   checkPageBreak(20)
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(11)
-  doc.text('VALOR LIQUIDO', margin + 2, y)
+  doc.text('VALOR LÍQUIDO', margin + 2, y)
   doc.text(`R$ ${formatBRL(b.netAmount)}`, pageWidth - margin - 2, y, { align: 'right' })
   y += 4
   drawThickLine(y)

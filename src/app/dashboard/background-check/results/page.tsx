@@ -144,7 +144,7 @@ function BackgroundCheckResultsContent() {
           </Link>
           <div className="flex items-center gap-2">
             <Shield className="h-6 w-6 text-primary" />
-            <h1 className="text-xl font-bold">Relatorio de Verificação</h1>
+            <h1 className="text-xl font-bold">Relatório de Verificação</h1>
           </div>
         </div>
 
@@ -179,7 +179,7 @@ function BackgroundCheckResultsContent() {
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">Situacao do CPF</p>
+                      <p className="font-medium">Situação do CPF</p>
                       <p className="text-sm text-muted-foreground">Receita Federal</p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -273,7 +273,7 @@ function BackgroundCheckResultsContent() {
         {/* Disclaimer */}
         <div className="bg-muted/50 rounded-lg p-4 text-xs text-muted-foreground space-y-2">
           <p>
-            Este relatorio e informativo. A decisao de contratação é de responsabilidade
+            Este relatório é informativo. A decisão de contratação é de responsabilidade
             do empregador.
           </p>
           <p>

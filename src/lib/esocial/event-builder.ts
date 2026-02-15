@@ -51,7 +51,7 @@ export function buildS2200(
   requireField(data.vrSalario, 'vrSalario')
 
   if (!validateCPF(data.cpfTrabalhador)) {
-    throw new EventValidationError('cpfTrabalhador', 'CPF invalido')
+    throw new EventValidationError('cpfTrabalhador', 'CPF inválido')
   }
   if (!validateDate(data.dtAdmissao)) {
     throw new EventValidationError('dtAdmissao', 'Data de admissão inválida')
@@ -82,7 +82,7 @@ export function buildS2206(
   requireField(data.dtAlteracao, 'dtAlteracao')
 
   if (!validateCPF(data.cpfTrabalhador)) {
-    throw new EventValidationError('cpfTrabalhador', 'CPF invalido')
+    throw new EventValidationError('cpfTrabalhador', 'CPF inválido')
   }
 
   return {

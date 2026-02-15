@@ -114,7 +114,7 @@ export function generateEmploymentContractPDF(data: ContractData): void {
   // -- Header --
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(14)
-  doc.text('CONTRATO DE TRABALHO DOMESTICO', pageWidth / 2, y, { align: 'center' })
+  doc.text('CONTRATO DE TRABALHO DOMÉSTICO', pageWidth / 2, y, { align: 'center' })
   y += 5
   doc.setFontSize(10)
   doc.setFont('helvetica', 'normal')
@@ -149,7 +149,7 @@ export function generateEmploymentContractPDF(data: ContractData): void {
   addClause(
     4,
     'JORNADA DE TRABALHO',
-    `A jornada de trabalho será de ${data.hoursPerDay} horas diárias, ${data.daysPerWeek} dias por semana, com início as ${data.startTime} e término as ${data.endTime}, com intervalo de ${data.breakTime} para refeição e descanso, conforme artigo 2o da LC 150/2015. As horas que excederem a jornada normal serão remuneradas com adicional de no mínimo 50% (cinquenta por cento) sobre o valor da hora normal.`
+    `A jornada de trabalho será de ${data.hoursPerDay} horas diárias, ${data.daysPerWeek} dias por semana, com início às ${data.startTime} e término às ${data.endTime}, com intervalo de ${data.breakTime} para refeição e descanso, conforme artigo 2º da LC 150/2015. As horas que excederem a jornada normal serão remuneradas com adicional de no mínimo 50% (cinquenta por cento) sobre o valor da hora normal.`
   )
 
   // Clause 5: Compensation
@@ -292,7 +292,7 @@ function buildContractDoc(data: ContractData): jsPDF {
 
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(14)
-  doc.text('CONTRATO DE TRABALHO DOMESTICO', pageWidth / 2, y, { align: 'center' })
+  doc.text('CONTRATO DE TRABALHO DOMÉSTICO', pageWidth / 2, y, { align: 'center' })
   y += 5
   doc.setFontSize(10)
   doc.setFont('helvetica', 'normal')
@@ -311,7 +311,7 @@ function buildContractDoc(data: ContractData): jsPDF {
     `O trabalho será prestado na residencia do(a) EMPREGADOR(A), localizada em ${data.workLocation}.`)
 
   addClause(4, 'JORNADA DE TRABALHO',
-    `A jornada de trabalho será de ${data.hoursPerDay} horas diárias, ${data.daysPerWeek} dias por semana, com início as ${data.startTime} e término as ${data.endTime}, com intervalo de ${data.breakTime} para refeição e descanso, conforme artigo 2o da LC 150/2015. As horas que excederem a jornada normal serão remuneradas com adicional de no mínimo 50% (cinquenta por cento) sobre o valor da hora normal.`)
+    `A jornada de trabalho será de ${data.hoursPerDay} horas diárias, ${data.daysPerWeek} dias por semana, com início às ${data.startTime} e término às ${data.endTime}, com intervalo de ${data.breakTime} para refeição e descanso, conforme artigo 2º da LC 150/2015. As horas que excederem a jornada normal serão remuneradas com adicional de no mínimo 50% (cinquenta por cento) sobre o valor da hora normal.`)
 
   addClause(5, 'REMUNERACAO',
     `O(A) EMPREGADO(A) receberá o salário mensal de R$ ${formatBRL(data.salary)} (${salaryInWords(data.salary)}), a ser pago até o dia ${data.paymentDay} de cada mês, mediante recibo. O pagamento do 13o salário e férias acrescidas de 1/3 seguira o disposto na legislação vigente.`)

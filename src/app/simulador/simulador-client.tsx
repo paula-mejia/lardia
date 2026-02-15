@@ -181,7 +181,7 @@ export default function SimuladorClient() {
   const barItems: BarItem[] = cost
     ? [
         {
-          label: 'Salarios (12 meses)',
+          label: 'Salários (12 meses)',
           value: cost.annualSalary,
           color: '#059669',
         },
@@ -338,7 +338,7 @@ export default function SimuladorClient() {
                       Equivale a
                     </p>
                     <p className="text-2xl md:text-3xl font-bold text-violet-700 dark:text-violet-400">
-                      {salaryMultiple} salarios minimos
+                      {salaryMultiple} salários mínimos
                     </p>
                   </CardContent>
                 </Card>

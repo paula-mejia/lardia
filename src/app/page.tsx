@@ -92,12 +92,12 @@ export default function Home() {
               {
                 icon: AlertTriangle,
                 title: 'eSocial obrigatório',
-                desc: 'Todos os empregadores domésticos precisam declarar no eSocial. O sistema e confuso e qualquer campo errado trava tudo.',
+                desc: 'Todos os empregadores domésticos precisam declarar no eSocial. O sistema é confuso e qualquer campo errado trava tudo.',
               },
               {
                 icon: Calculator,
                 title: 'Cálculos complexos',
-                desc: 'INSS progressivo, IRRF com deduções, FGTS, GILRAT, antecipação rescisória... cada mês e um quebra-cabeça.',
+                desc: 'INSS progressivo, IRRF com deduções, FGTS, GILRAT, antecipação rescisória... cada mês é um quebra-cabeça.',
               },
               {
                 icon: FileText,
@@ -164,7 +164,7 @@ export default function Home() {
                 icon: Zap,
                 step: '3',
                 title: 'Automacao',
-                desc: 'Pronto. Todo mês a folha e fechada, os eventos são enviados é a guia DAE é gerada automaticamente.',
+                desc: 'Pronto. Todo mês a folha é fechada, os eventos são enviados e a guia DAE é gerada automaticamente.',
               },
             ].map((item, i) => (
               <Card key={i} className="border shadow-sm text-center">
@@ -281,8 +281,8 @@ export default function Home() {
               Verificação de antecedentes
             </h2>
             <p className="text-muted-foreground text-lg mb-6">
-              Contrate com seguranca. Antes de admitir, verifique antecedentes
-              criminais, processos judiciais e validacao de CPF do candidato.
+              Contrate com segurança. Antes de admitir, verifique antecedentes
+              criminais, processos judiciais e validação de CPF do candidato.
               Tudo online, com resultado em minutos.
             </p>
 
@@ -290,7 +290,7 @@ export default function Home() {
               {[
                 { icon: Shield, label: 'Antecedentes criminais' },
                 { icon: Scale, label: 'Processos judiciais' },
-                { icon: UserCheck, label: 'Validacao de CPF' },
+                { icon: UserCheck, label: 'Validação de CPF' },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center gap-2 p-4">
                   <item.icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />

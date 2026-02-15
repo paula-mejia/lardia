@@ -158,7 +158,7 @@ export default function PrivacidadePage() {
                 consentimento para o tratamento dos dados a qualquer momento
               </li>
               <li>
-                <strong>Informacao:</strong> ser informado sobre com quem seus
+                <strong>Informação:</strong> ser informado sobre com quem seus
                 dados são compartilhados
               </li>
             </ul>

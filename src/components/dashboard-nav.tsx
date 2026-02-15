@@ -17,6 +17,7 @@ interface NavItem {
   label: string
   href: string
   icon: React.ReactNode
+  badge?: string
 }
 
 interface NavGroup {
@@ -36,7 +37,7 @@ const navGroups: NavGroup[] = [
     items: [
       { label: 'Empregados', href: '/dashboard', icon: <Users className="h-4 w-4" /> },
       { label: 'Contratos', href: '/dashboard/contracts', icon: <FileText className="h-4 w-4" /> },
-      { label: 'Verificação', href: '/dashboard/background-check', icon: <Shield className="h-4 w-4" /> },
+      { label: 'Verificação', href: '/dashboard/background-check', icon: <Shield className="h-4 w-4" />, badge: 'Pago' },
     ],
   },
   {
@@ -111,6 +112,11 @@ export function DashboardNav() {
                 >
                   {item.icon}
                   {item.label}
+                  {item.badge && (
+                    <span className="ml-auto text-[10px] font-semibold bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300 px-1.5 py-0.5 rounded-full">
+                      {item.badge}
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>

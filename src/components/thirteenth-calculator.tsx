@@ -68,10 +68,15 @@ export default function ThirteenthCalculator({ initialSalary }: Props = {}) {
               <Label htmlFor="months">
                 Meses trabalhados
                 <InfoTip>
-                  Quantidade de meses trabalhados no ano. Conta o mês se a empregada 
-                  trabalhou 15 dias ou mais naquele mês. Se trabalhou o ano todo, são 12.
+                  O 13º salário é calculado com base nos meses que o empregado terá
+                  trabalhado até dezembro do ano de referência. Se admitido em fevereiro,
+                  por exemplo, serão 11 meses (fev-dez). Conta o mês se trabalhou 15 dias
+                  ou mais naquele mês.
                 </InfoTip>
               </Label>
+              <p className="text-xs text-muted-foreground">
+                Informe os meses que o empregado terá trabalhado até dezembro.
+              </p>
               <Input
                 id="months"
                 type="number"

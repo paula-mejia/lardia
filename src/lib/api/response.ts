@@ -12,10 +12,10 @@ export function error(message: string, status: number) {
 }
 
 export function unauthorized() {
-  return error('Nao autorizado', 401)
+  return error('Não autorizado', 401)
 }
 
-export function notFound(message = 'Nao encontrado') {
+export function notFound(message = 'Não encontrado') {
   return error(message, 404)
 }
 
@@ -43,7 +43,7 @@ export async function getAuthenticatedEmployer(fields = 'id' as const) {
     .single()
 
   if (!employer) {
-    return { error: notFound('Empregador nao encontrado'), supabase, user, employer: null }
+    return { error: notFound('Empregador não encontrado'), supabase, user, employer: null }
   }
 
   return { error: null, supabase, user, employer }

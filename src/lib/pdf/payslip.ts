@@ -161,14 +161,14 @@ export function generatePayslipPDF(data: PayslipData): void {
   // -- Net salary --
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(11)
-  doc.text('SALARIO LIQUIDO', margin + 2, y)
+  doc.text('SALÁRIO LÍQUIDO', margin + 2, y)
   doc.text(`R$ ${formatBRL(b.netSalary)}`, pageWidth - margin - 2, y, { align: 'right' })
   y += 4
   drawThickLine(y)
   y += 6
 
   // -- Employer costs section --
-  addSectionTitle('ENCARGOS DO EMPREGADOR (NAO DESCONTADOS DO SALARIO)')
+  addSectionTitle('ENCARGOS DO EMPREGADOR (NÃO DESCONTADOS DO SALÁRIO)')
   addRow('INSS patronal (8%)', b.inssEmployer)
   addRow('GILRAT (0,8%)', b.gilrat)
   addRow('FGTS (8%)', b.fgtsMonthly)

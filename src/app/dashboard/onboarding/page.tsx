@@ -108,7 +108,7 @@ function StepEmployerInfo({
       </div>
       <div className="grid grid-cols-2 gap-2">
         <div>
-          <Label htmlFor="number">Numero</Label>
+          <Label htmlFor="number">Número</Label>
           <Input
             id="number"
             value={form.number}
@@ -217,7 +217,7 @@ function StepNotifications({
 
 function StepTour() {
   const features = [
-    { icon: '📊', title: 'Folha de pagamento', desc: 'Calcule salarios com todos os descontos automaticamente.' },
+    { icon: '📊', title: 'Folha de pagamento', desc: 'Calcule salários com todos os descontos automaticamente.' },
     { icon: '🏖️', title: 'Férias', desc: 'Controle períodos de férias e calcule valores com precisão.' },
     { icon: '🎄', title: '13o salário', desc: 'Cálculo automático das parcelas do décimo terceiro.' },
     { icon: '📅', title: 'Calendário', desc: 'Acompanhe prazos e datas importantes do eSocial.' },
@@ -410,7 +410,7 @@ export default function OnboardingPage() {
               </Button>
             ) : (
               <Button onClick={() => setStep(s => s + 1)} disabled={!canNext}>
-                Proximo
+                Próximo
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             )}
