@@ -64,31 +64,38 @@ export default function BackgroundCheckPage() {
     trackBackgroundCheckStarted()
     setError(null)
     setLoading(true)
-    setStep('processing')
 
     try {
-      const response = await fetch('/api/background-check', {
+      // First, create Stripe checkout session for one-time payment
+      const checkoutResponse = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          candidateName: fullName.trim(),
-          candidateCpf: cpf.replace(/\D/g, ''),
-          candidateDob: dob,
-          lgpdConsent: consent,
+          mode: 'payment',
+          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BACKGROUND_CHECK,
+          metadata: {
+            type: 'background_check',
+            candidateName: fullName.trim(),
+            candidateCpf: cpf.replace(/\D/g, ''),
+            candidateDob: dob,
+          },
+          successUrl: `${window.location.origin}/dashboard/background-check/processing?name=${encodeURIComponent(fullName.trim())}&cpf=${encodeURIComponent(cpf.replace(/\D/g, ''))}&dob=${encodeURIComponent(dob)}`,
+          cancelUrl: `${window.location.origin}/dashboard/background-check`,
         }),
       })
 
-      const data = await response.json()
+      const checkoutData = await checkoutResponse.json()
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Erro ao realizar consulta')
+      if (!checkoutResponse.ok) {
+        throw new Error(checkoutData.error || 'Erro ao iniciar pagamento')
       }
 
-      // Navigate to results page with the check ID
-      router.push(`/dashboard/background-check/results?id=${data.id}`)
+      // Redirect to Stripe Checkout
+      if (checkoutData.url) {
+        window.location.href = checkoutData.url
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erro inesperado')
-      setStep('consent')
       setLoading(false)
     }
   }
