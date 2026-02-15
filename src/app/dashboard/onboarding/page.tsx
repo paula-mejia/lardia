@@ -323,9 +323,10 @@ export default function OnboardingPage() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
 
-      await supabase
+      const { error } = await supabase
         .from('employers')
-        .update({
+        .upsert({
+          user_id: user.id,
           full_name: form.full_name,
           cpf: form.cpf.replace(/\D/g, ''),
           cep: form.cep.replace(/\D/g, ''),
@@ -338,10 +339,16 @@ export default function OnboardingPage() {
           notify_deadlines: prefs.notify_deadlines,
           notify_updates: prefs.notify_updates,
           onboarding_completed: true,
-        })
-        .eq('user_id', user.id)
+        }, { onConflict: 'user_id' })
+
+      if (error) {
+        console.error('Onboarding save error:', error)
+        alert('Erro ao salvar dados. Tente novamente.')
+        return
+      }
 
       router.push('/dashboard')
+      router.refresh()
     } finally {
       setSaving(false)
     }
