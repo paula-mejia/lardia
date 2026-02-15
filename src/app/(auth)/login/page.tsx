@@ -18,7 +18,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [magicLinkSent, setMagicLinkSent] = useState(false)
   const [magicLinkLoading, setMagicLinkLoading] = useState(false)
-  const [showPasswordForm, setShowPasswordForm] = useState(false)
+  const [showPasswordForm, setShowPasswordForm] = useState(true)
   const router = useRouter()
 
   async function handleMagicLink(e: React.FormEvent) {

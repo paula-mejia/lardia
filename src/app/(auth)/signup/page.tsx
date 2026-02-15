@@ -30,7 +30,7 @@ function SignupForm() {
   const [magicLinkSent, setMagicLinkSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [magicLinkLoading, setMagicLinkLoading] = useState(false)
-  const [showPasswordForm, setShowPasswordForm] = useState(false)
+  const [showPasswordForm, setShowPasswordForm] = useState(true)
   const searchParams = useSearchParams()
   const ref = searchParams.get('ref')
   const [refCode, setRefCode] = useState<string | null>(ref)
