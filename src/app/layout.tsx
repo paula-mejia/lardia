@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lardia - eSocial sem erro, sem estresse",
+  title: "LarDia - eSocial sem erro, sem estresse",
   description: "Calculadora inteligente para empregador doméstico. Folha de pagamento, férias, 13º e rescisão com 100% de precisão.",
 };
 
