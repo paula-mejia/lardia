@@ -192,7 +192,7 @@ export default function CalendarPage() {
                         <button
                           key={i}
                           onClick={() => setSelected(dl)}
-                          className={`text-[10px] leading-tight px-1 py-0.5 rounded text-white truncate text-left ${dl.color} ${
+                          className={`text-[10px] leading-tight px-1 py-0.5 rounded text-white line-clamp-2 text-left ${dl.color} ${
                             dl.status === 'past' ? 'opacity-50' : ''
                           } hover:opacity-80 transition-opacity`}
                         >
