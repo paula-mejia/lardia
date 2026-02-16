@@ -78,6 +78,9 @@ The central user-facing entity. One employer profile per authenticated user.
 | `referral_bonus_months` | integer | DEFAULT 0 |
 | `stripe_customer_id` | text | |
 | `subscription_status` | subscription_status | NOT NULL, DEFAULT `'none'` |
+| `onboarding_completed` | boolean | DEFAULT false |
+| `notify_deadlines` | boolean | DEFAULT true |
+| `notify_updates` | boolean | DEFAULT true |
 | `created_at` | timestamptz | NOT NULL, DEFAULT `now()` |
 | `updated_at` | timestamptz | NOT NULL, DEFAULT `now()` |
 

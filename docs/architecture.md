@@ -122,8 +122,10 @@ LarDia uses **Supabase Auth** with two methods:
 
 | Method | Role | Details |
 |--------|------|---------|
-| **Magic Link** (primary) | Passwordless email login | User enters email → receives link → clicks → session created |
-| **Password** (fallback) | Traditional email + password | Available at `/login` and `/signup` |
+| **Password** (default) | Traditional email + password | Primary method at `/login` and `/signup` |
+| **Magic Link** (secondary) | Passwordless email login | Available but requires working SMTP; not currently primary |
+
+**Autoconfirm:** Enabled in Supabase — new users are confirmed immediately on signup without needing to verify their email address.
 
 ### Middleware Protection
 
@@ -144,6 +146,10 @@ The middleware creates a Supabase server client using `@supabase/ssr`, calls `ge
 ---
 
 ## 4. Key Modules
+
+### 4.0 Logo (`src/components/logo.tsx`)
+
+The LarDia logo is an **SVG React component** (not an image file). It renders inline SVG for crisp display at any size. The design features double chevrons in the brand color (emerald-500). The favicon is also generated from this SVG.
 
 ### 4.1 Calculation Engine (`src/lib/calc/`)
 

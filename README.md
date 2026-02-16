@@ -33,7 +33,7 @@ LarDia helps *empregadores domésticos* (domestic employers) in Brazil stay comp
 | Framework | Next.js (App Router) | 16.1.x |
 | Language | TypeScript | 5.x |
 | UI components | shadcn/ui + Radix UI | 1.4.x |
-| Styling | Tailwind CSS | 4.x |
+| Styling | Tailwind CSS (brand: emerald-500 #10B981) | 4.x |
 | Auth / DB / Storage | Supabase (PostgreSQL) | JS SDK 2.95.x |
 | Payments | Stripe | 20.x |
 | Email | Resend | 6.x |
@@ -189,9 +189,15 @@ The app deploys to **Vercel** on push. Environment variables are configured in t
 - Production branch: `main`
 - Preview deployments: every PR gets a unique URL
 
-### EC2 Reverse Proxy
+### Custom Domain
 
-An EC2 instance runs a reverse proxy in front of the Vercel deployment for custom domain routing and SSL termination. See deployment-specific runbooks for configuration details.
+- **lardia.com.br** — primary domain (Vercel)
+- **www.lardia.com.br** — redirects to apex
+- **api.lardia.com.br** — eSocial mTLS proxy (EC2, HTTPS via Let's Encrypt)
+
+### EC2 eSocial Proxy
+
+An EC2 instance in São Paulo (`api.lardia.com.br`) handles mTLS termination for the eSocial government API, since Vercel serverless functions cannot hold client certificates. HTTPS is provided via Let's Encrypt with automatic renewal.
 
 ---
 

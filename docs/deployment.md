@@ -38,7 +38,7 @@ All required env vars are listed in `.env.example`. Set these in **Vercel → Pr
 | `STRIPE_WEBHOOK_SECRET` | Secret | Stripe webhook signing secret |
 | `STRIPE_PRICE_ID` | Secret | Stripe price ID for subscription |
 | `NEXT_PUBLIC_SITE_URL` | Public | `https://lardia.com.br` |
-| `ESOCIAL_PROXY_URL` | Secret | EC2 proxy URL (e.g. `http://54.207.197.86`) |
+| `ESOCIAL_PROXY_URL` | Secret | EC2 proxy URL (`https://api.lardia.com.br`) |
 | `ESOCIAL_PROXY_API_KEY` | Secret | API key for proxy authentication |
 | `RESEND_API_KEY` | Secret | Resend API key for transactional email |
 | `NEXT_PUBLIC_SENTRY_DSN` | Public | Sentry DSN for client-side error tracking |
@@ -95,10 +95,25 @@ sudo journalctl -u esocial-proxy -f
 sudo systemctl restart esocial-proxy
 ```
 
+### HTTPS (Let's Encrypt)
+
+The proxy is accessible at `https://api.lardia.com.br` with SSL via Let's Encrypt:
+
+```bash
+# Certificate was provisioned with:
+sudo certbot --nginx -d api.lardia.com.br
+
+# Auto-renewal is handled by certbot's systemd timer:
+sudo systemctl status certbot.timer
+```
+
+Certificates auto-renew before expiry. No manual intervention needed.
+
 ### Nginx Configuration
 
 Nginx sits in front of the proxy process, handling:
-- HTTP routing
+- HTTPS termination (Let's Encrypt certificates)
+- HTTP → HTTPS redirect
 - Rate limiting
 - API key validation via headers
 
@@ -116,7 +131,7 @@ Steps to update certificates:
 ### Health Check
 
 ```bash
-curl http://54.207.197.86/health
+curl https://api.lardia.com.br/health
 ```
 
 ### API Endpoints
@@ -171,7 +186,8 @@ RLS is enabled on all user-facing tables. Policies ensure:
 
 In **Supabase Dashboard → Authentication → Settings**:
 
-- **Auth method:** Magic link (email OTP), no passwords
+- **Auth method:** Password (default) + Magic link (secondary, requires working SMTP)
+- **Autoconfirm:** Enabled (no email verification required for signup)
 - **Site URL:** `https://lardia.com.br`
 - **Redirect URLs:**
   - `https://lardia.com.br/**`
@@ -231,6 +247,14 @@ In **Resend Dashboard → Domains**:
 
 This enables sending from `@lardia.com.br` addresses.
 
+### Email Forwarding (ImprovMX)
+
+Inbound email forwarding for `@lardia.com.br` is handled by **ImprovMX**:
+
+- All emails to `*@lardia.com.br` are forwarded to the team Gmail
+- Configured via MX records pointing to ImprovMX servers
+- Free tier is sufficient for current volume
+
 ---
 
 ## 6. DNS (registro.br)
@@ -243,10 +267,11 @@ All DNS is managed at [registro.br](https://registro.br).
 |---|---|---|---|
 | A | `@` | `76.76.21.21` | Vercel (confirm in Vercel dashboard) |
 | CNAME | `www` | `cname.vercel-dns.com` | Vercel www redirect |
-| A | `api` | `54.207.197.86` | EC2 proxy (if using subdomain) |
-| TXT | `@` | SPF record from Resend | Email authentication |
-| CNAME | `resend._domainkey` | DKIM value from Resend | Email authentication |
-| TXT | `_dmarc` | DMARC policy | Email authentication |
+| A | `api` | `54.207.197.86` | EC2 proxy (HTTPS via Let's Encrypt) |
+| MX | `@` | ImprovMX MX servers | Email forwarding (@lardia.com.br → Gmail) |
+| TXT | `@` | `v=spf1 include:spf.improvmx.com include:resend.com ~all` | SPF (ImprovMX + Resend) |
+| CNAME | `resend._domainkey` | DKIM value from Resend | Resend DKIM authentication |
+| TXT | `_dmarc` | `v=DMARC1; p=none; ...` | DMARC policy |
 
 > **Note:** Verify the exact Vercel DNS values in the Vercel dashboard, as they may vary.
 
