@@ -42,39 +42,17 @@ export default function NewEmployeePage() {
       return
     }
 
-    // Get or create employer profile
-    let { data: employer } = await supabase
+    // Get employer profile (must exist from onboarding)
+    const { data: employer } = await supabase
       .from('employers')
-      .select('id')
+      .select('id, onboarding_completed')
       .eq('user_id', user.id)
       .single()
 
-    if (!employer) {
-      const { data: newEmployer, error: empError } = await supabase
-        .from('employers')
-        .insert({
-          user_id: user.id,
-          full_name: user.email || 'Empregador',
-          cpf: '000.000.000-00',
-          email: user.email,
-          referral_code: generateReferralCode(),
-        })
-        .select('id')
-        .single()
-
-      if (empError) {
-        setError('Erro ao criar perfil de empregador.')
-        setLoading(false)
-        return
-      }
-      employer = newEmployer
-
-      const refCode = localStorage.getItem('lardia_ref')
-        || user.user_metadata?.referral_code
-      if (refCode && newEmployer) {
-        await trackReferral(refCode, newEmployer.id)
-        localStorage.removeItem('lardia_ref')
-      }
+    if (!employer || !employer.onboarding_completed) {
+      // Redirect to onboarding if employer doesn't exist or hasn't completed it
+      window.location.href = '/dashboard/onboarding'
+      return
     }
 
     const { error: empError } = await supabase
