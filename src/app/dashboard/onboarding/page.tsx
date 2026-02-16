@@ -323,27 +323,45 @@ export default function OnboardingPage() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
 
-      const { error } = await supabase
+      // Try update first (if employer already exists), then insert
+      const { data: existing } = await supabase
         .from('employers')
-        .upsert({
-          user_id: user.id,
-          full_name: form.full_name,
-          cpf: form.cpf.replace(/\D/g, ''),
-          cep: form.cep.replace(/\D/g, ''),
-          street: form.street,
-          number: form.number,
-          complement: form.complement,
-          neighborhood: form.neighborhood,
-          city: form.city,
-          state: form.state,
-          notify_deadlines: prefs.notify_deadlines,
-          notify_updates: prefs.notify_updates,
-          onboarding_completed: true,
-        }, { onConflict: 'user_id' })
+        .select('id')
+        .eq('user_id', user.id)
+        .single()
+
+      const employerData = {
+        full_name: form.full_name,
+        cpf: form.cpf.replace(/\D/g, ''),
+        cep: form.cep.replace(/\D/g, ''),
+        street: form.street,
+        number: form.number,
+        complement: form.complement,
+        neighborhood: form.neighborhood,
+        city: form.city,
+        state: form.state,
+        notify_deadlines: prefs.notify_deadlines,
+        notify_updates: prefs.notify_updates,
+        onboarding_completed: true,
+      }
+
+      let error
+      if (existing) {
+        const result = await supabase
+          .from('employers')
+          .update(employerData)
+          .eq('user_id', user.id)
+        error = result.error
+      } else {
+        const result = await supabase
+          .from('employers')
+          .insert({ ...employerData, user_id: user.id })
+        error = result.error
+      }
 
       if (error) {
         console.error('Onboarding save error:', error)
-        alert('Erro ao salvar dados. Tente novamente.')
+        alert('Erro ao salvar: ' + error.message)
         return
       }
 
