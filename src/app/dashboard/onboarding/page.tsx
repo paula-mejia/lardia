@@ -367,6 +367,37 @@ export default function OnboardingPage() {
   const canNext = step === 0 ? isStep1Valid : true
   const isLast = step === STEPS.length - 1
 
+  // Save employer data when leaving step 1 (so it persists even if user navigates away)
+  async function saveEmployerData() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { data: existing } = await supabase
+      .from('employers')
+      .select('id')
+      .eq('user_id', user.id)
+      .single()
+
+    const employerData = {
+      full_name: form.full_name,
+      cpf: form.cpf.replace(/\D/g, ''),
+      cep: form.cep.replace(/\D/g, ''),
+      street: form.street,
+      number: form.number,
+      complement: form.complement,
+      neighborhood: form.neighborhood,
+      city: form.city,
+      state: form.state,
+    }
+
+    if (existing) {
+      await supabase.from('employers').update(employerData).eq('user_id', user.id)
+    } else {
+      await supabase.from('employers').insert({ ...employerData, user_id: user.id })
+    }
+  }
+
   return (
     <div>
       <Card className="w-full max-w-lg">
@@ -418,7 +449,10 @@ export default function OnboardingPage() {
                 Concluir
               </Button>
             ) : (
-              <Button onClick={() => setStep(s => s + 1)} disabled={!canNext}>
+              <Button onClick={async () => {
+                if (step === 0) await saveEmployerData()
+                setStep(s => s + 1)
+              }} disabled={!canNext}>
                 Próximo
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
