@@ -1,0 +1,248 @@
+# LarDia — Guia Completo
+
+> Plataforma de gestão do eSocial para empregadores domésticos no Brasil.
+
+## O que é o LarDia?
+
+LarDia é um SaaS que automatiza o cumprimento das obrigações trabalhistas e previdenciárias para empregadores domésticos no Brasil. A plataforma calcula folha de pagamento, gera a DAE (Documento de Arrecadação do eSocial), controla férias, 13º salário e rescisões, tudo de acordo com a Lei Complementar 150/2015 e a legislação vigente. Nossa missão é eliminar a complexidade burocrática para que empregadores domésticos não precisem ser especialistas em legislação trabalhista.
+
+## Funcionalidades
+
+- Cálculo de folha de pagamento (INSS, IRRF, FGTS, DAE)
+- 13º salário (primeira e segunda parcelas)
+- Férias com terço constitucional e abono pecuniário
+- Cálculo de rescisão (sem justa causa, justa causa, pedido de demissão, acordo mútuo)
+- Dashboard de gestão do eSocial
+- Geração automática da DAE
+- Calendário de obrigações e alertas de prazos
+- Contracheques em PDF
+- Verificação de antecedentes (consulta a bases públicas, resultado em até 24h)
+- Notificações por e-mail e WhatsApp
+- Simulador de custos gratuito
+- Histórico de cálculos
+
+## Preços Detalhados
+
+### Plano Grátis — R$0 para sempre
+- Calculadora de folha de pagamento
+- Calculadora de 13º salário
+- Calculadora de férias
+- Calculadora de rescisão
+
+### Plano Básico — R$29,90/mês por empregado
+- Tudo do plano Grátis
+- Dashboard de empregados
+- Calendário de obrigações
+- Contracheque em PDF
+- Alertas por e-mail
+- Histórico de cálculos
+
+### Plano Completo — R$49,90/mês por empregado (Recomendado)
+- Tudo do plano Básico
+- Gestão eSocial automatizada
+- Geração de DAE
+- Fechamento mensal automático
+- Notificações por WhatsApp
+- Suporte prioritário
+- 7 dias grátis, cancele quando quiser
+
+### Verificação de Antecedentes — R$99,90 por consulta
+- Antecedentes criminais
+- Situação do CPF
+- Pendências judiciais
+- Resultado em até 24 horas
+- Conformidade com a LGPD
+
+---
+
+## Perguntas Frequentes (FAQ)
+
+### Sobre o eSocial Doméstico
+
+**O que é o eSocial doméstico?**
+O eSocial doméstico é o sistema do Governo Federal que unifica o envio de informações trabalhistas, previdenciárias e fiscais dos empregadores domésticos. Criado pela Lei Complementar 150/2015, ele simplifica o cumprimento das obrigações legais ao reunir tudo em uma única plataforma. Todo empregador que contrata trabalhadores domésticos com carteira assinada precisa usar o eSocial para registrar admissões, folha de pagamento, férias, 13º e demais eventos.
+
+**Quem precisa declarar no eSocial?**
+Todo empregador doméstico que contrata um trabalhador com vínculo empregatício precisa declarar no eSocial. Isso inclui quem emprega empregadas domésticas, cozinheiros, motoristas, jardineiros, cuidadores e outros profissionais que trabalham no ambiente residencial. Se o trabalhador presta serviço mais de duas vezes por semana na mesma residência, a relação de emprego já está configurada conforme a LC 150/2015.
+
+**O que acontece se eu não declarar no eSocial?**
+O empregador que não declarar no eSocial está sujeito a multas que variam de R$ 402,53 a R$ 805,06 por empregado não registrado, conforme o artigo 47 da CLT. Além disso, o não recolhimento do FGTS e INSS gera encargos adicionais com juros e correção monetária. O trabalhador também pode entrar com uma ação trabalhista.
+
+**Como me cadastro no eSocial como empregador doméstico?**
+Acesse o portal esocial.gov.br e faça login com sua conta Gov.br (nível prata ou ouro). O sistema irá solicitar seus dados pessoais, CPF e endereço. Após o cadastro, você já pode registrar seus empregados e começar a enviar as declarações mensais.
+
+**Qual o prazo para registrar uma empregada no eSocial?**
+O registro no eSocial deve ser feito até um dia antes do início efetivo do trabalho. Essa regra está prevista na LC 150/2015 e é fundamental para garantir a cobertura previdenciária desde o primeiro dia.
+
+**Preciso de contador para o eSocial doméstico?**
+Não é obrigatório ter um contador para o eSocial doméstico. O sistema foi desenhado para ser acessível a pessoas físicas. A LarDia foi criada justamente para resolver a complexidade: você tem a precisão de um contador com a simplicidade de um aplicativo.
+
+**O que mudou no eSocial em 2026?**
+Em 2026, o eSocial passou por atualizações no layout simplificado (S-1.3), incluindo novos campos para eventos de saúde e segurança do trabalho doméstico. O salário mínimo foi reajustado para R$ 1.518,00. O sistema agora permite a retificação simplificada de eventos anteriores.
+
+**Como corrijo um erro no eSocial?**
+Envie um evento de retificação pelo próprio portal do eSocial. Acesse o evento com erro, clique em "Retificar" e envie os dados corretos. Se a DAE já foi paga com valor incorreto, será necessário gerar uma DAE complementar ou solicitar restituição.
+
+### Sobre a DAE
+
+**O que é a DAE?**
+A DAE (Documento de Arrecadação do eSocial) é a guia única de pagamento que reúne todos os tributos e encargos do empregador doméstico: INSS patronal, INSS do empregado, FGTS, seguro contra acidentes (GILRAT) e antecipação da multa rescisória, tudo em um só boleto.
+
+**Quando vence a DAE?**
+A DAE vence no dia 7 de cada mês, referente à competência do mês anterior. Se o dia 7 cair em fim de semana ou feriado, o vencimento é antecipado para o último dia útil anterior.
+
+**O que compõe a DAE?**
+- INSS patronal: 8%
+- INSS do empregado: 7,5% a 14% (conforme faixa salarial progressiva)
+- FGTS: 8%
+- Seguro contra acidentes de trabalho / GILRAT: 0,8%
+- Antecipação da multa rescisória do FGTS: 3,2%
+- Total de encargos do empregador: aproximadamente 20% sobre o salário bruto
+
+**Como gero a DAE?**
+Acesse o portal do eSocial (esocial.gov.br), vá em "Empregado Doméstico", feche a folha e clique em "Emitir DAE". Com a LarDia, esse processo é automatizado com um clique.
+
+**O que acontece se atrasar a DAE?**
+Multa de 0,33% ao dia sobre o INSS (limitada a 20%) + juros Selic. Para o FGTS: multa de 5% no primeiro mês e 10% a partir do segundo, mais 0,5% de juros ao mês.
+
+**Posso pagar a DAE por PIX?**
+Sim, desde 2023. Use o QR Code que aparece na guia gerada pelo eSocial. A compensação é imediata.
+
+### Sobre Salário e Encargos
+
+**Qual o salário mínimo para empregada doméstica em 2026?**
+O salário mínimo nacional em 2026 é de R$ 1.518,00 (jornada integral de 44h semanais). Pisos regionais: São Paulo R$ 1.640,00, Paraná R$ 1.856,94.
+
+**Como calcular o INSS da empregada doméstica?**
+Tabela progressiva 2026:
+- 7,5% até R$ 1.518,00
+- 9% de R$ 1.518,01 a R$ 2.793,88
+- 12% de R$ 2.793,89 a R$ 4.190,83
+- 14% de R$ 4.190,84 a R$ 8.157,41
+O INSS patronal é fixo em 8% sobre o salário bruto.
+
+**Como funciona o FGTS da empregada doméstica?**
+8% do salário bruto, depositado mensalmente via DAE em conta vinculada na Caixa Econômica Federal. Mais 3,2% de antecipação da multa rescisória (equivalente aos 40% do FGTS em demissão sem justa causa), conforme a LC 150/2015.
+
+**O que é o GILRAT?**
+Grau de Incidência de Incapacidade Laborativa decorrente dos Riscos Ambientais do Trabalho. Alíquota fixa de 0,8% sobre o salário bruto. Recolhido mensalmente via DAE.
+
+**Empregada doméstica paga Imposto de Renda?**
+Depende do salário. Faixa de isenção do IRPF em 2026: R$ 2.824,00. A maioria dos empregados domésticos que recebem até dois salários mínimos está isenta.
+
+**Quanto custa uma empregada doméstica no total?**
+Com salário mínimo de R$ 1.518,00 em 2026:
+- FGTS (8%): R$ 121,44
+- INSS patronal (8%): R$ 121,44
+- GILRAT (0,8%): R$ 12,14
+- Antecipação multa FGTS (3,2%): R$ 48,58
+- Total mensal do empregador: ~R$ 1.821,60
+- Com vale-transporte e provisão de férias/13º: pode ultrapassar R$ 2.200,00/mês
+
+### Sobre Férias, 13º e Rescisão
+
+**Como calcular férias da empregada doméstica?**
+Após 12 meses de trabalho, 30 dias de descanso remunerado. Valor: salário + 1/3 constitucional. Exemplo com R$ 1.518,00: R$ 2.024,00 (salário + R$ 506,00). Pagamento até 2 dias antes do início.
+
+**A empregada pode vender férias?**
+Sim, pode converter 1/3 das férias (10 dias) em abono pecuniário. A solicitação deve partir do empregado e ser feita por escrito até 15 dias antes do término do período aquisitivo (art. 143 da CLT).
+
+**Como calcular o 13º salário?**
+1/12 do salário por mês trabalhado no ano. Duas parcelas: primeira entre 1º/fev e 30/nov (sem descontos), segunda até 20/dez (com INSS e IR). Proporcional para quem trabalhou menos de 12 meses.
+
+**Quais os tipos de demissão?**
+1. Sem justa causa (empregador demite sem motivo)
+2. Por justa causa (falta grave, art. 27 da LC 150/2015)
+3. Pedido de demissão (empregado pede para sair)
+4. Rescisão por acordo mútuo (Reforma Trabalhista)
+
+**O que é aviso prévio proporcional?**
+30 dias base + 3 dias por ano trabalhado. Máximo: 90 dias. Previsto na Lei 12.506/2011.
+
+**Como calcular a multa do FGTS na demissão?**
+Na demissão sem justa causa: multa de 40% sobre o saldo do FGTS. O empregador doméstico já recolhe 3,2% mensalmente como antecipação. A LC 150/2015 limitou a multa ao montante acumulado na conta de 3,2%.
+
+### Sobre a LarDia
+
+**O que é a LarDia?**
+Plataforma que automatiza toda a gestão do eSocial doméstico. Calcula folha, gera DAE, controla férias, 13º e rescisões com precisão total.
+
+**Quanto custa a LarDia?**
+A partir de R$ 29,90/mês (plano Básico) ou R$ 49,90/mês (plano Completo) por empregado. Comparado a um contador (R$ 150 a R$ 300/mês), é significativamente mais acessível.
+
+**A LarDia substitui um contador?**
+Para a maioria dos empregadores domésticos, sim. A LarDia faz todos os cálculos com base na LC 150/2015, CLT e normas da Receita Federal. Para ações trabalhistas ou planejamento tributário complexo, consulte um profissional.
+
+**Como funciona a verificação de antecedentes?**
+Consulta bases públicas (antecedentes criminais, CPF, pendências judiciais). Resultado em até 24 horas, em conformidade com a LGPD, com consentimento prévio do candidato.
+
+**Meus dados estão seguros?**
+Sim. Criptografia de ponta a ponta, conformidade com a LGPD, servidores com certificação SOC 2. Nunca compartilhamos dados com terceiros sem consentimento.
+
+---
+
+## Referências Legais
+
+- **Lei Complementar 150/2015**: Regulamenta o trabalho doméstico no Brasil. Define vínculo empregatício, direitos, obrigações e o eSocial doméstico.
+- **CLT (Consolidação das Leis do Trabalho)**: Art. 47 (multa por não registro), Art. 129-145 (férias), Art. 457-467 (remuneração).
+- **Lei 12.506/2011**: Aviso prévio proporcional ao tempo de serviço.
+- **Emenda Constitucional 72/2013 (PEC das Domésticas)**: Ampliou os direitos dos empregados domésticos.
+- **LGPD (Lei 13.709/2018)**: Proteção de dados pessoais.
+- **Tabela INSS 2026**: Alíquotas progressivas de 7,5% a 14%.
+- **Salário mínimo 2026**: R$ 1.518,00 (nacional).
+
+---
+
+## Blog — Resumos dos Artigos
+
+### Como registrar uma empregada doméstica: passo a passo
+Guia completo sobre como formalizar a contratação de um trabalhador doméstico. Cobre documentos necessários, CTPS, cadastro no eSocial, contrato de trabalho, exame admissional e primeira DAE. O registro é obrigatório quando o trabalhador presta serviço 3+ dias por semana.
+→ https://lardia.com.br/blog/como-registrar-empregada-domestica
+
+### DAE: o que é, como gerar e quando pagar
+Tudo sobre a DAE: composição (INSS, FGTS, GILRAT), como gerar no portal do eSocial, prazo de vencimento (dia 7 de cada mês) e consequências do atraso.
+→ https://lardia.com.br/blog/dae-como-gerar-quando-pagar
+
+### Como demitir empregada doméstica: guia completo
+Os 3 tipos de demissão, cálculo da rescisão, aviso prévio proporcional, multa do FGTS e registro no eSocial. Passo a passo para fazer tudo corretamente.
+→ https://lardia.com.br/blog/demitir-empregada-domestica-guia
+
+### Direitos da empregada doméstica: guia completo 2026
+Todos os direitos garantidos pela LC 150/2015: salário, férias, 13º, FGTS, horas extras, intervalos, feriados e mais.
+→ https://lardia.com.br/blog/direitos-empregada-domestica
+
+### O que é o eSocial Doméstico e como funciona
+O que é, quem precisa usar, quais são as obrigações e como evitar multas. Guia completo para empregadores domésticos.
+→ https://lardia.com.br/blog/esocial-domestico-como-funciona
+
+### Férias da empregada doméstica: como calcular e pagar
+Como calcular férias, quando pagar, abono pecuniário, terço constitucional, fracionamento e registro no eSocial.
+→ https://lardia.com.br/blog/ferias-empregada-domestica
+
+### FGTS da empregada doméstica: como funciona e como calcular
+Depósito de 8%, antecipação rescisória de 3,2%, FGTS Digital, cálculo prático e regras de saque.
+→ https://lardia.com.br/blog/fgts-empregada-domestica
+
+### Guia completo do eSocial para empregador doméstico
+Cadastro passo a passo, obrigações mensais, prazos, erros comuns e como evitar multas em 2026.
+→ https://lardia.com.br/blog/guia-esocial-empregador-domestico
+
+### Quanto custa ter uma empregada doméstica em 2026?
+Detalhamento completo: salário mínimo, INSS, FGTS, GILRAT, DAE e todos os encargos. Exemplo de cálculo com R$ 1.518,00.
+→ https://lardia.com.br/blog/quanto-custa-empregada-domestica-2026
+
+### Como calcular o salário de empregada doméstica em 2026
+Salário mínimo, pisos regionais, cálculo do INSS progressivo, IRRF, adicional noturno e valor líquido.
+→ https://lardia.com.br/blog/salario-empregada-domestica-2026
+
+---
+
+## Links
+
+- Site: https://lardia.com.br
+- Simulador gratuito: https://lardia.com.br/simulador
+- Blog: https://lardia.com.br/blog
+- FAQ: https://lardia.com.br/faq
+- Cadastro: https://lardia.com.br/signup
+- Termos de uso: https://lardia.com.br/termos
+- Política de privacidade: https://lardia.com.br/privacidade

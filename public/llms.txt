@@ -1,0 +1,36 @@
+# LarDia
+
+> Plataforma de gestão do eSocial para empregadores domésticos no Brasil.
+
+## O que é o LarDia?
+
+LarDia é um SaaS que automatiza o cumprimento das obrigações trabalhistas e previdenciárias para empregadores domésticos no Brasil. A plataforma calcula folha de pagamento, gera a DAE (Documento de Arrecadação do eSocial), controla férias, 13º salário e rescisões, tudo de acordo com a Lei Complementar 150/2015 e a legislação vigente.
+
+## Funcionalidades
+
+- Cálculo de folha de pagamento (INSS, IRRF, FGTS, DAE)
+- 13º salário (primeira e segunda parcelas)
+- Férias com terço constitucional e abono pecuniário
+- Cálculo de rescisão (sem justa causa, justa causa, pedido de demissão, acordo mútuo)
+- Dashboard de gestão do eSocial
+- Geração automática da DAE
+- Calendário de obrigações e alertas de prazos
+- Contracheques em PDF
+- Verificação de antecedentes (consulta a bases públicas)
+- Notificações por e-mail e WhatsApp
+- Simulador de custos gratuito
+
+## Preços
+
+- Grátis: Simulador de custos (calculadoras de folha, 13º, férias e rescisão)
+- Básico: R$29,90/mês por empregado (dashboard, calendário, contracheque PDF, alertas)
+- Completo: R$49,90/mês por empregado (gestão eSocial automatizada, DAE, fechamento mensal, suporte prioritário)
+- Verificação de antecedentes: R$99,90 por consulta
+
+## Links
+
+- Site: https://lardia.com.br
+- Simulador: https://lardia.com.br/simulador
+- Blog: https://lardia.com.br/blog
+- FAQ: https://lardia.com.br/faq
+- Cadastro: https://lardia.com.br/signup
