@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { useCepLookup } from '@/hooks/use-cep-lookup'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -248,7 +249,7 @@ export default function OnboardingPage() {
   const router = useRouter()
   const [step, setStep] = useState(0)
   const [saving, setSaving] = useState(false)
-  const [cepLoading, setCepLoading] = useState(false)
+  const { lookup: lookupCep, loading: cepLoading } = useCepLookup()
 
   const [form, setForm] = useState<EmployerForm>({
     full_name: '', cpf: '', cep: '', street: '', number: '',
@@ -294,25 +295,15 @@ export default function OnboardingPage() {
 
   // ViaCEP lookup
   async function handleCepBlur() {
-    const digits = form.cep.replace(/\D/g, '')
-    if (digits.length !== 8) return
-    setCepLoading(true)
-    try {
-      const res = await fetch(`https://viacep.com.br/ws/${digits}/json/`)
-      const data = await res.json()
-      if (!data.erro) {
-        setForm(prev => ({
-          ...prev,
-          street: data.logradouro || prev.street,
-          neighborhood: data.bairro || prev.neighborhood,
-          city: data.localidade || prev.city,
-          state: data.uf || prev.state,
-        }))
-      }
-    } catch {
-      // Ignore CEP lookup failures
-    } finally {
-      setCepLoading(false)
+    const result = await lookupCep(form.cep)
+    if (result) {
+      setForm(prev => ({
+        ...prev,
+        street: result.street || prev.street,
+        neighborhood: result.neighborhood || prev.neighborhood,
+        city: result.city || prev.city,
+        state: result.state || prev.state,
+      }))
     }
   }
 
