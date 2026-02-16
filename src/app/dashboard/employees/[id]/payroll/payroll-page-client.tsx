@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react'
 import PayrollCalculator from '@/components/payroll-calculator'
 import PayrollHistory from '@/components/payroll-history'
+import PayslipConfirmations from '@/components/payslip-confirmations'
 
 interface PayrollPageClientProps {
   initialSalary: number
@@ -36,6 +37,7 @@ export default function PayrollPageClient({ initialSalary, employeeId, employeeN
         employerName={employerName}
         refreshKey={refreshKey}
       />
+      <PayslipConfirmations employeeId={employeeId} />
     </div>
   )
 }
