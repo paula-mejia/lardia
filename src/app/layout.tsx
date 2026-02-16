@@ -31,6 +31,31 @@ export const metadata: Metadata = {
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
     ],
   },
+  openGraph: {
+    title: "LarDia - eSocial sem erro, sem estresse",
+    description: "Calculadora inteligente para empregador doméstico. Folha de pagamento, férias, 13º e rescisão com 100% de precisão.",
+    url: "https://lardia.com.br",
+    siteName: "LarDia",
+    locale: "pt_BR",
+    type: "website",
+    images: [
+      {
+        url: "https://lardia.com.br/icon-512.png",
+        width: 512,
+        height: 512,
+        alt: "LarDia - eSocial sem erro, sem estresse",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LarDia - eSocial sem erro, sem estresse",
+    description: "Calculadora inteligente para empregador doméstico. Folha de pagamento, férias, 13º e rescisão com 100% de precisão.",
+    images: ["https://lardia.com.br/icon-512.png"],
+  },
+  alternates: {
+    canonical: "https://lardia.com.br",
+  },
 };
 
 export default function RootLayout({
