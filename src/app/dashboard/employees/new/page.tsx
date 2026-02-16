@@ -42,15 +42,15 @@ export default function NewEmployeePage() {
       return
     }
 
-    // Get employer profile (must exist from onboarding)
+    // Get employer profile (must exist from onboarding step 1)
     const { data: employer } = await supabase
       .from('employers')
       .select('id, onboarding_completed')
       .eq('user_id', user.id)
       .single()
 
-    if (!employer || !employer.onboarding_completed) {
-      // Redirect to onboarding if employer doesn't exist or hasn't completed it
+    if (!employer) {
+      // No employer at all - redirect to onboarding
       window.location.href = '/dashboard/onboarding'
       return
     }
@@ -90,7 +90,13 @@ export default function NewEmployeePage() {
 
     trackEmployeeAdded()
     trackAuditEvent('employee_created', 'employee', { name: data.fullName, role: data.role })
-    router.push('/dashboard')
+    
+    // If onboarding not complete, go back to continue onboarding
+    if (!employer.onboarding_completed) {
+      router.push('/dashboard/onboarding')
+    } else {
+      router.push('/dashboard')
+    }
     router.refresh()
   }
 
