@@ -91,12 +91,15 @@ export default function NewEmployeePage() {
     trackEmployeeAdded()
     trackAuditEvent('employee_created', 'employee', { name: data.fullName, role: data.role })
     
-    // If onboarding not complete, go back to continue onboarding
+    // If onboarding not complete, mark it as complete now
     if (!employer.onboarding_completed) {
-      router.push('/dashboard/onboarding')
-    } else {
-      router.push('/dashboard')
+      await supabase
+        .from('employers')
+        .update({ onboarding_completed: true })
+        .eq('id', employer.id)
     }
+    
+    router.push('/dashboard')
     router.refresh()
   }
 
