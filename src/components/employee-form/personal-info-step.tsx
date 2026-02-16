@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { InfoTip } from '@/components/ui/info-tip'
-import { formatCPF } from './format'
+import { formatCPF, formatPhone } from './format'
 import type { EmployeeFormData } from './types'
 
 interface PersonalInfoStepProps {
@@ -21,6 +21,7 @@ export function PersonalInfoStep({ onNext }: PersonalInfoStepProps) {
   const race = watch('race')
   const maritalStatus = watch('maritalStatus')
   const educationLevel = watch('educationLevel')
+  const whatsappPhone = watch('whatsappPhone')
 
   const canAdvance = fullName.trim() && cpf.replace(/\D/g, '').length === 11
 
@@ -105,6 +106,17 @@ export function PersonalInfoStep({ onNext }: PersonalInfoStepProps) {
               </SelectContent>
             </Select>
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="whatsappPhone">WhatsApp do empregado(a)</Label>
+          <Input
+            id="whatsappPhone"
+            value={whatsappPhone}
+            onChange={(e) => setValue('whatsappPhone', formatPhone(e.target.value))}
+            placeholder="(11) 99999-9999"
+          />
+          <p className="text-xs text-muted-foreground">Para envio do contracheque mensal</p>
         </div>
 
         <div className="flex justify-end pt-4">

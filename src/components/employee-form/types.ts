@@ -6,6 +6,7 @@ export interface EmployeeFormData {
   race: string
   maritalStatus: string
   educationLevel: string
+  whatsappPhone: string
 
   // Step 2: Address
   cep: string
@@ -48,6 +49,7 @@ export const DEFAULT_VALUES: EmployeeFormData = {
   race: '',
   maritalStatus: '',
   educationLevel: '',
+  whatsappPhone: '',
   cep: '',
   street: '',
   number: '',
