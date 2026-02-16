@@ -34,6 +34,7 @@ export interface Employee {
   role: string
   salary: number
   admission_date: string
+  whatsapp_phone: string | null
   status: EmployeeStatus
   created_at: string
 }

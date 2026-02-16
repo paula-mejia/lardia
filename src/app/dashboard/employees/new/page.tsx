@@ -65,6 +65,7 @@ export default function NewEmployeePage() {
         race: data.race || null,
         marital_status: data.maritalStatus || null,
         education_level: data.educationLevel || null,
+        whatsapp_phone: data.whatsappPhone?.replace(/\D/g, '') || null,
         cep: data.cep.replace(/\D/g, '') || null,
         street: data.street || null,
         number: data.number || null,
