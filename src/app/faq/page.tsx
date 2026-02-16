@@ -175,6 +175,61 @@ const faqCategories = [
     ],
   },
   {
+    title: "Dúvidas mais comuns sobre empregada doméstica",
+    items: [
+      {
+        question: "Qual o salário mínimo para empregada doméstica em 2025?",
+        answer:
+          "O salário mínimo para empregada doméstica em 2025 é de R$ 1.518,00 para jornada integral de 44 horas semanais, conforme o Art. 7º, IV da Constituição Federal. Alguns estados possuem pisos regionais superiores: São Paulo (R$ 1.640,00), Paraná (R$ 1.856,94) e Santa Catarina (R$ 1.612,00). O empregador deve pagar o maior valor entre o mínimo nacional e o piso estadual. Para jornada parcial (até 25h/semana), o salário pode ser proporcional.",
+      },
+      {
+        question: "Quanto o empregador paga de INSS sobre empregada doméstica?",
+        answer:
+          "O empregador doméstico paga 8% de INSS patronal sobre o salário bruto do empregado, conforme o Art. 34 da LC 150/2015. Com o salário mínimo de R$ 1.518,00, isso equivale a R$ 121,44 por mês. Esse valor é pago pelo empregador (não desconta do salário) e é recolhido junto com a DAE. Além disso, o empregado tem desconto de 7,5% a 14% de INSS conforme tabela progressiva.",
+      },
+      {
+        question: "Como funciona o FGTS da empregada doméstica?",
+        answer:
+          "O FGTS da empregada doméstica é de 8% do salário bruto, depositado mensalmente pelo empregador via DAE em conta vinculada na Caixa Econômica Federal, conforme o Art. 22 da LC 150/2015. Além dos 8%, o empregador paga 3,2% de antecipação da multa rescisória (que substitui os 40% de multa do FGTS em caso de demissão sem justa causa). Com salário de R$ 1.518,00: FGTS = R$ 121,44 + antecipação = R$ 48,58, totalizando R$ 170,02/mês.",
+      },
+      {
+        question: "O que acontece se não pagar o eSocial doméstico?",
+        answer:
+          "Não pagar o eSocial doméstico (DAE) gera multas e juros: o INSS tem multa de 0,33% ao dia (máximo 20%) mais juros Selic, e o FGTS tem multa de 5% no primeiro mês e 10% a partir do segundo, mais 0,5% de juros ao mês. Além disso, o empregador não registrado está sujeito a multa de R$ 402,53 a R$ 805,06 por empregado (Art. 47 da CLT). Atrasos recorrentes podem gerar pendências no CPF junto à Receita Federal e o trabalhador pode mover ação trabalhista.",
+      },
+      {
+        question: "Empregada doméstica tem direito a 13º salário?",
+        answer:
+          "Sim, a empregada doméstica tem direito ao 13º salário integral, conforme o Art. 7º, VIII da Constituição Federal e a Lei 4.090/1962. O valor corresponde a 1/12 da remuneração por mês trabalhado no ano. É pago em duas parcelas: a primeira entre 1º de fevereiro e 30 de novembro (sem descontos), e a segunda até 20 de dezembro (com desconto de INSS e IRRF, se aplicável). Com salário de R$ 1.518,00 e ano completo, o 13º é de R$ 1.518,00.",
+      },
+      {
+        question: "Como calcular férias da empregada doméstica?",
+        answer:
+          "As férias da empregada doméstica são calculadas somando o salário bruto ao 1/3 constitucional (Art. 7º, XVII da CF e Art. 17 da LC 150/2015). Com salário de R$ 1.518,00: férias = R$ 1.518,00 + R$ 506,00 (1/3) = R$ 2.024,00 brutos. Desconta-se INSS de 7,5% (R$ 151,80), resultando em R$ 1.872,20 líquidos. O pagamento deve ser feito até 2 dias antes do início das férias (Art. 145 da CLT). O período é de 30 dias após 12 meses de trabalho.",
+      },
+      {
+        question: "Qual o prazo para pagar o DAE?",
+        answer:
+          "A DAE (Documento de Arrecadação do eSocial) vence no dia 7 de cada mês, referente à competência do mês anterior, conforme o Art. 35 da LC 150/2015. Se o dia 7 cair em sábado, domingo ou feriado, o vencimento é antecipado para o último dia útil anterior. A DAE pode ser paga por boleto bancário ou PIX (QR Code disponível na própria guia). O atraso gera multa de 0,33% ao dia sobre o INSS e 5% a 10% sobre o FGTS.",
+      },
+      {
+        question: "Empregada doméstica pode trabalhar aos sábados?",
+        answer:
+          "Sim, a empregada doméstica pode trabalhar aos sábados. A jornada legal é de 44 horas semanais e 8 horas diárias (Art. 2º da LC 150/2015), o que geralmente se distribui em 8 horas de segunda a sexta (40h) mais 4 horas no sábado. O empregador e o empregado podem acordar compensação de horas para folgar no sábado, desde que não ultrapasse 10 horas diárias. O domingo é o descanso semanal remunerado obrigatório (Art. 16 da LC 150/2015).",
+      },
+      {
+        question: "Como fazer rescisão de empregada doméstica?",
+        answer:
+          "Para fazer a rescisão, registre o desligamento no eSocial informando a data e o motivo (sem justa causa, justa causa, pedido de demissão ou acordo mútuo). Na demissão sem justa causa, o empregado tem direito a: saldo de salário, aviso prévio (30 dias + 3 por ano trabalhado, Art. 23 da LC 150/2015), férias proporcionais + 1/3, 13º proporcional, saque do FGTS e multa de 40% (já antecipada nos 3,2% mensais), além de 3 parcelas de seguro-desemprego (Art. 26 da LC 150/2015). O prazo para pagar as verbas rescisórias é de 10 dias corridos após o término do contrato.",
+      },
+      {
+        question: "Preciso de contador para o eSocial doméstico?",
+        answer:
+          "Não é obrigatório ter contador para o eSocial doméstico. O sistema foi criado para ser usado diretamente por pessoas físicas. Porém, os cálculos de encargos, férias, 13º e rescisão podem ser complexos e erros geram multas. Muitos empregadores contratam contadores (R$ 150 a R$ 300/mês) ou usam plataformas como a LarDia (a partir de R$ 49,90/mês) que automatizam todos os cálculos com base na LC 150/2015 e na CLT, eliminando a necessidade de um profissional contábil.",
+      },
+    ],
+  },
+  {
     title: "Sobre a LarDia",
     items: [
       {
