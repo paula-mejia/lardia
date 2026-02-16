@@ -1,0 +1,42 @@
+<!-- 
+  Template: Confirm signup
+  Subject: Confirme sua conta no LarDia
+  Copie o HTML abaixo no campo "Body" do template "Confirm signup" no Supabase.
+-->
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+  <div style="background: #10B981; padding: 32px; text-align: center;">
+    <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">LarDia</h1>
+    <p style="color: #d1fae5; margin: 8px 0 0; font-size: 14px;">Seu lar em dia</p>
+  </div>
+  
+  <div style="padding: 40px 32px;">
+    <h2 style="color: #1f2937; margin: 0 0 16px; font-size: 22px;">Confirme seu e-mail</h2>
+    
+    <p style="color: #4b5563; font-size: 16px; line-height: 1.6; margin: 0 0 24px;">
+      Olá! Obrigado por criar sua conta no LarDia. Para começar a usar a plataforma, confirme seu e-mail clicando no botão abaixo:
+    </p>
+    
+    <div style="text-align: center; margin: 32px 0;">
+      <a href="{{ .ConfirmationURL }}" style="background: #10B981; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600;">
+        Confirmar minha conta
+      </a>
+    </div>
+    
+    <p style="color: #9ca3af; font-size: 14px; line-height: 1.5;">
+      Se você não criou uma conta no LarDia, ignore este e-mail.
+    </p>
+    
+    <p style="color: #9ca3af; font-size: 13px; line-height: 1.5; margin-top: 24px;">
+      Se o botão não funcionar, copie e cole este link no navegador:<br>
+      <a href="{{ .ConfirmationURL }}" style="color: #10B981; word-break: break-all;">{{ .ConfirmationURL }}</a>
+    </p>
+  </div>
+  
+  <div style="border-top: 1px solid #e5e7eb; padding: 24px 32px; text-align: center;">
+    <p style="color: #9ca3af; font-size: 12px; margin: 0;">
+      LarDia — Gestão simplificada do eSocial doméstico<br>
+      <a href="https://lardia.com.br" style="color: #10B981; text-decoration: none;">lardia.com.br</a>
+    </p>
+  </div>
+</div>
