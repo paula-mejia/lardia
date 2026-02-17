@@ -190,7 +190,7 @@ export function processMonthlyPayroll(
 
   result.totalEventsGenerated = result.events.length
 
-  const hasErrors = result.employees.some((e) => e.status === 'error')
+  const _hasErrors = result.employees.some((e) => e.status === 'error')
   const allErrors = result.employees.every((e) => e.status === 'error')
   result.status = allErrors ? 'error' : 'completed'
   result.processedAt = new Date().toISOString()

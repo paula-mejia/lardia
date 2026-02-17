@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Loader2, Wifi, WifiOff, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -15,7 +15,7 @@ interface HealthStatus {
 export function ProxyHealthIndicator() {
   const [health, setHealth] = useState<HealthStatus>({ status: 'loading' })
 
-  async function checkHealth() {
+  const checkHealth = useCallback(async () => {
     setHealth({ status: 'loading' })
     try {
       const res = await fetch('/api/esocial/health', { cache: 'no-store' })
@@ -32,14 +32,13 @@ export function ProxyHealthIndicator() {
         message: 'Não foi possível verificar o status do servidor',
       })
     }
-  }
+  }, [])
 
   useEffect(() => {
-    checkHealth()
-    // Re-check every 60 seconds
+    setTimeout(checkHealth, 0)
     const interval = setInterval(checkHealth, 60000)
     return () => clearInterval(interval)
-  }, [])
+  }, [checkHealth])
 
   const envLabel = health.environment === 'production' ? 'Produção' : 'Produção Restrita'
 

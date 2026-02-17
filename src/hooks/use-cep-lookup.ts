@@ -52,10 +52,11 @@ export function useCepLookup<T extends AddressFields>(
       }
 
       if (setValue) {
-        setValue('street' as any, result.street as any)
-        setValue('neighborhood' as any, result.neighborhood as any)
-        setValue('city' as any, result.city as any)
-        setValue('state' as any, result.state as any)
+        const set = setValue as (field: string, value: string) => void
+        set('street', result.street)
+        set('neighborhood', result.neighborhood)
+        set('city', result.city)
+        set('state', result.state)
       }
 
       return result

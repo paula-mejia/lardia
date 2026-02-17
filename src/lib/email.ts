@@ -2,7 +2,7 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const FROM_EMAIL = 'LarDia <noreply@lardia.com.br>'
+const _FROM_EMAIL = 'LarDia <noreply@lardia.com.br>'
 const FROM_EMAIL_FALLBACK = 'LarDia <onboarding@resend.dev>'
 
 function getFromEmail() {

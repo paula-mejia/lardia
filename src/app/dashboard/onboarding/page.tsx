@@ -43,16 +43,17 @@ export default function OnboardingPage() {
 
   // Load existing employer data
   useEffect(() => {
+    let cancelled = false
     async function load() {
       const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
+      if (!user || cancelled) return
       const { data } = await supabase
         .from('employers')
         .select('*')
         .eq('user_id', user.id)
         .single()
-      if (data) {
+      if (data && !cancelled) {
         reset({
           full_name: data.full_name || '',
           cpf: data.cpf || '',
@@ -71,6 +72,7 @@ export default function OnboardingPage() {
       }
     }
     load()
+    return () => { cancelled = true }
   }, [reset])
 
   /** CEP auto-fill via ViaCEP */
