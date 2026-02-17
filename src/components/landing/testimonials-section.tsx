@@ -25,7 +25,7 @@ export default function TestimonialsSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-            Mais de 500 empregadores confiam na LarDia
+            A forma mais simples de gerenciar sua empregada doméstica dentro da lei
           </h2>
           <p className="text-muted-foreground text-lg">
             Empregadores em todo o Brasil usam a LarDia para simplificar
