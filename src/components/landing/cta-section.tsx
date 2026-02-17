@@ -7,7 +7,7 @@ export default function CtaSection() {
     <section className="py-16 md:py-24 bg-emerald-500 dark:bg-emerald-600">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white mb-4">
-          Comece a gerenciar seu empregado doméstico dentro da lei
+          Comece hoje a gerenciar seu empregado doméstico dentro da lei
         </h2>
         <p className="text-emerald-100 text-lg max-w-xl mx-auto mb-8">
           Sem planilha, sem contador, sem estresse. Cadastre-se grátis e

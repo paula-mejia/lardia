@@ -2,6 +2,7 @@ import { ReferralBanner, ReferralSection } from '@/components/referral-banner'
 import NewsletterSignup from '@/components/newsletter-signup'
 import Navbar from '@/components/landing/navbar'
 import HeroSection from '@/components/landing/hero-section'
+import HowItWorksSection from '@/components/landing/how-it-works-section'
 import ProblemSection from '@/components/landing/problem-section'
 import EsocialSection from '@/components/landing/esocial-section'
 import CalculatorSection from '@/components/landing/calculator-section'
@@ -108,6 +109,7 @@ export default function Home() {
       <ReferralBanner />
       <Navbar />
       <HeroSection />
+      <HowItWorksSection />
       <ProblemSection />
       <EsocialSection />
       <CalculatorSection />

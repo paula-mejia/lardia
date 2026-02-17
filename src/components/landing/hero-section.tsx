@@ -18,7 +18,7 @@ export default function HeroSection() {
           Para empregadores domésticos no Brasil
         </Badge>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-          Pare de arriscar multas
+          Chega de dor de cabeça
           <br />
           <span className="text-emerald-500 dark:text-emerald-400">
             com o eSocial doméstico
