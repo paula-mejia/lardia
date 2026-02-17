@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { calculateThirteenth, calculateMonthsWorked } from '../thirteenth-salary'
+import { calculateThirteenth, calculateMonthsWorked } from '../thirteenth'
 import { TAX_TABLE_2026 } from '../tax-tables'
 
 describe('calculateMonthsWorked', () => {

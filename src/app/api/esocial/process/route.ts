@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { processMonthlyPayroll } from '@/lib/esocial/monthly-processor'
 import { applyRateLimit } from '@/lib/rate-limit'
-import { auditLog } from '@/lib/audit'
+import { logAudit } from '@/lib/audit'
 
 function getClientIp(request: NextRequest): string {
   return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
@@ -124,9 +124,9 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    await auditLog(
-      employer.id,
+    await logAudit(
       'esocial_monthly_processed',
+      'esocial',
       {
         month,
         year,
@@ -135,7 +135,9 @@ export async function POST(request: NextRequest) {
         daeTotal: result.totalDaeValue,
         errors: result.errors,
       },
-      getClientIp(request)
+      request,
+      null,
+      employer.id
     )
 
     return NextResponse.json({

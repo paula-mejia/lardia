@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { runBackgroundCheck } from '@/lib/background-check/service'
 import { validateCpfChecksum } from '@/lib/background-check/cpf-validation'
 import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
-import { auditLog } from '@/lib/audit'
+import { logAudit } from '@/lib/audit'
 
 export async function POST(request: NextRequest) {
   const rateLimited = applyRateLimit(request, 'background-check', RATE_LIMITS.backgroundCheck)
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
       console.error('Update error:', updateError)
     }
 
-    await auditLog(employer.id, 'background_check_requested', { checkId: check.id, candidateName }, getClientIp(request))
+    await logAudit('background_check_requested', 'background-check', { checkId: check.id, candidateName }, request, null, employer.id)
 
     return NextResponse.json({ id: check.id, status: 'completed' })
   } catch (err) {

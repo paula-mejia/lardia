@@ -1,77 +1,48 @@
 # Dead Code Report
 
 > Generated: 2026-02-17 | Audit of `/home/ubuntu/lardia/src/`
+> Updated: 2026-02-17 (cleanup applied)
 
 ## Summary
 
-| Category | Count |
-|----------|-------|
-| Unused exported functions | 8 |
-| Orphaned pages / components | 3 |
-| Duplicate / redundant modules | 2 |
-| Legacy aliases | 1 |
+| Category | Count | Status |
+|----------|-------|--------|
+| Dead code removed | 3 | ✅ Cleaned |
+| WIP infrastructure (keep) | 9 | ✅ Reviewed, not dead code |
 
 ---
 
-## 1. Unused Exported Functions (HIGH confidence)
+## Cleaned (2026-02-17)
 
-These functions are exported but never imported or referenced anywhere outside their own file.
-
-| Function | File | Confidence |
-|----------|------|------------|
-| `getReferralStats` | `src/lib/referral.ts` | 🔴 HIGH — 0 references |
-| `buildS1000Xml` | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 references |
-| `ESOCIAL_ERROR_CODES` | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 references |
-| `validateCertificate` | `src/lib/esocial/certificate.ts` | 🔴 HIGH — 0 references |
-| `loadCertificate` | `src/lib/esocial/certificate.ts` | 🔴 HIGH — 0 references |
-| `signXml` | `src/lib/esocial/certificate.ts` | 🔴 HIGH — 0 references |
-| `generateEventId` | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 references |
-| `shouldUseProxy` | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 references |
-| `EsocialApiClient` (class) | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 instantiations |
-
-**Note:** Email functions (`sendWelcomeEmail`, `sendDaeReminderEmail`, `sendPayrollProcessedEmail`, `sendGenericEmail`) are NOT dead code — they are pre-built infrastructure awaiting Resend integration (now verified). The `certificate.ts` functions are for eSocial mTLS signing — needed when direct API integration goes live.
+| Item | Action | Details |
+|------|--------|---------|
+| `conectar/page.tsx` (340 lines) | **Deleted** | Duplicate of `connect/page.tsx`. No links pointed to it. |
+| `thirteenth-salary.ts` wrapper | **Deleted** | Unnecessary re-export of `thirteenth.ts`. Test updated to import directly. |
+| `auditLog` legacy alias | **Removed** | 3 API routes migrated to `logAudit` with correct signature. Legacy function deleted from `audit.ts`. |
 
 ---
 
-## 2. Orphaned Pages & Components
+## WIP Infrastructure (NOT dead code)
 
-| Item | File | Issue |
-|------|------|-------|
-| `ConectarESocialPage` | `src/app/dashboard/esocial/conectar/page.tsx` (340 lines) | **Orphan.** The dashboard links to `/dashboard/esocial/connect`, not `/conectar`. This is an older Portuguese-named duplicate of `connect/page.tsx`. |
-| `ProxyHealthIndicator` | `src/app/dashboard/esocial/proxy-health-indicator.tsx` | **Orphan.** Exported but never imported by any page or component. |
+These functions have 0 current references but are pre-built infrastructure for features in progress:
 
----
-
-## 3. Duplicate / Redundant Modules
-
-| Files | Issue |
-|-------|-------|
-| `src/lib/calc/thirteenth-salary.ts` + `src/lib/calc/thirteenth.ts` | `thirteenth-salary.ts` is a re-export wrapper for `thirteenth.ts`. Only the test file `__tests__/thirteenth-salary.test.ts` imports from it. The barrel `calc/index.ts` imports from `thirteenth.ts` directly. The wrapper adds no value. |
-| `src/app/dashboard/esocial/conectar/page.tsx` + `connect/page.tsx` | Two implementations of the same eSocial connection page. `connect/` is the active one; `conectar/` is dead. |
-
----
-
-## 4. Legacy Code
-
-| Item | File | Issue |
-|------|------|-------|
-| `auditLog` (legacy alias) | `src/lib/audit.ts` | Kept for backward compatibility, still used by 3 API routes. Should migrate callers to `logAudit` and remove. |
-
----
-
-## 5. Low-Risk / Watch List
-
-| Item | File | Notes |
-|------|------|-------|
-| `env.ts` `serverEnv.sentry.dsn` | `src/lib/env.ts` | Only used by Sentry config files, not via `serverEnv` import. |
-| Entire `src/lib/esocial/certificate.ts` | Certificate signing module | Infrastructure ready for direct eSocial API — currently proxy-based. Keep if direct integration is planned. |
-| Entire `src/lib/esocial/rpa-client.ts` | RPA/browser automation client | Only referenced in `dae/[id]/pdf/route.ts`. May be inactive infrastructure. |
+| Function | File | Why it stays |
+|----------|------|-------------|
+| `sendWelcomeEmail` | `src/lib/email.ts` | Resend integration now verified. Will connect to onboarding flow. |
+| `sendDaeReminderEmail` | `src/lib/email.ts` | Monthly processing email notifications. |
+| `sendPayrollProcessedEmail` | `src/lib/email.ts` | Monthly processing email notifications. |
+| `sendGenericEmail` | `src/lib/email.ts` | General-purpose email sender. |
+| `getReferralStats` | `src/lib/referral.ts` | Referral dashboard (planned). |
+| `buildS1000Xml` / `EsocialApiClient` / `generateEventId` / `shouldUseProxy` / `ESOCIAL_ERROR_CODES` | `src/lib/esocial/api-client.ts` | Direct eSocial API integration (backup to RPA strategy). |
+| `validateCertificate` / `loadCertificate` / `signXml` | `src/lib/esocial/certificate.ts` | eCNPJ certificate operations for XML signing. Already tested. |
+| `ProxyHealthIndicator` | `src/app/dashboard/esocial/proxy-health-indicator.tsx` | Dashboard widget for eSocial proxy status. |
+| `rpa-client.ts` | `src/lib/esocial/rpa-client.ts` | Core RPA client for EC2 Playwright automation. |
 
 ---
 
 ## Methodology
 
 - Grepped all `export` declarations across `src/`
-- Cross-referenced each export with `grep -r` for import/usage references
-- Excluded `node_modules`, `.next`, and test files from usage counts (except where noted)
-- Manual review of link targets for page routes
+- Cross-referenced each export with `grep -r` for import/usage
+- Manual review with project context (roadmap, WIP features)
+- Verified cleanup with `npx tsc --noEmit` (0 errors) and `npx vitest run` (69/69 passed)

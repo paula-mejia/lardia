@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getStripe } from '@/lib/stripe/config'
 import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
-import { auditLog } from '@/lib/audit'
+import { logAudit } from '@/lib/audit'
 
 export async function POST(request: NextRequest) {
   const rateLimited = applyRateLimit(request, 'stripe-checkout', RATE_LIMITS.api)
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
     line_items: lineItems,
   } as Record<string, unknown>)
 
-  await auditLog(employer.id, 'subscription_created', { sessionId: session.id }, getClientIp(request))
+  await logAudit('subscription_created', 'stripe', { sessionId: session.id }, request, null, employer.id)
 
   return NextResponse.json({ url: session.url })
 }

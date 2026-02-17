@@ -80,24 +80,4 @@ export async function logAudit(
   }
 }
 
-/**
- * Legacy alias - kept for backward compatibility
- */
-export async function auditLog(
-  employerId: string | null,
-  action: AuditAction,
-  details: Record<string, unknown> = {},
-  ip?: string
-): Promise<void> {
-  try {
-    const supabase = getServiceSupabase()
-    await supabase.from('audit_logs').insert({
-      employer_id: employerId,
-      action,
-      details,
-      ip_address: ip || null,
-    })
-  } catch (err) {
-    console.error('Audit log error:', err)
-  }
-}
+
