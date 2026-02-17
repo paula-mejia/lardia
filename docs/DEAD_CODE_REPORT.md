@@ -6,7 +6,7 @@
 
 | Category | Count |
 |----------|-------|
-| Unused exported functions | 12 |
+| Unused exported functions | 8 |
 | Orphaned pages / components | 3 |
 | Duplicate / redundant modules | 2 |
 | Legacy aliases | 1 |
@@ -19,10 +19,6 @@ These functions are exported but never imported or referenced anywhere outside t
 
 | Function | File | Confidence |
 |----------|------|------------|
-| `sendWelcomeEmail` | `src/lib/email.ts` | 🔴 HIGH — 0 references |
-| `sendDaeReminderEmail` | `src/lib/email.ts` | 🔴 HIGH — 0 references |
-| `sendPayrollProcessedEmail` | `src/lib/email.ts` | 🔴 HIGH — 0 references |
-| `sendGenericEmail` | `src/lib/email.ts` | 🔴 HIGH — 0 references |
 | `getReferralStats` | `src/lib/referral.ts` | 🔴 HIGH — 0 references |
 | `buildS1000Xml` | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 references |
 | `ESOCIAL_ERROR_CODES` | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 references |
@@ -33,7 +29,7 @@ These functions are exported but never imported or referenced anywhere outside t
 | `shouldUseProxy` | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 references |
 | `EsocialApiClient` (class) | `src/lib/esocial/api-client.ts` | 🔴 HIGH — 0 instantiations |
 
-**Note:** The `email.ts` functions appear to be pre-built templates awaiting integration (e.g., triggered by cron or webhooks). The `certificate.ts` functions are for eSocial mTLS signing — may be needed when direct API integration goes live.
+**Note:** Email functions (`sendWelcomeEmail`, `sendDaeReminderEmail`, `sendPayrollProcessedEmail`, `sendGenericEmail`) are NOT dead code — they are pre-built infrastructure awaiting Resend integration (now verified). The `certificate.ts` functions are for eSocial mTLS signing — needed when direct API integration goes live.
 
 ---
 
