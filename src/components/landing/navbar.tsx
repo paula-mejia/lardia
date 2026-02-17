@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Logo from '@/components/logo'
-import MobileNav from '@/components/mobile-nav'
+import { Button } from '@/components/ui/button'
 
 export default function Navbar() {
   return (
@@ -9,7 +9,9 @@ export default function Navbar() {
         <Link href="/" className="flex items-center">
           <Logo className="h-9" />
         </Link>
-        <MobileNav />
+        <Link href="/signup">
+          <Button size="sm" className="text-sm">Começar grátis</Button>
+        </Link>
       </div>
     </nav>
   )

@@ -1,14 +1,9 @@
-import { ReferralBanner, ReferralSection } from '@/components/referral-banner'
-import NewsletterSignup from '@/components/newsletter-signup'
 import Navbar from '@/components/landing/navbar'
 import HeroSection from '@/components/landing/hero-section'
-// HowItWorksSection removed - merged into EsocialSection
 import ProblemSection from '@/components/landing/problem-section'
 import EsocialSection from '@/components/landing/esocial-section'
 import CalculatorSection from '@/components/landing/calculator-section'
 import FeaturesSection from '@/components/landing/features-section'
-import BackgroundCheckSection from '@/components/landing/background-check-section'
-import TestimonialsSection from '@/components/landing/testimonials-section'
 import PricingSection from '@/components/landing/pricing-section'
 import FaqSection from '@/components/landing/faq-section'
 import CtaSection from '@/components/landing/cta-section'
@@ -106,18 +101,13 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <ReferralBanner />
       <Navbar />
       <HeroSection />
-      <EsocialSection />
       <ProblemSection />
-      <CalculatorSection />
+      <EsocialSection />
       <FeaturesSection />
-      <BackgroundCheckSection />
-      <TestimonialsSection />
+      <CalculatorSection />
       <PricingSection />
-      <NewsletterSignup source="landing" />
-      <ReferralSection />
       <FaqSection />
       <CtaSection />
       <Footer />

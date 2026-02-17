@@ -1,76 +1,61 @@
-import { Card, CardContent } from '@/components/ui/card'
-import {
-  Calculator,
-  FileText,
-  Bell,
-  Receipt,
-  Palmtree,
-  Gift,
-} from 'lucide-react'
+import { Receipt, FileText, Bell, HeadphonesIcon } from "lucide-react";
 
 const features = [
   {
-    icon: Calculator,
-    title: 'Cálculo automático da folha',
-    desc: 'INSS progressivo, IRRF, FGTS e GILRAT calculados com precisão. Sempre atualizado com as tabelas vigentes.',
-  },
-  {
     icon: Receipt,
-    title: 'Geração de DAE',
-    desc: 'A guia DAE gerada automaticamente todo mês, pronta para pagar. Sem entrar no eSocial.',
-  },
-  {
-    icon: Bell,
-    title: 'Alertas de vencimento',
-    desc: 'Notificações antes de cada prazo: DAE, férias, 13º. Nunca mais pague multa por esquecimento.',
+    title: "DAE pronta para pagar",
+    description:
+      "Todo mês enviamos a guia DAE no seu WhatsApp. É só clicar e pagar.",
   },
   {
     icon: FileText,
-    title: 'Contracheques em PDF',
-    desc: 'Gere o contracheque com um clique. Formatado, correto e pronto para imprimir ou enviar por WhatsApp.',
+    title: "Contracheque pelo WhatsApp",
+    description:
+      "Seu empregado recebe o contracheque direto no celular e confirma com um 'Sim'.",
   },
   {
-    icon: Palmtree,
-    title: 'Férias e rescisão',
-    desc: 'Cálculo completo de férias (inclusive proporcionais) e rescisão com todos os verbas, sem erro.',
+    icon: Bell,
+    title: "Alertas antes do prazo",
+    description:
+      "Férias, 13º, vencimentos. Você recebe o aviso antes, nunca depois.",
   },
   {
-    icon: Gift,
-    title: '13º salário',
-    desc: 'Primeira e segunda parcela calculadas automaticamente nos prazos legais, com todos os descontos.',
+    icon: HeadphonesIcon,
+    title: "Suporte humano",
+    description:
+      "Dúvida? Responde no mesmo WhatsApp. Sem app, sem portal, sem fila.",
   },
-]
+];
 
 export default function FeaturesSection() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-            Tudo que você precisa, num só lugar
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            A LarDia automatiza os cálculos e te lembra de cada obrigação.
-            Você só precisa pagar.
-          </p>
-        </div>
+    <section className="bg-emerald-950 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto text-center mb-14">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          Tudo chega no seu WhatsApp
+        </h2>
+        <p className="text-emerald-200/70 text-lg max-w-2xl mx-auto">
+          Você não precisa entrar na plataforma. A LarDia faz tudo e te avisa
+          pelo WhatsApp.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {features.map((item, i) => (
-            <Card key={i} className="border shadow-sm">
-              <CardContent className="pt-6 flex gap-4">
-                <div className="shrink-0 h-12 w-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                  <item.icon className="h-6 w-6 text-emerald-500 dark:text-emerald-400" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        {features.map((f) => (
+          <div
+            key={f.title}
+            className="rounded-xl border border-emerald-800/40 bg-emerald-900/30 p-6"
+          >
+            <f.icon className="h-8 w-8 text-emerald-400 mb-4" />
+            <h3 className="text-lg font-semibold text-white mb-2">
+              {f.title}
+            </h3>
+            <p className="text-emerald-200/60 text-sm leading-relaxed">
+              {f.description}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
-  )
+  );
 }

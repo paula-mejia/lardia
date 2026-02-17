@@ -1,72 +1,54 @@
-import { Card, CardContent } from '@/components/ui/card'
-import {
-  AlertTriangle,
-  Calculator,
-  FileText,
-  Calendar,
-  Clock,
-  Shield,
-} from 'lucide-react'
+import { AlertTriangle, Clock, Calculator } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const problems = [
   {
     icon: AlertTriangle,
-    title: 'eSocial obrigatório',
-    desc: 'Todos os empregadores domésticos precisam declarar no eSocial. O sistema é confuso e qualquer campo errado trava tudo.',
-  },
-  {
-    icon: Calculator,
-    title: 'Cálculos complexos',
-    desc: 'INSS progressivo, IRRF com deduções, FGTS, GILRAT, antecipação rescisória... cada mês é um quebra-cabeça.',
-  },
-  {
-    icon: FileText,
-    title: 'Guia DAE todo mês',
-    desc: 'A guia DAE precisa ser gerada é paga até o dia 7. Atrasou? Multa automática com juros.',
-  },
-  {
-    icon: Calendar,
-    title: 'Férias, 13o, rescisão',
-    desc: 'Cada evento tem regras proprias, prazos legais e cálculos especificos que mudam conforme o caso.',
+    bgColor: "bg-red-100",
+    iconColor: "text-red-500",
+    title: "eSocial obrigatório e confuso",
+    desc: "Todo empregador doméstico precisa declarar. O sistema do governo é complexo e qualquer erro trava tudo.",
   },
   {
     icon: Clock,
-    title: 'Prazos que não esperam',
-    desc: 'Dia 7 para DAE, aviso de férias com 30 dias, 1a parcela do 13o até novembro. Esqueceu? Problema.',
+    bgColor: "bg-amber-100",
+    iconColor: "text-amber-500",
+    title: "Multas por atraso",
+    desc: "A guia DAE vence dia 7. Atrasou? Multa automática. Esqueceu férias? Processo trabalhista na certa.",
   },
   {
-    icon: Shield,
-    title: 'Risco trabalhista',
-    desc: 'Contracheque errado, FGTS não depositado ou férias mal calculadas podem virar ação na Justiça do Trabalho.',
+    icon: Calculator,
+    bgColor: "bg-blue-100",
+    iconColor: "text-blue-500",
+    title: "Cálculos complexos",
+    desc: "INSS progressivo, IRRF, FGTS, GILRAT. Cada mês é um quebra-cabeça diferente para resolver.",
   },
-]
+];
 
 export default function ProblemSection() {
   return (
-    <section className="py-16 md:py-24 bg-muted/40">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-            Contratar uma empregada doméstica no Brasil e complicado
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            São dezenas de obrigações legais, cálculos complexos e prazos
-            apertados. Um erro pode gerar multas ou processos trabalhistas.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          {problems.map((item, i) => (
-            <Card key={i} className="border-none shadow-sm">
+    <section className="py-20 px-4">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl font-bold tracking-tight mb-3">
+          Gerenciar empregada doméstica não deveria ser um pesadelo
+        </h2>
+        <p className="text-muted-foreground text-lg mb-12">
+          O eSocial é complexo, burocrático e cheio de armadilhas. Nós resolvemos isso para você.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {problems.map((p) => (
+            <Card key={p.title} className="text-left">
               <CardContent className="pt-6">
-                <item.icon className="h-8 w-8 text-amber-500 mb-3" />
-                <h3 className="font-semibold mb-1">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <div className={`inline-flex items-center justify-center w-10 h-10 rounded-lg ${p.bgColor} mb-4`}>
+                  <p.icon className={`w-5 h-5 ${p.iconColor}`} />
+                </div>
+                <h3 className="font-semibold text-lg mb-2">{p.title}</h3>
+                <p className="text-muted-foreground text-sm">{p.desc}</p>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
