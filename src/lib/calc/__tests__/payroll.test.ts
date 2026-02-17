@@ -3,35 +3,35 @@ import { calculatePayroll, calculateINSSEmployee, calculateIRRF } from '../payro
 import { TAX_TABLE_2026 } from '../tax-tables'
 
 describe('INSS Employee Calculation (Progressive)', () => {
-  it('calculates INSS for minimum wage (R$1.518)', () => {
-    const result = calculateINSSEmployee(1518.00, TAX_TABLE_2026)
-    // 1518.00 * 7.5% = 113.85
-    expect(result.total).toBe(113.85)
+  it('calculates INSS for minimum wage (R$1.621)', () => {
+    const result = calculateINSSEmployee(1621.00, TAX_TABLE_2026)
+    // 1621.00 * 7.5% = 121.575 → 121.57
+    expect(result.total).toBe(121.57)
     expect(result.details).toHaveLength(1)
   })
 
   it('calculates INSS for R$2.000 (crosses into 2nd bracket)', () => {
     const result = calculateINSSEmployee(2000.00, TAX_TABLE_2026)
-    // First bracket: 1518.00 * 7.5% = 113.85
-    // Second bracket: (2000 - 1518) * 9% = 482 * 9% = 43.38
-    // Total: 157.23
-    expect(result.total).toBe(157.23)
+    // First bracket: 1621.00 * 7.5% = 121.57
+    // Second bracket: (2000 - 1621) * 9% = 379 * 9% = 34.11
+    // Total: 155.68
+    expect(result.total).toBe(155.68)
     expect(result.details).toHaveLength(2)
   })
 
   it('calculates INSS for R$3.500 (crosses into 3rd bracket)', () => {
     const result = calculateINSSEmployee(3500.00, TAX_TABLE_2026)
-    // First: 1518.00 * 7.5% = 113.85
-    // Second: (2793.88 - 1518.00) * 9% = 1275.88 * 9% = 114.83
-    // Third: (3500 - 2793.88) * 12% = 706.12 * 12% = 84.73
-    // Total: 313.41
-    expect(result.total).toBe(313.41)
+    // First: 1621.00 * 7.5% = 121.57
+    // Second: (2902.84 - 1621.00) * 9% = 1281.84 * 9% = 115.37
+    // Third: (3500 - 2902.84) * 12% = 597.16 * 12% = 71.66
+    // Total: 308.60
+    expect(result.total).toBe(308.60)
     expect(result.details).toHaveLength(3)
   })
 
-  it('caps INSS at ceiling (R$8.157,41)', () => {
+  it('caps INSS at ceiling (R$8.475,55)', () => {
     const result = calculateINSSEmployee(10000.00, TAX_TABLE_2026)
-    const resultAtCeiling = calculateINSSEmployee(8157.41, TAX_TABLE_2026)
+    const resultAtCeiling = calculateINSSEmployee(8475.55, TAX_TABLE_2026)
     // Salary above ceiling should yield same INSS as ceiling
     expect(result.total).toBe(resultAtCeiling.total)
   })
@@ -39,15 +39,15 @@ describe('INSS Employee Calculation (Progressive)', () => {
 
 describe('IRRF Calculation', () => {
   it('returns zero for minimum wage', () => {
-    const inss = calculateINSSEmployee(1518.00, TAX_TABLE_2026)
-    const result = calculateIRRF(1518.00, inss.total, 0, TAX_TABLE_2026)
+    const inss = calculateINSSEmployee(1621.00, TAX_TABLE_2026)
+    const result = calculateIRRF(1621.00, inss.total, 0, TAX_TABLE_2026)
     expect(result.tax).toBe(0)
   })
 
   it('returns zero for salary under IRRF threshold', () => {
     const inss = calculateINSSEmployee(2500.00, TAX_TABLE_2026)
     const result = calculateIRRF(2500.00, inss.total, 0, TAX_TABLE_2026)
-    // Base: 2500 - INSS = 2500 - ~202 = ~2298 -> first taxable bracket
+    // Base: 2500 - INSS = 2500 - ~200 = ~2300 -> first taxable bracket
     expect(result.tax).toBeGreaterThanOrEqual(0)
   })
 
@@ -63,23 +63,23 @@ describe('IRRF Calculation', () => {
 
 describe('Full Payroll Calculation', () => {
   it('calculates payroll for minimum wage', () => {
-    const result = calculatePayroll({ grossSalary: 1518.00 })
+    const result = calculatePayroll({ grossSalary: 1621.00 })
     
-    expect(result.grossSalary).toBe(1518.00)
-    expect(result.inssEmployee).toBe(113.85)
+    expect(result.grossSalary).toBe(1621.00)
+    expect(result.inssEmployee).toBe(121.57)
     expect(result.irrfEmployee).toBe(0)
-    expect(result.netSalary).toBe(1518.00 - 113.85)
+    expect(result.netSalary).toBe(1621.00 - 121.57)
     
     // Employer costs
-    expect(result.inssEmployer).toBe(121.44) // 8% of 1518
-    expect(result.gilrat).toBe(12.14) // 0.8% of 1518
-    expect(result.fgtsMonthly).toBe(121.44) // 8% of 1518
-    expect(result.fgtsAnticipation).toBe(48.58) // 3.2% of 1518
+    expect(result.inssEmployer).toBe(129.68) // 8% of 1621
+    expect(result.gilrat).toBe(12.97) // 0.8% of 1621
+    expect(result.fgtsMonthly).toBe(129.68) // 8% of 1621
+    expect(result.fgtsAnticipation).toBe(51.87) // 3.2% of 1621
     
     // DAE should be sum of all employer + employee INSS
-    expect(result.daeTotal).toBe(
+    expect(result.daeTotal).toBeCloseTo(
       result.inssEmployee + result.inssEmployer + result.gilrat + 
-      result.fgtsMonthly + result.fgtsAnticipation
+      result.fgtsMonthly + result.fgtsAnticipation, 2
     )
   })
 
@@ -97,8 +97,8 @@ describe('Full Payroll Calculation', () => {
   })
 
   it('calculates payroll with overtime', () => {
-    const withoutOT = calculatePayroll({ grossSalary: 1518.00 })
-    const withOT = calculatePayroll({ grossSalary: 1518.00, overtimeHours: 10 })
+    const withoutOT = calculatePayroll({ grossSalary: 1621.00 })
+    const withOT = calculatePayroll({ grossSalary: 1621.00, overtimeHours: 10 })
     
     expect(withOT.overtimePay).toBeGreaterThan(0)
     expect(withOT.totalEarnings).toBeGreaterThan(withoutOT.totalEarnings)

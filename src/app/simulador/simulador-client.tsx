@@ -165,7 +165,7 @@ function CostBar({ items, total }: { items: BarItem[]; total: number }) {
 // ---- Main component ----
 
 export default function SimuladorClient() {
-  const [salaryInput, setSalaryInput] = useState('1518')
+  const [salaryInput, setSalaryInput] = useState('1621')
   const salary = useMemo(() => {
     const parsed = parseFloat(salaryInput.replace(/\./g, '').replace(',', '.'))
     return isNaN(parsed) || parsed <= 0 ? 0 : parsed
@@ -289,7 +289,7 @@ export default function SimuladorClient() {
                   className="pl-9 text-xl h-12"
                   value={salaryInput}
                   onChange={(e) => setSalaryInput(e.target.value)}
-                  placeholder="1518"
+                  placeholder="1621"
                 />
               </div>
               <p className="text-xs text-muted-foreground mt-2">

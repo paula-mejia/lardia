@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { calculatePayroll, type PayrollBreakdown } from '@/lib/calc'
+import { REGIONAL_WAGES_2026, getEffectiveMinimumWage, CURRENT_TAX_TABLE } from '@/lib/calc/tax-tables'
 import { createClient } from '@/lib/supabase/client'
 import { ChevronDown, ChevronUp, Save, Check, FileDown } from 'lucide-react'
 import { generatePayslipPDF } from '@/lib/pdf/payslip'
@@ -25,7 +26,8 @@ interface PayrollCalculatorProps {
 }
 
 export default function PayrollCalculator({ initialSalary, employeeId, employeeName, employeeCpf, employerName, onSaved }: PayrollCalculatorProps = {}) {
-  const [salary, setSalary] = useState<string>(String(initialSalary || 1518))
+  const [selectedState, setSelectedState] = useState<string>('')
+  const [salary, setSalary] = useState<string>(String(initialSalary || 1621))
   const [dependents, setDependents] = useState<string>('0')
   const [overtimeHours, setOvertimeHours] = useState<string>('0')
   const [absenceDays, setAbsenceDays] = useState<string>('0')
@@ -164,6 +166,43 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
           )}
 
           <div className="space-y-2">
+            <Label htmlFor="state">
+              Estado
+              <InfoTip>
+                Alguns estados possuem piso salarial regional superior ao mínimo nacional.
+                Selecione o estado para aplicar o valor correto automaticamente.
+              </InfoTip>
+            </Label>
+            <select
+              id="state"
+              value={selectedState}
+              onChange={(e) => {
+                const st = e.target.value
+                setSelectedState(st)
+                const { wage } = getEffectiveMinimumWage(st || undefined)
+                setSalary(String(wage))
+              }}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <option value="">Outros estados (Nacional)</option>
+              {REGIONAL_WAGES_2026.map(r => (
+                <option key={r.state} value={r.state}>
+                  {r.stateName} ({r.state})
+                </option>
+              ))}
+            </select>
+            {selectedState && (() => {
+              const info = getEffectiveMinimumWage(selectedState)
+              return info.isRegional && info.regional ? (
+                <p className="text-xs text-emerald-600">
+                  Piso regional {info.regional.stateName}: R$ {info.regional.wage.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  {!info.regional.confirmed && ' (valor 2025, atualização pendente)'}
+                </p>
+              ) : null
+            })()}
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="salary">Salário bruto (R$)</Label>
             <Input
               id="salary"
@@ -172,11 +211,11 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
               min="0"
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
-              placeholder="1518.00"
+              placeholder="1621.00"
               className="text-lg"
             />
             <p className="text-xs text-muted-foreground">
-              Salário mínimo 2026: R$ 1.518,00
+              Salário mínimo nacional 2026: R$ {CURRENT_TAX_TABLE.minimumWage.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
             </p>
           </div>
 

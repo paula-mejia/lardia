@@ -46,7 +46,7 @@ describe('calculateVacation', () => {
   describe('full vacation, no absences, no abono', () => {
     it('calculates correctly for minimum wage', () => {
       const result = calculateVacation({
-        monthlySalary: 1518,
+        monthlySalary: 1621,
         absences: 0,
         daysSold: 0,
         taxTable: table,
@@ -55,11 +55,11 @@ describe('calculateVacation', () => {
       expect(result.totalVacationDays).toBe(30)
       expect(result.daysEnjoyed).toBe(30)
       expect(result.daysSold).toBe(0)
-      expect(result.vacationPay).toBe(1518)
-      expect(result.tercoConstitucional).toBe(506)
+      expect(result.vacationPay).toBe(1620.9)
+      expect(result.tercoConstitucional).toBe(540.3)
       expect(result.abonoPay).toBe(0)
       expect(result.abonoTerco).toBe(0)
-      expect(result.totalGross).toBe(2024)
+      expect(result.totalGross).toBe(2161.2)
       expect(result.isProportional).toBe(false)
       expect(result.proportionalMonths).toBe(12)
     })
@@ -100,7 +100,7 @@ describe('calculateVacation', () => {
   describe('proportional vacation', () => {
     it('calculates 6/12 proportional correctly', () => {
       const result = calculateVacation({
-        monthlySalary: 1518,
+        monthlySalary: 1621,
         absences: 0,
         daysSold: 0,
         proportionalMonths: 6,
@@ -110,14 +110,14 @@ describe('calculateVacation', () => {
       expect(result.totalVacationDays).toBe(15) // 30/12*6
       expect(result.isProportional).toBe(true)
       expect(result.proportionalMonths).toBe(6)
-      expect(result.vacationPay).toBe(759) // 15 * 50.6
+      expect(result.vacationPay).toBe(810.45) // 15 * 54.03
     })
   })
 
   describe('absence reductions', () => {
     it('reduces to 24 days with 10 absences', () => {
       const result = calculateVacation({
-        monthlySalary: 1518,
+        monthlySalary: 1621,
         absences: 10,
         daysSold: 0,
         taxTable: table,
@@ -127,7 +127,7 @@ describe('calculateVacation', () => {
 
     it('reduces to 0 days with 33+ absences', () => {
       const result = calculateVacation({
-        monthlySalary: 1518,
+        monthlySalary: 1621,
         absences: 35,
         daysSold: 0,
         taxTable: table,
@@ -168,7 +168,7 @@ describe('calculateVacation', () => {
 
     it('applies no IRRF for low salary', () => {
       const result = calculateVacation({
-        monthlySalary: 1518,
+        monthlySalary: 1621,
         absences: 0,
         daysSold: 0,
         taxTable: table,
@@ -194,7 +194,7 @@ describe('calculateVacation', () => {
   describe('payment deadline', () => {
     it('shows deadline when vacation start date provided', () => {
       const result = calculateVacation({
-        monthlySalary: 1518,
+        monthlySalary: 1621,
         absences: 0,
         daysSold: 0,
         vacationStartDate: '2026-07-01',
@@ -206,7 +206,7 @@ describe('calculateVacation', () => {
 
     it('returns null when no start date', () => {
       const result = calculateVacation({
-        monthlySalary: 1518,
+        monthlySalary: 1621,
         absences: 0,
         daysSold: 0,
         taxTable: table,

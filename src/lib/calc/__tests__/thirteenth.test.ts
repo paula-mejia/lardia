@@ -35,44 +35,44 @@ describe('calculateMonthsWorked', () => {
 describe('calculateThirteenth', () => {
   it('calculates full 13th for 12 months at minimum wage', () => {
     const result = calculateThirteenth({
-      monthlySalary: 1518.00,
+      monthlySalary: 1621.00,
       monthsWorked: 12,
       taxTable: TAX_TABLE_2026,
     })
 
     // Full year = full salary as base
-    expect(result.proportionalBase).toBe(1518.00)
-    expect(result.totalBase).toBe(1518.00)
+    expect(result.proportionalBase).toBe(1621.00)
+    expect(result.totalBase).toBe(1621.00)
 
-    // 1st installment: 50% = 759
-    expect(result.firstInstallment).toBe(759.00)
+    // 1st installment: 50% = 810.50
+    expect(result.firstInstallment).toBe(810.50)
 
-    // 2nd installment gross: 759
-    expect(result.secondInstallmentGross).toBe(759.00)
+    // 2nd installment gross: 810.50
+    expect(result.secondInstallmentGross).toBe(810.50)
 
-    // INSS on full base (1518) = 113.85
-    expect(result.inssEmployee).toBe(113.85)
+    // INSS on full base (1621) = 121.57
+    expect(result.inssEmployee).toBe(121.57)
 
     // No IRRF at minimum wage
     expect(result.irrfEmployee).toBe(0)
 
-    // 2nd installment net: 759 - 113.85 = 645.15
-    expect(result.secondInstallmentNet).toBe(645.15)
+    // 2nd installment net: 810.50 - 121.57 = 688.93
+    expect(result.secondInstallmentNet).toBe(688.93)
 
-    // Total employee receives: 759 + 645.15 = 1404.15
-    expect(result.totalEmployeePay).toBe(1404.15)
+    // Total employee receives: 810.50 + 688.93 = 1499.43
+    expect(result.totalEmployeePay).toBe(1499.43)
   })
 
   it('calculates proportional 13th for 6 months', () => {
     const result = calculateThirteenth({
-      monthlySalary: 1518.00,
+      monthlySalary: 1621.00,
       monthsWorked: 6,
       taxTable: TAX_TABLE_2026,
     })
 
     // 6/12 of salary
-    expect(result.proportionalBase).toBe(759.00)
-    expect(result.firstInstallment).toBe(379.50)
+    expect(result.proportionalBase).toBe(810.50)
+    expect(result.firstInstallment).toBe(405.25)
   })
 
   it('calculates 13th with higher salary (IRRF applicable)', () => {

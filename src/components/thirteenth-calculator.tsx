@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function ThirteenthCalculator({ initialSalary }: Props = {}) {
-  const [salary, setSalary] = useState<string>(String(initialSalary || 1518))
+  const [salary, setSalary] = useState<string>(String(initialSalary || 1621))
   const [monthsWorked, setMonthsWorked] = useState<string>('12')
   const [dependents, setDependents] = useState<string>('0')
   const [showINSSDetails, setShowINSSDetails] = useState(false)

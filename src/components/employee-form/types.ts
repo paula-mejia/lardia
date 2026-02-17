@@ -61,7 +61,7 @@ export const DEFAULT_VALUES: EmployeeFormData = {
   admissionDate: '',
   contractType: 'indeterminate',
   experienceDays: '90',
-  salary: '1518',
+  salary: '1621',
   paymentFrequency: 'monthly',
   scheduleType: 'fixed',
   weeklyHours: '44',

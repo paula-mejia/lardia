@@ -49,35 +49,35 @@ describe('calculateMonthsWorked', () => {
 describe('calculateThirteenth', () => {
   it('calculates full 13th for 12 months at minimum wage', () => {
     const result = calculateThirteenth({
-      monthlySalary: 1518.00,
+      monthlySalary: 1621.00,
       monthsWorked: 12,
       taxTable: TAX_TABLE_2026,
     })
 
-    expect(result.proportionalBase).toBe(1518.00)
-    expect(result.totalBase).toBe(1518.00)
-    expect(result.firstInstallment).toBe(759.00)
-    expect(result.secondInstallmentGross).toBe(759.00)
+    expect(result.proportionalBase).toBe(1621.00)
+    expect(result.totalBase).toBe(1621.00)
+    expect(result.firstInstallment).toBe(810.50)
+    expect(result.secondInstallmentGross).toBe(810.50)
 
-    // INSS on full base (1518) = 7.5% of 1518 = 113.85
-    expect(result.inssEmployee).toBe(113.85)
+    // INSS on full base (1621) = 7.5% of 1621 = 121.57
+    expect(result.inssEmployee).toBe(121.57)
     expect(result.irrfEmployee).toBe(0)
 
-    // 2nd installment net: 759 - 113.85 = 645.15
-    expect(result.secondInstallmentNet).toBe(645.15)
-    expect(result.totalEmployeePay).toBe(1404.15)
+    // 2nd installment net: 810.50 - 121.57 = 688.93
+    expect(result.secondInstallmentNet).toBe(688.93)
+    expect(result.totalEmployeePay).toBe(1499.43)
   })
 
   it('calculates proportional 13th for 6 months', () => {
     const result = calculateThirteenth({
-      monthlySalary: 1518.00,
+      monthlySalary: 1621.00,
       monthsWorked: 6,
       taxTable: TAX_TABLE_2026,
     })
 
-    expect(result.proportionalBase).toBe(759.00)
-    expect(result.firstInstallment).toBe(379.50)
-    expect(result.secondInstallmentGross).toBe(379.50)
+    expect(result.proportionalBase).toBe(810.50)
+    expect(result.firstInstallment).toBe(405.25)
+    expect(result.secondInstallmentGross).toBe(405.25)
   })
 
   it('calculates FGTS per installment at 8%', () => {
@@ -156,10 +156,10 @@ describe('calculateThirteenth', () => {
     // INSS should be calculated on full 5000, not 2500
     // Progressive brackets applied to full base
     // Must be greater than what 2500 alone would produce
-    const inssOn2500 = 1518 * 0.075 + (2500 - 1518) * 0.09
+    const inssOn2500 = 1621 * 0.075 + (2500 - 1621) * 0.09
     expect(result.inssEmployee).toBeGreaterThan(Math.round(inssOn2500 * 100) / 100)
     // And match the known value from the engine
-    expect(result.inssEmployee).toBe(509.59)
+    expect(result.inssEmployee).toBe(501.51)
   })
 
   it('includes employer costs', () => {

@@ -110,12 +110,12 @@ const faqCategories = [
       {
         question: "Qual o salário mínimo para empregada doméstica em 2026?",
         answer:
-          "O salário mínimo nacional em 2026 é de R$ 1.518,00. Esse é o valor mínimo que deve ser pago a uma empregada doméstica que trabalha em jornada integral (44 horas semanais). Alguns estados possuem pisos regionais superiores ao mínimo nacional, como São Paulo (R$ 1.640,00) e Rio de Janeiro. Sempre verifique o piso do seu estado antes de definir o salário.",
+          "O salário mínimo nacional em 2026 é de R$ 1.621,00 (Decreto D12797). Esse é o valor mínimo que deve ser pago a uma empregada doméstica que trabalha em jornada integral (44 horas semanais). Alguns estados possuem pisos regionais superiores ao mínimo nacional, como São Paulo (R$ 1.640,00) e Rio de Janeiro. Sempre verifique o piso do seu estado antes de definir o salário.",
       },
       {
         question: "Como calcular o INSS da empregada doméstica?",
         answer:
-          "O INSS do empregado doméstico segue a tabela progressiva: 7,5% até R$ 1.518,00; 9% de R$ 1.518,01 a R$ 2.793,88; 12% de R$ 2.793,89 a R$ 4.190,83; e 14% de R$ 4.190,84 a R$ 8.157,41. O cálculo é feito por faixa, similar ao Imposto de Renda. Já o INSS patronal é fixo em 8% sobre o salário bruto, pago pelo empregador através da DAE.",
+          "O INSS do empregado doméstico segue a tabela progressiva: 7,5% até R$ 1.621,00; 9% de R$ 1.621,01 a R$ 2.902,84; 12% de R$ 2.902,85 a R$ 4.354,27; e 14% de R$ 4.354,28 a R$ 8.475,55. O cálculo é feito por faixa, similar ao Imposto de Renda. Já o INSS patronal é fixo em 8% sobre o salário bruto, pago pelo empregador através da DAE.",
       },
       {
         question: "Como funciona o FGTS da empregada doméstica?",
@@ -135,7 +135,7 @@ const faqCategories = [
       {
         question: "Quanto custa uma empregada doméstica no total?",
         answer:
-          "Considerando o salário mínimo de R$ 1.518,00 em 2026, o custo total mensal para o empregador fica em torno de R$ 1.821,60. Isso inclui os 8% de FGTS (R$ 121,44), 8% de INSS patronal (R$ 121,44), 0,8% de GILRAT (R$ 12,14) e 3,2% de antecipação da multa do FGTS (R$ 48,58). Somando vale-transporte e provisão para férias e 13º, o custo real pode ultrapassar R$ 2.200,00 por mês.",
+          "Considerando o salário mínimo de R$ 1.621,00 em 2026, o custo total mensal para o empregador fica em torno de R$ 1.945,20. Isso inclui os 8% de FGTS (R$ 129,68), 8% de INSS patronal (R$ 129,68), 0,8% de GILRAT (R$ 12,97) e 3,2% de antecipação da multa do FGTS (R$ 51,87). Somando vale-transporte e provisão para férias e 13º, o custo real pode ultrapassar R$ 2.400,00 por mês.",
       },
     ],
   },
@@ -145,7 +145,7 @@ const faqCategories = [
       {
         question: "Como calcular férias da empregada doméstica?",
         answer:
-          "As férias da empregada doméstica seguem as mesmas regras da CLT: após 12 meses de trabalho (período aquisitivo), o empregado tem direito a 30 dias de descanso remunerado. O valor é o salário integral acrescido de 1/3 constitucional. Por exemplo, com salário de R$ 1.518,00, as férias totalizam R$ 2.024,00 (salário + R$ 506,00 de terço). O pagamento deve ser feito até dois dias antes do início das férias.",
+          "As férias da empregada doméstica seguem as mesmas regras da CLT: após 12 meses de trabalho (período aquisitivo), o empregado tem direito a 30 dias de descanso remunerado. O valor é o salário integral acrescido de 1/3 constitucional. Por exemplo, com salário de R$ 1.621,00, as férias totalizam R$ 2.161,33 (salário + R$ 540,33 de terço). O pagamento deve ser feito até dois dias antes do início das férias.",
       },
       {
         question: "A empregada pode vender férias?",
@@ -178,19 +178,19 @@ const faqCategories = [
     title: "Dúvidas mais comuns sobre empregada doméstica",
     items: [
       {
-        question: "Qual o salário mínimo para empregada doméstica em 2025?",
+        question: "Qual o salário mínimo para empregada doméstica em 2026?",
         answer:
-          "O salário mínimo para empregada doméstica em 2025 é de R$ 1.518,00 para jornada integral de 44 horas semanais, conforme o Art. 7º, IV da Constituição Federal. Alguns estados possuem pisos regionais superiores: São Paulo (R$ 1.640,00), Paraná (R$ 1.856,94) e Santa Catarina (R$ 1.612,00). O empregador deve pagar o maior valor entre o mínimo nacional e o piso estadual. Para jornada parcial (até 25h/semana), o salário pode ser proporcional.",
+          "O salário mínimo para empregada doméstica em 2026 é de R$ 1.621,00 para jornada integral de 44 horas semanais, conforme o Decreto D12797 e o Art. 7º, IV da Constituição Federal. Alguns estados possuem pisos regionais superiores: São Paulo (R$ 1.640,00), Paraná (R$ 1.856,94) e Santa Catarina (R$ 1.612,00). O empregador deve pagar o maior valor entre o mínimo nacional e o piso estadual. Para jornada parcial (até 25h/semana), o salário pode ser proporcional.",
       },
       {
         question: "Quanto o empregador paga de INSS sobre empregada doméstica?",
         answer:
-          "O empregador doméstico paga 8% de INSS patronal sobre o salário bruto do empregado, conforme o Art. 34 da LC 150/2015. Com o salário mínimo de R$ 1.518,00, isso equivale a R$ 121,44 por mês. Esse valor é pago pelo empregador (não desconta do salário) e é recolhido junto com a DAE. Além disso, o empregado tem desconto de 7,5% a 14% de INSS conforme tabela progressiva.",
+          "O empregador doméstico paga 8% de INSS patronal sobre o salário bruto do empregado, conforme o Art. 34 da LC 150/2015. Com o salário mínimo de R$ 1.621,00, isso equivale a R$ 129,68 por mês. Esse valor é pago pelo empregador (não desconta do salário) e é recolhido junto com a DAE. Além disso, o empregado tem desconto de 7,5% a 14% de INSS conforme tabela progressiva.",
       },
       {
         question: "Como funciona o FGTS da empregada doméstica?",
         answer:
-          "O FGTS da empregada doméstica é de 8% do salário bruto, depositado mensalmente pelo empregador via DAE em conta vinculada na Caixa Econômica Federal, conforme o Art. 22 da LC 150/2015. Além dos 8%, o empregador paga 3,2% de antecipação da multa rescisória (que substitui os 40% de multa do FGTS em caso de demissão sem justa causa). Com salário de R$ 1.518,00: FGTS = R$ 121,44 + antecipação = R$ 48,58, totalizando R$ 170,02/mês.",
+          "O FGTS da empregada doméstica é de 8% do salário bruto, depositado mensalmente pelo empregador via DAE em conta vinculada na Caixa Econômica Federal, conforme o Art. 22 da LC 150/2015. Além dos 8%, o empregador paga 3,2% de antecipação da multa rescisória (que substitui os 40% de multa do FGTS em caso de demissão sem justa causa). Com salário de R$ 1.621,00: FGTS = R$ 129,68 + antecipação = R$ 51,87, totalizando R$ 181,55/mês.",
       },
       {
         question: "O que acontece se não pagar o eSocial doméstico?",
@@ -200,12 +200,12 @@ const faqCategories = [
       {
         question: "Empregada doméstica tem direito a 13º salário?",
         answer:
-          "Sim, a empregada doméstica tem direito ao 13º salário integral, conforme o Art. 7º, VIII da Constituição Federal e a Lei 4.090/1962. O valor corresponde a 1/12 da remuneração por mês trabalhado no ano. É pago em duas parcelas: a primeira entre 1º de fevereiro e 30 de novembro (sem descontos), e a segunda até 20 de dezembro (com desconto de INSS e IRRF, se aplicável). Com salário de R$ 1.518,00 e ano completo, o 13º é de R$ 1.518,00.",
+          "Sim, a empregada doméstica tem direito ao 13º salário integral, conforme o Art. 7º, VIII da Constituição Federal e a Lei 4.090/1962. O valor corresponde a 1/12 da remuneração por mês trabalhado no ano. É pago em duas parcelas: a primeira entre 1º de fevereiro e 30 de novembro (sem descontos), e a segunda até 20 de dezembro (com desconto de INSS e IRRF, se aplicável). Com salário de R$ 1.621,00 e ano completo, o 13º é de R$ 1.621,00.",
       },
       {
         question: "Como calcular férias da empregada doméstica?",
         answer:
-          "As férias da empregada doméstica são calculadas somando o salário bruto ao 1/3 constitucional (Art. 7º, XVII da CF e Art. 17 da LC 150/2015). Com salário de R$ 1.518,00: férias = R$ 1.518,00 + R$ 506,00 (1/3) = R$ 2.024,00 brutos. Desconta-se INSS de 7,5% (R$ 151,80), resultando em R$ 1.872,20 líquidos. O pagamento deve ser feito até 2 dias antes do início das férias (Art. 145 da CLT). O período é de 30 dias após 12 meses de trabalho.",
+          "As férias da empregada doméstica são calculadas somando o salário bruto ao 1/3 constitucional (Art. 7º, XVII da CF e Art. 17 da LC 150/2015). Com salário de R$ 1.621,00: férias = R$ 1.621,00 + R$ 540,33 (1/3) = R$ 2.161,33 brutos. Desconta-se INSS progressivo (R$ 170,19), resultando em R$ 1.991,01 líquidos. O pagamento deve ser feito até 2 dias antes do início das férias (Art. 145 da CLT). O período é de 30 dias após 12 meses de trabalho.",
       },
       {
         question: "Qual o prazo para pagar o DAE?",
