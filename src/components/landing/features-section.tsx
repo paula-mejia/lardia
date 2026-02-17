@@ -1,26 +1,43 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { Calculator, Calendar, Bell, FileText } from 'lucide-react'
+import {
+  Calculator,
+  FileText,
+  Bell,
+  Receipt,
+  Palmtree,
+  Gift,
+} from 'lucide-react'
 
 const features = [
   {
     icon: Calculator,
-    title: 'Cálculo automático',
-    desc: 'Folha mensal, férias, 13o salário e rescisão calculados com precisão. Sempre atualizado com as tabelas vigentes de INSS, IRRF e salário mínimo.',
+    title: 'Cálculo automático da folha',
+    desc: 'INSS progressivo, IRRF, FGTS e GILRAT calculados com precisão. Sempre atualizado com as tabelas vigentes.',
   },
   {
-    icon: Calendar,
-    title: 'Calendário de obrigações',
-    desc: 'Veja todas as datas importantes do mês: vencimento da DAE, aviso de férias, parcelas do 13o. Nunca mais perca um prazo.',
+    icon: Receipt,
+    title: 'Geração de DAE',
+    desc: 'A guia DAE gerada automaticamente todo mês, pronta para pagar. Sem entrar no eSocial.',
   },
   {
     icon: Bell,
-    title: 'Alertas e lembretes',
-    desc: 'Receba notificações antes de cada prazo. DAE vencendo, férias se aproximando, 13o chegando. Tudo no seu tempo.',
+    title: 'Alertas de vencimento',
+    desc: 'Notificações antes de cada prazo: DAE, férias, 13º. Nunca mais pague multa por esquecimento.',
   },
   {
     icon: FileText,
-    title: 'Contracheque pronto',
-    desc: 'Gere o contracheque da sua empregada com um clique. Formatado, correto e pronto para imprimir ou enviar por WhatsApp.',
+    title: 'Contracheques em PDF',
+    desc: 'Gere o contracheque com um clique. Formatado, correto e pronto para imprimir ou enviar por WhatsApp.',
+  },
+  {
+    icon: Palmtree,
+    title: 'Férias e rescisão',
+    desc: 'Cálculo completo de férias (inclusive proporcionais) e rescisão com todos os verbas, sem erro.',
+  },
+  {
+    icon: Gift,
+    title: '13º salário',
+    desc: 'Primeira e segunda parcela calculadas automaticamente nos prazos legais, com todos os descontos.',
   },
 ]
 
@@ -30,15 +47,15 @@ export default function FeaturesSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-            Tudo que você precisa, num so lugar
+            Tudo que você precisa, num só lugar
           </h2>
           <p className="text-muted-foreground text-lg">
             A LarDia automatiza os cálculos e te lembra de cada obrigação.
-            Você so precisa pagar.
+            Você só precisa pagar.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {features.map((item, i) => (
             <Card key={i} className="border shadow-sm">
               <CardContent className="pt-6 flex gap-4">

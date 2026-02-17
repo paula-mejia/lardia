@@ -9,6 +9,7 @@ import FeaturesSection from '@/components/landing/features-section'
 import BackgroundCheckSection from '@/components/landing/background-check-section'
 import TestimonialsSection from '@/components/landing/testimonials-section'
 import PricingSection from '@/components/landing/pricing-section'
+import FaqSection from '@/components/landing/faq-section'
 import CtaSection from '@/components/landing/cta-section'
 import Footer from '@/components/landing/footer'
 
@@ -116,6 +117,7 @@ export default function Home() {
       <PricingSection />
       <NewsletterSignup source="landing" />
       <ReferralSection />
+      <FaqSection />
       <CtaSection />
       <Footer />
     </main>

@@ -18,8 +18,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LarDia - eSocial sem erro, sem estresse",
-  description: "Calculadora inteligente para empregador doméstico. Folha de pagamento, férias, 13º e rescisão com 100% de precisão.",
+  metadataBase: new URL("https://lardia.com.br"),
+  title: {
+    default: "LarDia - Gestão de Empregados Domésticos",
+    template: "%s | LarDia",
+  },
+  description:
+    "A forma mais simples de gerenciar sua empregada doméstica dentro da lei. Cálculos automáticos, eSocial integrado e contracheques digitais.",
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -27,35 +32,47 @@ export const metadata: Metadata = {
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: [
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-    ],
+    apple: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
   },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: "LarDia - eSocial sem erro, sem estresse",
-    description: "Calculadora inteligente para empregador doméstico. Folha de pagamento, férias, 13º e rescisão com 100% de precisão.",
+    title: "LarDia - Gestão de Empregados Domésticos",
+    description:
+      "A forma mais simples de gerenciar sua empregada doméstica dentro da lei. Cálculos automáticos, eSocial integrado e contracheques digitais.",
     url: "https://lardia.com.br",
     siteName: "LarDia",
     locale: "pt_BR",
     type: "website",
     images: [
       {
-        url: "https://lardia.com.br/icon-512.png",
+        url: "/icon-512.png",
         width: 512,
         height: 512,
-        alt: "LarDia - eSocial sem erro, sem estresse",
+        alt: "LarDia - Seu lar em dia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LarDia - eSocial sem erro, sem estresse",
-    description: "Calculadora inteligente para empregador doméstico. Folha de pagamento, férias, 13º e rescisão com 100% de precisão.",
-    images: ["https://lardia.com.br/icon-512.png"],
+    title: "LarDia - Gestão de Empregados Domésticos",
+    description:
+      "A forma mais simples de gerenciar sua empregada doméstica dentro da lei. Cálculos automáticos, eSocial integrado e contracheques digitais.",
+    images: ["/icon-512.png"],
   },
   alternates: {
     canonical: "https://lardia.com.br",
   },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "LarDia",
+  url: "https://lardia.com.br",
+  logo: "https://lardia.com.br/icon-512.png",
+  description:
+    "A forma mais simples de gerenciar sua empregada doméstica dentro da lei.",
+  sameAs: [],
 };
 
 export default function RootLayout({
@@ -68,6 +85,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <TooltipProvider>
           {children}
         </TooltipProvider>

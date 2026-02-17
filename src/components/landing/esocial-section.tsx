@@ -1,27 +1,26 @@
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { ClipboardList, UserCheck, Zap, ArrowRight } from 'lucide-react'
+import { UserPlus, ClipboardList, Coffee, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 const steps = [
   {
-    icon: ClipboardList,
+    icon: UserPlus,
     step: '1',
-    title: 'Cadastro',
-    desc: 'Cadastre sua empregada com os dados básicos. A LarDia configura tudo no eSocial para você.',
+    title: 'Cadastre-se',
+    desc: 'Crie sua conta gratuita em menos de 2 minutos. Sem cartão de crédito.',
   },
   {
-    icon: UserCheck,
+    icon: ClipboardList,
     step: '2',
-    title: 'Procuração',
-    desc: 'Autorize a LarDia a enviar eventos no eSocial em seu nome com uma procuração digital simples.',
+    title: 'Registre seu empregado',
+    desc: 'Informe os dados básicos: nome, CPF, salário e data de admissão.',
   },
   {
-    icon: Zap,
+    icon: Coffee,
     step: '3',
-    title: 'Automacao',
-    desc: 'Pronto. Todo mês a folha é fechada, os eventos são enviados e a guia DAE é gerada automaticamente.',
+    title: 'Relaxe',
+    desc: 'A LarDia cuida do resto: cálculos, DAE, prazos e contracheques no piloto automático.',
   },
 ]
 
@@ -30,13 +29,12 @@ export default function EsocialSection() {
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <Badge variant="secondary" className="mb-4">Novidade</Badge>
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-            Gestão completa do eSocial
+            Como funciona
           </h2>
           <p className="text-muted-foreground text-lg">
-            A LarDia cuida do envio mensal, geração da DAE e controle de prazos.
-            Você não precisa mais de um contador para manter tudo em dia.
+            Em 3 passos simples, você sai da confusão do eSocial para o piloto
+            automático.
           </p>
         </div>
 
@@ -57,17 +55,16 @@ export default function EsocialSection() {
           ))}
         </div>
 
-        {/* Connector arrows (visible on md+) */}
         <div className="hidden md:flex justify-center items-center gap-2 -mt-8 mb-8">
           <p className="text-sm text-muted-foreground font-medium">
-            Cadastro → Procuração → Automacao
+            Cadastre-se → Registre → Relaxe
           </p>
         </div>
 
         <div className="text-center">
           <Link href="/signup">
             <Button size="lg" className="text-base px-8">
-              Quero automatizar meu eSocial
+              Começar agora — é grátis
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>

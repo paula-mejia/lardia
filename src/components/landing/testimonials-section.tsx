@@ -1,21 +1,36 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { Star } from 'lucide-react'
+import { BookOpen, Calculator, Plug, ShieldCheck, Clock, HeadphonesIcon } from 'lucide-react'
 
-const testimonials = [
+const benefits = [
   {
-    name: 'Maria S.',
-    city: 'São Paulo, SP',
-    text: 'Antes da LarDia eu pagava um contador so para o eSocial. Agora faco tudo sozinha em 5 minutos por mês.',
+    icon: BookOpen,
+    title: '31+ páginas de FAQ',
+    desc: 'Base de conhecimento completa sobre eSocial doméstico, com respostas para todas as suas dúvidas.',
   },
   {
-    name: 'Roberto L.',
-    city: 'Rio de Janeiro, RJ',
-    text: 'Os alertas de prazo já me salvaram de multas varias vezes. Vale cada centavo.',
+    icon: Calculator,
+    title: 'Calculadoras gratuitas',
+    desc: 'Folha, férias, 13º e rescisão. Calcule tudo sem cadastro, sem limite de uso.',
   },
   {
-    name: 'Ana C.',
-    city: 'Belo Horizonte, MG',
-    text: 'A verificação de antecedentes me deu tranquilidade para contratar. Recomendo muito.',
+    icon: Plug,
+    title: 'Integração eSocial',
+    desc: 'Envio de eventos e geração da DAE direto pelo sistema, sem precisar acessar o portal do governo.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Conformidade garantida',
+    desc: 'Tabelas de INSS, IRRF e salário mínimo sempre atualizadas. Cálculos 100% dentro da lei.',
+  },
+  {
+    icon: Clock,
+    title: '5 minutos por mês',
+    desc: 'No lugar de horas quebrando a cabeça no eSocial, você resolve tudo em poucos cliques.',
+  },
+  {
+    icon: HeadphonesIcon,
+    title: 'Suporte humanizado',
+    desc: 'Dúvida? Fale com a gente por WhatsApp. Sem robô, sem fila.',
   },
 ]
 
@@ -25,26 +40,23 @@ export default function TestimonialsSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-            A forma mais simples de gerenciar sua empregada doméstica dentro da lei
+            Por que empregadores escolhem a LarDia
           </h2>
           <p className="text-muted-foreground text-lg">
-            Empregadores em todo o Brasil usam a LarDia para simplificar
-            o eSocial doméstico e evitar dores de cabeça.
+            Criada por quem entende a dor de gerenciar empregado doméstico no
+            Brasil.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {testimonials.map((item, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {benefits.map((item, i) => (
             <Card key={i} className="border shadow-sm">
               <CardContent className="pt-6">
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-amber-400 text-amber-400" />
-                  ))}
+                <div className="h-10 w-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-3">
+                  <item.icon className="h-5 w-5 text-emerald-500 dark:text-emerald-400" />
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">&ldquo;{item.text}&rdquo;</p>
-                <p className="text-sm font-semibold">{item.name}</p>
-                <p className="text-xs text-muted-foreground">{item.city}</p>
+                <h3 className="font-semibold mb-1">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
               </CardContent>
             </Card>
           ))}

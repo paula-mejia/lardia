@@ -6,13 +6,13 @@ import Link from 'next/link'
 
 const freeTierFeatures = [
   'Calculadora de folha',
-  'Calculadora de 13o salário',
+  'Calculadora de 13º salário',
   'Calculadora de férias',
   'Calculadora de rescisão',
 ]
 
 const basicTierFeatures = [
-  'Tudo do plano Gratis',
+  'Tudo do plano Grátis',
   'Dashboard de empregados',
   'Calendário de obrigações',
   'Contracheque em PDF',
@@ -21,12 +21,12 @@ const basicTierFeatures = [
 ]
 
 const completeTierFeatures = [
-  'Tudo do plano Basico',
+  'Tudo do plano Básico',
   'Gestão eSocial automatizada',
   'Geração de DAE',
   'Fechamento mensal automático',
   'Notificações por WhatsApp',
-  'Suporte prioritario',
+  'Suporte prioritário',
 ]
 
 export default function PricingSection() {
@@ -38,16 +38,17 @@ export default function PricingSection() {
             Escolha o plano ideal para você
           </h2>
           <p className="text-muted-foreground text-lg">
-            Comece grátis com as calculadoras ou desbloqueie a gestão completa do eSocial.
+            Comece grátis com as calculadoras ou desbloqueie a gestão completa
+            do eSocial.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
           {/* Free Tier */}
           <Card className="border shadow-sm">
             <CardContent className="pt-8 pb-8">
               <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">
-                Gratis
+                Grátis
               </p>
               <div className="flex items-baseline justify-center gap-1 mb-1">
                 <span className="text-sm text-muted-foreground">R$</span>
@@ -65,7 +66,11 @@ export default function PricingSection() {
               </ul>
 
               <Link href="#calculadora">
-                <Button variant="outline" size="lg" className="w-full text-base">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full text-base"
+                >
                   Usar grátis
                 </Button>
               </Link>
@@ -76,14 +81,16 @@ export default function PricingSection() {
           <Card className="border shadow-sm">
             <CardContent className="pt-8 pb-8">
               <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">
-                Basico
+                Básico
               </p>
               <div className="flex items-baseline justify-center gap-1 mb-1">
                 <span className="text-sm text-muted-foreground">R$</span>
                 <span className="text-5xl font-bold">29,90</span>
                 <span className="text-muted-foreground">/mês</span>
               </div>
-              <p className="text-sm text-muted-foreground mb-6">por empregada</p>
+              <p className="text-sm text-muted-foreground mb-6">
+                por empregado
+              </p>
 
               <ul className="text-left space-y-3 mb-8">
                 {basicTierFeatures.map((feature, i) => (
@@ -95,8 +102,12 @@ export default function PricingSection() {
               </ul>
 
               <Link href="/signup">
-                <Button variant="outline" size="lg" className="w-full text-base">
-                  Comecar agora
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full text-base"
+                >
+                  Começar agora
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
@@ -104,9 +115,11 @@ export default function PricingSection() {
           </Card>
 
           {/* Complete Tier */}
-          <Card className="border-2 border-emerald-600 shadow-lg relative">
+          <Card className="border-2 border-emerald-500 shadow-lg relative">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <Badge className="bg-emerald-500 text-white hover:bg-emerald-500">Recomendado</Badge>
+              <Badge className="bg-emerald-500 text-white hover:bg-emerald-500">
+                Mais popular
+              </Badge>
             </div>
             <CardContent className="pt-8 pb-8">
               <p className="text-sm font-medium text-emerald-500 dark:text-emerald-400 uppercase tracking-wide mb-2">
@@ -117,7 +130,9 @@ export default function PricingSection() {
                 <span className="text-5xl font-bold">49,90</span>
                 <span className="text-muted-foreground">/mês</span>
               </div>
-              <p className="text-sm text-muted-foreground mb-6">por empregada</p>
+              <p className="text-sm text-muted-foreground mb-6">
+                por empregado
+              </p>
 
               <ul className="text-left space-y-3 mb-8">
                 {completeTierFeatures.map((feature, i) => (
@@ -130,12 +145,12 @@ export default function PricingSection() {
 
               <Link href="/signup">
                 <Button size="lg" className="w-full text-base">
-                  Comecar agora
+                  Começar agora
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <p className="text-xs text-muted-foreground mt-3 text-center">
-                7 dias grátis. Cancele quando quiser.
+                7 dias grátis · Cancele quando quiser
               </p>
             </CardContent>
           </Card>
