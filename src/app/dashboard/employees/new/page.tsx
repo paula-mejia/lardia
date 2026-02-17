@@ -92,12 +92,15 @@ export default function NewEmployeePage() {
     trackEmployeeAdded()
     trackAuditEvent('employee_created', 'employee', { name: data.fullName, role: data.role })
     
-    // If onboarding not complete, mark it as complete now
+    // If onboarding not complete, mark it as complete and send welcome email
     if (!employer.onboarding_completed) {
       await supabase
         .from('employers')
         .update({ onboarding_completed: true })
         .eq('id', employer.id)
+      
+      // Send welcome email (fire-and-forget)
+      fetch('/api/email/welcome', { method: 'POST' }).catch(() => {})
     }
     
     router.push('/dashboard')
