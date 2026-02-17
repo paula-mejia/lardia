@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { UserPlus, ClipboardList, Coffee, ArrowRight } from 'lucide-react'
+import { UserPlus, ClipboardList, Coffee, ArrowRight, ShieldCheck } from 'lucide-react'
 import Link from 'next/link'
 
 const steps = [
@@ -17,10 +17,16 @@ const steps = [
     desc: 'Informe os dados básicos: nome, CPF, salário e data de admissão.',
   },
   {
-    icon: Coffee,
+    icon: ShieldCheck,
     step: '3',
+    title: 'Conecte o eSocial',
+    desc: 'Autorize a LarDia via procuração eletrônica no eCAC. Processo guiado, 100% digital.',
+  },
+  {
+    icon: Coffee,
+    step: '4',
     title: 'Relaxe',
-    desc: 'A LarDia cuida do resto: cálculos, DAE, prazos e contracheques no piloto automático.',
+    desc: 'A LarDia cuida do resto: folha, DAE, prazos e contracheques no piloto automático.',
   },
 ]
 
@@ -33,12 +39,12 @@ export default function EsocialSection() {
             Como funciona
           </h2>
           <p className="text-muted-foreground text-lg">
-            Em 3 passos simples, você sai da confusão do eSocial para o piloto
+            Em 4 passos simples, você sai da confusão do eSocial para o piloto
             automático.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
           {steps.map((item, i) => (
             <Card key={i} className="border shadow-sm text-center">
               <CardContent className="pt-6">
@@ -57,7 +63,7 @@ export default function EsocialSection() {
 
         <div className="hidden md:flex justify-center items-center gap-2 -mt-8 mb-8">
           <p className="text-sm text-muted-foreground font-medium">
-            Cadastre-se → Registre → Relaxe
+            Cadastre-se → Registre → Conecte → Relaxe
           </p>
         </div>
 
