@@ -1,4 +1,7 @@
-// Type-safe environment variable access with validation
+/**
+ * Type-safe environment variable access with validation.
+ * Separates public (client-safe) and server-only env vars.
+ */
 
 function required(name: string): string {
   const value = process.env[name]

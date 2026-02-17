@@ -1,6 +1,6 @@
 # LARDIA - Estado del Proyecto
 
-> Última actualización: 2026-02-16
+> Última actualización: 2026-02-17
 > Dominio: lardia.com.br | Vercel: lardia.vercel.app | EC2: 54.207.197.86
 
 ---
@@ -23,8 +23,11 @@
 - [x] Google Analytics 4 + Meta Pixel (2026-02)
 - [x] ImprovMX cuenta creada, wildcard *@lardia.com.br → paumejiagiraldo@gmail.com (2026-02-16)
 - [x] Resend: dominio lardia.com.br verificado, DKIM OK (2026-02-16)
-- [ ] Resend: verificación completa (SPF pendiente)
-- [ ] Supabase SMTP custom (esperando verificación completa de Resend)
+- [x] Procuração eCAC confirmada desde Cocora (2026-02-16)
+- [x] Resend: dominio completamente verificado (DKIM + SPF) (2026-02-17)
+- [x] Supabase SMTP custom con Resend (noreply@lardia.com.br) (2026-02-17)
+- [x] eCNPJ copiado al EC2 (~/playwright-rpa/ecnpj.p12) (2026-02-17)
+- [ ] VPN residencial brasileña en EC2 (Bright Data) - para login gov.br
 
 ---
 
@@ -134,38 +137,39 @@
 - [x] Resend: DKIM verificado (2026-02-16)
 - [x] Email templates creados en docs/email-templates/ (confirmation, magic-link, password-reset)
 - [x] Guía de setup: docs/RESEND-SETUP.md
-- [ ] Resend: SPF pendiente de verificación
-- [ ] Supabase Auth SMTP: configurar con credenciales Resend
+- [x] Resend: SPF verificado (sa-east-1 era correcto) (2026-02-17)
+- [x] Supabase Auth SMTP: configurado con Resend (2026-02-17)
 
 ---
 
 ## Pendiente
 
 ### Paula
-- [ ] Verificar que SPF de Resend pase (puede tomar hasta 48h)
-- [ ] Configurar SMTP custom en Supabase Auth (después de verificación Resend)
-- [ ] Probar envío de magic link con SMTP custom
+- [ ] Crear cuenta Bright Data (VPN residencial para eSocial RPA)
+- [ ] Grabar video tutorial de procuração eCAC (2-3 min screen recording)
+- [ ] Crear cuenta Twilio + configurar credenciales WhatsApp
 - [ ] Revisar/aprobar email templates de docs/email-templates/
-- [ ] Activar Stripe live en producción (verificar webhooks)
 
 ### Cocora
-- [ ] Configurar Supabase SMTP una vez Resend esté 100% verificado
+- [ ] Configurar Bright Data proxy en EC2 (cuando Paula pase credenciales)
+- [ ] Test login eSocial con VPN residencial
+- [ ] Capturar selectores reales del eSocial y actualizar RPA scripts
 - [ ] Refactor pendiente: background check page (493 líneas)
 - [ ] Actualizar onboarding page con nuevos shared hooks (use-api, use-cep-lookup)
-- [ ] Monitorear que todos los DNS records propaguen correctamente
 
 ### Futuro
-- [ ] Custom domain email sending (enviar desde @lardia.com.br)
+- [ ] BigDataCorp API (background check real) - esperando respuesta
 - [ ] Monitoreo/alertas para el proxy eSocial en EC2
 - [ ] CI/CD pipeline (tests automáticos en PR)
 - [ ] Backup strategy para Supabase
+- [ ] Legal review (ToS/privacy/LGPD)
 
 ---
 
 ## Bloqueado
 
-- **Supabase SMTP custom** — Bloqueado por verificación completa de Resend (SPF pendiente). Sin esto, magic link auth usa emails genéricos de Supabase en vez de @lardia.com.br.
-- **Password como fallback visible** — Mientras SMTP no esté configurado, el form muestra password por defecto en vez de magic link (commit cdeba91).
+- **eSocial RPA login** — gov.br SSO bloquea IPs de datacenter (403). Necesitamos VPN residencial (Bright Data). Paula creando cuenta.
+- **WhatsApp real (Twilio)** — Paula necesita crear cuenta Twilio y obtener credenciales.
 
 ---
 

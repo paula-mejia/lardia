@@ -1,5 +1,8 @@
-// In-memory rate limiter using a Map
-// Keys expire after their window passes
+/**
+ * In-memory rate limiter using a Map.
+ * Keys expire after their window passes. Stale entries are cleaned every 5 minutes.
+ * Suitable for single-instance deployments (not shared across serverless invocations).
+ */
 
 interface RateLimitEntry {
   count: number
@@ -23,7 +26,7 @@ interface RateLimitConfig {
   windowMs: number
 }
 
-// Preset limits
+/** Preset rate limit configurations for different route categories. */
 export const RATE_LIMITS = {
   auth: { maxRequests: 5, windowMs: 60_000 } as RateLimitConfig,
   api: { maxRequests: 30, windowMs: 60_000 } as RateLimitConfig,
@@ -38,6 +41,12 @@ interface RateLimitResult {
   resetAt: number
 }
 
+/**
+ * Check if a request is within the rate limit for a given key.
+ * @param key - Unique identifier (e.g., "api:192.168.1.1")
+ * @param config - Rate limit configuration (max requests and window)
+ * @returns Whether the request is allowed, remaining quota, and reset time
+ */
 export function checkRateLimit(
   key: string,
   config: RateLimitConfig
@@ -58,7 +67,11 @@ export function checkRateLimit(
   return { allowed: true, remaining: config.maxRequests - entry.count, resetAt: entry.resetAt }
 }
 
-// Helper to extract IP from request headers
+/**
+ * Extract client IP address from request headers (x-forwarded-for or x-real-ip).
+ * @param request - Incoming HTTP request
+ * @returns IP address string, or 'unknown' if not available
+ */
 export function getClientIp(request: Request): string {
   const forwarded = request.headers.get('x-forwarded-for')
   if (forwarded) {
@@ -67,9 +80,17 @@ export function getClientIp(request: Request): string {
   return request.headers.get('x-real-ip') || 'unknown'
 }
 
-// Helper that returns a 429 Response if rate limited, or null if allowed
 import { NextResponse } from 'next/server'
 
+/**
+ * Apply rate limiting to a request. Returns a 429 JSON response if the limit
+ * is exceeded, or null if the request is allowed.
+ * @param request - Incoming HTTP request
+ * @param prefix - Key prefix for namespacing (e.g., 'auth', 'api')
+ * @param config - Rate limit configuration
+ * @param userId - Optional user ID (falls back to IP-based limiting)
+ * @returns NextResponse with 429 status if rate limited, or null if allowed
+ */
 export function applyRateLimit(
   request: Request,
   prefix: string,

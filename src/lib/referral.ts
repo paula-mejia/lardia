@@ -1,6 +1,10 @@
 import { createClient } from '@/lib/supabase/client'
 
-// Generate a unique 8-char referral code like LARDIA-XXXX
+/**
+ * Generate a unique 8-character referral code (e.g., LARDIA-A3K7).
+ * Uses alphanumeric characters excluding ambiguous ones (0, O, 1, I, L).
+ * @returns Referral code string in format LARDIA-XXXX
+ */
 export function generateReferralCode(): string {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
   let code = ''
@@ -10,19 +14,32 @@ export function generateReferralCode(): string {
   return `LARDIA-${code}`
 }
 
-// Build the full referral share link
+/**
+ * Build the full referral share link for a given code.
+ * @param code - The referral code (e.g., LARDIA-A3K7)
+ * @returns Full URL with ?ref= query parameter
+ */
 export function getReferralLink(code: string): string {
   return `https://lardia.vercel.app/?ref=${code}`
 }
 
-// Build WhatsApp share URL with pre-filled Portuguese message
+/**
+ * Build a WhatsApp share URL with a pre-filled Portuguese referral message.
+ * @param code - The referral code
+ * @returns wa.me URL with encoded message text
+ */
 export function getWhatsAppShareUrl(code: string): string {
   const link = getReferralLink(code)
   const message = `Oi! Uso a LarDia para cuidar do eSocial da minha empregada doméstica e facilita muito. Cadastre-se com meu link e ganhe benefícios: ${link}`
   return `https://wa.me/?text=${encodeURIComponent(message)}`
 }
 
-// Ensure the employer has a referral code, generating one if needed
+/**
+ * Ensure the employer has a referral code, generating one if needed.
+ * Retries up to 5 times on code collision.
+ * @param employerId - Supabase employer ID
+ * @returns The referral code, or null if generation failed
+ */
 export async function ensureReferralCode(employerId: string): Promise<string | null> {
   const supabase = createClient()
 
@@ -50,7 +67,12 @@ export async function ensureReferralCode(employerId: string): Promise<string | n
   return null
 }
 
-// Track a referral: called when a new user signs up with a ref code
+/**
+ * Track a referral when a new user signs up with a referral code.
+ * Prevents self-referral and duplicate tracking.
+ * @param referralCode - The referral code used during signup
+ * @param refereeEmployerId - The new user's employer ID
+ */
 export async function trackReferral(referralCode: string, refereeEmployerId: string): Promise<void> {
   const supabase = createClient()
 
@@ -84,7 +106,11 @@ export async function trackReferral(referralCode: string, refereeEmployerId: str
   })
 }
 
-// Get referral stats for an employer
+/**
+ * Get referral statistics for an employer (invited, joined, months earned).
+ * @param employerId - Supabase employer ID
+ * @returns Object with referrals array and summary counts
+ */
 export async function getReferralStats(employerId: string) {
   const supabase = createClient()
 

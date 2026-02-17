@@ -1,6 +1,11 @@
 import Stripe from 'stripe'
 
-// Server-side Stripe client - only use in API routes / server components
+/**
+ * Get a server-side Stripe client instance.
+ * Returns null if STRIPE_SECRET_KEY is not configured.
+ * Only use in API routes or server components — never on the client.
+ * @returns Stripe instance or null
+ */
 export function getStripe(): Stripe | null {
   const key = process.env.STRIPE_SECRET_KEY
   if (!key) {
@@ -10,7 +15,10 @@ export function getStripe(): Stripe | null {
   return new Stripe(key, { apiVersion: '2026-01-28.clover' })
 }
 
-// Client-side Stripe loader
+/**
+ * Client-side Stripe.js loader. Lazily initializes and caches the Stripe promise.
+ * Returns null if the publishable key is not configured.
+ */
 let stripePromise: ReturnType<typeof import('@stripe/stripe-js').loadStripe> | null = null
 
 export function getStripeJs() {
