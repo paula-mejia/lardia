@@ -155,7 +155,7 @@ export default function HeroSection() {
                   <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/calculadora">
+              <Link href="/simulador">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto">
                   <DollarSign className="mr-1 h-4 w-4" />
                   Calcular salário
