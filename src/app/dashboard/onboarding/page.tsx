@@ -1,9 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
 import { createClient } from '@/lib/supabase/client'
 import { useCepLookup } from '@/hooks/use-cep-lookup'
+import { useApi } from '@/hooks/use-api'
+import { formatCPF, formatCEP } from '@/components/employee-form/format'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -14,25 +17,9 @@ import {
   ArrowRight, ArrowLeft, Check, Loader2
 } from 'lucide-react'
 
-// -- Helpers --
-
-function formatCPF(value: string): string {
-  const d = value.replace(/\D/g, '').slice(0, 11)
-  if (d.length <= 3) return d
-  if (d.length <= 6) return `${d.slice(0, 3)}.${d.slice(3)}`
-  if (d.length <= 9) return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6)}`
-  return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6, 9)}-${d.slice(9)}`
-}
-
-function formatCEP(value: string): string {
-  const d = value.replace(/\D/g, '').slice(0, 8)
-  if (d.length <= 5) return d
-  return `${d.slice(0, 5)}-${d.slice(5)}`
-}
-
 // -- Types --
 
-interface EmployerForm {
+interface OnboardingForm {
   full_name: string
   cpf: string
   cep: string
@@ -42,9 +29,6 @@ interface EmployerForm {
   neighborhood: string
   city: string
   state: string
-}
-
-interface NotificationPrefs {
   notify_deadlines: boolean
   notify_updates: boolean
 }
@@ -53,16 +37,24 @@ const STEPS = [
   { label: 'Dados do empregador', icon: User },
   { label: 'Primeira empregada', icon: Users },
   { label: 'Notificações', icon: Bell },
-  { label: 'Conheca a LarDia', icon: Rocket },
-]
+  { label: 'Conheça a LarDia', icon: Rocket },
+] as const
 
 // -- Step Components --
 
+/**
+ * Employer personal info and address fields.
+ */
 function StepEmployerInfo({
-  form, setForm, cepLoading, onCepBlur
+  register,
+  watch,
+  setValue,
+  cepLoading,
+  onCepBlur,
 }: {
-  form: EmployerForm
-  setForm: (f: EmployerForm) => void
+  register: ReturnType<typeof useForm<OnboardingForm>>['register']
+  watch: ReturnType<typeof useForm<OnboardingForm>>['watch']
+  setValue: ReturnType<typeof useForm<OnboardingForm>>['setValue']
   cepLoading: boolean
   onCepBlur: () => void
 }) {
@@ -72,8 +64,7 @@ function StepEmployerInfo({
         <Label htmlFor="full_name">Nome completo</Label>
         <Input
           id="full_name"
-          value={form.full_name}
-          onChange={e => setForm({ ...form, full_name: e.target.value })}
+          {...register('full_name')}
           placeholder="Maria da Silva"
         />
       </div>
@@ -81,8 +72,8 @@ function StepEmployerInfo({
         <Label htmlFor="cpf">CPF</Label>
         <Input
           id="cpf"
-          value={form.cpf}
-          onChange={e => setForm({ ...form, cpf: formatCPF(e.target.value) })}
+          value={watch('cpf')}
+          onChange={e => setValue('cpf', formatCPF(e.target.value))}
           placeholder="000.000.000-00"
         />
       </div>
@@ -91,8 +82,8 @@ function StepEmployerInfo({
           <Label htmlFor="cep">CEP</Label>
           <Input
             id="cep"
-            value={form.cep}
-            onChange={e => setForm({ ...form, cep: formatCEP(e.target.value) })}
+            value={watch('cep')}
+            onChange={e => setValue('cep', formatCEP(e.target.value))}
             onBlur={onCepBlur}
             placeholder="00000-000"
           />
@@ -101,61 +92,39 @@ function StepEmployerInfo({
       </div>
       <div>
         <Label htmlFor="street">Rua</Label>
-        <Input
-          id="street"
-          value={form.street}
-          onChange={e => setForm({ ...form, street: e.target.value })}
-        />
+        <Input id="street" {...register('street')} />
       </div>
       <div className="grid grid-cols-2 gap-2">
         <div>
           <Label htmlFor="number">Número</Label>
-          <Input
-            id="number"
-            value={form.number}
-            onChange={e => setForm({ ...form, number: e.target.value })}
-          />
+          <Input id="number" {...register('number')} />
         </div>
         <div>
           <Label htmlFor="complement">Complemento</Label>
-          <Input
-            id="complement"
-            value={form.complement}
-            onChange={e => setForm({ ...form, complement: e.target.value })}
-          />
+          <Input id="complement" {...register('complement')} />
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2">
         <div className="col-span-1">
           <Label htmlFor="neighborhood">Bairro</Label>
-          <Input
-            id="neighborhood"
-            value={form.neighborhood}
-            onChange={e => setForm({ ...form, neighborhood: e.target.value })}
-          />
+          <Input id="neighborhood" {...register('neighborhood')} />
         </div>
         <div>
           <Label htmlFor="city">Cidade</Label>
-          <Input
-            id="city"
-            value={form.city}
-            onChange={e => setForm({ ...form, city: e.target.value })}
-          />
+          <Input id="city" {...register('city')} />
         </div>
         <div>
           <Label htmlFor="state">UF</Label>
-          <Input
-            id="state"
-            value={form.state}
-            onChange={e => setForm({ ...form, state: e.target.value })}
-            maxLength={2}
-          />
+          <Input id="state" {...register('state')} maxLength={2} />
         </div>
       </div>
     </div>
   )
 }
 
+/**
+ * Prompt to register the first domestic employee.
+ */
 function StepFirstEmployee() {
   return (
     <div className="space-y-4 text-center py-4">
@@ -178,19 +147,23 @@ function StepFirstEmployee() {
   )
 }
 
+/**
+ * Notification preference toggles.
+ */
 function StepNotifications({
-  prefs, setPrefs
+  watch,
+  setValue,
 }: {
-  prefs: NotificationPrefs
-  setPrefs: (p: NotificationPrefs) => void
+  watch: ReturnType<typeof useForm<OnboardingForm>>['watch']
+  setValue: ReturnType<typeof useForm<OnboardingForm>>['setValue']
 }) {
   return (
     <div className="space-y-6 py-4">
       <div className="flex items-start gap-3">
         <Checkbox
           id="notify_deadlines"
-          checked={prefs.notify_deadlines}
-          onCheckedChange={v => setPrefs({ ...prefs, notify_deadlines: !!v })}
+          checked={watch('notify_deadlines')}
+          onCheckedChange={v => setValue('notify_deadlines', !!v)}
         />
         <div>
           <Label htmlFor="notify_deadlines" className="font-medium">Prazos e vencimentos</Label>
@@ -202,13 +175,13 @@ function StepNotifications({
       <div className="flex items-start gap-3">
         <Checkbox
           id="notify_updates"
-          checked={prefs.notify_updates}
-          onCheckedChange={v => setPrefs({ ...prefs, notify_updates: !!v })}
+          checked={watch('notify_updates')}
+          onCheckedChange={v => setValue('notify_updates', !!v)}
         />
         <div>
           <Label htmlFor="notify_updates" className="font-medium">Novidades da LarDia</Label>
           <p className="text-sm text-muted-foreground">
-            Fique por dentro de novas funcionalidades e atualizacoes.
+            Fique por dentro de novas funcionalidades e atualizações.
           </p>
         </div>
       </div>
@@ -216,11 +189,14 @@ function StepNotifications({
   )
 }
 
+/**
+ * Quick tour of LarDia features.
+ */
 function StepTour() {
   const features = [
     { icon: '📊', title: 'Folha de pagamento', desc: 'Calcule salários com todos os descontos automaticamente.' },
     { icon: '🏖️', title: 'Férias', desc: 'Controle períodos de férias e calcule valores com precisão.' },
-    { icon: '🎄', title: '13o salário', desc: 'Cálculo automático das parcelas do décimo terceiro.' },
+    { icon: '🎄', title: '13º salário', desc: 'Cálculo automático das parcelas do décimo terceiro.' },
     { icon: '📅', title: 'Calendário', desc: 'Acompanhe prazos e datas importantes do eSocial.' },
     { icon: '📄', title: 'Rescisão', desc: 'Simulação completa de rescisão contratual.' },
   ]
@@ -228,7 +204,7 @@ function StepTour() {
   return (
     <div className="space-y-4 py-2">
       <p className="text-sm text-muted-foreground text-center mb-4">
-        Conhega as principais funcionalidades da LarDia:
+        Conheça as principais funcionalidades da LarDia:
       </p>
       {features.map(f => (
         <div key={f.title} className="flex items-start gap-3 p-3 rounded-lg border">
@@ -245,23 +221,63 @@ function StepTour() {
 
 // -- Main Page --
 
+/**
+ * Onboarding wizard page. Collects employer data, notification preferences,
+ * and presents a feature tour before redirecting to the dashboard.
+ */
 export default function OnboardingPage() {
   const router = useRouter()
   const [step, setStep] = useState(0)
-  const [saving, setSaving] = useState(false)
-  const { lookup: lookupCep, loading: cepLoading } = useCepLookup()
 
-  const [form, setForm] = useState<EmployerForm>({
-    full_name: '', cpf: '', cep: '', street: '', number: '',
-    complement: '', neighborhood: '', city: '', state: ''
+  const { register, watch, setValue, getValues, reset } = useForm<OnboardingForm>({
+    defaultValues: {
+      full_name: '', cpf: '', cep: '', street: '', number: '',
+      complement: '', neighborhood: '', city: '', state: '',
+      notify_deadlines: true, notify_updates: true,
+    },
   })
 
-  const [prefs, setPrefs] = useState<NotificationPrefs>({
-    notify_deadlines: true,
-    notify_updates: true,
-  })
+  const lookupCep = useCepLookup<OnboardingForm>(setValue)
+  const [cepLoading, setCepLoading] = useState(false)
 
-  // Load existing employer data if any
+  /** Upsert employer data to Supabase. */
+  const saveEmployer = useCallback(async (data: Partial<OnboardingForm> & { onboarding_completed?: boolean }) => {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('Usuário não autenticado')
+
+    const payload = {
+      full_name: data.full_name,
+      cpf: data.cpf?.replace(/\D/g, ''),
+      cep: data.cep?.replace(/\D/g, ''),
+      street: data.street,
+      number: data.number,
+      complement: data.complement,
+      neighborhood: data.neighborhood,
+      city: data.city,
+      state: data.state,
+      ...(data.notify_deadlines !== undefined && { notify_deadlines: data.notify_deadlines }),
+      ...(data.notify_updates !== undefined && { notify_updates: data.notify_updates }),
+      ...(data.onboarding_completed !== undefined && { onboarding_completed: data.onboarding_completed }),
+    }
+
+    const { data: existing } = await supabase
+      .from('employers')
+      .select('id')
+      .eq('user_id', user.id)
+      .single()
+
+    const { error } = existing
+      ? await supabase.from('employers').update(payload).eq('user_id', user.id)
+      : await supabase.from('employers').insert({ ...payload, user_id: user.id })
+
+    if (error) throw new Error(error.message)
+    return true
+  }, [])
+
+  const { execute: executeSave, loading: saving } = useApi(saveEmployer as (...args: unknown[]) => Promise<boolean>)
+
+  // Load existing employer data
   useEffect(() => {
     async function load() {
       const supabase = createClient()
@@ -273,7 +289,7 @@ export default function OnboardingPage() {
         .eq('user_id', user.id)
         .single()
       if (data) {
-        setForm({
+        reset({
           full_name: data.full_name || '',
           cpf: data.cpf || '',
           cep: data.cep || '',
@@ -283,130 +299,56 @@ export default function OnboardingPage() {
           neighborhood: data.neighborhood || '',
           city: data.city || '',
           state: data.state || '',
-        })
-        setPrefs({
           notify_deadlines: data.notify_deadlines ?? true,
           notify_updates: data.notify_updates ?? true,
         })
       }
     }
     load()
-  }, [])
+  }, [reset])
 
-  // ViaCEP lookup
+  /** Handle CEP blur to auto-fill address fields. */
   async function handleCepBlur() {
-    const result = await lookupCep(form.cep)
-    if (result) {
-      setForm(prev => ({
-        ...prev,
-        street: result.street || prev.street,
-        neighborhood: result.neighborhood || prev.neighborhood,
-        city: result.city || prev.city,
-        state: result.state || prev.state,
-      }))
+    setCepLoading(true)
+    try {
+      await lookupCep(getValues('cep'))
+    } finally {
+      setCepLoading(false)
     }
   }
 
+  /** Finish onboarding: save all data and redirect to dashboard. */
   async function handleFinish() {
-    setSaving(true)
-    try {
-      const supabase = createClient()
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
-
-      // Try update first (if employer already exists), then insert
-      const { data: existing } = await supabase
-        .from('employers')
-        .select('id')
-        .eq('user_id', user.id)
-        .single()
-
-      const employerData = {
-        full_name: form.full_name,
-        cpf: form.cpf.replace(/\D/g, ''),
-        cep: form.cep.replace(/\D/g, ''),
-        street: form.street,
-        number: form.number,
-        complement: form.complement,
-        neighborhood: form.neighborhood,
-        city: form.city,
-        state: form.state,
-        notify_deadlines: prefs.notify_deadlines,
-        notify_updates: prefs.notify_updates,
-        onboarding_completed: true,
-      }
-
-      let error
-      if (existing) {
-        const result = await supabase
-          .from('employers')
-          .update(employerData)
-          .eq('user_id', user.id)
-        error = result.error
-      } else {
-        const result = await supabase
-          .from('employers')
-          .insert({ ...employerData, user_id: user.id })
-        error = result.error
-      }
-
-      if (error) {
-        console.error('Onboarding save error:', error)
-        alert('Erro ao salvar: ' + error.message)
-        return
-      }
-
+    const values = getValues()
+    const result = await executeSave({ ...values, onboarding_completed: true } as any)
+    if (result) {
       router.push('/dashboard')
       router.refresh()
-    } finally {
-      setSaving(false)
     }
   }
 
-  const isStep1Valid = form.full_name.trim().length > 0 && form.cpf.replace(/\D/g, '').length === 11
+  /** Save employer data when leaving step 0. */
+  async function handleNextFromStep0() {
+    const values = getValues()
+    await executeSave(values as any)
+    setStep(s => s + 1)
+  }
+
+  const fullName = watch('full_name')
+  const cpf = watch('cpf')
+  const isStep1Valid = fullName.trim().length > 0 && cpf.replace(/\D/g, '').length === 11
   const canNext = step === 0 ? isStep1Valid : true
   const isLast = step === STEPS.length - 1
-
-  // Save employer data when leaving step 1 (so it persists even if user navigates away)
-  async function saveEmployerData() {
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return
-
-    const { data: existing } = await supabase
-      .from('employers')
-      .select('id')
-      .eq('user_id', user.id)
-      .single()
-
-    const employerData = {
-      full_name: form.full_name,
-      cpf: form.cpf.replace(/\D/g, ''),
-      cep: form.cep.replace(/\D/g, ''),
-      street: form.street,
-      number: form.number,
-      complement: form.complement,
-      neighborhood: form.neighborhood,
-      city: form.city,
-      state: form.state,
-    }
-
-    if (existing) {
-      await supabase.from('employers').update(employerData).eq('user_id', user.id)
-    } else {
-      await supabase.from('employers').insert({ ...employerData, user_id: user.id })
-    }
-  }
 
   return (
     <div>
       <Card className="w-full max-w-lg">
         <CardHeader>
-          <CardTitle className="text-xl">Bem-vindo a LarDia!</CardTitle>
+          <CardTitle className="text-xl">Bem-vindo à LarDia!</CardTitle>
           <CardDescription>Vamos configurar sua conta em poucos passos.</CardDescription>
-          {/* Progress */}
+          {/* Progress bar */}
           <div className="flex gap-1 pt-3">
-            {STEPS.map((s, i) => (
+            {STEPS.map((_, i) => (
               <div
                 key={i}
                 className={`h-1.5 flex-1 rounded-full transition-colors ${
@@ -423,14 +365,15 @@ export default function OnboardingPage() {
         <CardContent>
           {step === 0 && (
             <StepEmployerInfo
-              form={form}
-              setForm={setForm}
+              register={register}
+              watch={watch}
+              setValue={setValue}
               cepLoading={cepLoading}
               onCepBlur={handleCepBlur}
             />
           )}
           {step === 1 && <StepFirstEmployee />}
-          {step === 2 && <StepNotifications prefs={prefs} setPrefs={setPrefs} />}
+          {step === 2 && <StepNotifications watch={watch} setValue={setValue} />}
           {step === 3 && <StepTour />}
 
           {/* Navigation */}
@@ -449,10 +392,10 @@ export default function OnboardingPage() {
                 Concluir
               </Button>
             ) : (
-              <Button onClick={async () => {
-                if (step === 0) await saveEmployerData()
-                setStep(s => s + 1)
-              }} disabled={!canNext}>
+              <Button
+                onClick={step === 0 ? handleNextFromStep0 : () => setStep(s => s + 1)}
+                disabled={!canNext}
+              >
                 Próximo
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
