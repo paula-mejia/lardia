@@ -99,31 +99,34 @@ export default function PricingSection() {
 
         {/* Mensal / Anual toggle */}
         <div className="flex items-center justify-center gap-3 mb-10">
-          <button
-            type="button"
-            onClick={() => setIsAnual(false)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              !isAnual
-                ? 'bg-emerald-500 text-white'
-                : 'bg-gray-100 text-muted-foreground hover:bg-gray-200'
-            }`}
+          <span
+            className={`text-sm font-medium ${!isAnual ? 'text-foreground' : 'text-muted-foreground'}`}
           >
             Mensal
-          </button>
+          </span>
           <button
             type="button"
-            onClick={() => setIsAnual(true)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
-              isAnual
-                ? 'bg-emerald-500 text-white'
-                : 'bg-gray-100 text-muted-foreground hover:bg-gray-200'
+            role="switch"
+            aria-checked={isAnual}
+            onClick={() => setIsAnual(!isAnual)}
+            className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              isAnual ? 'bg-emerald-500' : 'bg-muted-foreground/30'
             }`}
           >
-            Anual
-            <span className={`text-xs font-bold ${isAnual ? 'text-emerald-100' : 'text-emerald-600'}`}>
-              -20%
-            </span>
+            <span
+              className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition-transform ${
+                isAnual ? 'translate-x-5' : 'translate-x-0'
+              }`}
+            />
           </button>
+          <span
+            className={`text-sm font-medium ${isAnual ? 'text-foreground' : 'text-muted-foreground'}`}
+          >
+            Anual
+          </span>
+          <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">
+            -20%
+          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
