@@ -1,5 +1,4 @@
 import { Receipt, FileText, Bell, HeadphonesIcon } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 
 const features = [
   {
@@ -30,32 +29,31 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-200">
+    <section className="bg-emerald-950 py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto text-center mb-14">
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
           Tudo chega no seu WhatsApp
         </h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+        <p className="text-emerald-200/70 text-lg max-w-2xl mx-auto">
           Você não precisa entrar na plataforma. A LarDia faz tudo e te avisa
           pelo WhatsApp.
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         {features.map((f) => (
-          <Card key={f.title} className="border shadow-sm">
-            <CardContent className="pt-6">
-              <div className="h-10 w-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-3">
-                <f.icon className="h-5 w-5 text-emerald-500 dark:text-emerald-400" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                {f.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {f.description}
-              </p>
-            </CardContent>
-          </Card>
+          <div
+            key={f.title}
+            className="rounded-xl border-2 border-emerald-700/50 bg-emerald-900/40 p-6 backdrop-blur-sm"
+          >
+            <f.icon className="h-8 w-8 text-emerald-400 mb-4" />
+            <h3 className="text-lg font-semibold text-white mb-2">
+              {f.title}
+            </h3>
+            <p className="text-emerald-200/60 text-sm leading-relaxed">
+              {f.description}
+            </p>
+          </div>
         ))}
       </div>
     </section>
