@@ -7,25 +7,36 @@ import { Card, CardContent } from '@/components/ui/card'
 import { CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 
-const plans = [
+const ANNUAL_DISCOUNT = 0.20 // 20% off
+
+interface Plan {
+  name: string
+  monthlyPrice: number // 0 for free
+  subtitle: string
+  features: string[]
+  cta: string
+  href: string
+  highlighted: boolean
+  solid: boolean
+}
+
+const plans: Plan[] = [
   {
     name: 'Grátis',
-    price: '0',
-    period: 'para sempre',
+    monthlyPrice: 0,
     subtitle: '',
     features: [
       'Calculadoras de folha, férias, 13º e rescisão',
       'Tabelas atualizadas 2026',
     ],
     cta: 'Usar calculadoras',
-    href: '/calculadora',
+    href: '/simulador',
     highlighted: false,
     solid: false,
   },
   {
     name: 'Básico',
-    price: '29,90',
-    period: '/mês',
+    monthlyPrice: 29.90,
     subtitle: 'Para quem quer organizar',
     features: [
       'Tudo do plano Grátis',
@@ -42,8 +53,7 @@ const plans = [
   },
   {
     name: 'Completo',
-    price: '49,90',
-    period: '/mês',
+    monthlyPrice: 49.90,
     subtitle: 'Tranquilidade total',
     features: [
       'Tudo do plano Básico',
@@ -60,6 +70,16 @@ const plans = [
     solid: true,
   },
 ]
+
+function formatPrice(value: number): string {
+  const [intPart, decPart] = value.toFixed(2).split('.')
+  return `${intPart},${decPart}`
+}
+
+function formatPriceInt(value: number): { integer: string; decimal: string } {
+  const [intPart, decPart] = value.toFixed(2).split('.')
+  return { integer: intPart, decimal: decPart }
+}
 
 export default function PricingSection() {
   const [isAnual, setIsAnual] = useState(false)
@@ -79,120 +99,153 @@ export default function PricingSection() {
 
         {/* Mensal / Anual toggle */}
         <div className="flex items-center justify-center gap-3 mb-10">
-          <span
-            className={`text-sm font-medium ${!isAnual ? 'text-foreground' : 'text-muted-foreground'}`}
-          >
-            Mensal
-          </span>
           <button
             type="button"
-            role="switch"
-            aria-checked={isAnual}
-            onClick={() => setIsAnual(!isAnual)}
-            className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-              isAnual ? 'bg-emerald-500' : 'bg-muted-foreground/30'
+            onClick={() => setIsAnual(false)}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              !isAnual
+                ? 'bg-emerald-500 text-white'
+                : 'bg-gray-100 text-muted-foreground hover:bg-gray-200'
             }`}
           >
-            <span
-              className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition-transform ${
-                isAnual ? 'translate-x-5' : 'translate-x-0'
-              }`}
-            />
+            Mensal
           </button>
-          <span
-            className={`text-sm font-medium ${isAnual ? 'text-foreground' : 'text-muted-foreground'}`}
+          <button
+            type="button"
+            onClick={() => setIsAnual(true)}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
+              isAnual
+                ? 'bg-emerald-500 text-white'
+                : 'bg-gray-100 text-muted-foreground hover:bg-gray-200'
+            }`}
           >
             Anual
-          </span>
+            <span className={`text-xs font-bold ${isAnual ? 'text-emerald-100' : 'text-emerald-600'}`}>
+              -20%
+            </span>
+          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
-          {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={`shadow-sm relative ${
-                plan.highlighted
-                  ? 'border-2 border-emerald-500 shadow-lg'
-                  : 'border'
-              }`}
-            >
-              {plan.highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <Badge className="bg-emerald-500 text-white hover:bg-emerald-500 uppercase text-xs tracking-wide">
-                    Mais Popular
-                  </Badge>
-                </div>
-              )}
-              <CardContent className="pt-8 pb-8">
-                <p
-                  className={`text-sm font-medium uppercase tracking-wide mb-1 ${
-                    plan.highlighted
-                      ? 'text-emerald-500 dark:text-emerald-400'
-                      : 'text-muted-foreground'
-                  }`}
-                >
-                  {plan.name}
-                </p>
-                {plan.subtitle && (
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {plan.subtitle}
-                  </p>
+          {plans.map((plan) => {
+            const isFree = plan.monthlyPrice === 0
+            const effectiveMonthly = isAnual && !isFree
+              ? Math.round(plan.monthlyPrice * (1 - ANNUAL_DISCOUNT) * 100) / 100
+              : plan.monthlyPrice
+            const annualTotal = isAnual && !isFree
+              ? Math.round(effectiveMonthly * 12 * 100) / 100
+              : 0
+            const { integer, decimal } = isFree
+              ? { integer: '0', decimal: '00' }
+              : formatPriceInt(effectiveMonthly)
+
+            return (
+              <Card
+                key={plan.name}
+                className={`shadow-sm relative ${
+                  plan.highlighted
+                    ? 'border-2 border-emerald-500 shadow-lg'
+                    : 'border'
+                }`}
+              >
+                {plan.highlighted && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <Badge className="bg-emerald-500 text-white hover:bg-emerald-500 uppercase text-xs tracking-wide">
+                      Mais Popular
+                    </Badge>
+                  </div>
                 )}
-                {!plan.subtitle && <div className="mb-4" />}
-
-                <div className="flex items-baseline justify-center gap-1 mb-1">
-                  <span className="text-sm text-muted-foreground">R$</span>
-                  <span className="text-5xl font-bold">{plan.price}</span>
-                  {plan.period !== 'para sempre' && (
-                    <span className="text-muted-foreground">{plan.period}</span>
-                  )}
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">
-                  {plan.period === 'para sempre' ? 'para sempre' : ''}
-                </p>
-
-                {isAnual && plan.price !== '0' && (
-                  <p className="text-xs text-emerald-600 font-medium mb-4 text-center">
-                    Em breve
-                  </p>
+                {isAnual && !isFree && (
+                  <div className="absolute -top-3 right-4">
+                    <Badge variant="outline" className="bg-white text-emerald-600 border-emerald-300 text-xs">
+                      Economize 20%
+                    </Badge>
+                  </div>
                 )}
-
-                <ul className="text-left space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <CheckCircle className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
-                      {feature === '1 verificação de antecedentes inclusa' ? (
-                        <Link href="/verificacao-antecedentes" className="underline underline-offset-2 hover:text-emerald-600">
-                          {feature}
-                        </Link>
-                      ) : (
-                        feature
-                      )}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link href={plan.href}>
-                  <Button
-                    variant={plan.solid ? 'default' : 'outline'}
-                    size="lg"
-                    className={`w-full text-base ${
-                      plan.solid
-                        ? 'bg-emerald-500 hover:bg-emerald-600 text-white'
-                        : ''
+                <CardContent className="pt-8 pb-8">
+                  <p
+                    className={`text-sm font-medium uppercase tracking-wide mb-1 ${
+                      plan.highlighted
+                        ? 'text-emerald-500 dark:text-emerald-400'
+                        : 'text-muted-foreground'
                     }`}
                   >
-                    {plan.cta}
-                  </Button>
-                </Link>
-                {plan.highlighted && (
-                  <p className="text-xs text-muted-foreground mt-3 text-center">
-                    7 dias grátis · Cancele quando quiser
+                    {plan.name}
                   </p>
-                )}
-              </CardContent>
-            </Card>
-          ))}
+                  {plan.subtitle && (
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {plan.subtitle}
+                    </p>
+                  )}
+                  {!plan.subtitle && <div className="mb-4" />}
+
+                  {/* Price display */}
+                  <div className="text-center mb-1">
+                    {isAnual && !isFree && (
+                      <p className="text-sm text-muted-foreground line-through mb-1">
+                        R$ {formatPrice(plan.monthlyPrice)}/mês
+                      </p>
+                    )}
+                    <div className="flex items-baseline justify-center gap-0.5">
+                      <span className="text-sm text-muted-foreground">R$</span>
+                      <span className="text-5xl font-bold">{integer}</span>
+                      <span className="text-xl font-bold">,{decimal}</span>
+                      {!isFree && (
+                        <span className="text-muted-foreground ml-1">/mês</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Annual total or free label */}
+                  <div className="text-center mb-6 min-h-[2.5rem]">
+                    {isFree ? (
+                      <p className="text-sm text-muted-foreground">para sempre</p>
+                    ) : isAnual ? (
+                      <p className="text-sm text-muted-foreground">
+                        Pague <span className="font-semibold text-foreground">R$ {formatPrice(annualTotal)}</span> à vista (pix/boleto/cartão)
+                      </p>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">&nbsp;</p>
+                    )}
+                  </div>
+
+                  <ul className="text-left space-y-3 mb-8">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <CheckCircle className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
+                        {feature === '1 verificação de antecedentes inclusa' ? (
+                          <Link href="/verificacao-antecedentes" className="underline underline-offset-2 hover:text-emerald-600">
+                            {feature}
+                          </Link>
+                        ) : (
+                          feature
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link href={plan.href}>
+                    <Button
+                      variant={plan.solid ? 'default' : 'outline'}
+                      size="lg"
+                      className={`w-full text-base ${
+                        plan.solid
+                          ? 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                          : ''
+                      }`}
+                    >
+                      {plan.cta}
+                    </Button>
+                  </Link>
+                  {plan.highlighted && (
+                    <p className="text-xs text-muted-foreground mt-3 text-center">
+                      7 dias grátis · Cancele quando quiser
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>
