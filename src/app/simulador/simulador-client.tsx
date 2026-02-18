@@ -169,6 +169,7 @@ function CostBar({ items, total }: { items: BarItem[]; total: number }) {
 export default function SimuladorClient() {
   const [salaryInput, setSalaryInput] = useState('1621')
   const [view, setView] = useState<'monthly' | 'annual'>('monthly')
+  const [includeVT, setIncludeVT] = useState(false)
   const salary = useMemo(() => {
     const parsed = parseFloat(salaryInput.replace(/\./g, '').replace(',', '.'))
     return isNaN(parsed) || parsed <= 0 ? 0 : parsed
@@ -299,6 +300,15 @@ export default function SimuladorClient() {
               <p className="text-xs text-muted-foreground mt-2">
                 Salário mínimo 2026: {formatBRL(minimumWage)}
               </p>
+              <label className="flex items-center gap-2 mt-4 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={includeVT}
+                  onChange={(e) => setIncludeVT(e.target.checked)}
+                  className="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+                />
+                <span className="text-sm">Desconta Vale Transporte (6%)</span>
+              </label>
             </CardContent>
           </Card>
         </div>
@@ -326,7 +336,7 @@ export default function SimuladorClient() {
                     <Card className="border shadow-sm bg-emerald-50 dark:bg-emerald-950/20">
                       <CardContent className="pt-6 text-center">
                         <p className="text-sm text-muted-foreground mb-1">Salário Líquido</p>
-                        <p className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{formatBRL(monthly.netSalary)}</p>
+                        <p className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{formatBRL(includeVT ? round(monthly.netSalary - monthly.grossSalary * 0.06) : monthly.netSalary)}</p>
                       </CardContent>
                     </Card>
                     <Card className="border shadow-sm bg-sky-50 dark:bg-sky-950/20">
@@ -360,13 +370,13 @@ export default function SimuladorClient() {
                           <div className="space-y-2">
                             <Row label="INSS (progressivo)" value={monthly.inssEmployee} />
                             <Row label="IRRF (Lei 15.270/2025)" value={monthly.irrfEmployee} />
-                            <Row label="Vale Transporte (6%)" value={round(monthly.grossSalary * 0.06)} />
+                            {includeVT && <Row label="Vale Transporte (6%)" value={round(monthly.grossSalary * 0.06)} />}
                           </div>
                         </div>
                         <Separator />
                         <div className="flex justify-between items-center py-1">
                           <span className="font-semibold">Salário Líquido</span>
-                          <span className="font-semibold text-emerald-500 dark:text-emerald-400">{formatBRL(monthly.netSalary)}</span>
+                          <span className="font-semibold text-emerald-500 dark:text-emerald-400">{formatBRL(includeVT ? round(monthly.netSalary - monthly.grossSalary * 0.06) : monthly.netSalary)}</span>
                         </div>
                         <Separator />
                         <div>
