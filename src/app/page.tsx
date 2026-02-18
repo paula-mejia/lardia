@@ -1,6 +1,7 @@
 import Navbar from '@/components/landing/navbar'
 import HeroSection from '@/components/landing/hero-section'
 import ProblemSection from '@/components/landing/problem-section'
+import HowItWorksSection from '@/components/landing/how-it-works-section'
 import EsocialSection from '@/components/landing/esocial-section'
 import CalculatorSection from '@/components/landing/calculator-section'
 import FeaturesSection from '@/components/landing/features-section'
@@ -104,6 +105,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <ProblemSection />
+      <HowItWorksSection />
       <EsocialSection />
       <FeaturesSection />
       <CalculatorSection />
