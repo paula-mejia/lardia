@@ -156,9 +156,9 @@ export default function PricingSection() {
                   </div>
                 )}
                 {isAnual && !isFree && (
-                  <div className="absolute -top-3 right-4">
+                  <div className="absolute top-2 right-3">
                     <Badge variant="outline" className="bg-white text-emerald-600 border-emerald-300 text-xs">
-                      Economize 20%
+                      🔥 Economize 20%
                     </Badge>
                   </div>
                 )}
