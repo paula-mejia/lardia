@@ -458,7 +458,7 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
             </CardHeader>
             <CardContent className="space-y-1">
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
-                Vencimentos
+                Salário Bruto
               </p>
               <ResultRow label="Salário bruto" value={result.grossSalary} variant="earning" />
               {result.overtimePay > 0 && (
@@ -476,7 +476,7 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
               <Separator className="my-3" />
 
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
-                Descontos
+                Encargos do Empregado
               </p>
               <div>
                 <div

@@ -359,18 +359,28 @@ export default function SimuladorClient() {
                       <h2 className="text-lg font-semibold mb-4">Folha mensal detalhada</h2>
                       <div className="space-y-6">
                         <div>
-                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Vencimentos</h3>
+                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Salário Bruto</h3>
                           <div className="space-y-2">
                             <Row label="Salário Bruto" value={monthly.grossSalary} />
                           </div>
                         </div>
                         <Separator />
+                        {includeVT && (
+                          <>
+                            <div>
+                              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Descontos do Empregado</h3>
+                              <div className="space-y-2">
+                                <Row label="Vale Transporte (6%)" value={round(monthly.grossSalary * 0.06)} />
+                              </div>
+                            </div>
+                            <Separator />
+                          </>
+                        )}
                         <div>
-                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Descontos do empregado</h3>
+                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Encargos do Empregado</h3>
                           <div className="space-y-2">
                             <Row label="INSS (progressivo)" value={monthly.inssEmployee} />
                             <Row label="IRRF (Lei 15.270/2025)" value={monthly.irrfEmployee} />
-                            {includeVT && <Row label="Vale Transporte (6%)" value={round(monthly.grossSalary * 0.06)} />}
                           </div>
                         </div>
                         <Separator />
@@ -380,7 +390,7 @@ export default function SimuladorClient() {
                         </div>
                         <Separator />
                         <div>
-                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Encargos do empregador</h3>
+                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Encargos do Empregador</h3>
                           <div className="space-y-2">
                             <Row label="INSS Patronal (8%)" value={monthly.inssEmployer} />
                             <Row label="GILRAT (0,8%)" value={monthly.gilrat} />

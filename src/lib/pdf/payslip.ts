@@ -118,8 +118,8 @@ export function generatePayslipPDF(data: PayslipData): void {
   drawThickLine(y)
   y += 3
 
-  // -- Earnings section --
-  addSectionTitle('VENCIMENTOS')
+  // -- Gross salary section --
+  addSectionTitle('SALÁRIO BRUTO')
   addRow('Salário bruto', b.grossSalary)
   if (b.overtimePay > 0) {
     addRow('Horas extras', b.overtimePay)
@@ -129,31 +129,37 @@ export function generatePayslipPDF(data: PayslipData): void {
   }
   y += 1
   drawLine(y)
-  y += 5
-  addRow('Total de vencimentos', b.totalEarnings, true)
-  y += 1
-  drawLine(y)
   y += 3
 
-  // -- Deductions section --
-  addSectionTitle('DESCONTOS')
+  // -- Employee discounts (VT etc.) --
+  // VT is a voluntary employer benefit, not an encargo
+  const hasVTOrOtherDiscounts = b.absenceDeduction > 0 || b.dsrDeduction > 0 || b.otherDeductions > 0
+  if (hasVTOrOtherDiscounts) {
+    addSectionTitle('DESCONTOS DO EMPREGADO')
+    if (b.absenceDeduction > 0) {
+      addRow('Desconto de faltas', b.absenceDeduction)
+    }
+    if (b.dsrDeduction > 0) {
+      addRow('DSR descontado', b.dsrDeduction)
+    }
+    if (b.otherDeductions > 0) {
+      addRow('Outros descontos', b.otherDeductions)
+    }
+    y += 1
+    drawLine(y)
+    y += 3
+  }
+
+  // -- Employee charges (INSS, IRRF) --
+  addSectionTitle('ENCARGOS DO EMPREGADO')
   addRow('INSS (contribuição)', b.inssEmployee)
   if (b.irrfEmployee > 0) {
     addRow('IRRF', b.irrfEmployee)
   }
-  if (b.absenceDeduction > 0) {
-    addRow('Desconto de faltas', b.absenceDeduction)
-  }
-  if (b.dsrDeduction > 0) {
-    addRow('DSR descontado', b.dsrDeduction)
-  }
-  if (b.otherDeductions > 0) {
-    addRow('Outros descontos', b.otherDeductions)
-  }
   y += 1
   drawLine(y)
   y += 5
-  addRow('Total de descontos', b.totalDeductions, true)
+  addRow('Total de encargos do empregado', b.inssEmployee + b.irrfEmployee, true)
   y += 1
   drawThickLine(y)
   y += 6
@@ -168,7 +174,7 @@ export function generatePayslipPDF(data: PayslipData): void {
   y += 6
 
   // -- Employer costs section --
-  addSectionTitle('ENCARGOS DO EMPREGADOR (NÃO DESCONTADOS DO SALÁRIO)')
+  addSectionTitle('ENCARGOS DO EMPREGADOR')
   addRow('INSS patronal (8%)', b.inssEmployer)
   addRow('GILRAT (0,8%)', b.gilrat)
   addRow('FGTS (8%)', b.fgtsMonthly)

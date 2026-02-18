@@ -178,7 +178,7 @@ export default function FeriasCalculatorClient() {
               )}
               <Separator className="my-3" />
 
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">Descontos</p>
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">Encargos do Empregado</p>
               <ResultRow label="INSS" value={result.inssEmployee} variant="deduction" tip={`Base: ${formatBRL(result.inssBase)}`} />
               {result.irrfEmployee > 0 && (
                 <ResultRow label="IRRF" value={result.irrfEmployee} variant="deduction" tip={`Base: ${formatBRL(result.irrfBase)}`} />
@@ -187,7 +187,7 @@ export default function FeriasCalculatorClient() {
               <Separator className="my-3" />
 
               <ResultRow label="Total bruto" value={result.totalGross} bold />
-              <ResultRow label="Total descontos" value={result.totalDeductions} variant="deduction" bold />
+              <ResultRow label="Total encargos" value={result.totalDeductions} variant="deduction" bold />
 
               <Separator className="my-3" />
 

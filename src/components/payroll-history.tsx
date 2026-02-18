@@ -63,22 +63,29 @@ function DetailRow({ label, value, variant }: { label: string; value: number; va
 function CalculationDetail({ record }: { record: PayrollRecord }) {
   return (
     <div className="space-y-3 pt-3">
-      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Vencimentos</p>
+      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Salário Bruto</p>
       <DetailRow label="Salário bruto" value={record.gross_salary} variant="earning" />
       {record.overtime_pay > 0 && <DetailRow label="Horas extras" value={record.overtime_pay} variant="earning" />}
 
+      {(record.absence_deduction > 0 || record.dsr_deduction > 0) && (
+        <>
+          <Separator />
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Descontos do Empregado</p>
+          {record.absence_deduction > 0 && <DetailRow label="Faltas" value={record.absence_deduction} variant="deduction" />}
+          {record.dsr_deduction > 0 && <DetailRow label="DSR descontado" value={record.dsr_deduction} variant="deduction" />}
+        </>
+      )}
+
       <Separator />
-      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Descontos</p>
+      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Encargos do Empregado</p>
       <DetailRow label="INSS (contribuição)" value={record.inss_employee} variant="deduction" />
       {record.irrf > 0 && <DetailRow label="IRRF" value={record.irrf} variant="deduction" />}
-      {record.absence_deduction > 0 && <DetailRow label="Faltas" value={record.absence_deduction} variant="deduction" />}
-      {record.dsr_deduction > 0 && <DetailRow label="DSR descontado" value={record.dsr_deduction} variant="deduction" />}
 
       <Separator />
       <DetailRow label="Salário líquido" value={record.net_salary} variant="highlight" />
 
       <Separator />
-      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Guia DAE (empregador)</p>
+      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Encargos do Empregador</p>
       <DetailRow label="INSS patronal (8%)" value={record.inss_employer} />
       <DetailRow label="GILRAT (0,8%)" value={record.gilrat} />
       <DetailRow label="FGTS (8%)" value={record.fgts_monthly} />
