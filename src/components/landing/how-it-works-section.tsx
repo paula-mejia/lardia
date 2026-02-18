@@ -51,10 +51,10 @@ export default function HowItWorksSection() {
             >
               {/* Icon with number badge */}
               <div className="relative mx-auto mb-4 w-fit">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-                  <s.icon className="h-7 w-7 text-emerald-500" />
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 border-2 border-emerald-200">
+                  <s.icon className="h-8 w-8 text-emerald-500" strokeWidth={1.5} />
                 </div>
-                <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-white text-xs font-bold shadow-sm">
+                <span className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-white text-sm font-bold shadow-sm ring-2 ring-white">
                   {s.step}
                 </span>
               </div>
