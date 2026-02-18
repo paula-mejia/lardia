@@ -72,7 +72,7 @@ export default function HowItWorksSection() {
         {/* CTA */}
         <div className="text-center">
           <Link href="/signup">
-            <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white text-base px-8">
+            <Button size="lg" className="bg-gray-900 hover:bg-gray-800 text-white text-base px-8">
               Começar agora — é grátis <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
