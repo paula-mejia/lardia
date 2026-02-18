@@ -17,6 +17,8 @@ import {
   PieChart,
 } from 'lucide-react'
 import { CURRENT_TAX_TABLE } from '@/lib/calc/tax-tables'
+import { calculatePayroll } from '@/lib/calc/payroll'
+import { cn } from '@/lib/utils'
 
 // ---- Calculation helpers ----
 
@@ -166,12 +168,14 @@ function CostBar({ items, total }: { items: BarItem[]; total: number }) {
 
 export default function SimuladorClient() {
   const [salaryInput, setSalaryInput] = useState('1621')
+  const [view, setView] = useState<'monthly' | 'annual'>('monthly')
   const salary = useMemo(() => {
     const parsed = parseFloat(salaryInput.replace(/\./g, '').replace(',', '.'))
     return isNaN(parsed) || parsed <= 0 ? 0 : parsed
   }, [salaryInput])
 
   const cost = useMemo(() => (salary > 0 ? calculateAnnualCost(salary) : null), [salary])
+  const monthly = useMemo(() => (salary > 0 ? calculatePayroll({ grossSalary: salary }) : null), [salary])
 
   const minimumWage = CURRENT_TAX_TABLE.minimumWage
   const salaryMultiple = cost ? (cost.totalAnnual / minimumWage).toFixed(1) : '0'
@@ -301,8 +305,100 @@ export default function SimuladorClient() {
       </section>
 
       {/* Results */}
-      {cost && salary > 0 && (
+      {salary > 0 && (
         <>
+          {/* View toggle */}
+          <section className="pb-4">
+            <div className="container mx-auto px-4 max-w-lg">
+              <div className="flex bg-muted rounded-lg p-1 max-w-xs">
+                <button className={cn("flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors", view === 'monthly' ? "bg-background shadow-sm" : "text-muted-foreground")} onClick={() => setView('monthly')}>Mensal</button>
+                <button className={cn("flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors", view === 'annual' ? "bg-background shadow-sm" : "text-muted-foreground")} onClick={() => setView('annual')}>Anual</button>
+              </div>
+            </div>
+          </section>
+
+          {/* Monthly view */}
+          {view === 'monthly' && monthly && (
+            <>
+              <section className="pb-8 md:pb-12">
+                <div className="container mx-auto px-4 max-w-4xl">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                    <Card className="border shadow-sm bg-emerald-50 dark:bg-emerald-950/20">
+                      <CardContent className="pt-6 text-center">
+                        <p className="text-sm text-muted-foreground mb-1">Salário Líquido</p>
+                        <p className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{formatBRL(monthly.netSalary)}</p>
+                      </CardContent>
+                    </Card>
+                    <Card className="border shadow-sm bg-sky-50 dark:bg-sky-950/20">
+                      <CardContent className="pt-6 text-center">
+                        <p className="text-sm text-muted-foreground mb-1">Total DAE</p>
+                        <p className="text-2xl md:text-3xl font-bold text-sky-700 dark:text-sky-400">{formatBRL(monthly.daeTotal)}</p>
+                      </CardContent>
+                    </Card>
+                    <Card className="border shadow-sm bg-violet-50 dark:bg-violet-950/20">
+                      <CardContent className="pt-6 text-center">
+                        <p className="text-sm text-muted-foreground mb-1">Custo Total Mensal</p>
+                        <p className="text-2xl md:text-3xl font-bold text-violet-700 dark:text-violet-400">{formatBRL(monthly.totalEmployerCost)}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Detailed breakdown */}
+                  <Card className="border shadow-sm mb-6">
+                    <CardContent className="pt-6">
+                      <h2 className="text-lg font-semibold mb-4">Folha mensal detalhada</h2>
+                      <div className="space-y-6">
+                        <div>
+                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Vencimentos</h3>
+                          <div className="space-y-2">
+                            <Row label="Salário Bruto" value={monthly.grossSalary} />
+                          </div>
+                        </div>
+                        <Separator />
+                        <div>
+                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Descontos do empregado</h3>
+                          <div className="space-y-2">
+                            <Row label="INSS (progressivo)" value={monthly.inssEmployee} />
+                            <Row label="IRRF (Lei 15.270/2025)" value={monthly.irrfEmployee} />
+                            <Row label="Vale Transporte (6%)" value={round(monthly.grossSalary * 0.06)} />
+                          </div>
+                        </div>
+                        <Separator />
+                        <div className="flex justify-between items-center py-1">
+                          <span className="font-semibold">Salário Líquido</span>
+                          <span className="font-semibold text-emerald-500 dark:text-emerald-400">{formatBRL(monthly.netSalary)}</span>
+                        </div>
+                        <Separator />
+                        <div>
+                          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">Encargos do empregador</h3>
+                          <div className="space-y-2">
+                            <Row label="INSS Patronal (8%)" value={monthly.inssEmployer} />
+                            <Row label="GILRAT (0,8%)" value={monthly.gilrat} />
+                            <Row label="FGTS (8%)" value={monthly.fgtsMonthly} />
+                            <Row label="Antecipação Rescisória (3,2%)" value={monthly.fgtsAnticipation} />
+                          </div>
+                        </div>
+                        <Separator />
+                        <div className="flex justify-between items-center py-1">
+                          <span className="font-semibold">Total DAE</span>
+                          <span className="font-semibold text-sky-600 dark:text-sky-400">{formatBRL(monthly.daeTotal)}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2">
+                          <span className="text-lg font-bold">Custo Total Mensal</span>
+                          <span className="text-lg font-bold text-emerald-500 dark:text-emerald-400">{formatBRL(monthly.totalEmployerCost)}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </section>
+              <NewsletterSignup source="simulator" />
+            </>
+          )}
+
+          {/* Annual view */}
+          {view === 'annual' && cost && (
+          <>
           {/* Summary cards */}
           <section className="pb-8 md:pb-12">
             <div className="container mx-auto px-4">
@@ -493,6 +589,8 @@ export default function SimuladorClient() {
               </Link>
             </div>
           </section>
+          </>
+          )}
         </>
       )}
 
