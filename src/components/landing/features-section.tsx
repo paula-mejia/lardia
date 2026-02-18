@@ -1,4 +1,4 @@
-import { Receipt, FileText, Bell, HeadphonesIcon } from "lucide-react";
+import { Receipt, FileText, Bell, Zap } from "lucide-react";
 
 const features = [
   {
@@ -20,8 +20,8 @@ const features = [
       "Férias, 13º, vencimentos. Você recebe o aviso antes, nunca depois.",
   },
   {
-    icon: HeadphonesIcon,
-    title: "Suporte humano",
+    icon: Zap,
+    title: "Suporte imediato",
     description:
       "Dúvida? Responde no mesmo WhatsApp. Sem app, sem portal, sem fila.",
   },
@@ -44,13 +44,15 @@ export default function FeaturesSection() {
         {features.map((f) => (
           <div
             key={f.title}
-            className="rounded-xl border-2 border-emerald-700/50 bg-emerald-900/40 p-6"
+            className="rounded-xl border border-emerald-200/20 bg-white p-6"
           >
-            <f.icon className="h-8 w-8 text-emerald-400 mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">
+            <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-4">
+              <f.icon className="h-5 w-5 text-emerald-600" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
               {f.title}
             </h3>
-            <p className="text-emerald-200/60 text-sm leading-relaxed">
+            <p className="text-gray-500 text-sm leading-relaxed">
               {f.description}
             </p>
           </div>
