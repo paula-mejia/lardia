@@ -3,8 +3,8 @@ import { Calculator } from "lucide-react";
 
 export default function CalculatorSection() {
   return (
-    <section className="bg-slate-900 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto bg-gray-900 rounded-2xl p-8 sm:p-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto bg-slate-900 rounded-2xl p-8 sm:p-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center shadow-2xl">
         {/* Left */}
         <div>
           <span className="inline-block text-xs font-semibold tracking-wide uppercase bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-full mb-5">
@@ -19,7 +19,7 @@ export default function CalculatorSection() {
           </p>
           <Link
             href="/simulador"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/10 transition"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white hover:bg-white/10 transition"
           >
             <Calculator className="h-4 w-4" />
             Abrir calculadora
