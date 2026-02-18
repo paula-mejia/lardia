@@ -7,8 +7,10 @@ import { Shield, Clock, CheckCircle2, Users, Calendar, DollarSign, ChevronRight 
 function DashboardMockup() {
   return (
     <div className="relative w-full max-w-lg mx-auto">
+      {/* Gray background card behind mockup */}
+      <div className="absolute -inset-6 bg-slate-100 dark:bg-slate-800 rounded-3xl" />
       {/* Outer glow */}
-      <div className="absolute -inset-4 bg-emerald-500/10 rounded-3xl blur-2xl" />
+      <div className="absolute -inset-4 bg-emerald-500/5 rounded-3xl blur-2xl" />
 
       <div className="relative bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
         {/* Top bar */}
