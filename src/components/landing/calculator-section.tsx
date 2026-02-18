@@ -1,112 +1,138 @@
-import Link from "next/link";
-import { Calculator } from "lucide-react";
+'use client'
 
-// Real calculation based on salário mínimo 2026 (R$ 1.621,00)
-// INSS employee: 1621 * 7.5% = 121.58
-// IRRF: exempt (base < 2428.80 after deductions)
-// INSS patronal: 1621 * 8% = 129.68
-// GILRAT: 1621 * 0.8% = 12.97
-// FGTS: 1621 * 8% = 129.68
-// FGTS antecipação: 1621 * 3.2% = 51.87
-// DAE = 121.58 + 129.68 + 12.97 + 129.68 + 51.87 = 445.78
-// Custo total = net salary + DAE = 1499.42 + 445.78 = 1945.20
+import { useState, useMemo } from 'react'
+import Link from 'next/link'
+import { Calculator } from 'lucide-react'
+import { calculatePayroll } from '@/lib/calc'
+
+const MIN_SALARY = 1621
+const MAX_SALARY = 8000
+
+function formatBRL(value: number): string {
+  return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
 
 export default function CalculatorSection() {
+  const [salary, setSalary] = useState(1621)
+
+  const result = useMemo(() => {
+    return calculatePayroll({
+      grossSalary: salary,
+      dependents: 0,
+      overtimeHours: 0,
+      absenceDays: 0,
+      otherEarnings: 0,
+      otherDeductions: 0,
+    })
+  }, [salary])
+
+  const handleSlider = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSalary(Number(e.target.value))
+  }
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Number(e.target.value.replace(/\D/g, ''))
+    if (val >= MIN_SALARY && val <= MAX_SALARY) {
+      setSalary(val)
+    } else if (val > MAX_SALARY) {
+      setSalary(MAX_SALARY)
+    }
+  }
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto bg-slate-900 rounded-2xl p-8 sm:p-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center shadow-2xl">
         {/* Left */}
         <div>
           <span className="inline-block text-xs font-semibold tracking-wide uppercase bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-full mb-5">
-            Ferramenta Gratuita
+            Simulador 2026
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Saiba exatamente quanto custa seu empregado doméstico
+            Saiba exatamente quanto custa seu{' '}
+            <span className="text-emerald-400">empregado doméstico</span>
           </h2>
           <p className="text-slate-400 mb-8 leading-relaxed">
-            Salário, encargos, FGTS, INSS patronal... tudo calculado com as
-            tabelas oficiais de 2026. Sem surpresas no final do mês.
+            Evite surpresas no final do mês. Calcule salários, encargos, férias e
+            13º com nossa ferramenta atualizada com as leis vigentes.
           </p>
           <Link
             href="/simulador"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white hover:bg-white/10 transition"
+            className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 px-6 py-3 text-sm font-medium text-white transition"
           >
             <Calculator className="h-4 w-4" />
-            Simular com seu salário →
+            Abrir simulador completo →
           </Link>
         </div>
 
-        {/* Right — real simulation card */}
-        <div className="rounded-xl border border-slate-700 bg-slate-800 p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">
-            Simulação Rápida
-          </h3>
-
-          {/* Salário Bruto */}
-          <div className="flex justify-between text-sm mb-4">
-            <span className="text-white font-medium">Salário Bruto</span>
-            <span className="text-white font-semibold">R$ 1.621,00</span>
+        {/* Right — interactive mini calculator */}
+        <div className="rounded-xl border border-slate-700 bg-white p-6 text-gray-900">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-bold">Simulação Rápida</h3>
+            <span className="text-xs text-gray-500 border border-gray-300 rounded-full px-2 py-0.5">
+              Vigência 2026
+            </span>
           </div>
 
-          <div className="border-t border-slate-700 pt-3 mb-3">
-            <p className="text-xs text-slate-500 uppercase tracking-wide mb-2">Encargos do Empregado</p>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-300">INSS (progressivo)</span>
-                <span className="text-red-400">− R$ 121,58</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-300">IRRF</span>
-                <span className="text-slate-500">R$ 0,00</span>
-              </div>
+          {/* Salary input + slider */}
+          <div className="mb-1">
+            <div className="flex justify-between text-sm mb-2">
+              <span className="text-gray-600">Salário Bruto</span>
+              <span className="font-bold text-emerald-600">R$ {formatBRL(salary)}</span>
             </div>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-sm text-gray-400">R$</span>
+              <input
+                type="text"
+                inputMode="numeric"
+                value={salary}
+                onChange={handleInput}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+            <input
+              type="range"
+              min={MIN_SALARY}
+              max={MAX_SALARY}
+              step={1}
+              value={salary}
+              onChange={handleSlider}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+            />
           </div>
 
-          <div className="border-t border-slate-700 pt-3 mb-3">
+          {/* Results */}
+          <div className="space-y-3 mt-4">
             <div className="flex justify-between text-sm">
-              <span className="text-slate-300">Salário Líquido</span>
-              <span className="text-emerald-400 font-semibold">R$ 1.499,42</span>
+              <span className="text-gray-600">(−) INSS Empregado</span>
+              <span className="text-red-500 font-medium">R$ {formatBRL(result.inssEmployee)}</span>
             </div>
-          </div>
+            {result.irrfEmployee > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">(−) IRRF</span>
+                <span className="text-red-500 font-medium">R$ {formatBRL(result.irrfEmployee)}</span>
+              </div>
+            )}
 
-          <div className="border-t border-slate-700 pt-3 mb-3">
-            <p className="text-xs text-slate-500 uppercase tracking-wide mb-2">Encargos do Empregador</p>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-300">INSS Patronal (8%)</span>
-                <span className="text-slate-300">R$ 129,68</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-300">GILRAT (0,8%)</span>
-                <span className="text-slate-300">R$ 12,97</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-300">FGTS (8%)</span>
-                <span className="text-slate-300">R$ 129,68</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-slate-300">Antecipação (3,2%)</span>
-                <span className="text-slate-300">R$ 51,87</span>
-              </div>
+            <div className="bg-gray-50 rounded-lg px-4 py-3 flex justify-between items-center">
+              <span className="font-semibold text-sm">Salário Líquido</span>
+              <span className="font-bold text-emerald-600">R$ {formatBRL(result.netSalary)}</span>
             </div>
-          </div>
 
-          <div className="border-t border-slate-700 pt-3 mb-3">
             <div className="flex justify-between text-sm">
-              <span className="text-white font-medium">Total DAE</span>
-              <span className="text-sky-400 font-bold">R$ 445,78</span>
+              <span className="text-gray-600">DAE (INSS + FGTS + Seguro)</span>
+              <span className="font-medium">R$ {formatBRL(result.daeTotal - result.inssEmployee)}</span>
             </div>
-          </div>
 
-          <div className="border-t-2 border-slate-600 pt-4">
-            <div className="flex justify-between items-center">
-              <span className="text-white font-semibold">Custo Total Mensal</span>
-              <span className="text-xl font-bold text-emerald-400">R$ 1.945,20</span>
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-3 flex justify-between items-center">
+              <div>
+                <span className="font-bold text-sm">CUSTO TOTAL MENSAL</span>
+                <p className="text-xs text-gray-500">(Salário + Encargos)</p>
+              </div>
+              <span className="text-xl font-bold text-emerald-600">R$ {formatBRL(result.totalEmployerCost)}</span>
             </div>
-            <p className="text-xs text-slate-500 mt-1">Salário líquido + DAE</p>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
