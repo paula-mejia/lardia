@@ -109,25 +109,25 @@ describe('calculateThirteenth', () => {
 
   it('calculates 13th with higher salary (IRRF applicable)', () => {
     const result = calculateThirteenth({
-      monthlySalary: 5000.00,
+      monthlySalary: 10000.00,
       monthsWorked: 12,
       taxTable: TAX_TABLE_2026,
     })
 
-    expect(result.totalBase).toBe(5000.00)
-    expect(result.firstInstallment).toBe(2500.00)
+    expect(result.totalBase).toBe(10000.00)
+    expect(result.firstInstallment).toBe(5000.00)
     expect(result.inssEmployee).toBeGreaterThan(0)
     expect(result.irrfEmployee).toBeGreaterThan(0)
-    expect(result.secondInstallmentNet).toBeLessThan(2500.00)
+    expect(result.secondInstallmentNet).toBeLessThan(5000.00)
   })
 
   it('reduces IRRF with dependents', () => {
     const withoutDep = calculateThirteenth({
-      monthlySalary: 5000.00,
+      monthlySalary: 10000.00,
       monthsWorked: 12,
     })
     const withDep = calculateThirteenth({
-      monthlySalary: 5000.00,
+      monthlySalary: 10000.00,
       monthsWorked: 12,
       dependents: 2,
     })

@@ -52,12 +52,50 @@ describe('IRRF Calculation', () => {
   })
 
   it('reduces IRRF base with dependents', () => {
-    const salary = 5000
+    const salary = 10000
     const inss = calculateINSSEmployee(salary, TAX_TABLE_2026)
     const withoutDep = calculateIRRF(salary, inss.total, 0, TAX_TABLE_2026)
     const withDep = calculateIRRF(salary, inss.total, 2, TAX_TABLE_2026)
     expect(withDep.tax).toBeLessThan(withoutDep.tax)
     expect(withDep.base).toBeLessThan(withoutDep.base)
+  })
+})
+
+describe('IRRF Progressive Reduction (Lei 15.270/2025)', () => {
+  it('salary R$3,000 → IRRF = 0 (base below threshold)', () => {
+    const inss = calculateINSSEmployee(3000, TAX_TABLE_2026)
+    const result = calculateIRRF(3000, inss.total, 0, TAX_TABLE_2026)
+    expect(result.tax).toBe(0)
+  })
+
+  it('salary R$5,500 → IRRF = 0 (base ~4928 gets full reduction)', () => {
+    const inss = calculateINSSEmployee(5500, TAX_TABLE_2026)
+    const result = calculateIRRF(5500, inss.total, 0, TAX_TABLE_2026)
+    // Base ≈ 4928.49, under 5000 → full reduction
+    expect(result.tax).toBe(0)
+  })
+
+  it('salary R$6,000 → IRRF = 0 (base ~5358 gets 849.08 reduction)', () => {
+    const inss = calculateINSSEmployee(6000, TAX_TABLE_2026)
+    const result = calculateIRRF(6000, inss.total, 0, TAX_TABLE_2026)
+    // Base ≈ 5358.49, bracket 5000.01-5500 → reduction 849.08
+    // Normal IRRF on 5358.49: 5358.49 * 15% - 394.16 = 409.61
+    // 409.61 - 849.08 = negative → 0
+    expect(result.tax).toBe(0)
+  })
+
+  it('salary R$8,000 → partial or no reduction (base > 7000)', () => {
+    const inss = calculateINSSEmployee(8000, TAX_TABLE_2026)
+    const result = calculateIRRF(8000, inss.total, 0, TAX_TABLE_2026)
+    // Base ≈ 7078.49 → above 7000, no reduction
+    expect(result.tax).toBeGreaterThan(0)
+    expect(result.tax).toBe(1037.85)
+  })
+
+  it('salary R$10,000 → no reduction (base well above 7000)', () => {
+    const inss = calculateINSSEmployee(10000, TAX_TABLE_2026)
+    const result = calculateIRRF(10000, inss.total, 0, TAX_TABLE_2026)
+    expect(result.tax).toBe(1569.55)
   })
 })
 

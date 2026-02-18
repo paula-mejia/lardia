@@ -113,17 +113,29 @@ export function calculateIRRF(
 
   if (base <= 0) return { tax: 0, base: 0 }
 
+  let tax = 0
   for (const bracket of table.irrf.brackets) {
     if (base >= bracket.min && base <= bracket.max) {
-      const tax = round(base * (bracket.rate / 100) - bracket.deduction)
-      return { tax: Math.max(0, tax), base }
+      tax = Math.max(0, round(base * (bracket.rate / 100) - bracket.deduction))
+      break
     }
   }
 
-  // Shouldn't reach here, but safety
-  const lastBracket = table.irrf.brackets[table.irrf.brackets.length - 1]
-  const tax = round(base * (lastBracket.rate / 100) - lastBracket.deduction)
-  return { tax: Math.max(0, tax), base }
+  if (tax === 0) {
+    // Fallback: use last bracket
+    const lastBracket = table.irrf.brackets[table.irrf.brackets.length - 1]
+    tax = Math.max(0, round(base * (lastBracket.rate / 100) - lastBracket.deduction))
+  }
+
+  // Apply Lei 15.270/2025 progressive reduction
+  if (table.irrf.irrfReduction) {
+    const reduction = getIRRFReduction(base, table)
+    if (reduction === Infinity) return { tax: 0, base }
+    const reducedTax = Math.max(0, tax - reduction)
+    return { tax: round(reducedTax), base }
+  }
+
+  return { tax, base }
 }
 
 /**
@@ -222,6 +234,17 @@ export function calculatePayroll(input: PayrollInput): PayrollBreakdown {
 
     totalEmployerCost,
   }
+}
+
+/**
+ * Get IRRF reduction amount based on Lei 15.270/2025 progressive table.
+ */
+function getIRRFReduction(base: number, table: TaxTable): number {
+  if (!table.irrf.irrfReduction) return 0
+  for (const bracket of table.irrf.irrfReduction) {
+    if (base <= bracket.maxBase) return bracket.reduction
+  }
+  return 0
 }
 
 // Utility functions

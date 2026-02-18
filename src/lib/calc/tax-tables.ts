@@ -37,6 +37,7 @@ export interface TaxTable {
   irrf: {
     brackets: IRRFBracket[]
     dependentDeduction: number // per dependent
+    irrfReduction?: { maxBase: number; reduction: number }[]
   }
   dae: Record<string, never>
 }
@@ -79,6 +80,13 @@ export const TAX_TABLE_2026: TaxTable = {
       { min: 4664.69, max: Infinity, rate: 27.5, deduction: 908.73 },
     ],
     dependentDeduction: 189.59,
+    irrfReduction: [
+      { maxBase: 5000.00, reduction: Infinity },
+      { maxBase: 5500.00, reduction: 849.08 },
+      { maxBase: 6000.00, reduction: 636.81 },
+      { maxBase: 6500.00, reduction: 424.54 },
+      { maxBase: 7000.00, reduction: 212.27 },
+    ],
   },
   dae: {},
 }

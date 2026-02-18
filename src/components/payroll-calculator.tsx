@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo, useEffect, useRef } from 'react'
+import { cn } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -34,6 +35,7 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
   const [dsrDays, setDsrDays] = useState<string>('0')
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [showINSSDetails, setShowINSSDetails] = useState(false)
+  const [view, setView] = useState<'monthly' | 'annual'>('monthly')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -304,8 +306,147 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
         </CardContent>
       </Card>
 
-      {/* Results Card */}
+      {/* View Toggle */}
       {result && (
+        <div className="flex bg-muted rounded-lg p-1">
+          <button className={cn("flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors", view === 'monthly' ? "bg-background shadow-sm" : "text-muted-foreground")} onClick={() => setView('monthly')}>Mensal</button>
+          <button className={cn("flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors", view === 'annual' ? "bg-background shadow-sm" : "text-muted-foreground")} onClick={() => setView('annual')}>Anual</button>
+        </div>
+      )}
+
+      {/* Annual View */}
+      {result && view === 'annual' && (() => {
+        const gross = result.grossSalary
+        // Monthly costs annualized
+        const monthlyNetx12 = result.netSalary * 12
+        const monthlyDAEx12 = result.daeTotal * 12
+        const monthlyCostx12 = monthlyNetx12 + monthlyDAEx12
+
+        // 13th salary
+        const thirteenth1st = gross * 0.5
+        // 2nd installment: 50% gross minus INSS and IRRF on full gross
+        const thirteenth2nd = gross * 0.5 - result.inssEmployee - result.irrfEmployee
+        const thirteenthTotal = thirteenth1st + thirteenth2nd
+
+        // Vacation + 1/3
+        const vacationBase = gross
+        const vacationBonus = gross / 3
+        const vacationTotal = vacationBase + vacationBonus
+
+        // FGTS additional
+        const fgts13th = gross * 0.08
+        const fgtsVacation = (gross * 4 / 3) * 0.08
+        const fgtsAdditional = fgts13th + fgtsVacation
+
+        // DAE-like costs on 13th and vacation (INSS patronal 8% + GILRAT 0.8% + FGTS antecipação 3.2%)
+        const additionalEmployerContrib13 = gross * (0.08 + 0.008 + 0.032)
+        const additionalEmployerContribVac = (gross * 4 / 3) * (0.08 + 0.008 + 0.032)
+
+        // Total DAE annual = monthly DAE x 12 + FGTS on 13th/vacation + employer contributions on 13th/vacation
+        const totalDAEAnnual = monthlyDAEx12 + fgtsAdditional + additionalEmployerContrib13 + additionalEmployerContribVac
+
+        // Grand total
+        const grandTotal = monthlyCostx12 + thirteenthTotal + vacationTotal + fgtsAdditional + additionalEmployerContrib13 + additionalEmployerContribVac
+
+        return (
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg">Custo Anual do Empregador</CardTitle>
+              <CardDescription>Projeção para 12 meses de emprego</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Section 1: Monthly x 12 */}
+              <div>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
+                  Folha mensal × 12
+                </p>
+                <ResultRow label="Salário líquido × 12" value={monthlyNetx12} />
+                <ResultRow label="DAE × 12" value={monthlyDAEx12} />
+                <Separator className="my-2" />
+                <ResultRow label="Subtotal folha anual" value={monthlyCostx12} bold />
+              </div>
+
+              <Separator />
+
+              {/* Section 2: 13th salary */}
+              <div>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
+                  13º Salário
+                </p>
+                <ResultRow
+                  label="1ª parcela (até 30/nov)"
+                  value={thirteenth1st}
+                  tip="50% do salário bruto, sem descontos"
+                />
+                <ResultRow
+                  label="2ª parcela (até 20/dez)"
+                  value={thirteenth2nd}
+                  tip="50% do salário bruto menos INSS e IRRF"
+                />
+                <Separator className="my-2" />
+                <ResultRow label="Total 13º (líquido)" value={thirteenthTotal} bold />
+              </div>
+
+              <Separator />
+
+              {/* Section 3: Vacation */}
+              <div>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
+                  Férias + 1/3
+                </p>
+                <ResultRow label="Salário de férias" value={vacationBase} />
+                <ResultRow
+                  label="Abono constitucional (1/3)"
+                  value={vacationBonus}
+                  tip="Adicional de 1/3 sobre o salário, garantido pela Constituição"
+                />
+                <Separator className="my-2" />
+                <ResultRow label="Total férias (bruto)" value={vacationTotal} bold />
+              </div>
+
+              <Separator />
+
+              {/* Section 4: Additional FGTS */}
+              <div>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
+                  FGTS adicional
+                </p>
+                <ResultRow
+                  label="FGTS sobre 13º (8%)"
+                  value={fgts13th}
+                  tip="8% sobre o salário bruto integral do 13º"
+                />
+                <ResultRow
+                  label="FGTS sobre férias + 1/3 (8%)"
+                  value={fgtsVacation}
+                  tip="8% sobre férias + 1/3 constitucional"
+                />
+                <Separator className="my-2" />
+                <ResultRow label="Total FGTS adicional" value={fgtsAdditional} bold />
+              </div>
+
+              <Separator />
+
+              {/* Section 5: Grand total */}
+              <div className="bg-muted/50 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-medium">Custo Total Anual</p>
+                <div className="flex justify-between items-baseline">
+                  <span className="text-xs text-muted-foreground">Folha + 13º + Férias + FGTS + encargos</span>
+                  <span className="text-2xl font-bold tabular-nums text-emerald-600">
+                    {formatBRL(grandTotal)}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Equivale a ~{formatBRL(grandTotal / 12)}/mês
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        )
+      })()}
+
+      {/* Results Card */}
+      {result && view === 'monthly' && (
         <>
           {/* Employee View */}
           <Card>

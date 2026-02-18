@@ -161,7 +161,13 @@ export default function PricingSection() {
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <CheckCircle className="h-4 w-4 text-emerald-600 mt-0.5 shrink-0" />
-                      {feature}
+                      {feature === '1 verificação de antecedentes inclusa' ? (
+                        <Link href="/verificacao-antecedentes" className="underline underline-offset-2 hover:text-emerald-600">
+                          {feature}
+                        </Link>
+                      ) : (
+                        feature
+                      )}
                     </li>
                   ))}
                 </ul>
