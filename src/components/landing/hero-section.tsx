@@ -8,9 +8,7 @@ function DashboardMockup() {
   return (
     <div className="relative w-full max-w-lg mx-auto">
       {/* Gray background card behind mockup */}
-      <div className="absolute -inset-6 bg-slate-100 dark:bg-slate-800 rounded-3xl" />
-      {/* Outer glow */}
-      <div className="absolute -inset-4 bg-emerald-500/5 rounded-3xl blur-2xl" />
+      <div className="absolute -inset-10 bg-slate-200 dark:bg-slate-700 rounded-3xl shadow-inner" />
 
       <div className="relative bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
         {/* Top bar */}
@@ -27,7 +25,30 @@ function DashboardMockup() {
           </div>
         </div>
 
-        <div className="p-4 space-y-4">
+        <div className="flex">
+          {/* Sidebar */}
+          <div className="hidden sm:flex flex-col w-14 bg-zinc-50 dark:bg-zinc-800/60 border-r border-zinc-200 dark:border-zinc-700 py-3 px-2 gap-3 items-center shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-emerald-500 flex items-center justify-center">
+              <span className="text-white text-[10px] font-bold">L</span>
+            </div>
+            <div className="w-full h-px bg-zinc-200 dark:bg-zinc-700" />
+            <div className="flex flex-col gap-2.5 items-center">
+              <div className="w-6 h-6 rounded-md bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                <DollarSign className="w-3 h-3 text-emerald-600" />
+              </div>
+              <div className="w-6 h-6 rounded-md bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center">
+                <Users className="w-3 h-3 text-zinc-400" />
+              </div>
+              <div className="w-6 h-6 rounded-md bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center">
+                <Calendar className="w-3 h-3 text-zinc-400" />
+              </div>
+              <div className="w-6 h-6 rounded-md bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center">
+                <Shield className="w-3 h-3 text-zinc-400" />
+              </div>
+            </div>
+          </div>
+
+        <div className="flex-1 p-4 space-y-4">
           {/* Payroll Summary Card */}
           <div className="rounded-xl border border-zinc-200 dark:border-zinc-700 p-4 space-y-3">
             <div className="flex items-center justify-between">
@@ -117,6 +138,7 @@ function DashboardMockup() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
