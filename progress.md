@@ -1,57 +1,54 @@
 # Project Progress - LarDia
 
 ## Current Status
-All quick fixes done (2026-02-19). Lint: 0 errors, 0 warnings. Tests: 77 pass, 3 pre-existing failures. 6 items remain - all need decisions or more involved work. App is NOT live yet; eSocial government connection still needs to be built.
+All code review fixes committed and pushed to `main` (commit `4fe2621`, 2026-02-19). Lint: 0 errors, 0 warnings. Tests: 77 pass, 3 pre-existing failures. 11 of 17 original review issues resolved. 6 remain - all need product decisions or are tied to Phase 2/launch. App is NOT live yet; eSocial government connection still needs to be built.
+
+## Git State
+- **Last commit:** `4fe2621` on `main` - "fix: code review - security, data integrity, and lint cleanup"
+- **30 files changed** in that commit (security fixes, data integrity, RLS migrations, lint cleanup, docs)
+- **Uncommitted locally:** `docs/ARCHITECTURE.md` (pre-existing change, not from review) and `docs/knowledge-base/Calculadora_Emprego_Domestico_Brasil_2026.xlsx` (untracked Excel file)
 
 ## Recently Completed
 
-### Quick Fixes Round 2 (2026-02-19)
-
-**Fix #9: DAE insert errors now surface to the user**
-- `src/app/api/esocial/process/route.ts` - DAE insert failures no longer silently swallowed
-- Added `warnings` field to response so the UI can show when events succeeded but DAE failed
-- Also removed unused `getClientIp` function from this file
-
-**Fix #10: UPDATE/DELETE RLS policies added**
-- New migration `supabase/migrations/20260219_002_esocial_dae_update_delete_policies.sql`
-- Added UPDATE and DELETE policies for both `esocial_events` and `dae_records`
-- Users can now update/delete their own records (needed for retry, reprocess, mark as paid)
-
-**Fix #11: Sensitive info redacted from docs**
-- `docs/deployment.md` - replaced EC2 IP, Supabase project ID, SSH key path with placeholders
-- `LARDIA-STATUS.md` - replaced EC2 IP, Supabase project ID, personal email, SSH key path, company CNPJ with placeholders
-
-**Fix #14: All 23 lint warnings fixed (now 0 errors, 0 warnings)**
-- Removed unused imports across 13 files (PublicNav, getClientIp, lucide icons, referral functions, etc.)
-- Removed unused variables (maskCPF, completedCount, totalDAEAnnual, dailyRate, _FROM_EMAIL, _field3, _hasErrors)
-
-**Fix #16: Newsletter endpoint reviewed - kept as-is**
-- Service role key is intentional: the upsert pattern (re-subscribe) requires bypassing RLS since anon users can't update existing rows
-
-**Fix #17: Audit logging non-null assertions fixed**
-- `src/lib/audit.ts` - replaced `process.env.*!` with null-safe checks
-- `getServiceSupabase()` returns `null` if env vars missing
-- `logAudit()` silently skips if Supabase client can't be created (still never breaks main flow)
-
-### Top 5 Critical Fixes (2026-02-19, earlier)
+### All Code Review Fixes (2026-02-19) - COMMITTED & PUSHED
 
 **Fix 1: Hardcoded credentials removed from test script**
-- `scripts/test-esocial-api.ts` - all credentials now from env vars
-- `.env.example` updated, `.gitignore` updated
+- `scripts/test-esocial-api.ts` - all credentials now from env vars with validation
+- `.env.example` updated with 6 new eSocial test vars
+- `.gitignore` updated with `/tmp/`
 
 **Fix 2: Invalid status values fixed**
-- Retry route: `'erro'` -> `'rejected'`, `'pendente'` -> `'draft'`
-- Process route: `'pending'` -> `'draft'`
+- `src/app/api/esocial/events/[id]/retry/route.ts` - `'erro'` -> `'rejected'`, `'pendente'` -> `'draft'`
+- `src/app/api/esocial/process/route.ts` - `'pending'` -> `'draft'`, removed premature `submitted_at`
 
 **Fix 3: Monthly processor fixed**
-- Events now start as `'draft'` (not premature `'accepted'`)
+- `src/lib/esocial/monthly-processor.ts` - events now start as `'draft'` (not premature `'accepted'`), removed `submittedAt` assignments
 
 **Fix 4: Payslip confirmation RLS tightened**
-- Confirm route uses service role client
-- New migration drops `using(true)`, adds employer-scoped SELECT
+- `src/app/api/payslip/confirm/route.ts` - switched to service role client (bypasses RLS)
+- `supabase/migrations/20260219_001_fix_payslip_rls.sql` - drops `using(true)`, adds employer-scoped SELECT
 
 **Fix 5: Status page proxy path corrected**
-- `/api/esocial/test` -> `/health`
+- `src/app/dashboard/esocial/status/page.tsx` - `/api/esocial/test` -> `/health`
+
+**Fix #9: DAE insert errors now surface to the user**
+- `src/app/api/esocial/process/route.ts` - added `warnings` field to response, removed unused `getClientIp`
+
+**Fix #10: UPDATE/DELETE RLS policies added**
+- `supabase/migrations/20260219_002_esocial_dae_update_delete_policies.sql`
+- UPDATE and DELETE policies for both `esocial_events` and `dae_records`
+
+**Fix #11: Sensitive info redacted from docs**
+- `docs/deployment.md` and `LARDIA-STATUS.md` - replaced IPs, project IDs, keys, emails, CNPJ with placeholders
+
+**Fix #14: All 23 lint warnings fixed (now 0 errors, 0 warnings)**
+- Removed unused imports/variables across 13+ files
+
+**Fix #16: Newsletter endpoint reviewed - kept as-is**
+- Service role key is intentional for upsert pattern (re-subscribe)
+
+**Fix #17: Audit logging non-null assertions fixed**
+- `src/lib/audit.ts` - null-safe env var checks, `getServiceSupabase()` returns null if missing
 
 ## Remaining Issues - Need Decisions
 
@@ -91,7 +88,7 @@ All quick fixes done (2026-02-19). Lint: 0 errors, 0 warnings. Tests: 77 pass, 3
 - **Decision needed:** Is the function correct or the tests? Check Brazilian labor law for 13th salary proportional month rules.
 
 ### Credential rotation
-- Certificate password, CNPJ, CPF are in git history
+- Certificate password, CNPJ, CPF are in git history (removed from code but still in commits)
 - **When:** Before connecting to eSocial production
 
 ## Architecture Overview
@@ -109,19 +106,30 @@ All quick fixes done (2026-02-19). Lint: 0 errors, 0 warnings. Tests: 77 pass, 3
 - Payslip confirm route switched to service role to allow RLS lockdown
 - Newsletter endpoint kept with service role (needed for upsert pattern)
 - Audit logging fails gracefully if env vars missing (returns null, skips)
+- `docs/ARCHITECTURE.md` left uncommitted - pre-existing change, not from code review
 
 ## Session Log
 ### 2026-02-18
-- Comprehensive 6-dimension code review
-- Cross-checked against second model's review
+- Comprehensive 6-dimension code review (17 issues found)
+- Cross-checked against second model's review (corrected proxy path assessment)
 
 ### 2026-02-18 (evening - Paula solo)
 - 20 commits: landing page redesign, simulador overhaul, pricing toggle
 - All deployed to Vercel
 
 ### 2026-02-19
-- Pulled 20 new commits, cross-validated reviews
+- Pulled 20 new commits, cross-validated reviews, updated progress.md
 - Implemented top 5 critical fixes (credentials, status values, monthly processor, RLS, proxy path)
 - Implemented 6 quick fixes (DAE error handling, RLS policies, doc redaction, all lint warnings, audit logging)
 - Final state: 0 lint errors, 0 lint warnings, 77/80 tests pass
 - 11 of 17 original issues resolved. 6 remain (all need decisions or are tied to Phase 2/launch)
+- All fixes committed and pushed to `main` as commit `4fe2621`
+
+## Next Steps
+- [ ] Decide on rate limiter solution (#2) before launch
+- [ ] Product decision on subscription enforcement (#8) before launch
+- [ ] Check Brazilian labor law for 13th salary day-16 rule (3 test failures)
+- [ ] Rotate credentials before connecting to eSocial production
+- [ ] Build actual eSocial government connection (the big missing piece)
+- [ ] Paula: create Twilio account for WhatsApp Phase 2
+- [ ] Paula: create Bright Data account for VPN residential proxy
