@@ -342,9 +342,6 @@ export default function PayrollCalculator({ initialSalary, employeeId, employeeN
         const additionalEmployerContrib13 = gross * (0.08 + 0.008 + 0.032)
         const additionalEmployerContribVac = (gross * 4 / 3) * (0.08 + 0.008 + 0.032)
 
-        // Total DAE annual = monthly DAE x 12 + FGTS on 13th/vacation + employer contributions on 13th/vacation
-        const totalDAEAnnual = monthlyDAEx12 + fgtsAdditional + additionalEmployerContrib13 + additionalEmployerContribVac
-
         // Grand total
         const grandTotal = monthlyCostx12 + thirteenthTotal + vacationTotal + fgtsAdditional + additionalEmployerContrib13 + additionalEmployerContribVac
 

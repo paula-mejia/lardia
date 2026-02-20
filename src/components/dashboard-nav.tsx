@@ -6,7 +6,7 @@ import Logo from '@/components/logo'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
-  Calculator, Gift, Palmtree, UserMinus,
+  Calculator,
   Users, FileText, Shield,
   FileCheck, Cpu, Receipt, Calendar,
   Settings, Heart,

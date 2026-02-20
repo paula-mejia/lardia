@@ -11,11 +11,23 @@ import {
   ESOCIAL_ERROR_CODES,
 } from '../src/lib/esocial/api-client'
 
-const CERT_PATH = '/home/ubuntu/lardia/.certificates/ecnpj.p12'
-const CERT_PASSWORD = '7oCR0Bd4El4yyR'
-const CNPJ = '46728966000140'
+const CERT_PATH = process.env.ESOCIAL_CERT_PATH
+const CERT_PASSWORD = process.env.ESOCIAL_CERT_PASSWORD
+const CNPJ = process.env.ESOCIAL_EMPLOYER_CNPJ
+const CONTACT_NAME = process.env.ESOCIAL_CONTACT_NAME
+const CONTACT_CPF = process.env.ESOCIAL_CONTACT_CPF
+const CONTACT_PHONE = process.env.ESOCIAL_CONTACT_PHONE || '11999999999'
 
 async function main() {
+  // Validate required env vars before proceeding
+  const required = { ESOCIAL_CERT_PATH: CERT_PATH, ESOCIAL_CERT_PASSWORD: CERT_PASSWORD, ESOCIAL_EMPLOYER_CNPJ: CNPJ, ESOCIAL_CONTACT_NAME: CONTACT_NAME, ESOCIAL_CONTACT_CPF: CONTACT_CPF }
+  const missing = Object.entries(required).filter(([, v]) => !v).map(([k]) => k)
+  if (missing.length > 0) {
+    console.error(`Missing required env vars: ${missing.join(', ')}`)
+    console.error('Copy .env.example to .env.local and fill in the eSocial test values.')
+    process.exit(1)
+  }
+
   console.log('=== eSocial API Connection Test ===\n')
 
   // Step 1: Load and validate certificate
@@ -51,9 +63,9 @@ async function main() {
     nrInsc: CNPJ,
     iniValid: '2026-01',
     classTrib: '21', // Domestic employer
-    nmCtt: 'PAULA MEJIA',
-    cpfCtt: '27011987717',
-    fonePrinc: '11999999999',
+    nmCtt: CONTACT_NAME!,
+    cpfCtt: CONTACT_CPF!,
+    fonePrinc: CONTACT_PHONE,
   })
 
   console.log('   Event XML built successfully')
@@ -111,9 +123,9 @@ async function main() {
     nrInsc: CNPJ,
     iniValid: '2026-01',
     classTrib: '22',
-    nmCtt: 'PAULA MEJIA',
-    cpfCtt: '27011987717',
-    fonePrinc: '11999999999',
+    nmCtt: CONTACT_NAME!,
+    cpfCtt: CONTACT_CPF!,
+    fonePrinc: CONTACT_PHONE,
   })
 
   let signedXml2: string
@@ -142,18 +154,15 @@ async function main() {
   console.log(`Non-domestic (classTrib=22): Status ${response2.statusCode}`)
 
   // Save raw responses
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  /* eslint-disable @typescript-eslint/no-require-imports */
   const fs = require('fs')
-  fs.mkdirSync('/home/ubuntu/.openclaw/workspace/esocial-project', { recursive: true })
-  fs.writeFileSync(
-    '/home/ubuntu/.openclaw/workspace/esocial-project/raw-response-classtrib21.xml',
-    response.rawXml
-  )
-  fs.writeFileSync(
-    '/home/ubuntu/.openclaw/workspace/esocial-project/raw-response-classtrib22.xml',
-    response2.rawXml
-  )
-  console.log('\nRaw responses saved to esocial-project/')
+  const path = require('path')
+  /* eslint-enable @typescript-eslint/no-require-imports */
+  const outputDir = path.join(__dirname, '..', 'tmp', 'esocial-test')
+  fs.mkdirSync(outputDir, { recursive: true })
+  fs.writeFileSync(path.join(outputDir, 'raw-response-classtrib21.xml'), response.rawXml)
+  fs.writeFileSync(path.join(outputDir, 'raw-response-classtrib22.xml'), response2.rawXml)
+  console.log(`\nRaw responses saved to ${outputDir}`)
 }
 
 main().catch(console.error)

@@ -130,8 +130,7 @@ describe('calculateVacationPayroll', () => {
     expect(m.vacationDaysInMonth).toBe(30)
     expect(m.salaryForWorkedDays).toBe(0)
 
-    const dailyRate = Math.round(1621 / 30 * 100) / 100 // 54.03
-    expect(m.vacationPay).toBe(Math.round(54.03 * 30 * 100) / 100) // 1620.90
+    expect(m.vacationPay).toBe(Math.round(54.03 * 30 * 100) / 100) // 1620.90 (daily rate = 1621/30 = 54.03)
     expect(m.tercoConstitucional).toBe(Math.round(m.vacationPay / 3 * 100) / 100)
     expect(m.valeTransporte).toBe(0) // no worked days
     expect(m.abonoPay).toBe(0)

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { runBackgroundCheck } from '@/lib/background-check/service'
 import { validateCpfChecksum } from '@/lib/background-check/cpf-validation'
-import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 import { logAudit } from '@/lib/audit'
 
 export async function POST(request: NextRequest) {

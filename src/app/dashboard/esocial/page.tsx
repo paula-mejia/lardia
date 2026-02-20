@@ -6,8 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
-  CheckCircle, XCircle, AlertTriangle, Clock, Users, FileText,
-  ArrowLeft, Play, Receipt, Eye, Wifi, WifiOff, Loader2,
+  CheckCircle, AlertTriangle, Clock, Users, FileText,
+  ArrowLeft, Play, Receipt, Eye, Wifi, WifiOff,
   ChevronRight, CalendarDays,
 } from 'lucide-react'
 

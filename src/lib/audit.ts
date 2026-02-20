@@ -23,11 +23,10 @@ export type AuditAction =
 
 // Use service role to bypass RLS for inserts from any context
 function getServiceSupabase() {
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { cookies: { getAll: () => [], setAll: () => {} } }
-  )
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !key) return null
+  return createServerClient(url, key, { cookies: { getAll: () => [], setAll: () => {} } })
 }
 
 /**
@@ -68,6 +67,7 @@ export async function logAudit(
 ): Promise<void> {
   try {
     const supabase = getServiceSupabase()
+    if (!supabase) return
     await supabase.from('audit_logs').insert({
       employer_id: employerId || null,
       action,

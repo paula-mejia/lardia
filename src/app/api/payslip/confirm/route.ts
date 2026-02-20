@@ -1,5 +1,14 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServerClient } from '@supabase/ssr'
 import { NextRequest, NextResponse } from 'next/server'
+
+// Service role client - bypasses RLS for token-based confirmation
+function getServiceSupabase() {
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { cookies: { getAll: () => [], setAll: () => {} } }
+  )
+}
 
 export async function POST(request: NextRequest) {
   const { token } = await request.json()
@@ -8,7 +17,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Token obrigatório' }, { status: 400 })
   }
 
-  const supabase = await createClient()
+  const supabase = getServiceSupabase()
 
   // Check if already confirmed
   const { data: existing } = await supabase

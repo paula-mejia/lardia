@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
 import { Shield, Clock, CheckCircle2, Users, Calendar, DollarSign, ChevronRight } from 'lucide-react'
 
 function DashboardMockup() {

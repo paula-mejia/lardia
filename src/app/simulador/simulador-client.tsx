@@ -12,7 +12,6 @@ import { Label } from '@/components/ui/label'
 import {
   ArrowRight,
   Calculator,
-  DollarSign,
   TrendingUp,
   PieChart,
   Info,

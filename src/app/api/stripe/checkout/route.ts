@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getStripe } from '@/lib/stripe/config'
-import { applyRateLimit, RATE_LIMITS, getClientIp } from '@/lib/rate-limit'
+import { applyRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 import { logAudit } from '@/lib/audit'
 
 export async function POST(request: NextRequest) {

@@ -37,14 +37,14 @@ export async function POST(
       return NextResponse.json({ error: 'Evento não encontrado' }, { status: 404 })
     }
 
-    if (event.status !== 'erro') {
-      return NextResponse.json({ error: 'Apenas eventos com erro podem ser reenviados' }, { status: 400 })
+    if (event.status !== 'rejected') {
+      return NextResponse.json({ error: 'Apenas eventos rejeitados podem ser reenviados' }, { status: 400 })
     }
 
-    // Update status to pendente for retry
+    // Reset to draft for retry
     const { error: updateError } = await supabase
       .from('esocial_events')
-      .update({ status: 'pendente', submitted_at: null })
+      .update({ status: 'draft', submitted_at: null })
       .eq('id', id)
 
     if (updateError) {

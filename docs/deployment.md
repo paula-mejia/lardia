@@ -72,14 +72,14 @@ The eSocial government API requires mTLS (mutual TLS) with A1 digital certificat
 ### Instance Details
 
 - **Region:** sa-east-1 (São Paulo)
-- **IP:** `54.207.197.86`
+- **IP:** `<EC2-IP>`
 - **OS:** Ubuntu
 - **Purpose:** Forward eSocial API requests with mTLS client certificates
 
 ### SSH Access
 
 ```bash
-ssh -i ~/.ssh/lardia-sp.pem ubuntu@54.207.197.86
+ssh -i <SSH-KEY-PATH> ubuntu@<EC2-IP>
 ```
 
 ### Systemd Service
@@ -148,10 +148,10 @@ All requests require the `X-API-Key` header matching `ESOCIAL_PROXY_API_KEY`.
 
 ### Project Details
 
-- **Project ID:** `kimxgwxoxgjcdtpvpzxl`
-- **URL:** `https://kimxgwxoxgjcdtpvpzxl.supabase.co`
+- **Project ID:** `<SUPABASE-PROJECT-ID>`
+- **URL:** `https://<SUPABASE-PROJECT-ID>.supabase.co`
 - **DB Version:** PostgreSQL 17
-- **Dashboard:** https://supabase.com/dashboard/project/kimxgwxoxgjcdtpvpzxl
+- **Dashboard:** https://supabase.com/dashboard/project/<SUPABASE-PROJECT-ID>
 
 ### Migrations
 
@@ -267,7 +267,7 @@ All DNS is managed at [registro.br](https://registro.br).
 |---|---|---|---|
 | A | `@` | `76.76.21.21` | Vercel (confirm in Vercel dashboard) |
 | CNAME | `www` | `cname.vercel-dns.com` | Vercel www redirect |
-| A | `api` | `54.207.197.86` | EC2 proxy (HTTPS via Let's Encrypt) |
+| A | `api` | `<EC2-IP>` | EC2 proxy (HTTPS via Let's Encrypt) |
 | MX | `@` | ImprovMX MX servers | Email forwarding (@lardia.com.br → Gmail) |
 | TXT | `@` | `v=spf1 include:spf.improvmx.com include:resend.com ~all` | SPF (ImprovMX + Resend) |
 | CNAME | `resend._domainkey` | DKIM value from Resend | Resend DKIM authentication |

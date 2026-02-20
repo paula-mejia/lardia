@@ -78,7 +78,7 @@ export default async function ESocialStatusPage() {
   const proxyKey = process.env.ESOCIAL_PROXY_API_KEY
   if (proxyUrl && proxyKey) {
     try {
-      const res = await fetch(`${proxyUrl}/api/esocial/test`, {
+      const res = await fetch(`${proxyUrl}/health`, {
         headers: { 'x-api-key': proxyKey },
         signal: AbortSignal.timeout(8000),
         cache: 'no-store',

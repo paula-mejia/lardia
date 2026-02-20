@@ -1,17 +1,17 @@
 # LARDIA - Estado del Proyecto
 
 > Última actualización: 2026-02-17
-> Dominio: lardia.com.br | Vercel: lardia.vercel.app | EC2: 54.207.197.86
+> Dominio: lardia.com.br | Vercel: lardia.vercel.app | EC2: <EC2-IP>
 
 ---
 
 ## Infraestructura
 
-- [x] Supabase proyecto creado (kimxgwxoxgjcdtpvpzxl)
+- [x] Supabase proyecto creado (<SUPABASE-PROJECT-ID>)
 - [x] Vercel deploy (lardia.vercel.app)
 - [x] Dominio lardia.com.br comprado en registro.br
-- [x] EC2 São Paulo (54.207.197.86) - proxy eSocial
-- [x] SSH key: ~/.ssh/lardia-sp.pem
+- [x] EC2 São Paulo (<EC2-IP>) - proxy eSocial
+- [x] SSH key: <SSH-KEY-PATH>
 - [x] Nginx reverse proxy en EC2 (puerto 3100)
 - [x] Let's Encrypt HTTPS en api.lardia.com.br
 - [x] systemd service: esocial-proxy
@@ -21,7 +21,7 @@
 - [x] Vercel Analytics habilitado
 - [x] Sentry error tracking habilitado
 - [x] Google Analytics 4 + Meta Pixel (2026-02)
-- [x] ImprovMX cuenta creada, wildcard *@lardia.com.br → paumejiagiraldo@gmail.com (2026-02-16)
+- [x] ImprovMX cuenta creada, wildcard *@lardia.com.br → <TEAM-EMAIL> (2026-02-16)
 - [x] Resend: dominio lardia.com.br verificado, DKIM OK (2026-02-16)
 - [x] Procuração eCAC confirmada desde Cocora (2026-02-16)
 - [x] Resend: dominio completamente verificado (DKIM + SPF) (2026-02-17)
@@ -34,7 +34,7 @@
 ## DNS (registro.br)
 
 - [x] A record: `@` → 76.76.21.21 (Vercel)
-- [x] A record: `api` → 54.207.197.86 (EC2)
+- [x] A record: `api` → <EC2-IP> (EC2)
 - [x] CNAME: `www` → cname.vercel-dns.com
 - [x] MX: `@` → mx1.improvmx.com (prioridad 10)
 - [x] MX: `@` → mx2.improvmx.com (prioridad 20)
@@ -133,7 +133,7 @@
 - [x] API key configurada
 
 ### Email
-- [x] ImprovMX: forwarding *@lardia.com.br → paumejiagiraldo@gmail.com (2026-02-16)
+- [x] ImprovMX: forwarding *@lardia.com.br → <TEAM-EMAIL> (2026-02-16)
 - [x] Resend: DKIM verificado (2026-02-16)
 - [x] Email templates creados en docs/email-templates/ (confirmation, magic-link, password-reset)
 - [x] Guía de setup: docs/RESEND-SETUP.md
@@ -173,4 +173,4 @@
 
 ---
 
-*Empresa: COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA — CNPJ: 46.728.966/0001-40*
+*Empresa: <COMPANY-NAME> — CNPJ: <COMPANY-CNPJ>*

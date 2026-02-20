@@ -71,11 +71,6 @@ function formatBRL(value: number): string {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-function maskCPF(cpf: string): string {
-  if (!cpf || cpf.length < 11) return cpf
-  return `${cpf.slice(0, 3)}.***.**${cpf.slice(-2)}`
-}
-
 export default function EsocialProcessPage() {
   const [month, setMonth] = useState(new Date().getMonth() + 1)
   const [year, setYear] = useState(new Date().getFullYear())
@@ -167,7 +162,6 @@ export default function EsocialProcessPage() {
   const currentYear = new Date().getFullYear()
   const years = [currentYear - 1, currentYear, currentYear + 1]
 
-  const completedCount = result?.employees.filter((e) => e.status === 'completed').length || 0
   const errorCount = result?.employees.filter((e) => e.status === 'error').length || 0
 
   if (loading) {

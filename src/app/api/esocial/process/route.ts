@@ -4,10 +4,6 @@ import { processMonthlyPayroll } from '@/lib/esocial/monthly-processor'
 import { applyRateLimit } from '@/lib/rate-limit'
 import { logAudit } from '@/lib/audit'
 
-function getClientIp(request: NextRequest): string {
-  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
-}
-
 export async function POST(request: NextRequest) {
   const rateLimited = applyRateLimit(request, 'esocial-process', { windowMs: 60000, maxRequests: 1 })
   if (rateLimited) return rateLimited
@@ -88,10 +84,9 @@ export async function POST(request: NextRequest) {
       employee_id: event.employeeId,
       event_type: event.eventType,
       event_data: event.eventData,
-      status: 'pending' as const,
+      status: 'draft' as const,
       reference_month: month,
       reference_year: year,
-      submitted_at: event.submittedAt,
     }))
 
     if (eventInserts.length > 0) {
@@ -106,6 +101,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Store DAE record
+    let daeInsertFailed = false
     if (result.dae) {
       const { error: daeError } = await supabase.from('dae_records').insert({
         employer_id: employer.id,
@@ -121,6 +117,7 @@ export async function POST(request: NextRequest) {
 
       if (daeError) {
         console.error('Error inserting DAE:', daeError)
+        daeInsertFailed = true
       }
     }
 
@@ -175,6 +172,7 @@ export async function POST(request: NextRequest) {
         employees: result.dae.employees,
       } : undefined,
       processedAt: result.processedAt,
+      warnings: daeInsertFailed ? ['Eventos gerados com sucesso, mas houve erro ao salvar o DAE. Tente reprocessar.'] : [],
     })
   } catch (error) {
     console.error('eSocial processing error:', error)

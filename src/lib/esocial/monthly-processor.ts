@@ -137,8 +137,7 @@ export function processMonthlyPayroll(
         }
       )
 
-      s1200Event.status = 'accepted'
-      s1200Event.submittedAt = new Date().toISOString()
+      s1200Event.status = 'draft'
 
       // Generate S-1210 (pagamento)
       const s1210Data: S1210Data = {
@@ -154,8 +153,7 @@ export function processMonthlyPayroll(
       }
 
       const s1210Event = buildS1210(employerId, emp.id, s1210Data, month, year)
-      s1210Event.status = 'accepted'
-      s1210Event.submittedAt = new Date().toISOString()
+      s1210Event.status = 'draft'
 
       empResult.s1200Event = s1200Event
       empResult.s1210Event = s1210Event
@@ -190,7 +188,6 @@ export function processMonthlyPayroll(
 
   result.totalEventsGenerated = result.events.length
 
-  const _hasErrors = result.employees.some((e) => e.status === 'error')
   const allErrors = result.employees.every((e) => e.status === 'error')
   result.status = allErrors ? 'error' : 'completed'
   result.processedAt = new Date().toISOString()

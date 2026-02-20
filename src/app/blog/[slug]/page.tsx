@@ -1,4 +1,3 @@
-import { PublicNav } from '@/components/public-nav'
 import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/blog'
 import { markdownToHtml } from '@/lib/markdown'
 import { Button } from '@/components/ui/button'

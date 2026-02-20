@@ -90,7 +90,6 @@ export function generateDaeBarcode(
   // Build 4 fields of 11 digits each, then add mod-10 check to each
   const field1 = `85890000${amountCents.slice(0, 3)}`  // 11 digits
   const field2 = `${amountCents.slice(3)}${employerHash.slice(0, 3)}` // 11 digits
-  const _field3 = `${employerHash.slice(3)}${yearStr}${monthStr.slice(0, 1)}` // 11 digits (8-3=5 + 4 + 1 = 10... pad)
   const field3Full = `${employerHash.slice(3)}${yearStr}${monthStr}`.padEnd(11, '0')
   const field4 = `${sequential}0000000`.slice(0, 11)
 
