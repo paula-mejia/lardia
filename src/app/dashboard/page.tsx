@@ -109,7 +109,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="max-w-5xl space-y-6">
+    <div className="max-w-6xl space-y-8">
       {/* Greeting */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight">

@@ -49,7 +49,7 @@ export default async function DashboardLayout({
           <p className="text-sm text-muted-foreground hidden lg:block">{userEmail}</p>
           <LogoutButton />
         </header>
-        <main className="p-4 lg:p-6">
+        <main className="p-6 lg:p-8">
           {children}
         </main>
       </div>

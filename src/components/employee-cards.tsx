@@ -40,7 +40,7 @@ export function EmployeeCards({ employees }: { employees: EmployeeListItem[] }) 
   )
 
   return (
-    <div className="max-w-5xl space-y-6">
+    <div className="max-w-6xl space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
