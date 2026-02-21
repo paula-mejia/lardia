@@ -40,19 +40,19 @@ export default function FaqSection() {
     <section className="py-16 md:py-24 bg-muted/40">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
-            Perguntas frequentes
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+            Perguntas Frequentes
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg sm:text-xl">
             Tire suas principais dúvidas sobre a LarDia.
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left">
+                <AccordionTrigger className="text-left text-base font-medium">
                   {faq.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">

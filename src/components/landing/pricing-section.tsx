@@ -88,10 +88,10 @@ export default function PricingSection() {
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-4">
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
             Escolha o plano ideal para você
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg sm:text-xl">
             Comece grátis com as calculadoras ou desbloqueie a gestão completa
             do eSocial.
           </p>
@@ -129,7 +129,7 @@ export default function PricingSection() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
           {plans.map((plan) => {
             const isFree = plan.monthlyPrice === 0
             const effectiveMonthly = isAnual && !isFree
@@ -165,7 +165,7 @@ export default function PricingSection() {
                     </Badge>
                   </div>
                 )}
-                <CardContent className="pt-8 pb-8">
+                <CardContent className="pt-8 pb-8 px-8">
                   <p
                     className={`text-sm font-medium uppercase tracking-wide mb-1 ${
                       plan.highlighted

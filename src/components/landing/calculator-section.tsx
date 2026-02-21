@@ -40,18 +40,18 @@ export default function CalculatorSection() {
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto bg-slate-900 rounded-2xl p-8 sm:p-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center shadow-2xl">
+    <section className="py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto bg-slate-900 rounded-3xl p-10 sm:p-14 grid grid-cols-1 md:grid-cols-2 gap-12 items-center shadow-2xl">
         {/* Left */}
         <div>
           <span className="inline-block text-xs font-semibold tracking-wide uppercase bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-full mb-5">
             Simulador 2026
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5">
             Saiba exatamente quanto custa seu{' '}
             <span className="text-emerald-400">empregado doméstico</span>
           </h2>
-          <p className="text-slate-400 mb-8 leading-relaxed">
+          <p className="text-slate-400 mb-8 text-lg leading-relaxed">
             Evite surpresas no final do mês. Calcule salários, encargos, férias e
             13º com nossa ferramenta atualizada com as leis vigentes.
           </p>
