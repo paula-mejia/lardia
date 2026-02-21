@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import FeriasCalculatorClient from './ferias-calculator-client'
+import Navbar from '@/components/landing/navbar'
+import Footer from '@/components/landing/footer'
 
 export const metadata: Metadata = {
   title: 'Calculadora de Férias da Empregada Doméstica 2026 | LarDia',
@@ -47,7 +49,9 @@ export default function CalculadoraFeriasPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <Navbar />
       <FeriasCalculatorClient />
+      <Footer />
     </>
   )
 }

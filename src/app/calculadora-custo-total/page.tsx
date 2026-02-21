@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import CustoTotalCalculatorClient from './custo-total-calculator-client'
+import Navbar from '@/components/landing/navbar'
+import Footer from '@/components/landing/footer'
 
 export const metadata: Metadata = {
   title: 'Quanto Custa uma Empregada Doméstica em 2026 - Simulador Completo | LarDia',
@@ -48,7 +50,9 @@ export default function CalculadoraCustoTotalPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <Navbar />
       <CustoTotalCalculatorClient />
+      <Footer />
     </>
   )
 }

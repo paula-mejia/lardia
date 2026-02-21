@@ -4,6 +4,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight, Clock, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 import NewsletterSignup from '@/components/newsletter-signup'
+import Navbar from '@/components/landing/navbar'
+import Footer from '@/components/landing/footer'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -23,25 +25,7 @@ export default function BlogIndex() {
 
   return (
     <main className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight">
-            LarDia
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/blog" className="text-sm font-medium text-emerald-500">
-              Blog
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" size="sm">Entrar</Button>
-            </Link>
-            <Link href="/signup">
-              <Button size="sm">Comece agora</Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Header */}
       <section className="border-b bg-muted/30">
@@ -114,12 +98,7 @@ export default function BlogIndex() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-8">
-        <div className="container mx-auto px-4 text-center text-xs text-muted-foreground">
-          &copy; 2026 LarDia. Todos os direitos reservados.
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }

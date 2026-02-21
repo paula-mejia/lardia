@@ -9,7 +9,7 @@ import {
   Calculator,
   Users, FileText, Shield,
   FileCheck, Cpu, Receipt, Calendar,
-  Settings, Heart,
+  Settings, Heart, Home,
   Menu, X, ChevronDown,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -36,7 +36,10 @@ const navGroups: NavGroup[] = [
   {
     label: 'Gestão',
     items: [
-      { label: 'Empregados', href: '/dashboard', icon: <Users className="h-4 w-4" /> },
+      { label: 'Início', href: '/dashboard', icon: <Home className="h-4 w-4" /> },
+      { label: 'Empregados', href: '/dashboard/employees', icon: <Users className="h-4 w-4" /> },
+      { label: 'Documentos', href: '/dashboard/documents', icon: <FileCheck className="h-4 w-4" /> },
+      { label: 'Folha de Pagamento', href: '/dashboard/payroll', icon: <Receipt className="h-4 w-4" /> },
       { label: 'Contratos', href: '/dashboard/contracts', icon: <FileText className="h-4 w-4" /> },
       { label: 'Verificação', href: '/dashboard/background-check', icon: <Shield className="h-4 w-4" />, badge: 'Pago' },
     ],

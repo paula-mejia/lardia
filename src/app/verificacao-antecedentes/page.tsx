@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Navbar from '@/components/landing/navbar'
+import Footer from '@/components/landing/footer'
 import Link from 'next/link'
 import { Shield, Scale, UserCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -82,6 +84,7 @@ const faqs = [
 export default function VerificacaoAntecedentesPage() {
   return (
     <main className="flex flex-col">
+      <Navbar />
       {/* Hero */}
       <section className="bg-gradient-to-b from-emerald-50 to-white dark:from-emerald-950/30 dark:to-background py-20 md:py-28">
         <div className="container mx-auto px-4 text-center max-w-3xl">
@@ -197,6 +200,7 @@ export default function VerificacaoAntecedentesPage() {
           </Link>
         </div>
       </section>
+      <Footer />
     </main>
   )
 }

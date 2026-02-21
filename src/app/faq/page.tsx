@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaqAccordion } from "./faq-accordion";
 import NewsletterSignup from "@/components/newsletter-signup";
+import Navbar from "@/components/landing/navbar";
+import Footer from "@/components/landing/footer";
 
 export const metadata: Metadata = {
   title: "Perguntas Frequentes | LarDia - eSocial Doméstico",
@@ -283,36 +285,7 @@ export default function FaqPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight">
-            LarDia
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/faq"
-              className="text-sm font-medium text-foreground transition-colors"
-            >
-              FAQ
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" size="sm">
-                Entrar
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button size="sm">Comece agora</Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Header */}
       <section className="border-b bg-gradient-to-br from-emerald-50 via-background to-sky-50 dark:from-emerald-950/20 dark:to-sky-950/20">
@@ -359,14 +332,7 @@ export default function FaqPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-10">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-xs text-muted-foreground">
-            &copy; 2026 LarDia. Todos os direitos reservados.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

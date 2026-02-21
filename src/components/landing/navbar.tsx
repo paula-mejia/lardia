@@ -2,7 +2,8 @@ import Link from 'next/link'
 import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
 
-export default function Navbar() {
+export default function Navbar({ isLanding = false }: { isLanding?: boolean }) {
+  const prefix = isLanding ? '' : '/'
   return (
     <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-14 flex items-center justify-between">
@@ -11,10 +12,10 @@ export default function Navbar() {
         </Link>
         <div className="flex items-center gap-6">
           <div className="hidden sm:flex items-center gap-6">
-            <a href="#funcionalidades" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+            <a href={`${prefix}#funcionalidades`} className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
               Funcionalidades
             </a>
-            <a href="#precos" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+            <a href={`${prefix}#precos`} className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
               Preços
             </a>
             <Link href="/blog" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">

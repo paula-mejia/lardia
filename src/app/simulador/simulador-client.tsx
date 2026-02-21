@@ -21,6 +21,8 @@ import {
 import { CURRENT_TAX_TABLE } from '@/lib/calc/tax-tables'
 import { calculatePayroll } from '@/lib/calc/payroll'
 import { cn } from '@/lib/utils'
+import Navbar from '@/components/landing/navbar'
+import Footer from '@/components/landing/footer'
 
 // ---- Calculation helpers ----
 
@@ -187,28 +189,7 @@ export default function SimuladorClient() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight">
-            LarDia
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link href="/simulador" className="text-sm font-medium text-emerald-500 transition-colors">
-              Simulador
-            </Link>
-            <Link href="/blog" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Blog
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" size="sm">Entrar</Button>
-            </Link>
-            <Link href="/signup">
-              <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600">Comece agora</Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Page content */}
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -648,43 +629,7 @@ export default function SimuladorClient() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t py-10 bg-white mt-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="col-span-2 md:col-span-1">
-              <p className="font-bold text-lg mb-2">LarDia</p>
-              <p className="text-sm text-muted-foreground">eSocial sem erro, sem estresse.</p>
-            </div>
-            <div>
-              <p className="font-medium text-sm mb-3">Produto</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/#calculadora" className="hover:text-foreground transition-colors">Calculadora</Link></li>
-                <li><Link href="/simulador" className="hover:text-foreground transition-colors">Simulador</Link></li>
-                <li><Link href="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-sm mb-3">Conta</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/login" className="hover:text-foreground transition-colors">Entrar</Link></li>
-                <li><Link href="/signup" className="hover:text-foreground transition-colors">Criar conta</Link></li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-sm mb-3">Legal</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/termos" className="hover:text-foreground transition-colors">Termos de uso</Link></li>
-                <li><Link href="/privacidade" className="hover:text-foreground transition-colors">Privacidade</Link></li>
-              </ul>
-            </div>
-          </div>
-          <Separator className="my-8" />
-          <p className="text-center text-xs text-muted-foreground">
-            &copy; 2026 LarDia. Todos os direitos reservados.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }
