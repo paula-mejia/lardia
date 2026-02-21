@@ -44,8 +44,8 @@ export function EmployeeCards({ employees }: { employees: EmployeeListItem[] }) 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Empregados</h1>
-          <p className="text-muted-foreground">Gerencie seus empregados domésticos.</p>
+          <h1 className="text-3xl font-extrabold tracking-tight">Empregados</h1>
+          <p className="text-muted-foreground text-lg">Gerencie seus empregados domésticos.</p>
         </div>
         <Link href="/dashboard/employees/new">
           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
@@ -75,12 +75,12 @@ export function EmployeeCards({ employees }: { employees: EmployeeListItem[] }) 
               <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
                 <CardContent className="p-6 flex flex-col gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-semibold text-sm shrink-0">
+                    <div className="h-14 w-14 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold text-base shrink-0">
                       {getInitials(emp.full_name)}
                     </div>
                     <div className="min-w-0">
-                      <p className="font-semibold text-base truncate">{emp.full_name}</p>
-                      <p className="text-sm text-muted-foreground truncate">{emp.role}</p>
+                      <p className="font-bold text-lg truncate">{emp.full_name}</p>
+                      <p className="text-base text-muted-foreground truncate">{emp.role}</p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">

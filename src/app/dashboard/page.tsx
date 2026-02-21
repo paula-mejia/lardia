@@ -112,10 +112,10 @@ export default async function DashboardPage() {
     <div className="max-w-6xl space-y-8">
       {/* Greeting */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">
+        <h1 className="text-3xl font-extrabold tracking-tight">
           {greeting}, {firstName}!
         </h1>
-        <p className="text-muted-foreground mt-1">
+        <p className="text-muted-foreground text-lg mt-1">
           Aqui está o resumo dos seus empregados hoje.
         </p>
       </div>
@@ -130,7 +130,7 @@ export default async function DashboardPage() {
           </div>
           {activeEmployees.length > 0 ? (
             <>
-              <p className="text-3xl font-bold tracking-tight">{formatCurrency(estimatedDae)}</p>
+              <p className="text-4xl font-extrabold tracking-tight">{formatCurrency(estimatedDae)}</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Ref. {refMonth} · Vence {formatDate(dueDate.toISOString())}
               </p>
@@ -152,7 +152,7 @@ export default async function DashboardPage() {
             <Users className="h-4 w-4" />
             <span className="text-sm font-medium">Empregados Ativos</span>
           </div>
-          <p className="text-3xl font-bold tracking-tight">{activeEmployees.length}</p>
+          <p className="text-4xl font-extrabold tracking-tight">{activeEmployees.length}</p>
           {activeEmployees.length > 0 && (
             <div className="flex -space-x-2 mt-3">
               {activeEmployees.slice(0, 5).map((emp) => (
