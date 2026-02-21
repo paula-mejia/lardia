@@ -119,7 +119,7 @@ export default function EventsPage() {
   const years = Array.from({ length: 3 }, (_, i) => now.getFullYear() - i)
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-4xl">
+    <div className="container mx-auto px-4 py-6 max-w-6xl">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link href="/dashboard/esocial">

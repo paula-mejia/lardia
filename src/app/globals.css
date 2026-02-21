@@ -132,7 +132,19 @@
   }
 
   .dashboard-page {
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  .dashboard-page h1 {
+    @apply text-3xl;
+  }
+
+  .dashboard-page h2 {
+    @apply text-2xl;
+  }
+
+  .dashboard-page h3 {
+    @apply text-xl;
   }
 }

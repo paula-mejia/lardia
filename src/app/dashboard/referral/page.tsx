@@ -95,7 +95,7 @@ export default function ReferralPage() {
   if (loading) {
     return (
       <>
-        <div className="container mx-auto px-4 py-6 max-w-2xl">
+        <div className="container mx-auto px-4 py-6 max-w-4xl">
           <p className="text-muted-foreground">Carregando...</p>
         </div>
       </>
@@ -107,7 +107,7 @@ export default function ReferralPage() {
 
   return (
     <>
-      <div className="container mx-auto px-4 py-6 max-w-2xl">
+      <div className="container mx-auto px-4 py-6 max-w-4xl">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <Link href="/dashboard">

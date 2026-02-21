@@ -127,7 +127,7 @@ export default function TerminationPageClient({
   }, [result, employerName, employerCpf, employeeName, employeeCpf, employeeRole, admissionDate, terminationDate, salary])
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-6">
+    <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Input */}
       <Card>
         <CardHeader>

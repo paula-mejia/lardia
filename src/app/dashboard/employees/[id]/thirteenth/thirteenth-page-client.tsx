@@ -99,7 +99,7 @@ export default function ThirteenthPageClient({
   }, [result, employeeId, refYear, currentYear, dependents])
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-6">
+    <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Input */}
       <Card>
         <CardHeader>

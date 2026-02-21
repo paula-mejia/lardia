@@ -83,7 +83,7 @@ export default function PriorNoticePageClient({
   }, [employerName, employerCpf, employeeName, employeeCpf, employeeRole, admissionDate, noticeType, noticeDate, lastWorkDay, noticeDays, reductionOption, cityInput])
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-6">
+    <div className="w-full max-w-4xl mx-auto space-y-6">
       <Card>
         <CardHeader>
           <CardTitle className="text-xl">Aviso Previo</CardTitle>

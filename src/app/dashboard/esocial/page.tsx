@@ -36,7 +36,7 @@ interface DashboardData {
 
 function DashboardSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-6 max-w-4xl animate-pulse">
+    <div className="container mx-auto px-4 py-6 max-w-6xl animate-pulse">
       <div className="h-8 w-48 bg-muted rounded mb-6" />
       <div className="grid gap-4 md:grid-cols-2">
         {[...Array(4)].map((_, i) => (
@@ -91,7 +91,7 @@ export default function ESocialDashboard() {
 
   if (error || !data) {
     return (
-      <div className="container mx-auto px-4 py-6 max-w-4xl">
+      <div className="container mx-auto px-4 py-6 max-w-6xl">
         <p className="text-red-600">{error || 'Erro ao carregar dashboard'}</p>
       </div>
     )
@@ -100,7 +100,7 @@ export default function ESocialDashboard() {
   const { connection, summary, timeline, nextActions, currentMonth, currentYear } = data
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-4xl">
+    <div className="container mx-auto px-4 py-6 max-w-6xl">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link href="/dashboard">
