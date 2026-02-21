@@ -119,10 +119,20 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
-    @apply bg-background text-foreground;
+  }
+
+  /* Dashboard typography & spacing improvements */
+  .dashboard-page h1,
+  .dashboard-page h2,
+  .dashboard-page h3 {
+    @apply font-extrabold;
+  }
+
+  .dashboard-page {
+    font-size: 1.0625rem;
+    line-height: 1.6;
   }
 }

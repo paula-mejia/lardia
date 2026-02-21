@@ -1,13 +1,12 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Shield, Clock, CheckCircle2, Users, Calendar, DollarSign, ChevronRight } from 'lucide-react'
 
 function DashboardMockup() {
   return (
     <div className="relative w-full max-w-lg mx-auto">
       {/* Gray background card behind mockup */}
-      <div className="absolute -inset-10 bg-slate-200 dark:bg-slate-700 rounded-3xl shadow-inner" />
+      <div className="absolute -inset-10 bg-slate-900 dark:bg-slate-950 rounded-3xl shadow-inner" />
 
       <div className="relative bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
         {/* Top bar */}
@@ -155,11 +154,11 @@ export default function HeroSection() {
           {/* Left: Text */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <Badge variant="secondary" className="px-3 py-1 text-sm font-medium">
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400">
                 Para empregadores domésticos no Brasil 🇧🇷
-              </Badge>
+              </span>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
                 Chega de dor de cabeça{' '}
                 <span className="text-emerald-600 dark:text-emerald-400">
                   com o eSocial doméstico

@@ -39,7 +39,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background flex dashboard-page">
       <DashboardNav />
       <div className="flex-1 lg:ml-0">
         {showBanner && <TrialBanner daysLeft={daysLeft} />}

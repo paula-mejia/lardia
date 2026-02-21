@@ -9,9 +9,22 @@ export default function Navbar() {
         <Link href="/" className="flex items-center">
           <Logo className="h-9" />
         </Link>
-        <Link href="/signup">
-          <Button size="sm" className="text-sm">Começar grátis</Button>
-        </Link>
+        <div className="flex items-center gap-6">
+          <div className="hidden sm:flex items-center gap-6">
+            <a href="#funcionalidades" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              Funcionalidades
+            </a>
+            <a href="#precos" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              Preços
+            </a>
+            <Link href="/blog" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              Blog
+            </Link>
+          </div>
+          <Link href="/signup">
+            <Button size="sm" className="text-sm bg-emerald-600 hover:bg-emerald-700 text-white">Começar grátis</Button>
+          </Link>
+        </div>
       </div>
     </nav>
   )
