@@ -96,7 +96,10 @@ export default function CalculatorSection() {
               step={1}
               value={salary}
               onChange={handleSlider}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+              className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-emerald-500 [&::-webkit-slider-runnable-track]:rounded-lg [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-emerald-500 [&::-webkit-slider-thumb]:shadow-md"
+              style={{
+                background: `linear-gradient(to right, #10B981 0%, #10B981 ${((salary - MIN_SALARY) / (MAX_SALARY - MIN_SALARY)) * 100}%, #e5e7eb ${((salary - MIN_SALARY) / (MAX_SALARY - MIN_SALARY)) * 100}%, #e5e7eb 100%)`,
+              }}
             />
           </div>
 
