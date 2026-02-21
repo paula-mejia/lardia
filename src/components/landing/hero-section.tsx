@@ -4,11 +4,11 @@ import { Shield, Clock, CheckCircle2, Users, Calendar, DollarSign, ChevronRight 
 
 function DashboardMockup() {
   return (
-    <div className="relative w-full max-w-xl mx-auto" style={{ perspective: '1200px' }}>
+    <div className="relative w-full max-w-xl mx-auto">
       {/* Gray background card behind mockup */}
-      <div className="absolute -inset-10 bg-slate-900 dark:bg-slate-950 rounded-3xl shadow-inner" style={{ transform: 'rotateY(-8deg) rotateX(2deg)' }} />
+      <div className="absolute -inset-10 bg-slate-900 dark:bg-slate-950 rounded-3xl shadow-inner" />
 
-      <div className="relative bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden" style={{ transform: 'rotateY(-8deg) rotateX(2deg)' }}>
+      <div className="relative bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
         {/* Top bar */}
         <div className="flex items-center gap-2 px-4 py-2.5 bg-zinc-50 dark:bg-zinc-800/60 border-b border-zinc-200 dark:border-zinc-700">
           <div className="flex gap-1.5">
