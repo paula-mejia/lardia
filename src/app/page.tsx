@@ -105,9 +105,9 @@ export default function Home() {
       <HeroSection />
       <ProblemSection />
       <HowItWorksSection />
-      <FeaturesSection />
+      <section id="funcionalidades"><FeaturesSection /></section>
       <CalculatorSection />
-      <PricingSection />
+      <section id="precos"><PricingSection /></section>
       <FaqSection />
       <CtaSection />
       <Footer />
