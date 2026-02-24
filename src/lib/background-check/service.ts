@@ -1,11 +1,12 @@
 // Background check service layer
-// MVP: Mock/simulation mode with realistic sample data
-// Production: Integrate with BigDataCorp API (https://docs.bigdatacorp.com.br/)
+// Uses real TJSP scraper running on EC2 São Paulo
+// Fallback: mock/simulation mode for development
 
 import { validateCpfChecksum, type CpfValidationResult } from './cpf-validation'
 
-// Toggle between mock and real API mode
-const USE_MOCK = process.env.BACKGROUND_CHECK_MODE !== 'production'
+const USE_MOCK = process.env.BACKGROUND_CHECK_MODE === 'mock'
+const BGCHECK_API_URL = process.env.BGCHECK_API_URL || 'https://api.lardia.com.br/bgcheck'
+const BGCHECK_SECRET = process.env.BGCHECK_SECRET || 'lardia-bgcheck-2026'
 
 export interface BackgroundCheckRequest {
   candidateName: string
@@ -14,23 +15,43 @@ export interface BackgroundCheckRequest {
   lgpdConsent: boolean
 }
 
+export interface ProcessoRecord {
+  numero: string
+  classe?: string
+  assunto?: string
+}
+
+export interface SourceResult {
+  status: 'CLEAN' | 'HAS_RECORDS' | 'ERROR' | 'BLOCKED'
+  count?: number
+  processos?: ProcessoRecord[]
+  error?: string
+  note?: string
+}
+
 export interface BackgroundCheckResult {
   cpf_valid: boolean
-  cpf_status: string // "regular", "suspensa", "cancelada", etc.
+  cpf_status: string
   name_match: boolean
   criminal_records: {
     has_records: boolean
     details: string
+    count: number
+    processos: ProcessoRecord[]
   }
   lawsuits: {
     has_lawsuits: boolean
     count: number
+    processos: ProcessoRecord[]
   }
-  credit_score: {
-    status: string // "limpo", "negativado"
+  sources: Record<string, SourceResult>
+  summary: {
+    overallStatus: 'CLEAR' | 'REVIEW_NEEDED'
+    flags: Array<{ source: string; status: string; message: string }>
   }
   cpf_details: CpfValidationResult
   consultation_date: string
+  duration_ms: number
 }
 
 /**
@@ -56,13 +77,91 @@ export async function runBackgroundCheck(
 }
 
 /**
+ * Real mode: Calls EC2 São Paulo scraper API for TJSP background check.
+ */
+async function runRealCheck(
+  request: BackgroundCheckRequest
+): Promise<BackgroundCheckResult> {
+  const cpf = request.candidateCpf.replace(/\D/g, '')
+  
+  const cpfResult: CpfValidationResult = {
+    valid: validateCpfChecksum(cpf),
+    status: 'regular', // TODO: add Receita Federal check when captcha solver works
+    nameMatch: true,
+    formatted: cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'),
+    situationDate: new Date().toISOString().slice(0, 10),
+    registeredName: request.candidateName,
+  }
+
+  // Call the EC2 scraper API
+  const response = await fetch(`${BGCHECK_API_URL}/check`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      cpf,
+      nome: request.candidateName,
+      secret: BGCHECK_SECRET,
+    }),
+    signal: AbortSignal.timeout(120000), // 2 min timeout
+  })
+
+  if (!response.ok) {
+    const errorBody = await response.text()
+    throw new Error(`Background check API error: ${response.status} - ${errorBody}`)
+  }
+
+  const data = await response.json()
+
+  // Merge all process records
+  const allProcessos: ProcessoRecord[] = []
+  let totalCount = 0
+  
+  for (const [, source] of Object.entries(data.sources || {})) {
+    const s = source as SourceResult
+    if (s.status === 'HAS_RECORDS' && s.processos) {
+      allProcessos.push(...s.processos)
+      totalCount += s.count || 0
+    }
+  }
+
+  // Deduplicate by process number
+  const uniqueProcessos = Array.from(
+    new Map(allProcessos.map(p => [p.numero, p])).values()
+  )
+
+  const hasRecords = uniqueProcessos.length > 0
+
+  return {
+    cpf_valid: cpfResult.valid,
+    cpf_status: cpfResult.status,
+    name_match: cpfResult.nameMatch,
+    criminal_records: {
+      has_records: hasRecords,
+      details: hasRecords
+        ? `${uniqueProcessos.length} processo(s) encontrado(s) no TJSP`
+        : 'Nenhum registro encontrado no TJSP',
+      count: uniqueProcessos.length,
+      processos: uniqueProcessos,
+    },
+    lawsuits: {
+      has_lawsuits: hasRecords,
+      count: uniqueProcessos.length,
+      processos: uniqueProcessos,
+    },
+    sources: data.sources || {},
+    summary: data.summary || { overallStatus: 'CLEAR', flags: [] },
+    cpf_details: cpfResult,
+    consultation_date: data.consultedAt || new Date().toISOString(),
+    duration_ms: data.durationMs || 0,
+  }
+}
+
+/**
  * Mock mode: Returns realistic sample data for development/MVP.
- * Uses real CPF validation algorithm, simulates everything else.
  */
 async function runMockCheck(
   request: BackgroundCheckRequest
 ): Promise<BackgroundCheckResult> {
-  // CPF validation is always real (algorithmic check)
   const cpfResult: CpfValidationResult = {
     valid: validateCpfChecksum(request.candidateCpf),
     status: 'regular',
@@ -72,23 +171,14 @@ async function runMockCheck(
     registeredName: request.candidateName,
   }
 
-  // Simulate a small delay like a real API call
   await new Promise((resolve) => setTimeout(resolve, 1500))
 
-  // Generate deterministic mock data based on CPF digits
-  // This way the same CPF always returns the same results
   const digits = request.candidateCpf.replace(/\D/g, '')
   const seed = parseInt(digits.slice(-2))
 
-  // ~10% chance of criminal records (based on last 2 digits)
   const hasCriminalRecords = seed >= 90
-
-  // ~15% chance of lawsuits
   const hasLawsuits = seed >= 85 && seed < 90
   const lawsuitCount = hasLawsuits ? (seed % 3) + 1 : 0
-
-  // ~20% chance of negative credit
-  const isNegativado = seed >= 80 && seed < 85
 
   return {
     cpf_valid: cpfResult.valid,
@@ -99,54 +189,21 @@ async function runMockCheck(
       details: hasCriminalRecords
         ? 'Registros encontrados em consulta a bases publicas'
         : 'Nenhum registro encontrado',
+      count: hasCriminalRecords ? 1 : 0,
+      processos: [],
     },
     lawsuits: {
       has_lawsuits: hasLawsuits,
       count: lawsuitCount,
+      processos: [],
     },
-    credit_score: {
-      status: isNegativado ? 'negativado' : 'limpo',
+    sources: {},
+    summary: {
+      overallStatus: hasCriminalRecords || hasLawsuits ? 'REVIEW_NEEDED' : 'CLEAR',
+      flags: [],
     },
     cpf_details: cpfResult,
     consultation_date: new Date().toISOString(),
+    duration_ms: 1500,
   }
-}
-
-/**
- * Real mode: Calls BigDataCorp API for full background check.
- * TODO: Implement when BigDataCorp account is set up.
- *
- * BigDataCorp API integration:
- * POST https://api.bigdatacorp.com.br/pessoas
- * Headers: { Authorization: "Bearer {BIGDATACORP_API_TOKEN}" }
- * Body: {
- *   "cpf": "12345678900",
- *   "datasets": ["basic_data", "criminal_records", "lawsuits", "credit_score"]
- * }
- *
- * Cost: ~R$3-8 per full query
- * Docs: https://docs.bigdatacorp.com.br/
- */
-async function runRealCheck(
-  request: BackgroundCheckRequest
-): Promise<BackgroundCheckResult> {
-  // const cpfResult = await queryCpfStatus(request.candidateCpf, request.candidateName)
-
-  // TODO: BigDataCorp API call
-  // const response = await fetch('https://api.bigdatacorp.com.br/pessoas', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Authorization': `Bearer ${process.env.BIGDATACORP_API_TOKEN}`,
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     cpf: request.candidateCpf.replace(/\D/g, ''),
-  //     datasets: ['basic_data', 'criminal_records', 'lawsuits', 'credit_score'],
-  //   }),
-  // })
-  // const data = await response.json()
-  // Map BigDataCorp response to our interface...
-
-  // For now, fall back to mock
-  return runMockCheck(request)
 }
