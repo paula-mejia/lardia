@@ -42,12 +42,41 @@ export async function POST(request: NextRequest) {
       .eq('id', employer.id)
   }
 
-  // Use env price ID or create inline
-  const priceId = process.env.STRIPE_PRICE_ID
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const body = await request.json()
+  const { mode, priceId, metadata, successUrl, cancelUrl } = body
 
-  const lineItems = priceId
-    ? [{ price: priceId, quantity: 1 }]
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lardia.com.br'
+
+  // One-time payment mode (background check)
+  if (mode === 'payment') {
+    const bgPriceId = priceId || process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BACKGROUND_CHECK
+
+    if (!bgPriceId) {
+      return NextResponse.json({ error: 'Price ID not configured' }, { status: 500 })
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      customer: customerId,
+      mode: 'payment',
+      success_url: successUrl || `${baseUrl}/dashboard/background-check?payment=success`,
+      cancel_url: cancelUrl || `${baseUrl}/dashboard/background-check`,
+      line_items: [{ price: bgPriceId, quantity: 1 }],
+      metadata: {
+        ...metadata,
+        employer_id: employer.id,
+      },
+    } as Record<string, unknown>)
+
+    await logAudit('background_check_payment', 'stripe', { sessionId: session.id, ...metadata }, request, null, employer.id)
+
+    return NextResponse.json({ url: session.url })
+  }
+
+  // Subscription mode (default)
+  const subPriceId = priceId || process.env.STRIPE_PRICE_ID
+
+  const lineItems = subPriceId
+    ? [{ price: subPriceId, quantity: 1 }]
     : [{
         price_data: {
           currency: 'brl',
@@ -61,8 +90,8 @@ export async function POST(request: NextRequest) {
   const session = await stripe.checkout.sessions.create({
     customer: customerId,
     mode: 'subscription',
-    success_url: `${baseUrl}/dashboard?subscription=success`,
-    cancel_url: `${baseUrl}/dashboard/settings`,
+    success_url: successUrl || `${baseUrl}/dashboard?subscription=success`,
+    cancel_url: cancelUrl || `${baseUrl}/dashboard/settings`,
     line_items: lineItems,
   } as Record<string, unknown>)
 

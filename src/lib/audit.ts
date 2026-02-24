@@ -20,6 +20,7 @@ export type AuditAction =
   | 'esocial_monthly_processed'
   | 'esocial_event_retry'
   | 'dae_pdf_generated'
+  | 'background_check_payment'
 
 // Use service role to bypass RLS for inserts from any context
 function getServiceSupabase() {
