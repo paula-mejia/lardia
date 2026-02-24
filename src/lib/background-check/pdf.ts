@@ -93,8 +93,8 @@ export function generateBackgroundCheckPdf(check: CheckRecord) {
     },
     {
       label: 'Situação de crédito',
-      value: r.credit_score.status === 'limpo' ? 'Limpo' : 'Negativado',
-      ok: r.credit_score.status === 'limpo',
+      value: r.credit_score?.status === 'limpo' ? 'Limpo' : (r.credit_score ? 'Negativado' : 'Indisponível'),
+      ok: r.credit_score?.status === 'limpo' || !r.credit_score,
     },
   ]
 

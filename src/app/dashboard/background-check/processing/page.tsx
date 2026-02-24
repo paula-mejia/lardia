@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -8,6 +8,14 @@ import { Loader2, CheckCircle2, AlertCircle, ArrowLeft, FileText } from 'lucide-
 import Link from 'next/link'
 
 export default function BackgroundCheckProcessingPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto px-4 py-6 max-w-4xl text-center"><Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" /></div>}>
+      <ProcessingContent />
+    </Suspense>
+  )
+}
+
+function ProcessingContent() {
   const searchParams = useSearchParams()
   const name = searchParams.get('name') || ''
   const cpf = searchParams.get('cpf') || ''

@@ -256,7 +256,7 @@ function BackgroundCheckResultsContent() {
                       <p className="font-medium">Situação de crédito</p>
                       <p className="text-sm text-muted-foreground">Consulta de restricoes</p>
                     </div>
-                    <CreditLight status={r.credit_score.status} />
+                    <CreditLight status={r.credit_score?.status ?? 'unavailable'} />
                   </div>
                 </CardContent>
               </Card>

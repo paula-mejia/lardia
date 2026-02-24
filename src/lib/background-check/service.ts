@@ -52,6 +52,7 @@ export interface BackgroundCheckResult {
   cpf_details: CpfValidationResult
   consultation_date: string
   duration_ms: number
+  credit_score?: { status: string }
 }
 
 /**
