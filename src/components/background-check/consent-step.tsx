@@ -42,20 +42,13 @@ export function ConsentStep({ candidate, onBack }: ConsentStepProps) {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/stripe/checkout', {
+      const res = await fetch('/api/stripe/background-check', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          mode: 'payment',
-          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BACKGROUND_CHECK,
-          metadata: {
-            type: 'background_check',
-            candidateName: candidate.fullName.trim(),
-            candidateCpf: candidate.cpf.replace(/\D/g, ''),
-            candidateDob: candidate.dob,
-          },
-          successUrl: `${window.location.origin}/dashboard/background-check/processing?name=${encodeURIComponent(candidate.fullName.trim())}&cpf=${encodeURIComponent(candidate.cpf.replace(/\D/g, ''))}&dob=${encodeURIComponent(candidate.dob)}`,
-          cancelUrl: `${window.location.origin}/dashboard/background-check`,
+          candidateName: candidate.fullName.trim(),
+          candidateCpf: candidate.cpf.replace(/\D/g, ''),
+          candidateDob: candidate.dob,
         }),
       })
 
