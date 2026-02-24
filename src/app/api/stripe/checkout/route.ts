@@ -18,36 +18,53 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const { data: employer } = await supabase
-    .from('employers')
-    .select('id, email, stripe_customer_id')
-    .eq('user_id', user.id)
-    .single()
-
-  if (!employer) {
-    return NextResponse.json({ error: 'Employer not found' }, { status: 404 })
-  }
-
-  // Get or create Stripe customer
-  let customerId = employer.stripe_customer_id
-  if (!customerId) {
-    const customer = await stripe.customers.create({
-      email: employer.email || user.email || undefined,
-      metadata: { employer_id: employer.id, user_id: user.id },
-    })
-    customerId = customer.id
-    await supabase
-      .from('employers')
-      .update({ stripe_customer_id: customerId })
-      .eq('id', employer.id)
-  }
-
   const body = await request.json()
   const { mode, priceId, metadata, successUrl, cancelUrl } = body
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lardia.com.br'
 
-  // One-time payment mode (background check)
+  // Get or create employer record (background check works even without full onboarding)
+  let { data: employer } = await supabase
+    .from('employers')
+    .select('id, email, stripe_customer_id')
+    .eq('user_id', user.id)
+    .single()
+
+  if (!employer && mode === 'payment') {
+    const { data: newEmployer } = await supabase
+      .from('employers')
+      .insert({
+        user_id: user.id,
+        email: user.email,
+        full_name: user.user_metadata?.full_name || user.email || 'Usuário',
+        onboarding_completed: false,
+      })
+      .select('id, email, stripe_customer_id')
+      .single()
+    employer = newEmployer
+  }
+
+  // Get or create Stripe customer (works with or without employer record)
+  let customerId = employer?.stripe_customer_id || null
+  if (!customerId) {
+    const customer = await stripe.customers.create({
+      email: employer?.email || user.email || undefined,
+      metadata: {
+        user_id: user.id,
+        ...(employer ? { employer_id: employer.id } : {}),
+      },
+    })
+    customerId = customer.id
+    // Save customer ID if employer exists
+    if (employer) {
+      await supabase
+        .from('employers')
+        .update({ stripe_customer_id: customerId })
+        .eq('id', employer.id)
+    }
+  }
+
+  // One-time payment mode (background check - no employer required)
   if (mode === 'payment') {
     const bgPriceId = priceId || process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BACKGROUND_CHECK
 
@@ -63,16 +80,21 @@ export async function POST(request: NextRequest) {
       line_items: [{ price: bgPriceId, quantity: 1 }],
       metadata: {
         ...metadata,
-        employer_id: employer.id,
+        user_id: user.id,
+        ...(employer ? { employer_id: employer.id } : {}),
       },
     } as Record<string, unknown>)
 
-    await logAudit('background_check_payment', 'stripe', { sessionId: session.id, ...metadata }, request, null, employer.id)
+    await logAudit('background_check_payment', 'stripe', { sessionId: session.id, ...metadata }, request, null, employer?.id || null)
 
     return NextResponse.json({ url: session.url })
   }
 
-  // Subscription mode (default)
+  // Subscription mode (requires employer)
+  if (!employer) {
+    return NextResponse.json({ error: 'Complete o cadastro antes de assinar um plano' }, { status: 404 })
+  }
+
   const subPriceId = priceId || process.env.STRIPE_PRICE_ID
 
   const lineItems = subPriceId

@@ -15,14 +15,29 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
   }
 
-  const { data: employer } = await supabase
+  // Get or create employer record (background check works even without full onboarding)
+  let { data: employer } = await supabase
     .from('employers')
     .select('id')
     .eq('user_id', user.id)
     .single()
 
   if (!employer) {
-    return NextResponse.json({ error: 'Empregador não encontrado' }, { status: 404 })
+    const { data: newEmployer } = await supabase
+      .from('employers')
+      .insert({
+        user_id: user.id,
+        email: user.email,
+        full_name: user.user_metadata?.full_name || user.email || 'Usuário',
+        onboarding_completed: false,
+      })
+      .select('id')
+      .single()
+    employer = newEmployer
+  }
+
+  if (!employer) {
+    return NextResponse.json({ error: 'Erro ao criar perfil' }, { status: 500 })
   }
 
   const body = await request.json()
@@ -46,12 +61,12 @@ export async function POST(request: NextRequest) {
     const { data: check, error: insertError } = await supabase
       .from('background_checks')
       .insert({
-        employer_id: employer.id,
+        employer_id: employer?.id || null,
         candidate_name: candidateName,
         candidate_cpf: candidateCpf,
         candidate_dob: candidateDob,
         status: 'pending',
-        paid: false, // MVP: skip payment for now
+        paid: false,
       })
       .select('id')
       .single()
@@ -61,7 +76,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Erro ao criar consulta' }, { status: 500 })
     }
 
-    // Run the background check (mock mode for MVP)
+    // Run the background check
     const results = await runBackgroundCheck({
       candidateName,
       candidateCpf,
@@ -82,7 +97,7 @@ export async function POST(request: NextRequest) {
       console.error('Update error:', updateError)
     }
 
-    await logAudit('background_check_requested', 'background-check', { checkId: check.id, candidateName }, request, null, employer.id)
+    await logAudit('background_check_requested', 'background-check', { checkId: check.id, candidateName }, request, null, employer?.id || null)
 
     return NextResponse.json({ id: check.id, status: 'completed' })
   } catch (err) {
