@@ -67,6 +67,16 @@ export interface BackgroundCheckResult {
   cnep?: { status: string; count: number }
   pep?: { status: string; count: number }
   ceaf?: { status: string; count: number }
+  tjmg?: {
+    has_records: boolean
+    count: number
+    processos: ProcessoRecord[]
+  }
+  tjpr?: {
+    has_records: boolean
+    count: number
+    processos: ProcessoRecord[]
+  }
 }
 
 /**
@@ -182,6 +192,16 @@ async function runRealCheck(
     cnep: data.sources?.cnep ? { status: data.sources.cnep.status, count: data.sources.cnep.count || 0 } : undefined,
     pep: data.sources?.pep ? { status: data.sources.pep.status, count: data.sources.pep.count || 0 } : undefined,
     ceaf: data.sources?.ceaf ? { status: data.sources.ceaf.status, count: data.sources.ceaf.count || 0 } : undefined,
+    tjmg: data.sources?.tjmg ? {
+      has_records: data.sources.tjmg.status === 'HAS_RECORDS',
+      count: data.sources.tjmg.count || 0,
+      processos: (data.sources.tjmg.processos || []).map((p: { numero: string }) => ({ numero: p.numero })),
+    } : undefined,
+    tjpr: data.sources?.tjpr ? {
+      has_records: data.sources.tjpr.status === 'HAS_RECORDS',
+      count: data.sources.tjpr.count || 0,
+      processos: (data.sources.tjpr.processos || []).map((p: { numero: string }) => ({ numero: p.numero })),
+    } : undefined,
   }
 }
 

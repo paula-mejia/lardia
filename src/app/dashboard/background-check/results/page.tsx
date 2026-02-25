@@ -288,6 +288,46 @@ function BackgroundCheckResultsContent() {
                 </CardContent>
               </Card>
 
+              {/* TJMG */}
+              <Card>
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">Processos cíveis - MG</p>
+                      <p className="text-sm text-muted-foreground">Tribunal de Justiça de Minas Gerais</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                      <StatusIcon ok={!r.tjmg?.has_records} />
+                      <span className="font-medium">
+                        {r.tjmg?.has_records
+                          ? `${r.tjmg.count} processo${r.tjmg.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* TJPR */}
+              <Card>
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">Processos cíveis - PR</p>
+                      <p className="text-sm text-muted-foreground">Tribunal de Justiça do Paraná</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                      <StatusIcon ok={!r.tjpr?.has_records} />
+                      <span className="font-medium">
+                        {r.tjpr?.has_records
+                          ? `${r.tjpr.count} processo${r.tjpr.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* CEIS */}
               <Card>
                 <CardContent className="py-4">
