@@ -58,6 +58,15 @@ export interface BackgroundCheckResult {
     count: number
     processos: ProcessoRecord[]
   }
+  tjrj?: {
+    has_records: boolean
+    count: number
+    processos: ProcessoRecord[]
+  }
+  ceis?: { status: string; count: number }
+  cnep?: { status: string; count: number }
+  pep?: { status: string; count: number }
+  ceaf?: { status: string; count: number }
 }
 
 /**
@@ -164,6 +173,15 @@ async function runRealCheck(
       count: data.sources.trt2_trabalhista.count || 0,
       processos: (data.sources.trt2_trabalhista.processos || []).map((p: { numero: string }) => ({ numero: p.numero })),
     } : undefined,
+    tjrj: data.sources?.tjrj ? {
+      has_records: data.sources.tjrj.status === 'HAS_RECORDS',
+      count: data.sources.tjrj.count || 0,
+      processos: (data.sources.tjrj.processos || []).map((p: { numero: string }) => ({ numero: p.numero })),
+    } : undefined,
+    ceis: data.sources?.ceis ? { status: data.sources.ceis.status, count: data.sources.ceis.count || 0 } : undefined,
+    cnep: data.sources?.cnep ? { status: data.sources.cnep.status, count: data.sources.cnep.count || 0 } : undefined,
+    pep: data.sources?.pep ? { status: data.sources.pep.status, count: data.sources.pep.count || 0 } : undefined,
+    ceaf: data.sources?.ceaf ? { status: data.sources.ceaf.status, count: data.sources.ceaf.count || 0 } : undefined,
   }
 }
 

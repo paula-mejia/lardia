@@ -268,6 +268,86 @@ function BackgroundCheckResultsContent() {
                 </CardContent>
               </Card>
 
+              {/* TJRJ */}
+              <Card>
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">Processos cíveis - RJ</p>
+                      <p className="text-sm text-muted-foreground">Tribunal de Justiça do Rio de Janeiro</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                      <StatusIcon ok={!r.tjrj?.has_records} />
+                      <span className="font-medium">
+                        {r.tjrj?.has_records
+                          ? `${r.tjrj.count} processo${r.tjrj.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* CEIS */}
+              <Card>
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">Sanções governamentais</p>
+                      <p className="text-sm text-muted-foreground">CEIS - Empresas Inidôneas e Suspensas</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                      <StatusIcon ok={r.ceis?.status !== 'HAS_RECORDS'} />
+                      <span className="font-medium">
+                        {r.ceis?.status === 'HAS_RECORDS'
+                          ? `${r.ceis.count} registro${r.ceis.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* CNEP */}
+              <Card>
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">Empresas punidas</p>
+                      <p className="text-sm text-muted-foreground">CNEP - Cadastro Nacional</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                      <StatusIcon ok={r.cnep?.status !== 'HAS_RECORDS'} />
+                      <span className="font-medium">
+                        {r.cnep?.status === 'HAS_RECORDS'
+                          ? `${r.cnep.count} registro${r.cnep.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* CEAF */}
+              <Card>
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">Expulsões federais</p>
+                      <p className="text-sm text-muted-foreground">CEAF - Administração Federal</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                      <StatusIcon ok={r.ceaf?.status !== 'HAS_RECORDS'} />
+                      <span className="font-medium">
+                        {r.ceaf?.status === 'HAS_RECORDS'
+                          ? `${r.ceaf.count} registro${r.ceaf.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* Credit score */}
               <Card>
                 <CardContent className="py-4">
