@@ -142,7 +142,7 @@ function BackgroundCheckResultsContent() {
               <ArrowLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-right whitespace-nowrap">
             <Shield className="h-6 w-6 text-primary" />
             <h1 className="text-xl font-bold">Relatório de Verificação</h1>
           </div>
@@ -182,7 +182,7 @@ function BackgroundCheckResultsContent() {
                       <p className="font-medium">Situação do CPF</p>
                       <p className="text-sm text-muted-foreground">Receita Federal</p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
                       <StatusIcon ok={r.cpf_status === 'regular'} />
                       <span className="font-medium capitalize">{r.cpf_status}</span>
                     </div>
@@ -198,7 +198,7 @@ function BackgroundCheckResultsContent() {
                       <p className="font-medium">Conferencia de nome</p>
                       <p className="text-sm text-muted-foreground">Nome vinculado ao CPF</p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
                       <StatusIcon ok={r.name_match} />
                       <span className="font-medium">
                         {r.name_match ? 'Confere' : 'Divergente'}
@@ -216,12 +216,12 @@ function BackgroundCheckResultsContent() {
                       <p className="font-medium">Antecedentes criminais</p>
                       <p className="text-sm text-muted-foreground">Bases públicas federais e estaduais</p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
                       <StatusIcon ok={!r.criminal_records.has_records} />
                       <span className="font-medium">
                         {r.criminal_records.has_records
                           ? 'Registros encontrados'
-                          : 'Nenhum registro encontrado'}
+                          : 'Nada consta'}
                       </span>
                     </div>
                   </div>
@@ -236,7 +236,7 @@ function BackgroundCheckResultsContent() {
                       <p className="font-medium">Processos judiciais</p>
                       <p className="text-sm text-muted-foreground">Tribunais de justica</p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
                       <StatusIcon ok={!r.lawsuits.has_lawsuits} />
                       <span className="font-medium">
                         {r.lawsuits.has_lawsuits
