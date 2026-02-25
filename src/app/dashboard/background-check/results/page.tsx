@@ -214,7 +214,7 @@ function BackgroundCheckResultsContent() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">Antecedentes criminais</p>
-                      <p className="text-sm text-muted-foreground">Bases públicas federais e estaduais</p>
+                      <p className="text-sm text-muted-foreground">Tribunal de Justiça de São Paulo</p>
                     </div>
                     <div className="flex items-center gap-2 text-right whitespace-nowrap">
                       <StatusIcon ok={!r.criminal_records.has_records} />
