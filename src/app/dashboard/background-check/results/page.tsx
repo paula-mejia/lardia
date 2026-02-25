@@ -228,20 +228,40 @@ function BackgroundCheckResultsContent() {
                 </CardContent>
               </Card>
 
-              {/* Lawsuits */}
+              {/* Lawsuits - Cível */}
               <Card>
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">Processos judiciais</p>
-                      <p className="text-sm text-muted-foreground">Tribunais de justica</p>
+                      <p className="font-medium">Processos cíveis</p>
+                      <p className="text-sm text-muted-foreground">Tribunal de Justiça de São Paulo</p>
                     </div>
                     <div className="flex items-center gap-2 text-right whitespace-nowrap">
                       <StatusIcon ok={!r.lawsuits.has_lawsuits} />
                       <span className="font-medium">
                         {r.lawsuits.has_lawsuits
-                          ? `${r.lawsuits.count} processo${r.lawsuits.count > 1 ? 's' : ''} encontrado${r.lawsuits.count > 1 ? 's' : ''}`
-                          : 'Nenhum processo'}
+                          ? `${r.lawsuits.count} processo${r.lawsuits.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Lawsuits - Trabalhista */}
+              <Card>
+                <CardContent className="py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium">Processos trabalhistas</p>
+                      <p className="text-sm text-muted-foreground">TRT 2ª Região - São Paulo</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                      <StatusIcon ok={!r.labor_lawsuits?.has_records} />
+                      <span className="font-medium">
+                        {r.labor_lawsuits?.has_records
+                          ? `${r.labor_lawsuits.count} processo${r.labor_lawsuits.count > 1 ? 's' : ''}`
+                          : 'Nada consta'}
                       </span>
                     </div>
                   </div>

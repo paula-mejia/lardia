@@ -53,6 +53,11 @@ export interface BackgroundCheckResult {
   consultation_date: string
   duration_ms: number
   credit_score?: { status: string }
+  labor_lawsuits?: {
+    has_records: boolean
+    count: number
+    processos: ProcessoRecord[]
+  }
 }
 
 /**
@@ -154,6 +159,11 @@ async function runRealCheck(
     cpf_details: cpfResult,
     consultation_date: data.consultedAt || new Date().toISOString(),
     duration_ms: data.durationMs || 0,
+    labor_lawsuits: data.sources?.trt2_trabalhista ? {
+      has_records: data.sources.trt2_trabalhista.status === 'HAS_RECORDS',
+      count: data.sources.trt2_trabalhista.count || 0,
+      processos: (data.sources.trt2_trabalhista.processos || []).map((p: { numero: string }) => ({ numero: p.numero })),
+    } : undefined,
   }
 }
 
