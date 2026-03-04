@@ -7,29 +7,28 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import {
   ArrowLeft,
-  ArrowRight,
   CheckCircle,
   ExternalLink,
-  FileText,
-  Loader2,
   Shield,
   Clock,
   Copy,
+  Loader2,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 
 const CNPJ_LARDIA = '46.728.966/0001-40'
-const TOTAL_STEPS = 4
 
 export default function ConnectESocialPage() {
-  const [step, setStep] = useState(1)
   const [cpf, setCpf] = useState('')
   const [verifying, setVerifying] = useState(false)
   const [verified, setVerified] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
+  const [showResult, setShowResult] = useState(false)
 
   function formatCpf(value: string) {
     const digits = value.replace(/\D/g, '').slice(0, 11)
@@ -52,16 +51,12 @@ export default function ConnectESocialPage() {
       setError('CPF deve ter 11 dígitos.')
       return
     }
-
     setVerifying(true)
     setError('')
-
     try {
       await new Promise((r) => setTimeout(r, 2000))
-
       const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
-
       if (user) {
         await supabase
           .from('employers')
@@ -73,7 +68,6 @@ export default function ConnectESocialPage() {
           })
           .eq('user_id', user.id)
       }
-
       setVerified(true)
     } catch {
       setError('Erro ao verificar. Tente novamente.')
@@ -85,7 +79,7 @@ export default function ConnectESocialPage() {
   return (
     <div className="container mx-auto px-4 py-6 max-w-4xl">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-8">
         <Link href="/dashboard/esocial">
           <Button variant="ghost" size="icon">
             <ArrowLeft className="h-4 w-4" />
@@ -96,441 +90,289 @@ export default function ConnectESocialPage() {
             Conectar eSocial
           </h1>
           <p className="text-sm text-muted-foreground">
-            Passo {step} de {TOTAL_STEPS}
+            Autorize a LarDia a gerenciar seu eSocial via procuração eletrônica
           </p>
         </div>
       </div>
 
-      {/* Progress bar */}
-      <div className="flex gap-1 mb-6">
-        {Array.from({ length: TOTAL_STEPS }, (_, i) => (
-          <div
-            key={i}
-            className={`h-1.5 flex-1 rounded-full transition-colors ${
-              i < step ? 'bg-emerald-500' : 'bg-muted'
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Step 1: Explanation */}
-      {step === 1 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5" />
-              O que é a procuração eletrônica?
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-sm leading-relaxed">
-              Para que a LarDia gerencie seu eSocial, você precisa nos
-              autorizar via <strong>procuração eletrônica</strong> no eCAC (Centro Virtual de
-              Atendimento da Receita Federal).
-            </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              A procuração eletrônica é um documento digital seguro que autoriza a
-              LarDia a enviar e consultar informações no eSocial em seu nome.
-              Com ela, conseguimos automatizar o envio da folha de pagamento,
-              gerar as guias DAE e manter suas obrigações em dia.
-            </p>
-
-            <div className="bg-muted/50 rounded-lg p-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <Shield className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium">Seguro e revogável</p>
-                  <p className="text-xs text-muted-foreground">
-                    Você pode revogar a procuração a qualquer momento diretamente no eCAC.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium">Leva menos de 5 minutos</p>
-                  <p className="text-xs text-muted-foreground">
-                    O processo é simples e feito diretamente no site da Receita Federal.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <Button onClick={() => setStep(2)} className="w-full">
-              Entendi, vamos começar
-              <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Step 2: Requirements */}
-      {step === 2 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>O que você vai precisar</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium">
-                    Conta gov.br nível Prata ou Ouro
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Necessário para acessar o eCAC. Se você ainda não tem,{' '}
-                    <a
-                      href="https://sso.acesso.gov.br/signup"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-emerald-500 underline"
-                    >
-                      crie sua conta gov.br aqui
-                      <ExternalLink className="h-3 w-3 inline ml-0.5" />
-                    </a>
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium">Seu CPF</p>
-                  <p className="text-xs text-muted-foreground">
-                    O CPF cadastrado como empregador doméstico no eSocial.
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium">CNPJ da LarDia</p>
-                  <p className="text-xs text-muted-foreground">
-                    Você vai precisar informar nosso CNPJ no eCAC. Não se preocupe, vamos te mostrar exatamente onde.
-                  </p>
-                  <div className="mt-1 flex items-center gap-2">
-                    <code className="text-xs bg-muted px-2 py-1 rounded font-mono">
-                      {CNPJ_LARDIA}
-                    </code>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-6 px-2"
-                      onClick={() => copyToClipboard('46728966000140')}
-                    >
-                      {copied ? (
-                        <CheckCircle className="h-3 w-3 text-emerald-500" />
-                      ) : (
-                        <Copy className="h-3 w-3" />
-                      )}
-                    </Button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={() => setStep(1)}
-                className="flex-1"
-              >
-                Voltar
-              </Button>
-              <Button onClick={() => setStep(3)} className="flex-1">
-                Tenho tudo, vamos lá
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Step 3: Instructions with screenshots */}
-      {step === 3 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Passo a passo</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Siga as instruções abaixo. O processo leva menos de 5 minutos.
-            </p>
-          </CardHeader>
-          <CardContent className="space-y-6">
-
-            {/* Step 3.1: Login eCAC */}
-            <div className="flex gap-3">
-              <Badge
-                variant="secondary"
-                className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold"
-              >
-                1
-              </Badge>
-              <div className="space-y-2 flex-1">
-                <p className="text-sm font-medium">Acesse o eCAC</p>
+      {/* Intro Card */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="text-lg">O que é a procuração eletrônica?</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <p className="text-sm leading-relaxed">
+            Para que a LarDia gerencie seu eSocial, você precisa nos autorizar via{' '}
+            <strong>procuração eletrônica</strong> no eCAC (Centro Virtual de Atendimento da
+            Receita Federal). É um processo seguro, 100% digital, e leva menos de 5 minutos.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+            <div className="flex items-start gap-3 bg-muted/50 rounded-lg p-3">
+              <Shield className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-medium">Seguro e revogável</p>
                 <p className="text-xs text-muted-foreground">
-                  Abra o site do eCAC e faça login com sua conta gov.br:
+                  Revogue a qualquer momento no eCAC.
                 </p>
-                <a
-                  href="https://cav.receita.fazenda.gov.br/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-emerald-500 underline"
-                >
-                  cav.receita.fazenda.gov.br
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-                <Image
-                  src="/images/ecac-guide/01-ecac-login.jpg"
-                  alt="Tela de login do eCAC com botão Entrar com gov.br"
-                  width={800}
-                  height={400}
-                  className="rounded-lg border shadow-sm w-full"
-                />
               </div>
             </div>
-
-            {/* Step 3.2: Navigate to Procurações */}
-            <div className="flex gap-3">
-              <Badge
-                variant="secondary"
-                className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold"
-              >
-                2
-              </Badge>
-              <div className="space-y-2 flex-1">
-                <p className="text-sm font-medium">Clique em &quot;Autorizações de Acesso (Procurações)&quot;</p>
+            <div className="flex items-start gap-3 bg-muted/50 rounded-lg p-3">
+              <Clock className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-medium">Menos de 5 minutos</p>
                 <p className="text-xs text-muted-foreground">
-                  No painel principal do eCAC, clique no botão destacado abaixo:
+                  Processo simples no site da Receita Federal.
                 </p>
-                <Image
-                  src="/images/ecac-guide/02-ecac-dashboard.jpg"
-                  alt="Painel do eCAC com botão Autorizações de Acesso destacado"
-                  width={800}
-                  height={400}
-                  className="rounded-lg border shadow-sm w-full"
-                />
               </div>
             </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            {/* Step 3.3: Autorização de Acesso */}
-            <div className="flex gap-3">
-              <Badge
-                variant="secondary"
-                className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold"
-              >
-                3
-              </Badge>
-              <div className="space-y-2 flex-1">
-                <p className="text-sm font-medium">Selecione &quot;Autorização de Acesso (Procuração)&quot;</p>
+      {/* Requirements */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="text-lg">O que você vai precisar</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3">
+              <CheckCircle className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-medium">Conta gov.br nível Prata ou Ouro</p>
                 <p className="text-xs text-muted-foreground">
-                  No submenu que aparece, clique em &quot;Autorização de Acesso (Procuração)&quot;:
+                  Se você ainda não tem,{' '}
+                  <a href="https://sso.acesso.gov.br/signup" target="_blank" rel="noopener noreferrer" className="text-emerald-500 underline">
+                    crie sua conta aqui <ExternalLink className="h-3 w-3 inline ml-0.5" />
+                  </a>
                 </p>
-                <Image
-                  src="/images/ecac-guide/03-autorizacoes-menu.jpg"
-                  alt="Submenu de Autorizações de Acesso"
-                  width={800}
-                  height={400}
-                  className="rounded-lg border shadow-sm w-full"
-                />
               </div>
-            </div>
-
-            {/* Step 3.4: Nova Autorização */}
-            <div className="flex gap-3">
-              <Badge
-                variant="secondary"
-                className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold"
-              >
-                4
-              </Badge>
-              <div className="space-y-2 flex-1">
-                <p className="text-sm font-medium">Clique em &quot;+ Nova Autorização&quot;</p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-medium">Seu CPF</p>
                 <p className="text-xs text-muted-foreground">
-                  Na tela de autorizações, clique no botão azul no canto superior direito:
+                  O CPF cadastrado como empregador doméstico no eSocial.
                 </p>
-                <Image
-                  src="/images/ecac-guide/04-minhas-autorizacoes.jpg"
-                  alt="Tela Minhas Autorizações com botão Nova Autorização"
-                  width={800}
-                  height={400}
-                  className="rounded-lg border shadow-sm w-full"
-                />
               </div>
-            </div>
-
-            {/* Step 3.5: Fill CNPJ */}
-            <div className="flex gap-3">
-              <Badge
-                variant="secondary"
-                className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold"
-              >
-                5
-              </Badge>
-              <div className="space-y-2 flex-1">
-                <p className="text-sm font-medium">Informe o CNPJ da LarDia</p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-medium">CNPJ da LarDia</p>
                 <p className="text-xs text-muted-foreground">
-                  No campo &quot;Pessoa Autorizada&quot;, digite o CNPJ abaixo. O sistema vai mostrar o nome &quot;COCORA CONSULTORIA E SERVCOS ADMINISTRATIVOS LTDA&quot;. Defina a validade (recomendamos até 5 anos).
+                  Copie e cole quando solicitado:
                 </p>
-                <div className="flex items-center gap-2 my-2">
-                  <code className="text-sm bg-emerald-50 text-emerald-700 px-3 py-2 rounded font-mono font-bold">
+                <div className="mt-1 flex items-center gap-2">
+                  <code className="text-sm bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 px-3 py-1.5 rounded font-mono font-bold">
                     {CNPJ_LARDIA}
                   </code>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => copyToClipboard('46728966000140')}
-                  >
-                    {copied ? (
-                      <>
-                        <CheckCircle className="h-3 w-3 mr-1 text-emerald-500" />
-                        Copiado!
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-3 w-3 mr-1" />
-                        Copiar
-                      </>
-                    )}
+                  <Button variant="outline" size="sm" className="h-7 px-2" onClick={() => copyToClipboard('46728966000140')}>
+                    {copied ? <CheckCircle className="h-3 w-3 text-emerald-500" /> : <Copy className="h-3 w-3" />}
+                    <span className="ml-1 text-xs">{copied ? 'Copiado!' : 'Copiar'}</span>
                   </Button>
                 </div>
-                <Image
-                  src="/images/ecac-guide/06-cnpj-cocora.jpg"
-                  alt="Formulário com CNPJ da Cocora preenchido e validade"
-                  width={800}
-                  height={400}
-                  className="rounded-lg border shadow-sm w-full"
-                />
               </div>
-            </div>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
 
-            {/* Step 3.6: Select services */}
-            <div className="flex gap-3">
-              <Badge
-                variant="secondary"
-                className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold"
-              >
-                6
-              </Badge>
-              <div className="space-y-2 flex-1">
-                <p className="text-sm font-medium">Selecione os serviços do eSocial</p>
-                <p className="text-xs text-muted-foreground">
-                  Pesquise por &quot;eSocial&quot; e marque todos os serviços relacionados. Isso permite que a LarDia gerencie completamente sua folha de pagamento.
-                </p>
-                <Image
-                  src="/images/ecac-guide/07-selecionar-servicos.jpg"
-                  alt="Lista de serviços eSocial para selecionar"
-                  width={800}
-                  height={400}
-                  className="rounded-lg border shadow-sm w-full"
-                />
+      {/* Step by step guide */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="text-lg">Passo a passo</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Siga as instruções abaixo para cadastrar a procuração eletrônica:
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-8">
+
+          {/* Step 1 */}
+          <div className="flex gap-4">
+            <Badge variant="secondary" className="h-8 w-8 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+              1
+            </Badge>
+            <div className="space-y-3 flex-1">
+              <p className="text-sm font-semibold">Acesse o eCAC</p>
+              <p className="text-sm text-muted-foreground">
+                Abra o site do eCAC e faça login com sua conta gov.br:
+              </p>
+              <a href="https://cav.receita.fazenda.gov.br/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-emerald-600 underline font-medium">
+                cav.receita.fazenda.gov.br <ExternalLink className="h-3 w-3" />
+              </a>
+              <Image src="/images/ecac-guide/01-ecac-login.jpg" alt="Tela de login do eCAC com botão Entrar com gov.br" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div className="flex gap-4">
+            <Badge variant="secondary" className="h-8 w-8 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+              2
+            </Badge>
+            <div className="space-y-3 flex-1">
+              <p className="text-sm font-semibold">Clique em &quot;Autorizações de Acesso (Procurações)&quot;</p>
+              <p className="text-sm text-muted-foreground">
+                No painel principal do eCAC, procure o menu lateral ou o botão de autorizações:
+              </p>
+              <Image src="/images/ecac-guide/02-ecac-dashboard.jpg" alt="Painel do eCAC com botão Autorizações de Acesso" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div className="flex gap-4">
+            <Badge variant="secondary" className="h-8 w-8 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+              3
+            </Badge>
+            <div className="space-y-3 flex-1">
+              <p className="text-sm font-semibold">Selecione &quot;Autorização de Acesso (Procuração)&quot;</p>
+              <p className="text-sm text-muted-foreground">
+                No submenu que aparece, clique em &quot;Autorização de Acesso (Procuração)&quot;:
+              </p>
+              <Image src="/images/ecac-guide/03-autorizacoes-menu.jpg" alt="Submenu de Autorizações de Acesso" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+            </div>
+          </div>
+
+          {/* Step 4 */}
+          <div className="flex gap-4">
+            <Badge variant="secondary" className="h-8 w-8 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+              4
+            </Badge>
+            <div className="space-y-3 flex-1">
+              <p className="text-sm font-semibold">Clique em &quot;+ Nova Autorização&quot;</p>
+              <p className="text-sm text-muted-foreground">
+                Na tela de autorizações, clique no botão azul no canto superior direito para criar uma nova procuração:
+              </p>
+              <Image src="/images/ecac-guide/04-minhas-autorizacoes.jpg" alt="Tela Minhas Autorizações com botão Nova Autorização" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+            </div>
+          </div>
+
+          {/* Step 5 */}
+          <div className="flex gap-4">
+            <Badge variant="secondary" className="h-8 w-8 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+              5
+            </Badge>
+            <div className="space-y-3 flex-1">
+              <p className="text-sm font-semibold">Preencha o formulário</p>
+              <p className="text-sm text-muted-foreground">
+                Selecione &quot;CNPJ&quot; como tipo de pessoa autorizada. Defina a validade (recomendamos até 5 anos):
+              </p>
+              <Image src="/images/ecac-guide/05-nova-autorizacao-steps.jpg" alt="Formulário Nova Autorização com campos" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+            </div>
+          </div>
+
+          {/* Step 6 */}
+          <div className="flex gap-4">
+            <Badge variant="secondary" className="h-8 w-8 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+              6
+            </Badge>
+            <div className="space-y-3 flex-1">
+              <p className="text-sm font-semibold">Insira o CNPJ da LarDia</p>
+              <p className="text-sm text-muted-foreground">
+                No campo &quot;Pessoa Autorizada&quot;, digite o CNPJ abaixo. O sistema vai mostrar o nome{' '}
+                <strong>COCORA CONSULTORIA E SERVIÇOS ADMINISTRATIVOS LTDA</strong>.
+              </p>
+              <div className="flex items-center gap-2 my-2">
+                <code className="text-sm bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 px-3 py-2 rounded font-mono font-bold">
+                  {CNPJ_LARDIA}
+                </code>
+                <Button variant="outline" size="sm" onClick={() => copyToClipboard('46728966000140')}>
+                  {copied ? <><CheckCircle className="h-3 w-3 mr-1 text-emerald-500" />Copiado!</> : <><Copy className="h-3 w-3 mr-1" />Copiar</>}
+                </Button>
               </div>
+              <Image src="/images/ecac-guide/06-cnpj-cocora.jpg" alt="Formulário com CNPJ da Cocora preenchido" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
             </div>
+          </div>
 
-            {/* Step 3.7: Confirm */}
-            <div className="flex gap-3">
-              <Badge
-                variant="secondary"
-                className="h-7 w-7 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold"
-              >
-                7
-              </Badge>
-              <div className="space-y-2 flex-1">
-                <p className="text-sm font-medium">Confirme a procuração</p>
-                <p className="text-xs text-muted-foreground">
-                  Revise os dados, clique em &quot;Confirmar&quot; e pronto! A procuração será ativada imediatamente.
-                </p>
-              </div>
+          {/* Step 7 */}
+          <div className="flex gap-4">
+            <Badge variant="secondary" className="h-8 w-8 shrink-0 rounded-full flex items-center justify-center p-0 text-sm font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+              7
+            </Badge>
+            <div className="space-y-3 flex-1">
+              <p className="text-sm font-semibold">Selecione os serviços do eSocial e confirme</p>
+              <p className="text-sm text-muted-foreground">
+                Pesquise por &quot;eSocial&quot; e marque todos os serviços relacionados. Depois clique em &quot;Confirmar&quot;. A procuração será ativada imediatamente.
+              </p>
+              <Image src="/images/ecac-guide/07-selecionar-servicos.jpg" alt="Lista de serviços eSocial para selecionar" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
             </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            <div className="flex gap-2 pt-4">
-              <Button
-                variant="outline"
-                onClick={() => setStep(2)}
-                className="flex-1"
-              >
-                Voltar
-              </Button>
-              <Button onClick={() => setStep(4)} className="flex-1">
-                Já cadastrei a procuração
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Step 4: Verification */}
-      {step === 4 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              {verified ? 'eSocial conectado com sucesso!' : 'Verificar conexão'}
-            </CardTitle>
-          </CardHeader>
+      {/* What happens after */}
+      <Card className="mb-6">
+        <CardHeader>
+          <button onClick={() => setShowResult(!showResult)} className="flex items-center justify-between w-full">
+            <CardTitle className="text-lg">O que acontece depois?</CardTitle>
+            {showResult ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+          </button>
+        </CardHeader>
+        {showResult && (
           <CardContent className="space-y-4">
-            {verified ? (
-              <div className="text-center space-y-4">
-                <CheckCircle className="h-16 w-16 text-emerald-500 mx-auto" />
-                <p className="text-sm font-medium">Tudo certo!</p>
-                <p className="text-sm text-muted-foreground">
-                  Sua procuração eletrônica foi verificada. A LarDia agora pode
-                  gerenciar seu eSocial, gerar a folha de pagamento e emitir as guias DAE.
-                </p>
-                <Link href="/dashboard/esocial">
-                  <Button className="w-full">Ir para o painel eSocial</Button>
-                </Link>
+            <p className="text-sm text-muted-foreground">
+              Depois de cadastrar a procuração, a LarDia acessa o portal eSocial como procuradora do seu CPF. Veja como funciona:
+            </p>
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs font-medium text-muted-foreground mb-2">1. Selecionamos o perfil de Procurador e informamos seu CPF:</p>
+                <Image src="/images/ecac-guide/portal/procurador-pf.png" alt="Seleção de perfil Procurador de Pessoa Física" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
               </div>
-            ) : (
-              <>
-                <p className="text-sm text-muted-foreground">
-                  Informe o CPF do empregador doméstico para verificarmos se a procuração
-                  foi cadastrada corretamente.
-                </p>
-                <div>
-                  <label
-                    htmlFor="cpf"
-                    className="text-sm font-medium block mb-1.5"
-                  >
-                    CPF do empregador
-                  </label>
-                  <Input
-                    id="cpf"
-                    placeholder="000.000.000-00"
-                    value={cpf}
-                    onChange={(e) => setCpf(formatCpf(e.target.value))}
-                    maxLength={14}
-                  />
-                  {error && (
-                    <p className="text-sm text-destructive mt-1">{error}</p>
-                  )}
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    onClick={() => setStep(3)}
-                    className="flex-1"
-                  >
-                    Voltar
-                  </Button>
-                  <Button
-                    onClick={handleVerify}
-                    disabled={verifying}
-                    className="flex-1"
-                  >
-                    {verifying ? (
-                      <>
-                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Verificando...
-                      </>
-                    ) : (
-                      'Verificar conexão'
-                    )}
-                  </Button>
-                </div>
-              </>
-            )}
+              <div>
+                <p className="text-xs font-medium text-muted-foreground mb-2">2. O sistema verifica a procuração e carrega seu eSocial:</p>
+                <Image src="/images/ecac-guide/portal/procuracao-result.png" alt="CPF verificado com módulos disponíveis" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+              </div>
+              <div>
+                <p className="text-xs font-medium text-muted-foreground mb-2">3. Acessamos o Módulo Simplificado (Doméstico) em seu nome:</p>
+                <Image src="/images/ecac-guide/portal/procuracao-domestico.png" alt="Módulo Simplificado acessado como procurador" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+              </div>
+              <div>
+                <p className="text-xs font-medium text-muted-foreground mb-2">4. Gerenciamos a Folha de Pagamento automaticamente:</p>
+                <Image src="/images/ecac-guide/portal/folha-listagem.png" alt="Tela de Folha de Pagamento no eSocial" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
+              </div>
+            </div>
           </CardContent>
-        </Card>
-      )}
+        )}
+      </Card>
+
+      {/* Verification */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">
+            {verified ? '✅ eSocial conectado com sucesso!' : 'Verificar conexão'}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {verified ? (
+            <div className="text-center space-y-4">
+              <CheckCircle className="h-16 w-16 text-emerald-500 mx-auto" />
+              <p className="text-sm font-medium">Tudo certo!</p>
+              <p className="text-sm text-muted-foreground">
+                Sua procuração foi verificada. A LarDia agora pode gerenciar seu eSocial, 
+                gerar a folha de pagamento e emitir as guias DAE automaticamente.
+              </p>
+              <Link href="/dashboard/esocial">
+                <Button className="w-full">Ir para o painel eSocial</Button>
+              </Link>
+            </div>
+          ) : (
+            <>
+              <p className="text-sm text-muted-foreground">
+                Já cadastrou a procuração? Informe seu CPF para verificarmos a conexão:
+              </p>
+              <div>
+                <label htmlFor="cpf" className="text-sm font-medium block mb-1.5">CPF do empregador</label>
+                <Input id="cpf" placeholder="000.000.000-00" value={cpf} onChange={(e) => setCpf(formatCpf(e.target.value))} maxLength={14} />
+                {error && <p className="text-sm text-destructive mt-1">{error}</p>}
+              </div>
+              <Button onClick={handleVerify} disabled={verifying} className="w-full">
+                {verifying ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Verificando...</> : 'Verificar conexão'}
+              </Button>
+            </>
+          )}
+        </CardContent>
+      </Card>
     </div>
   )
 }
