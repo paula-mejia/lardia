@@ -239,7 +239,7 @@ function BackgroundCheckResultsContent() {
   for (const [key, data] of Object.entries(sources)) {
     const meta = SOURCE_META[key]
     if (!meta) continue
-    grouped[meta.group]?.push({ key, data: data as Record<string, unknown> })
+    grouped[meta.group]?.push({ key, data: data as unknown as Record<string, unknown> })
   }
 
   // Count totals
