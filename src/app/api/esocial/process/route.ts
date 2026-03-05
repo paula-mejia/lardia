@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     // Get active employees
     const { data: employees } = await supabase
       .from('employees')
-      .select('id, full_name, cpf, salary, dependents')
+      .select('id, full_name, cpf, salary')
       .eq('employer_id', employer.id)
       .eq('status', 'active')
 
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
         name: e.full_name,
         cpf: e.cpf,
         grossSalary: e.salary,
-        dependents: e.dependents || 0,
+        dependents: 0,
       }))
     )
 
