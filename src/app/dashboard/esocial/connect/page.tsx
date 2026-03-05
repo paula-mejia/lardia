@@ -13,8 +13,6 @@ import {
   Clock,
   Copy,
   Loader2,
-  ChevronDown,
-  ChevronUp,
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -28,7 +26,6 @@ export default function ConnectESocialPage() {
   const [verified, setVerified] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
-  const [showResult, setShowResult] = useState(false)
 
   function formatCpf(value: string) {
     const digits = value.replace(/\D/g, '').slice(0, 11)
@@ -301,40 +298,7 @@ export default function ConnectESocialPage() {
         </CardContent>
       </Card>
 
-      {/* What happens after */}
-      <Card className="mb-6">
-        <CardHeader>
-          <button onClick={() => setShowResult(!showResult)} className="flex items-center justify-between w-full">
-            <CardTitle className="text-lg">O que acontece depois?</CardTitle>
-            {showResult ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
-          </button>
-        </CardHeader>
-        {showResult && (
-          <CardContent className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Depois de cadastrar a procuração, a LarDia acessa o portal eSocial como procuradora do seu CPF. Veja como funciona:
-            </p>
-            <div className="space-y-4">
-              <div>
-                <p className="text-xs font-medium text-muted-foreground mb-2">1. Selecionamos o perfil de Procurador e informamos seu CPF:</p>
-                <Image src="/images/ecac-guide/portal/procurador-pf.png" alt="Seleção de perfil Procurador de Pessoa Física" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
-              </div>
-              <div>
-                <p className="text-xs font-medium text-muted-foreground mb-2">2. O sistema verifica a procuração e carrega seu eSocial:</p>
-                <Image src="/images/ecac-guide/portal/procuracao-result.png" alt="CPF verificado com módulos disponíveis" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
-              </div>
-              <div>
-                <p className="text-xs font-medium text-muted-foreground mb-2">3. Acessamos o Módulo Simplificado (Doméstico) em seu nome:</p>
-                <Image src="/images/ecac-guide/portal/procuracao-domestico.png" alt="Módulo Simplificado acessado como procurador" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
-              </div>
-              <div>
-                <p className="text-xs font-medium text-muted-foreground mb-2">4. Gerenciamos a Folha de Pagamento automaticamente:</p>
-                <Image src="/images/ecac-guide/portal/folha-listagem.png" alt="Tela de Folha de Pagamento no eSocial" width={800} height={400} className="rounded-lg border shadow-sm w-full" />
-              </div>
-            </div>
-          </CardContent>
-        )}
-      </Card>
+      {/* "O que acontece depois?" section removed - unnecessary for user flow */}
 
       {/* Verification */}
       <Card>
