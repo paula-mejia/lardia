@@ -137,7 +137,7 @@ export default function EsocialProcessPage() {
         .eq('id', employer.id)
         .single()
 
-      setProcuracaoValid(emp?.procuracao_status === 'approved')
+      setProcuracaoValid(emp?.procuracao_status === 'active')
       setLoading(false)
     }
     loadEmployees()

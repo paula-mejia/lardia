@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         .from('employers')
         .update({
           esocial_emp_id: result.empId,
-          procuracao_status: 'approved',
+          procuracao_status: 'active',
         })
         .eq('id', employer.id)
     }
