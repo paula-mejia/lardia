@@ -159,6 +159,73 @@ export default function EsocialProcessPage() {
     }
   }
 
+  // RPA: Process via real eSocial portal
+  const [rpaProcessing, setRpaProcessing] = useState(false)
+  const [rpaJobId, setRpaJobId] = useState<string | null>(null)
+  const [rpaStatus, setRpaStatus] = useState<string | null>(null)
+  const [rpaStep, setRpaStep] = useState<string | null>(null)
+  const [rpaResult, setRpaResult] = useState<Record<string, unknown> | null>(null)
+  const [rpaError, setRpaError] = useState<string | null>(null)
+
+  async function handleRpaProcess() {
+    setRpaProcessing(true)
+    setRpaError(null)
+    setRpaResult(null)
+    setRpaStatus('starting')
+    setRpaStep(null)
+
+    try {
+      // Start RPA job
+      const res = await fetch('/api/esocial/rpa/process', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ month, year, mode: 'full-dae' }),
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Erro ao iniciar processamento')
+
+      setRpaJobId(data.jobId)
+      setRpaStatus('queued')
+
+      // Poll for completion
+      const pollInterval = setInterval(async () => {
+        try {
+          const statusRes = await fetch(`/api/esocial/rpa/status?jobId=${data.jobId}`)
+          const statusData = await statusRes.json()
+
+          setRpaStatus(statusData.status)
+          setRpaStep(statusData.step || null)
+
+          if (statusData.status === 'completed') {
+            clearInterval(pollInterval)
+            setRpaResult(statusData)
+            setRpaProcessing(false)
+          } else if (statusData.status === 'error') {
+            clearInterval(pollInterval)
+            setRpaError(statusData.error || 'Erro no processamento')
+            setRpaProcessing(false)
+          }
+        } catch {
+          // Ignore poll errors, keep trying
+        }
+      }, 5000)
+
+      // Timeout after 5 minutes
+      setTimeout(() => {
+        clearInterval(pollInterval)
+        if (rpaProcessing) {
+          setRpaError('Timeout: processamento demorou mais de 5 minutos')
+          setRpaProcessing(false)
+        }
+      }, 300000)
+
+    } catch (err) {
+      setRpaError(err instanceof Error ? err.message : 'Erro desconhecido')
+      setRpaProcessing(false)
+    }
+  }
+
   const currentYear = new Date().getFullYear()
   const years = [currentYear - 1, currentYear, currentYear + 1]
 
@@ -256,11 +323,21 @@ export default function EsocialProcessPage() {
                 </SelectContent>
               </Select>
             </div>
-            <Button onClick={handleProcess} disabled={processing || employees.length === 0} size="lg">
+            <Button onClick={handleProcess} disabled={processing || rpaProcessing || employees.length === 0} size="lg" variant="outline">
               {processing ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Processando...
+                  Simulando...
+                </>
+              ) : (
+                'Simular'
+              )}
+            </Button>
+            <Button onClick={handleRpaProcess} disabled={rpaProcessing || processing || employees.length === 0} size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+              {rpaProcessing ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Processando no eSocial...
                 </>
               ) : (
                 'Processar mês'
@@ -270,6 +347,72 @@ export default function EsocialProcessPage() {
         </CardContent>
       </Card>
 
+      {/* RPA Progress */}
+      {rpaProcessing && (
+        <Card className="border-emerald-200 bg-emerald-50">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-3">
+              <Loader2 className="h-6 w-6 animate-spin text-emerald-600" />
+              <div>
+                <p className="font-medium text-emerald-900">Processando no portal eSocial...</p>
+                <p className="text-sm text-emerald-700">
+                  {rpaStep === 'login' && 'Autenticando no Gov.br...'}
+                  {rpaStep === 'procuracao' && 'Verificando procuração...'}
+                  {rpaStep === 'folha' && 'Acessando folha de pagamento...'}
+                  {rpaStep === 'full-dae' && 'Gerando DAE e recibos...'}
+                  {rpaStep === 'encerrar' && 'Encerrando folha...'}
+                  {rpaStep === 'dae' && 'Baixando DAE...'}
+                  {rpaStep === 'recibos' && 'Baixando recibos...'}
+                  {!rpaStep && `Status: ${rpaStatus}`}
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* RPA Result */}
+      {rpaResult && (
+        <Card className="border-emerald-200">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-2 mb-4">
+              <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+              <h3 className="font-medium text-emerald-900">Processamento concluído no eSocial</h3>
+            </div>
+            {(rpaResult as Record<string, unknown>).daeDownloadUrl && (
+              <div className="flex gap-2">
+                <a href={(rpaResult as Record<string, unknown>).daeDownloadUrl as string} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm">
+                    <FileText className="mr-2 h-4 w-4" />
+                    Baixar DAE
+                  </Button>
+                </a>
+                {(rpaResult as Record<string, unknown>).recibosDownloadUrl && (
+                  <a href={(rpaResult as Record<string, unknown>).recibosDownloadUrl as string} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="sm">
+                      <FileText className="mr-2 h-4 w-4" />
+                      Baixar Recibos
+                    </Button>
+                  </a>
+                )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* RPA Error */}
+      {rpaError && (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-2">
+              <XCircle className="h-5 w-5 text-red-600" />
+              <p className="text-sm text-red-800">{rpaError}</p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Progress indicator */}
       {processing && (
         <Card className="border-blue-200 bg-blue-50">
@@ -277,7 +420,7 @@ export default function EsocialProcessPage() {
             <div className="flex items-center gap-3">
               <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
               <div>
-                <p className="font-medium text-blue-900">Processando folha de pagamento...</p>
+                <p className="font-medium text-blue-900">Simulando folha de pagamento...</p>
                 <p className="text-sm text-blue-700">
                   Calculando encargos e gerando eventos para {employees.length} empregado(s)
                 </p>
