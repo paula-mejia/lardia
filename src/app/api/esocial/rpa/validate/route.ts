@@ -30,8 +30,7 @@ export async function POST(request: NextRequest) {
         .from('employers')
         .update({
           esocial_emp_id: result.empId,
-          procuracao_valid: true,
-          procuracao_validated_at: new Date().toISOString(),
+          procuracao_status: 'approved',
         })
         .eq('id', employer.id)
     }

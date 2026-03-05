@@ -83,7 +83,6 @@ export default function EsocialProcessPage() {
   const [proxyTesting, setProxyTesting] = useState(false)
   const [proxyStatus, setProxyStatus] = useState<string | null>(null)
   const [procuracaoValid, setProcuracaoValid] = useState(false)
-  const [procuracaoChecking, setProcuracaoChecking] = useState(false)
 
   async function testProxy() {
     setProxyTesting(true)
@@ -134,11 +133,11 @@ export default function EsocialProcessPage() {
       // Check procuração status
       const { data: emp } = await supabase
         .from('employers')
-        .select('procuracao_valid, procuracao_validated_at')
+        .select('procuracao_status')
         .eq('id', employer.id)
         .single()
 
-      setProcuracaoValid(emp?.procuracao_valid === true)
+      setProcuracaoValid(emp?.procuracao_status === 'approved')
       setLoading(false)
     }
     loadEmployees()
