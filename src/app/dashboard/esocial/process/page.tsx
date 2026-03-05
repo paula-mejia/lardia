@@ -82,6 +82,8 @@ export default function EsocialProcessPage() {
   const [proxyConnected, setProxyConnected] = useState(false)
   const [proxyTesting, setProxyTesting] = useState(false)
   const [proxyStatus, setProxyStatus] = useState<string | null>(null)
+  const [procuracaoValid, setProcuracaoValid] = useState(false)
+  const [procuracaoChecking, setProcuracaoChecking] = useState(false)
 
   async function testProxy() {
     setProxyTesting(true)
@@ -128,6 +130,15 @@ export default function EsocialProcessPage() {
         .eq('status', 'active')
 
       setEmployees(data || [])
+
+      // Check procuração status
+      const { data: emp } = await supabase
+        .from('employers')
+        .select('procuracao_valid, procuracao_validated_at')
+        .eq('id', employer.id)
+        .single()
+
+      setProcuracaoValid(emp?.procuracao_valid === true)
       setLoading(false)
     }
     loadEmployees()
@@ -333,7 +344,7 @@ export default function EsocialProcessPage() {
                 'Simular'
               )}
             </Button>
-            <Button onClick={handleRpaProcess} disabled={rpaProcessing || processing || employees.length === 0} size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+            <Button onClick={handleRpaProcess} disabled={rpaProcessing || processing || employees.length === 0 || !procuracaoValid} size="lg" className="bg-emerald-600 hover:bg-emerald-700">
               {rpaProcessing ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -346,6 +357,26 @@ export default function EsocialProcessPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Procuração warning */}
+      {!procuracaoValid && !loading && (
+        <Card className="border-amber-200 bg-amber-50">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-3">
+              <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0" />
+              <div>
+                <p className="font-medium text-amber-900">Procuração não conectada</p>
+                <p className="text-sm text-amber-700">
+                  O processamento via eSocial estará disponível quando sua procuração estiver conectada e aprovada.{' '}
+                  <Link href="/dashboard/esocial/connect" className="underline font-medium">
+                    Conectar procuração →
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* RPA Progress */}
       {rpaProcessing && (
