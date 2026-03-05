@@ -409,24 +409,24 @@ export default function EsocialProcessPage() {
               <CheckCircle2 className="h-5 w-5 text-emerald-600" />
               <h3 className="font-medium text-emerald-900">Processamento concluído no eSocial</h3>
             </div>
-            {(rpaResult as Record<string, unknown>).daeDownloadUrl && (
+            {rpaResult.daeDownloadUrl ? (
               <div className="flex gap-2">
-                <a href={(rpaResult as Record<string, unknown>).daeDownloadUrl as string} target="_blank" rel="noopener noreferrer">
+                <a href={String(rpaResult.daeDownloadUrl)} target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="sm">
                     <FileText className="mr-2 h-4 w-4" />
                     Baixar DAE
                   </Button>
                 </a>
-                {(rpaResult as Record<string, unknown>).recibosDownloadUrl && (
-                  <a href={(rpaResult as Record<string, unknown>).recibosDownloadUrl as string} target="_blank" rel="noopener noreferrer">
+                {rpaResult.recibosDownloadUrl ? (
+                  <a href={String(rpaResult.recibosDownloadUrl)} target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" size="sm">
                       <FileText className="mr-2 h-4 w-4" />
                       Baixar Recibos
                     </Button>
                   </a>
-                )}
+                ) : null}
               </div>
-            )}
+            ) : null}
           </CardContent>
         </Card>
       )}

@@ -21,6 +21,8 @@ export type AuditAction =
   | 'esocial_event_retry'
   | 'dae_pdf_generated'
   | 'background_check_payment'
+  | 'esocial_rpa_started'
+  | 'esocial_procuracao_validated'
 
 // Use service role to bypass RLS for inserts from any context
 function getServiceSupabase() {
