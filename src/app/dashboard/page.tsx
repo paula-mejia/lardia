@@ -266,7 +266,7 @@ export default async function DashboardPage() {
             </div>
 
             <Link href="/dashboard/esocial">
-              <Button variant="outline" size="sm" className="mt-2 border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white">
+              <Button size="sm" className="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white">
                 Ver Detalhes
               </Button>
             </Link>
